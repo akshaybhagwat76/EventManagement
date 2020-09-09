@@ -1,0 +1,264 @@
+﻿@model MiidWeb.EventOrganiser
+@{
+	ViewBag.Title = "EventOrganiserCreate";
+	Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<link rel="stylesheet" href="../../content/css/crop.css" type="text/css" />
+
+<script src="../../scripts/jquery.min.js"></script>
+
+<script src="../../scripts/cropbox/cropbox.js"></script>
+
+<div class="col-md-9">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="content-box-header">
+				<div class="panel-title">Create Event Organiser Account</div>
+
+				<div class="panel-options">
+					
+				</div>
+			</div>
+			<div class="content-box-large box-with-header">
+				@using (Html.BeginForm())
+				{
+					@Html.AntiForgeryToken()
+
+					<span style="color:palevioletred">@Html.ValidationSummary()</span>
+
+
+					@Html.HiddenFor(model => model.StartDate)
+					@Html.HiddenFor(model => model.DateCreated)
+					@Html.HiddenFor(model => model.DateUpdated)
+
+
+
+					<div class="row">
+						<div class="col-md-12 form-group">
+							<h4>Company's primary details</h4>
+						</div>
+						<div class="col-md-12 form-group">
+							<label>Company Name</label>
+							@Html.EditorFor(model => model.CompanyName, new { htmlAttributes = new { @class = "form-control", placeholder = "Company Name", type = "text" } })
+							@Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "red" })
+						</div>
+						<div class="form-group col-md-12 hidden">
+							@Html.DropDownList("StatusID", null, htmlAttributes: new { @class = "form-control input-lg", placeholder = "" })
+							@Html.ValidationMessageFor(model => model.StatusID, "", new { @class = "red" })
+						</div>
+						<div class="col-md-12 form-group">
+							<label>Contact Name</label>
+							@Html.EditorFor(model => model.ContactName, new { htmlAttributes = new { @class = "form-control", placeholder = "Contact Name", type = "text" } })
+							@Html.ValidationMessageFor(model => model.ContactName, "", new { @class = "red" })
+						</div>
+						<div class="col-md-6 form-group">
+							<label>Phone</label>
+							@Html.EditorFor(model => model.Telephone, new { htmlAttributes = new { @class = "form-control", placeholder = "Telephone", type = "number" } })
+							@Html.ValidationMessageFor(model => model.Telephone, "", new { @class = "red" })
+						</div>
+						<div class="col-md-6 form-group">
+							<label>Email</label>
+							@Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Email", type = "email" } })
+							@Html.ValidationMessageFor(model => model.Email, "", new { @class = "red" })
+						</div>
+						<div class="col-md-12 form-group">
+							<hr>
+						</div>
+						<div class="col-md-12 form-group">
+							<h4>Alternative contact information</h4>
+						</div>
+						<div class="col-md-12 form-group">
+							<label>Secondary Contact Name</label>
+							@Html.EditorFor(model => model.SecondaryContactName, new { htmlAttributes = new { @class = "form-control", placeholder = "Secondary Contact Name", type = "text" } })
+							@Html.ValidationMessageFor(model => model.SecondaryContactName, "", new { @class = "red" })
+						</div>
+						<div class="col-md-6 form-group">
+							<label>Phone</label>
+							@Html.EditorFor(model => model.SecondaryContactTelephone, new { htmlAttributes = new { @class = "form-control", placeholder = "Secondary Contact Telephone", type = "number" } })
+							@Html.ValidationMessageFor(model => model.SecondaryContactTelephone, "", new { @class = "red" })
+
+						</div>
+						<div class="col-md-6 form-group">
+							<label>Email</label>
+							@Html.EditorFor(model => model.SecondaryContactEmail, new { htmlAttributes = new { @class = "form-control", placeholder = "Secondary Contact Email", type = "email" } })
+							@Html.ValidationMessageFor(model => model.SecondaryContactEmail, "", new { @class = "red" })
+						</div>
+
+						<div class="col-md-12 form-group">
+							<hr>
+						</div>
+						<div class="col-md-12 form-group">
+							<h4>App PIN</h4>
+						</div>
+						<div class="col-md-6 form-group">
+							<label>Enter App Pin</label>
+							@Html.EditorFor(model => model.HandHeldLoginPassword, new { htmlAttributes = new { @class = "form-control", placeholder = "Bank Account Holder", type = "number" } })
+							@Html.ValidationMessageFor(model => model.HandHeldLoginPassword, "", new { @class = "red" })
+
+						</div>
+						<div class="col-md-12 form-group">
+							<hr>
+						</div>
+						<div class="col-md-12 form-group">
+							<h4>Banking details</h4>
+						</div>
+						<div class="col-md-6 form-group">
+							<label>Bank Account Holder Name</label>
+							@Html.EditorFor(model => model.BankAccountHolder, new { htmlAttributes = new { @class = "form-control", placeholder = "Bank Account Holder" } })
+							@Html.ValidationMessageFor(model => model.BankAccountHolder, "", new { @class = "red" })
+
+						</div>
+						<div class="col-md-6 form-group">
+							<label>Bank Name</label>
+							@Html.EditorFor(model => model.Bank, new { htmlAttributes = new { @class = "form-control", placeholder = "Bank" } })
+							@Html.ValidationMessageFor(model => model.Bank, "", new { @class = "red" })
+
+						</div>
+						<div class="col-md-4 form-group">
+							<label>Account Number</label>
+							@Html.EditorFor(model => model.BankAccountNumber, new { htmlAttributes = new { @class = "form-control", placeholder = "Bank Account Number" } })
+							@Html.ValidationMessageFor(model => model.BankAccountNumber, "", new { @class = "red" })
+
+						</div>
+						<div class="col-md-4 form-group">
+							<label>Branch Code</label>
+							@Html.EditorFor(model => model.BranchCode, new { htmlAttributes = new { @class = "form-control", placeholder = "Branch Code" } })
+							@Html.ValidationMessageFor(model => model.BranchCode, "", new { @class = "red" })
+
+						</div>
+						<div class="col-md-4 form-group">
+							<label>Account Type</label>
+
+							@Html.EditorFor(model => model.BankType, new { htmlAttributes = new { @class = "form-control", placeholder = "Acc Type" } })
+							@Html.ValidationMessageFor(model => model.BankType, "", new { @class = "red" })
+
+						</div>
+
+						<div class="col-md-4 form-group">
+							<hr>
+						</div>
+
+						<div class="col-md-12 form-group">
+							<h4>Company profile image</h4>
+						</div>
+						<div class="form-group col-md-12">
+							<div><input type="file" id="file" class="custom-file-input"></div>
+						</div>
+
+						<div class="form-group col-md-6">
+							<div class="imageBox">
+								<div class="thumbBox"></div>
+								<div class="spinner">Upload Picture</div>
+							</div>
+
+							<input type="hidden" name="imageData" id="imageData" />
+							<div class="action_crop">
+								<div class="crop_button_container"><input style="" type="button" id="btnCrop" value="Use Image" class="btn btn-primary"></div>
+								<div class="crop_button_container"><input type="button" id="btnZoomIn" value="+" class="btn btn-primary"></div>
+								<div class="crop_button_container"> <input type="button" id="btnZoomOut" value="-" class="btn btn-primary"></div>
+							</div>
+
+						</div>
+
+						<div class="form-group col-md-3">
+							<div class="cropped">
+								<img id="imageID" src="../../content/images/avatar.png" />
+							</div>
+						</div>
+
+						<div class="form-group col-md-12 ">
+							<hr class="thin">
+						</div>
+
+
+						<div class="form-group col-md-6">
+							<Button type="submit" value="" class="btn btn-primary">Create</Button>
+							@Html.ActionLink("Cancel", "MyDetails", null, new { @class = "btn btn-default" })
+						</div>
+
+
+
+
+
+
+					</div>
+
+
+
+						<!--banking-->
+						}
+					</div>
+
+			</div>
+		</div>
+	</div>
+
+
+
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		</div>
+
+
+
+
+		@section Scripts {
+			@Scripts.Render("~/bundles/jqueryval")
+			<script src="../../scripts/cropbox/jquery-1.11.1.min.js"></script>
+			<script src="../../scripts/cropbox/cropbox.js"></script>
+		}
+
+		<!-- Scripts -->
+		<script type="text/javascript">
+			$(window).load(function () {
+				var options =
+				{
+					thumbBox: '.thumbBox',
+					spinner: '.spinner',
+					imgSrc: '../../images/' + $('#ProfilePicURL').val()
+				}
+				var cropper = $('.imageBox').cropbox(options);
+				$('#file').on('change', function () {
+					var reader = new FileReader();
+					reader.onload = function (e) {
+						options.imgSrc = e.target.result;
+						cropper = $('.imageBox').cropbox(options);
+					}
+					reader.readAsDataURL(this.files[0]);
+					this.files = [];
+				})
+				$('#btnCrop').on('click', function () {
+					debugger;
+					var img = cropper.getDataURL();
+					$("#imageID").attr('src', img);
+					//$('.cropped').append('<img src="'+img+'">');
+					var image = img.replace('data:image/png;base64,', '');
+					$("#imageData").val(image);
+				})
+				$('#btnZoomIn').on('click', function () {
+					cropper.zoomIn();
+				})
+				$('#btnZoomOut').on('click', function () {
+					cropper.zoomOut();
+				})
+			});
+		</script>
+
+

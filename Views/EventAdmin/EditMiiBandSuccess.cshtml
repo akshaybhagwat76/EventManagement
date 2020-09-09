@@ -1,0 +1,60 @@
+﻿@model MiidWeb.Models.EndUserViewModel
+@{
+	Layout = "~/Views/Shared/_LayoutBackEnd.cshtml";
+}
+
+<div class="col-md-9">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="content-box-header">
+				<div class="panel-title">Transaction Complete</div>
+
+				<div class="panel-options">
+
+				</div>
+			</div>
+			<div class="content-box-large box-with-header">
+				<div class="table-wrapper">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Surname</th>
+								<th>ID Number</th>
+								<th>Band Status</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>@Model.EndUser.Firstname </td>
+								<td>@Model.EndUser.Surname</td>
+								<td>@Model.EndUser.IDNumber</td>
+								@*<td>@Model.TagNumber</td>*@
+								<td>@Model.TagStatus</td>
+
+
+								<td>
+									@Html.ActionLink("Activate Band", "AddMiiBand", new { id = Model.EndUser.ID })
+								</td>
+
+							</tr>
+
+
+
+
+
+						</tbody>
+
+					</table>
+				</div>
+				@Html.ActionLink("Back to Dashboard", "Index", null, new { @class = "btn btn-primary" })
+			</div>
+			</div>
+		</div>
+	</div>
+
+
+				
+				
+

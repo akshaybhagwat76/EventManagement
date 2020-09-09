@@ -1,0 +1,260 @@
+﻿@using Microsoft.AspNet.Identity
+
+@model MiidWeb.Models.LoginViewModel
+@{
+    ViewBag.Title = "MiiD Event Organiser Landing Page";
+    ViewBag.Title = "Contact";
+
+    bool IAmEventOrganiser = false;
+    if (Request.IsAuthenticated)
+    {
+        IAmEventOrganiser = MiidWeb.Repositories.EndUserRepository.AmIAnEventOrganiser(User.Identity.GetUserName());
+    }
+
+}
+
+@if (IAmEventOrganiser)
+{
+    Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("LayoutEventOrganiser");
+}
+else
+{
+    Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("Layout");
+}
+
+
+
+<title>Mi-iD Services. Get the full package with Mi-id's online ticketing and cashless servicess</title>
+<meta name="description" content="Easy to use online ticketing and cashless servicess at the lowest rates in South Africa" />
+
+<meta property="og:image" content="https://www.miid.co.za/Uploads/genric.png" />
+
+
+<header class="jumbotron  my-4 text-center" style="background:none; margin-left:30px; margin-right:30px;">
+    <h2 class="display-3" style="font-weight:bold;">Mi-id's range of event solutions allow you to efficiently run any type of event<br></h2>
+    <p class="lead" style="margin-left:20px; margin-right:20px;">
+		Mi-id's ticketing & cashless systems are easy-to-use and quick to set up so you can start selling tickets or planning your cashless event in a matter of minutes, giving yourself the opportunity to focus on running a world-class event
+       </p>
+    <div class="smallhr"></div>
+    <br>
+    <a href="#jump1" id="back"><i class="fas fas fa-chevron-down fa-2x" aria-hidden="true" style="color:#000000;"></i></a>
+
+</header>
+
+<!-- Page Features -->
+<div class="row text-center bg-grey" style="padding:30px 30px 60px;">
+	<br><br>
+	<div class="col-md-offset-4 col-md-4"><img src="~/Content/images/newimages/ticket1.svg" alt="online tickets" style="width:20%" /></div>
+
+	<div class="col-lg-12 col-md-12 mb-12 text-center ">
+		<div id="jump1" class="">
+		
+			<h1>Event Ticketing</h1>
+            <div class="smallhr"></div>
+            <br><br>
+			
+		</div>
+	</div>
+	<div  class="col-lg-4 col-md-4 mb-4" >
+		<div class="card" style="min-height:270px;" >
+			<div class="card-img-top"><i class="fa fa-check-circle fa-3x" aria-hidden="true"></i></div>
+			<div class="card-body">
+				<h4 class="card-title">Online Digital Ticketing</h4>
+				<p class="card-text">
+					By selling tickets online you can start generating revenue immediately. No need to rely on external factors such as the weather or competing events.</p>
+			</div>
+			<div class="card-footer">
+				<a href="~/Home/TicketingExplanation"><button type="button" class="btn btn-warning">Learn More</button></a>
+
+			</div>
+		</div>
+	</div>
+
+	<div class="col-lg-4 col-md-4 mb-4" >
+		<div class="card" style="min-height:270px;" >
+			<div class="card-img-top"><i class="fa fa-check-circle fa-3x" aria-hidden="true"></i></div>
+			<div class="card-body">
+				<h4 class="card-title">Box Office Solutions</h4>
+				<p class="card-text">Sell tickets at your event or venue. Easily track cash, amount of tickets sold and ticket types sold. <br><br></p>
+			</div>
+			<div class="card-footer">
+				<a href="~/Home/BoxOffice"><button type="button" class="btn btn-warning">Learn More</button></a>
+
+			</div>
+		</div>
+	</div>
+
+	<div class="col-lg-4 col-md-4 mb-4" >
+		<div class="card" style="min-height:270px;">
+			<div class="card-img-top"><i class="fa fa-check-circle fa-3x" aria-hidden="true"></i></div>
+			<div class="card-body">
+				<h4 class="card-title">NFC Ticketing</h4>
+				<p class="card-text">Mi-id NFC tickets are completely virtual and can only be redeemed on presentation of a valid NFC tag which is linked to your customer's profile. </p>
+			</div>
+			<div class="card-footer">
+				@Html.ActionLink("Learn More", "NfcTickets", "Home", null, new { @class = "btn btn-warning" })
+
+			</div>
+		</div>
+	</div>
+
+	<br>
+	<br>
+    <br>
+</div>
+<div class="row text-center" style="padding:30px;">
+	<div class="col-md-offset-4 col-md-4">
+        <br><br>
+		<img src="~/Content/images/newimages/rfid.svg" alt="online tickets" style="width:20%" />
+	</div>
+	<div class="col-md-12" style="background-color:#ffffff;">
+		<h2 class="" style="font-weight:bold;">Cashless Services<br></h2>
+     
+       
+		<p class="card-text" style="">
+			Eliminate the risk of handling cash, speed up payments, reduce queues and cut the cost of banking fees for your event. The Mi-id cashless system makes use of a pre-paid, online wallet that is linked to your customer's  NFC enabled festival wristband. Your customers can top up cashless funds online, before & during an event. Making a cashless payment is as simple as scanning the NFC Tag with the Mi-iD Cashless App. Tags are PIN protected and your customers can view their transactions or request payouts at any time.
+			
+		
+		</p>
+      
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-12 col-sm-12 col-md-4 col-md-offset-4">
+
+		
+		<a href="~/Home/MiiFundsExplanation"><button type="button" class="btn btn-warning btn-lg btn-block">Learn More </button></a>
+		<br><br>
+		<br>
+	</div>
+</div>
+
+
+
+<!-- Page Features -->
+<div class="row text-center bg-grey" style="padding:40px;">
+	<br>
+	<div class="col-md-offset-4 col-md-4"><img src="~/Content/images/newimages/thumbsnew.svg" alt="online tickets" style="width:20%" /></div>
+
+	<div class="col-lg-12 col-md-12 mb-12 text-center ">
+		<div class="">
+
+			<h2>Our Unique offerings</h2>
+            <div class="smallhr"></div>
+            <br><br>
+
+		</div>
+	</div>
+	<div class="col-lg-4 col-md-4 mb-4">
+		<div class="card"  >
+			<div class="card-img-top"><i class="fa fa-check-circle fa-3x" aria-hidden="true"></i></div>
+			<div class="card-body" style="min-height:170px;">
+				<h4 class="card-title">Extra Services</h4>
+				<p class="card-text">Let us help you create a world-class event with extra services from website design, marketing assistance or graphic design.<br /><br />
+                </p>
+			</div>
+			<div class="card-footer">
+				<a href="~/Home/ExtraServices"><button type="button" class="btn btn-warning">Learn More</button></a>
+
+			</div>
+		</div>
+	</div>
+
+	<div class="col-lg-4 col-md-4 mb-4">
+		<div class="card" >
+			<div class="card-img-top"><i class="fa fa-check-circle fa-3x" aria-hidden="true"></i></div>
+			<div class="card-body" style="min-height:170px;">
+				<h4 class="card-title">Upgrade your festival's wristband</h4>
+				<p class="card-text">Digital ticketing, cashless wallet, and stored medical details. These are just some of the features available to your customers when they use there MiiBand festival wristband tag. <br><br></p>
+			</div>
+			<div class="card-footer">
+				<a href="~/Home/MiiBandExplanation"><button type="button" class="btn btn-warning">Learn More</button></a>
+
+			</div>
+		</div>
+	</div>
+
+	<div class="col-lg-4 col-md-4 mb-4">
+		<div class="card">
+			<div class="card-img-top"><i class="fa fa-check-circle fa-3x" aria-hidden="true"></i></div>
+			<div class="card-body" style="min-height:170px;">
+				<h4 class="card-title">White Label Solutions</h4>
+				<p class="card-text">Sell tickets from your own website, host a cashless service or build a custom solution. We can design and create software according to your specific needs.<br><br> </p>
+			</div>
+			<div class="card-footer">
+				<a href="~/Home/WhiteLabel"><button type="button" class="btn btn-warning">Learn More</button></a>
+
+			</div>
+		</div>
+	</div>
+
+	<br>
+	<br>
+
+
+
+</div>
+<div class="row text-center bg-grey">
+	<div class="col-md-12">
+
+		<br>
+		<a href="~/Account/Register" class="btn btn-default  btn-lg" style="margin-top:10px">Create an Event</a>
+
+		<a href="~/Eventorganisers/Register2" class="btn btn-warning  btn-lg" style="margin-top:10px">Request a callback</a>
+		<br><br>
+
+	</div>
+</div>
+
+<script>
+// smooth scroll Select all links with hashes
+$('a[href*="#"]')
+  // Remove links that don't actually link to anything
+  .not('[href="#"]')
+  .not('[href="#0"]')
+  .click(function(event) {
+    // On-page links
+    if (
+      location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '')
+      &&
+      location.hostname == this.hostname
+    ) {
+      // Figure out element to scroll to
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+      // Does a scroll target exist?
+      if (target.length) {
+        // Only prevent default if animation is actually gonna happen
+        event.preventDefault();
+        $('html, body').animate({
+          scrollTop: target.offset().top
+        }, 1000, function() {
+          // Callback after animation
+          // Must change focus!
+          var $target = $(target);
+          $target.focus();
+          if ($target.is(":focus")) { // Checking if the target was focused
+            return false;
+          } else {
+            $target.attr('tabindex','-1'); // Adding tabindex for elements not focusable
+            $target.focus(); // Set focus again
+          };
+        });
+      }
+    }
+  });
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+

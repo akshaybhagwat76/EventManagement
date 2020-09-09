@@ -1,0 +1,167 @@
+﻿@using Microsoft.AspNet.Identity
+@model MiidWeb.Models.CreateFirstEndUserViewModel
+@{
+  ViewBag.Title = "MiiDetails";
+
+}
+
+
+
+
+
+
+
+
+
+
+<!--css and js  for image cropper
+     <link rel="stylesheet" href="../../content/css/crop.css" type="text/css" />
+ <script src="../../scripts/jquery.min.js"></script>
+ <script src="../../scripts/cropbox/cropbox.js"></script> -->
+
+
+
+
+
+
+
+<div class="container">
+    <div class="row">
+
+
+        <div class="col-md-12">
+
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+
+                @Html.HiddenFor(model => model.Male)
+                @Html.HiddenFor(model => model.Races)
+                @Html.HiddenFor(model => model.DOB)
+                @Html.HiddenFor(model => model.DobDays)
+                @Html.HiddenFor(model => model.DobMonths)
+                @Html.HiddenFor(model => model.DobYears)
+                @Html.HiddenFor(model => model.NextOfKin)
+                @Html.HiddenFor(model => model.NextOfKinTelephone)
+                @Html.HiddenFor(model => model.MedicalAidCompany)
+                @Html.HiddenFor(model => model.MedicalAidNumber)
+                @Html.HiddenFor(model => model.Medication)
+                @Html.HiddenFor(model => model.Allergies)
+                @Html.HiddenFor(model => model.KnownConditions)
+                @Html.HiddenFor(model => model.StreetAddress)
+                @Html.HiddenFor(model => model.Suburb)
+                @Html.HiddenFor(model => model.City)
+                @Html.HiddenFor(model => model.PostalCode)
+                @Html.HiddenFor(model => model.Province)
+                @Html.HiddenFor(model => model.Newsletter)
+                @Html.HiddenFor(model => model.TermsAndConditions)
+                @Html.HiddenFor(model => model.ProfilePicURL)
+
+
+                <form>
+                    <span style="color:palevioletred">@Html.ValidationSummary()</span>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>@Html.LabelFor(model => model.Firstname)</label>
+                            @Html.EditorFor(model => model.Firstname, new { htmlAttributes = new { @class = "form-control ", placeholder = "Edit First Name" } })
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>@Html.LabelFor(model => model.Surname)</label>
+                            @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control", placeholder = "Edit Surname" } })
+                        </div>
+
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>@Html.LabelFor(model => model.Cell)</label>
+                            @Html.EditorFor(model => model.Cell, new { htmlAttributes = new { @class = "form-control", placeholder = "Edit Cell", maxlength = "10" } })
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label>@Html.LabelFor(model => model.Telephone)</label>
+                            @Html.EditorFor(model => model.Telephone, new { htmlAttributes = new { @class = "form-control", placeholder = "Edit Secondary Contact Number", maxlength = "10" } })
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>@Html.LabelFor(model => model.Email, new { htmlAttributes = new { @class = "" } })</label>
+                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", placeholder = "Edit Email", disabled = "disabled" })
+                            @Html.HiddenFor(model => model.Email)
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label>@Html.LabelFor(model => model.IDNumber, new { htmlAttributes = new { @class = "" } })</label>
+                            @Html.TextBoxFor(model => model.IDNumber, new { @class = "form-control", placeholder = "ID Number", disabled = "disabled" })
+                            @Html.HiddenFor(model => model.IDNumber)
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-10">
+                                <input type="submit" value="Update" class="btn btn-primary" />
+                                @Html.ActionLink("Cancel", "Index", "Home", null, new { @class = "btn btn-primary" })
+                            </div>
+                        </div>
+                </form>
+
+
+
+
+
+
+
+
+
+            } @*Close form*@
+
+        </div>
+                </div>
+            </div>
+ 
+
+
+
+                <!-- Scripts for image cropper
+                <script type="text/javascript">
+                    $(window).load(function () {
+                        var options =
+                        {
+                            thumbBox: '.thumbBox',
+                            spinner: '.spinner',
+                            imgSrc: '../../images/' + $('#ProfilePicURL').val()
+                        }
+                        var cropper = $('.imageBox').cropbox(options);
+                        $('#file').on('change', function () {
+                            var reader = new FileReader();
+                            reader.onload = function (e) {
+                                options.imgSrc = e.target.result;
+                                cropper = $('.imageBox').cropbox(options);
+                            }
+                            reader.readAsDataURL(this.files[0]);
+                            this.files = [];
+                        })
+                        $('#btnCrop').on('click', function () {
+                            debugger;
+                            var img = cropper.getDataURL();
+                            $("#imageID").attr('src', img);
+                            //$('.cropped').append('<img src="'+img+'">');
+                            var image = img.replace('data:image/png;base64,', '');
+                            $("#imageData").val(image);
+                        })
+                        $('#btnZoomIn').on('click', function () {
+                            cropper.zoomIn();
+                        })
+                        $('#btnZoomOut').on('click', function () {
+                            cropper.zoomOut();
+                        })
+                    });
+                </script>
+                     -->
+                <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+
+
+
+

@@ -1,0 +1,186 @@
+﻿@model MiidWeb.Models.QuickAddEndUser
+@{
+	Layout = "~/Views/Shared/_LayoutBackend.cshtml";
+}
+
+
+
+
+<script src="../../scripts/jquery.min.js"></script>
+<script type="text/javascript">
+	function get_selected_radio_button() {
+		debugger;
+		var GoAhead1 = "False";
+
+		var rb_group1 = document.getElementsByName("TermsAndConditions");
+		for (var i = 0; i < rb_group1.length; i++) {
+			if (rb_group1[i].checked) {
+				if (rb_group1[i].value == "False") {
+					GoAhead1 = "False";
+
+				}
+				else {
+					GoAhead1 = "True";
+				}
+
+			}
+		}
+		if (GoAhead1 == "False") {
+			alert("Please read and accept terms and conditions to proceed.");
+			return false;
+		}
+		return true;
+	}
+</script>
+
+
+
+
+
+<div class="col-md-9">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="content-box-header">
+				<div class="panel-title">Add User</div>
+
+				<div class="panel-options">
+
+				</div>
+			</div>
+
+
+			<div class="content-box-large box-with-header">
+
+				@using (Html.BeginForm("AddSiteUser", "EventAdmin", FormMethod.Post, new { enctype = "multipart/form-data", onsubmit = "event.preventDefault();  get_selected_radio_button())" }))
+				{
+					@Html.AntiForgeryToken()
+
+
+
+					<span style="color: red"> @Html.ValidationSummary()</span>
+
+
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+
+								<label>Enter First Name</label>
+								@*<input type="text" name="demo-name" required id="demo-name" value="" placeholder="Edit First Name" />*@
+								@Html.TextBoxFor(model => model.Firstname, new { @class = "form-control" })
+							</div>
+
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+
+								<label>Enter Last Name</label>
+								@*<input type="text" name="demo-email" id="demo-email" value="" placeholder="Edit Surname" />*@
+								@Html.TextBoxFor(model => model.Surname, new { @class = "form-control" })
+							</div>
+
+						</div>
+
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+
+								<label>Enter Email</label>
+								@*<input type="email" name="demo-email" id="demo-email" value="" placeholder="Edit Email" />*@
+								@Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+							</div>
+
+						</div>
+
+
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+
+								<label>Phone number</label>
+								@*<input type="text" name="demo-name" required id="demo-name" value="" placeholder="Contact Number" />*@
+								@Html.TextBoxFor(model => model.Cell, new { @class = "form-control" ,@minlength="10"  })
+							</div>
+
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+
+								<label>Enter ID/Passport Number</label>
+
+								@*<input type="text" name="demo-email" id="demo-email" value="" placeholder="ID Number" />*@
+								@Html.TextBoxFor(model => model.IDNumber, new { @class = "form-control"})
+							</div>
+
+						</div>
+
+					</div>
+
+					
+
+
+
+					
+
+					
+					
+					
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+
+								<input type="submit" class="btn btn-primary" value="Register" />
+
+							</div>
+
+						</div>
+
+
+					</div>
+
+
+
+
+
+
+
+
+
+
+				
+
+
+				}
+
+
+
+
+				<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+				<script src="../../scripts/main.js"></script>
+				<script src="../../scripts/growl.js"></script>
+				@{
+					string[] parts = new string[10];
+
+					if (TempData.ContainsKey("Growl") && !String.IsNullOrEmpty((string)TempData["Growl"]))
+					{
+						string growl = (string)TempData["Growl"];
+						parts = growl.Split(':');
+
+
+
+						<script type="text/javascript">
+        growl('@parts[0]', '@parts[1]');
+						</script>
+					}
+
+				}
+
+
+
+			</div>
+			</div>
+		</div>
+	</div>
+
+

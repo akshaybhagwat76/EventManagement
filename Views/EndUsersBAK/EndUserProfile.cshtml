@@ -1,0 +1,74 @@
+﻿@model MiidWeb.Models.EndUserViewModel
+
+@{
+    ViewBag.Title = "Details";
+    
+    Layout = "~/Views/Shared/_LayoutEndUserProfile.cshtml";
+}
+
+
+@Html.Partial("_NewsFeed", Model.NewsFeedViewModel)
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/jquery-1.10.2.min.js")
+    @Scripts.Render("~/Scripts/jquery-ui.js")
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(function () {
+            var availableTags = [
+
+                Model.Friends
+                
+            ];
+            $("#NewsFeedHeadline").autocomplete({
+                source: availableTags
+            });
+        });
+    </script>
+
+ 
+
+
+@*<script>
+    $(function () {
+        var availableTags = [
+            "@Model.EndUser.City",
+            "Donavan",
+              "Jonathan",
+              "Daniel",
+              "Benjamin Goldblum",
+              "Katy Holmes",
+          "Big Event",
+          "even2",
+          "Event One",
+          "Beach Party",
+          "Pool Party"
+        ];
+        $("#NewsFeedHeadline").autocomplete({
+            source: availableTags
+        });
+    });
+</script>*@
+
+    <script>
+        $(document).ready(function () {
+
+            /* initially hide list items */
+            $("#dino-list li").hide();
+
+            /* filter dinosaurs as you type */
+            $("#dino-search").on("keyup click input", function () {
+                if (this.value.length > 0) {
+                    $("#dino-list li").hide().filter(function () {
+                        return $(this).text().toLowerCase().indexOf($("#dino-search").val().toLowerCase()) != -1;
+                    }).show();
+                }
+                else {
+                    $("#dino-list li").hide();
+                }
+            });
+
+        });
+    </script>
+}

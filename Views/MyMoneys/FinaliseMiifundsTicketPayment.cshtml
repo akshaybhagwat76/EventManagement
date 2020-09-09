@@ -1,0 +1,174 @@
+﻿@model MiidWeb.Models.PurchaseTicketViewModel
+@{
+    ViewBag.Title = "FinaliseMiifundsTicketPayment";
+
+    decimal OrderTotal = 0.00M;
+    decimal total = (decimal)ViewBag.AdminFee;
+Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("Layout");
+
+}
+
+@using (Html.BeginForm("FinaliseMiifundsTicketPayment", "MyMoneys", FormMethod.Post, new { id = "form" }))
+{
+    <div class="container bg-grey">
+        <div class="row vertical-offset-40px">
+
+
+            <div class="col-md-6 col-md-offset-3">
+
+                <div class="panel  panel-default text-left">
+
+                    <div class="panel-body">
+
+                        <div class="col-md-12">
+                            <h3>
+                                <i class="fa fa-lock" aria-hidden="true"></i>&nbsp;Bank Transfer
+                               
+                            </h3>
+                            <hr>
+                            <table cellpadding="30" class="table table-hover" style="background-color:#ffffff; ">
+                                <thead>
+                                    <tr>
+                                        <th>Description</th>
+
+                                        <th>QTY</th>
+                                        <th class="text-right">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="2">
+                                            Available Funds
+
+                                        </td>
+                                        <td class="text-right" style="font-weight:bold;">
+                                            R @Model.MyMoneyCurrentBalance
+                                        </td>
+
+                                    </tr>
+
+                                    
+                                        @Html.Hidden("hdnSessionID", (object)ViewBag.id)
+                                        @Html.Hidden("EventID", (object)ViewBag.EventID)
+                                        @foreach (var item in Model.TicketClasses.Where(x => x.TicketCount > 0))
+                                        {
+                                            <tr>
+                                                <td>@item.TicketClass.Description</td>
+
+                                                <td> @item.TicketCount</td>
+                                                <td class="text-right" style="font-weight:bold;"> R @item.TicketClass.Price</td>
+                                            </tr>
+                                            total += (decimal)item.TotalCost;
+                                        }
+                                    
+                                    @if (ViewBag.DiscountAmount > 0)
+                                    {
+                                        <tr>
+
+                                            <td><h5>Less Discount</h5></td>
+                                            <td></td>
+                                            <td class="text-right"><h5><strong> - @ViewBag.DiscountAmount.ToString("0.00")</strong></h5></td>
+                                        </tr>
+                                    }
+                                    
+                                    <tr>
+                                        <td colspan="2">Admin Fee</td>
+                                        <td class="text-right" style="font-weight:bold;">R @ViewBag.AdminFee</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="2"><h3><strong>Total</strong></h3></td>
+                                        <td class="text-right" style="font-weight:bold"><h3><strong>R @total</strong></h3></td>
+
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+
+                            <div class="row" style="display:none;">
+                                <div class="col-md-12">
+                                    <hr class="thin">
+
+                                    <label for="demo-copy">
+                                        I have read & Understood the Terms & Conditions
+                                        <input type="checkbox" id="acceptTerms" name="acceptTerms" checked>
+                                    </label>
+
+                                    <hr class="thin">
+                                </div>
+                            </div>
+                            <form method="post" action="#">
+                                <div class="row">
+                                    <div class="col-md-12 pull-right" id="formsubmitbutton">
+                                        <br><input type="submit" class="btn btn-primary btn-block btn-lg" value="Accept" onclick="ButtonClicked()" style="background-color:#13a048; border:0;">
+                                    </div>
+                                    <div class="col-md-12 pull-right" id="buttonreplacement" style=" display:none;">
+                                        <br><button class="btn btn-default btn-block btn-lg" value="Loading" disabled><i class="fa fa-circle-o-notch fa-spin" style="color:#383838"></i><span>&nbsp;Loading</span></button>
+                                    </div>
+                                </div>
+
+
+                                <hr class="thin">
+
+
+                                <script type="text/javascript">
+
+
+                                    function ButtonClicked() {
+                                        document.getElementById("formsubmitbutton").style.display = "none"; // to undisplay
+                                        document.getElementById("buttonreplacement").style.display = ""; // to display
+                                        return true;
+                                    }
+                                    var FirstLoading = true;
+                                    function RestoreSubmitButton() {
+                                        if (FirstLoading) {
+                                            FirstLoading = false;
+                                            return;
+                                        }
+                                        document.getElementById("formsubmitbutton").style.display = ""; // to display
+                                        document.getElementById("buttonreplacement").style.display = "none"; // to undisplay
+                                    }
+
+                                </script>
+
+
+                                <div class="row payment-conatiner">
+
+                                    <div class="col-md-6">
+
+                                        <img src="~/Content/images/newimages/secure1.svg" />
+
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        <img src="~/Content/images/newimages/secure2.svg" />
+
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+
+            @Html.Hidden("hdnSessionID", (object)ViewBag.id)
+            @Html.HiddenFor(m => m.BuyerFirstName)
+            @Html.HiddenFor(m => m.BuyerLastName)
+            @Html.HiddenFor(m => m.BuyerEmail)
+
+
+
+}
+
+
+
+
+
+
+
+

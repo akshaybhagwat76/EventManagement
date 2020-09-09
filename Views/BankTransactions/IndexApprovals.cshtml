@@ -1,0 +1,225 @@
+﻿@model IEnumerable<MiidWeb.Models.BankTransactionViewModel>
+
+@{
+	ViewBag.Title = "Pending transactions";
+	int rowcount = 1;
+	Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+}
+
+<head>
+
+
+
+</head>
+
+
+
+
+@using (Html.BeginForm("IndexApprovals", "BankTransactions", FormMethod.Post, new { id = "form1" }))
+{
+
+
+   
+<div class="col-md-9">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="content-box-header">
+
+				@if (ViewBag.Context == "ticketpurchase")
+				{
+					<div class="panel-title">
+	                   <div>Approve manual EFT ticket purchases</div>
+					</div>
+				}
+					
+					
+				@if (ViewBag.Context == "withdrawal")
+				{
+					<div class="panel-title">
+				      <div>Approve fund withdrawl </div>
+					</div>
+				}
+
+				
+				@if (ViewBag.Context == "manualeft")
+				{
+					<div class="panel-title">
+				     <div>Approve EFT top-up </div>
+					</div>
+				}
+
+
+				<div class="panel-options">
+				
+				</div>
+			</div>
+			<div class="content-box-large box-with-header">
+				@Html.Hidden("hdnContext", (object)@ViewBag.Context)
+				@Html.Hidden("hdnRowCount", @Model.Count())
+
+				<div class="table-responsive" style="overflow-x:auto;">
+					<table class="table table-striped table-bordered">
+						<thead>
+							<tr>
+								<th>Approve</th>
+								@if (ViewBag.Context == "manualeft")
+								{
+									<th>Cancel</th>
+								}
+								<th>Ref  </th>
+								<th>Amount   </th>
+								<th>Name</th>
+								<th>TransactionDate </th>
+
+								<th>Confirmation Date</th>
+								<th>End User  </th>
+
+								<th>Description  </th>
+								<th>Status </th>
+
+								<th>Updated By  </th>
+
+								<th width="15%">Note</th>
+
+								<th> Country</th>
+								<th> Bank</th>
+								<th> BranchCode</th>
+								<th> AccountNumber</th>
+								<th> AccountTypeName</th>
+								<th> AccountHolderName</th>
+								<th> Notes</th>
+
+
+
+							</tr>
+						</thead>
+						<tbody>
+
+
+							@foreach (var item in Model)
+							{
+								<tr>
+									<td>
+										@*@Html.CheckBox("chk" + rowcount.ToString())*@
+										@Html.Hidden("hdn" + rowcount.ToString(), item.ID.ToString())
+										@{ var chkid = "chk" + rowcount.ToString();}
+
+										<input type="checkbox" id=@chkid name=@chkid />
+										<label for=@chkid></label>
+
+									</td>
+									@if (ViewBag.Context == "manualeft")
+									{
+										<td>
+											@*@Html.CheckBox("chk" + rowcount.ToString())*@
+
+											@{ var chkcancelid = "chkcncl" + rowcount.ToString();}
+
+											<input type="checkbox" id=@chkcancelid name=@chkcancelid />
+											<label for=@chkcancelid></label>
+
+										</td>
+									}
+									<td>
+										@Html.DisplayFor(modelItem => item.BankTransaction.Description)
+									</td>
+									<td style="min-width:120px">
+										@{ var amountid = "Amount" + rowcount.ToString();}
+                                        <input type="hidden" id="@amountid" name="@amountid" value="@item.BankTransaction.Amount.Value.ToString("0.00")" />
+										<input disabled class="form-control" type="text" id="@amountid" name="@amountid" value="@item.BankTransaction.Amount.Value.ToString("0.00")" />
+
+									</td>
+									<td>
+										@Html.DisplayFor(modelItem => item.EndUser.Firstname)&nbsp;
+										@Html.DisplayFor(modelItem => item.EndUser.Surname)
+									</td>
+									<td>
+
+										@Html.DisplayFor(modelItem => item.BankTransaction.TransactionDate)
+									</td>
+									<td>
+										@Html.DisplayFor(modelItem => item.BankTransaction.ConfirmationDate)
+									</td>
+
+
+									<td>
+										@Html.DisplayFor(modelItem => item.TransactionType.Description)
+									</td>
+									<td>
+										@Html.DisplayFor(modelItem => item.Status.Description)
+									</td>
+
+									<td>
+										@Html.DisplayFor(modelItem => item.BankTransaction.UpdatedByUserName)
+									</td>
+									<td>
+										@Html.DisplayFor(modelItem => item.BankTransaction.DepositorName)
+									</td>
+									<td>
+										@{ var noteid = "Note" + rowcount.ToString();}
+										<textarea rows="6" cols="50" style="font-size:9px" id="@noteid" name="@noteid">@item.BankTransaction.Note
+                                        
+                                    </textarea>
+									</td>
+
+
+									<td>   @Html.DisplayFor(modelItem => item.EndUser.Country)              </td>
+									<td>   @Html.DisplayFor(modelItem => item.EndUser.Bank)                 </td>
+									<td>   @Html.DisplayFor(modelItem => item.EndUser.BranchCode)           </td>
+									<td>   @Html.DisplayFor(modelItem => item.EndUser.AccountNumber)        </td>
+									<td>   @Html.DisplayFor(modelItem => item.EndUser.AccountType)          </td>
+									<td>   @Html.DisplayFor(modelItem => item.EndUser.AccountHolderName)    </td>
+									<td>   @Html.DisplayFor(modelItem => item.EndUser.Notes)                </td>
+
+
+
+
+								</tr>
+
+								rowcount++;
+							}
+
+
+
+						</tbody>
+
+					</table>
+
+				</div>
+				<div class="panel-footer panel-primary">
+					<div class="row">
+						<div class="col-md-12">
+							<input type="submit" class="btn btn-primary" value="Approved Selected Transactions" />
+						</div>
+					</div>
+				</div>
+
+				
+			</div>
+			
+
+		</div>
+		</div>
+	</div>
+
+			
+
+
+
+
+			
+
+
+
+
+
+
+
+
+			}
+
+
+
+
+

@@ -1,0 +1,200 @@
+﻿@using Microsoft.AspNet.Identity
+@model MiidWeb.Models.EndUserViewModel
+@{
+    ViewBag.Title = "My Profile";
+    var db = new MiidEntities();
+
+    DateTime twodaysago = DateTime.Now.AddDays(-2);
+
+    //Daniel added subdomainID to where clause
+    int subDomainID = int.Parse(MiidWeb.Repositories.TicketRepository.GetSubdomainID());
+
+    var events = db.Events.Where(x => x.SubdomainID == subDomainID).OrderByDescending(x => x.EndDateTime).Take(4);
+    List<MiidWeb.Models.EventViewModel> list = new List<MiidWeb.Models.EventViewModel>();
+    foreach (var r in events)
+    {
+        list.Add(new MiidWeb.Models.EventViewModel(r.ID));
+    }
+    Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("Layout");
+    string ViewFile = MiidWeb.Repositories.TicketRepository.GetSubdomainView("EndUserProfile");
+
+}
+
+
+
+
+    <div class="container background-image-b" style="height:300px;">
+
+        <div class="row">
+            <div class="form-group col-md-7 col-md-offset-1">
+                <br>
+                <br>
+                <br>
+                <br>
+                <h1 style="font-weight:bold;color:#ffffff">Find events</h1>
+
+            </div>
+            <div class="form-group col-md-4 col-md-offset-1">
+                <input type="text" class="input-lg form-control" id="text1" placeholder="Search event name" />
+            </div>
+            <div class="form-group col-md-1">
+
+                <button name="demo-email" class="btn  btn-warning btn-lg btn-block" id="demo-email" value="Search" onClick="javascript: location.href=('/Events/Search?KeyWordSearchText=' + document.getElementById('text1').value);">
+                    <i class="fa fa-search" style="color:#ffffff; "></i>
+                </button>
+            </div>
+            <!--  <div class="form-group col-md-2">
+
+        <button name="demo-email" class="btn btn-outline btn-default btn-lg btn-block" id="demo-email" value="Search" onClick="javascript: location.href=('../Events/Search');">
+            <i class="fas fa-calendar-alt" style="color:#ffffff; "><span style="font-weight:normal; font-family:Arial, Helvetica, sans-serif ;font-size:12px;">&nbsp;All Events</span></i>
+        </button>
+    </div>-->
+
+
+
+        </div>
+
+    </div>
+
+
+
+
+
+<!--only displays on miid-->
+
+<div class="container  bg-grey">
+    <!--open product row -->
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <h1>Featured events:</h1>
+            <div class="carousel-inner" role="listbox">
+
+
+
+
+                <div class="item active">
+                    @foreach (var li in list.Take(12))
+                    {
+                        if (@li.EventLogoURL != null)
+                        {
+                            <div class="col-xs-12 col-sm-6 col-md-3 team_columns_item_image">
+                                <a href="~/Events/PurchaseTickets?EventID=@li.Event.ID">
+
+                                    <img class="img-responsive" src="~/Uploads/@li.EventLogoURL" alt="@li.Event.EventName" />
+                                </a>
+                                <div class="team_columns_item_caption">
+                                    <h5>@li.Event.EventName</h5>
+
+
+                                    <a href="~/Events/PurchaseTickets?EventID=@li.Event.ID" class="btn btn-info btn-sm">View More</a>
+                                </div>
+                            </div>
+                        }
+                    }
+
+                </div>
+
+
+
+
+
+  </div>
+
+            </div>
+        </div>
+        <br><br>
+    </div>
+
+<div class="container bg-grey ">
+
+    <!--open button-->
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-4 col-md-offset-4">
+
+            <br>
+
+            @Html.ActionLink("All Events", "Search", "Events", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "btn btn-info btn-lg btn-block" })
+            <br><br>
+
+        </div>
+    </div>
+
+
+</div><!-- /.container -->
+
+@if (@GlobalVariables.SubdomainID == "1")
+{
+    <div class="container">
+
+
+        <div class="row">
+
+            <!-- info card -->
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <p><img class="icon_custom_medium" src="~/Content/images/newimages/ticket_plain.svg" alt="card image"></p>
+                            <h4 class="card-title">Easy Online Ticketing & Cashless Events</h4>
+                            <p class="card-text">
+                                Purchase tickets online for your favourite event quickly and easily.
+                                For cashless events, simply add funds to your digital wallet once your
+                                tickets are purchased.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- ./info card -->
+            <!-- info card -->
+
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <p><img class="icon_custom_medium" src="~/Content/images/newimages/lock_plain.svg" alt="card image"></p>
+                            <h4 class="card-title">Your funds and tickets are safe & secure</h4>
+                            <p class="card-text">
+                                Your prepaid funds and ticket information is stored on our secure database.
+                                Only you can access your information via your profile.
+                                Your MiiBand festival wristband is also PIN protected and can be managed via your online profile.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- ./info card -->
+            <!-- info card -->
+
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <p>
+                                <img class="icon_custom_medium" src="https://www.miid.co.za/Content/images/newimages/wristband_plain.svg" alt="card image">
+                            </p>
+                            <h4 class="card-title">Top-Up funds quickly and easily</h4>
+                            <p class="card-text">
+                                You can choose to top-up your digital
+                                wallet before or during events. You can also top-up at the venue at
+                                our top-up station
+                            </p>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- ./info card -->
+
+        </div>
+
+
+    </div>
+}
+
+

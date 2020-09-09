@@ -1,0 +1,162 @@
+﻿@using Microsoft.AspNet.Identity
+@model MiidWeb.Models.MiiFundsRequestWithdrawalViewModel
+
+@{
+    ViewBag.Title = "Mii-Funds Request Withdrawal";
+
+
+    var u1 = MiidWeb.Repositories.EndUserRepository.GetUser(User.Identity.GetUserName(), true);
+
+    string NotificationInvalidCredentials = "";
+
+    if (ViewBag.NotificationInvalidCredentials != null)
+    {
+        NotificationInvalidCredentials = ViewBag.NotificationInvalidCredentials;
+    }
+
+    string NotificationMinAmount = "";
+    if (ViewBag.NotificationMinAmount != null)
+    {
+        NotificationMinAmount = ViewBag.NotificationMinAmount;
+    }
+
+    string NotificationInsufficientFunds = "";
+
+    if (ViewBag.NotificationInsufficientFunds != null)
+    {
+        NotificationInsufficientFunds = ViewBag.NotificationInsufficientFunds;
+    }
+
+
+}
+
+
+<!-- One -->
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.EndUserID)
+
+
+    @Html.HiddenFor(model => model.FirstName)
+
+    @Html.HiddenFor(model => model.Surname)
+
+
+    @Html.HiddenFor(model => model.TotalFunds)
+
+
+    @Html.HiddenFor(model => model.AvailableFunds)
+
+
+    @Html.HiddenFor(model => model.AdminFee)
+
+    @Html.ValidationMessageFor(model => model.RequestedAmount, "", new { @class = "red" })
+
+
+
+<div class="main-wrapper">
+
+	<div class="container bg-grey">
+
+		<div class="row vertical-offset-40px">
+			<div class="col-md-5 col-md-offset-1">
+				<div class="row">
+					<div class="col-md-12">
+						<h3>
+							<b>Request Payout
+							</b>
+						</h3>
+					</div>
+					<div class="col-md-12">
+						<h4>Available Funds:
+							@{
+								decimal funds = Model.AvailableFunds ?? 0.00M;
+								decimal totalfunds = Model.TotalFunds ?? 0.00M;
+							}
+							R @funds.ToString("0.00")
+							@* <td>R @totalfunds.ToString("0.00")</td> *@
+							@* @DateTime.Now.ToString("dd MMMM yyyy") *@
+						</h4>
+					</div>
+				</div>
+
+
+					<table class="table table-striped">
+						
+						<tbody>
+							<tr>
+								
+							</tr>
+
+						</tbody>
+
+					</table>
+					<p>A service charge of R @Html.DisplayFor(model => model.AdminFee) will be deducted from the balance.  Withdrawals can take up to 5 working days, please provide the following information for security purposes.</p>
+					<p>
+
+						<strong>To international customers:</strong> Due to tax and banking laws please request your payout before you leave the country.
+					</p>
+
+				</div>
+
+
+
+				<div class="col-md-5">
+					<div class="event-info-wrapper ">
+
+
+
+
+						<div class="form-group">
+							<br>
+							<label><span class="req">* </span>Withdrawal amount</label>
+
+							@Html.TextBoxFor(model => model.RequestedAmount, new { @class = "form-control input-lg", placeholder = "eg. 120" })
+							<div class="red">@NotificationInsufficientFunds</div>
+							<div class="red">@NotificationMinAmount</div>
+						</div>
+
+                        <div class="form-group">
+                            <!--	@Html.TextBoxFor(model => model.IDNumber, new { @class = "form-control input-lg", placeholder = "eg. 9702125138088" })-->
+                            <div class="red">@NotificationInvalidCredentials</div>
+                        </div>
+						@*<div class="form-group">
+					<label><span class="req">* </span>MiiBand PIN</label>
+
+					@Html.TextBoxFor(model => model.Password, new { @class = "form-control", placeholder = "Enter Active Mii-Band PIN" })
+					<div class="red">@NotificationInvalidCredentials</div>
+				</div>*@
+						<div class="form-group">
+
+							@Html.CheckBoxFor(model => model.TermsAndConditions)
+							<label for="demo-copy">I have read & Understood the Terms & Conditions</label>
+						</div>
+						<div class="form-group">
+
+
+							<input type="submit" class="btn btn-lg btn-default btn-block" value="Withdraw Funds">
+							<br>
+
+
+						</div>
+
+
+
+					</div>
+				</div>
+
+
+
+
+
+
+			</div>
+	</div>
+
+</div>
+	
+       
+
+
+                                                    }

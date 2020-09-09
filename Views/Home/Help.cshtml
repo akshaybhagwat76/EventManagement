@@ -1,0 +1,444 @@
+﻿@using Microsoft.AspNet.Identity
+
+@model MiidWeb.Models.LoginViewModel
+@{
+	ViewBag.Title = "Help";
+
+	bool IAmEventOrganiser = false;
+	if (Request.IsAuthenticated)
+	{
+		IAmEventOrganiser = MiidWeb.Repositories.EndUserRepository.AmIAnEventOrganiser(User.Identity.GetUserName());
+	}
+
+}
+
+@if (IAmEventOrganiser)
+{
+	Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("LayoutEventOrganiser");
+}
+else
+{
+	Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("Layout");
+}
+
+
+<title>Mi-id Online Ticketing and Cashless Services help page</title>
+<meta name="description" content="Get help for online ticketing and cashless service, view help topics here">
+
+<style>
+	.panel-heading {
+		width: 100%;
+		min-height: 25px;
+		background-color: #ffffff;
+	}
+
+	.above-panel {
+		height: 25px;
+		background: #ffffff;
+	}
+
+	.panel-default > .panel-heading {
+		color: #333;
+		background-color: #ffffff;
+	}
+</style>
+
+
+<meta property="og:image" content="https://www.miid.co.za/Uploads/genric.png" />
+<meta name="description" content="Help for Mi-id online ticketing & cashless services for events.Find information on how to purchase tickets and top-up cashless funds" />
+<div id="page-content-wrapper">
+	<div class="container-fluid">
+
+		<div class="item-container">
+			<div class="container padding">
+
+
+				<section class="col-md-10 col-lg-offset-1">
+
+
+					<div class="col-md-6 hidden-sm hidden-xs" style="margin-left:-15px;"><h2>Need Help?</h2></div>
+					<div class="hidden-lg hidden-md text-center"><h1>Need Help?</h1></div>
+					<hr>
+
+
+
+					<p>
+						Click on the Help Options below for more information.
+						<ul class="smooth-scroll">
+							<li><a href="#gernal">General Information</a></li>
+							<li><a href="#miiband">More about your MiiBand</a></li>
+							<li><a href="#miifunds">Mii-Funds (Cashless Electronic Wallet)</a></li>
+							<li><a href="#tickets">Tickets</a></li>
+							<li><a href="#security">Safety & Security</a></li>
+
+						</ul>
+					</p>
+
+
+					<div class="container">
+						<div class="bs-example">
+							<div class="panel-group" id="accordion">
+
+								<!---main sections-->
+
+								<h3>Gernal info</h3>
+								<hr class="thin">
+
+								<p> <a name="gernal"></a>Here you will find information about you Mi-id acount and how to use the basic features.</p>
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">How does my Mi-id Account work?</a>
+										</h4>
+									</div>
+									<div id="collapseTwo" class="panel-collapse collapse">
+										<div class="panel-body">
+											<p>              Your Mi-id account is an online profile where you can purchase tickets & add funds to your electronic wallet so you can make cashless purchases at events using your MiiBand.</p>
+										</div>
+									</div>
+								</div>
+
+								<!---- begin panel -->
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">What is a MiiBand?</a>
+										</h4>
+									</div>
+									<div id="collapseThree" class="panel-collapse collapse">
+										<div class="panel-body">
+											<p>                A MiiBand is like any other festival wristband but it contains a unique, secure chip embedded inside it that links to your band to your Mi-id profile. Once a MiiBand is linked to your online profile your ticket will be automaticly linked to your MiiBand. You can also use your MiiBand as a pre-paid, cashless wallet when purchase items at music festivals and events.</p>
+										</div>
+									</div>
+								</div>
+
+								<!---- begin panel -->
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											<a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">How do i use my MiiBand?</a>
+										</h4>
+									</div>
+									<div id="collapseFour" class="panel-collapse collapse">
+										<div class="panel-body">
+											<p> All you need to do is top-up funds on your profile & scan your band when make purchases at an event using the Mi-id services</p>
+										</div>
+									</div>
+								</div>
+
+								<!---- begin panel -->
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											<a data-toggle="collapse" data-parent="#accordion" href="#collapsefive">How do I topup funds?</a>
+										</h4>
+									</div>
+									<div id="collapsefive" class="panel-collapse collapse">
+										<div class="panel-body">
+											<p>                Either online or at an event using Mi-id services. Login to your account & click on MiiFunds. Choose how you would like to add funds, eg. EFT, Instant EFT or credit/ debit cards. You can top-up funds by clicking here </p>
+										</div>
+									</div>
+								</div>
+
+
+								<!---main sections-->
+
+								<h3>More about your MiiBand</h3>
+								<hr class="thin">
+								<p><a name="miiband"></a> Here you will find information about NFC enabled wristband.</p>
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h3 class="panel-title">
+											<a data-toggle="collapse" data-parent="#accordion" href="#collapsesix">How does my Mii-Band work?</a>
+										</h3>
+										<hr class="thin">
+									</div>
+									<div id="collapsesix" class="panel-collapse collapse">
+										<div class="panel-body">
+											<p>
+												Your Mii-Band (festival wristband) links directly with you online profile. This allows you to use you Mii-Band to gain entry into events
+												as well as to make safe purchases without the use of cash or cards at events using the Mi-id services .
+											</p>
+										</div>
+									</div>
+								</div>
+
+								<!---- begin panel -->
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											<a data-toggle="collapse" data-parent="#accordion" href="#collapseseven">How do I make purchases?</a>
+										</h4>
+									</div>
+									<div id="collapseseven" class="panel-collapse collapse">
+										<div class="panel-body">
+											<p>
+												Once you have registered an account with Mi-id, you need to topup funds onto your account and activate your MiiBand. Once you have done so, all you need
+												to do is swipe your MiiBand when making a purchase at an event using the Mi-id services, enter your pin & complete the transaction. Your funds will
+												automatically be deducted off your account. Please read the next section for more about Mii-Funds.
+											</p>
+										</div>
+									</div>
+								</div>
+
+								<!---- begin panel -->
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											<a data-toggle="collapse" data-parent="#accordion" href="#collapseeight">How do i activate my MiiBand?</a>
+										</h4>
+									</div>
+									<div id="collapseeight" class="panel-collapse collapse">
+										<div class="panel-body">
+											<p>
+												When you receive your Mii-Band you will also receive two unique numbers within its packaging. Your Band Number & an
+												Activation Code. Enter these in the MiiBand option of the website. Your band will now be-active and you will be able to use it to gain entry into events and make cashless purchases.
+											</p>
+										</div>
+									</div>
+								</div>
+
+								<!---- begin panel -->
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											<a data-toggle="collapse" data-parent="#accordion" href="#collapsenine">How do I receive my Mii-Band?</a>
+										</h4>
+									</div>
+									<div id="collapsenine" class="panel-collapse collapse">
+										<div class="panel-body">
+											<p>        This all depends on the event you will be attending. You will either be able to pick it up at various pick-up points or collect it at the event your will be attending.</p>
+										</div>
+									</div>
+								</div>
+
+								<!---- begin panel -->
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											<a data-toggle="collapse" data-parent="#accordion" href="#collapseten">I cannot remember my pin.</a>
+										</h4>
+									</div>
+									<div id="collapseten" class="panel-collapse collapse">
+										<div class="panel-body">
+											<p>
+												No problem, just log onto your profile, select the MiiBand option, select Change Pin</a>and fill in the relevant security questions.
+												You will then be able to change your pin.
+											</p>
+										</div>
+									</div>
+								</div>
+
+								<!---- begin panel -->
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											<a data-toggle="collapse" data-parent="#accordion" href="#collapseeleven">My MiiBand was stolen or lost.</a>
+										</h4>
+									</div>
+									<div id="collapseeleven" class="panel-collapse collapse">
+										<div class="panel-body">
+											<p>
+												All you need to do is cancel your band in the MiiBand menu. You will be able to get a new band from the MiiD base station at the event. Remember, you will need a activate your new band to make purchases or gain entry into an event.
+											</p>
+										</div>
+									</div>
+								</div>
+
+
+
+								<h3>Mii-Funds (Cashless Electronic Wallet)</h3>
+								<hr class="thin">
+								<p><a name="miifunds"></a>Here you will find information about the Mi-iD cashless services</p>
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h3 class="panel-title">
+											<a data-toggle="collapse" data-parent="#accordion" href="#collapsetweleve">What are Mii-Funds?</a>
+										</h3>
+										<hr class="thin">
+									</div>
+									<div id="collapsetweleve" class="panel-collapse collapse">
+										<div class="panel-body">
+											<p>   MiiFunds is like a electronic wallet. These funds can be used to purchase tickets on the Mi-id website or make cashless purchases at events using your MiiBand (Festival Wristband). The funds are linked to your MiiD account.</p>
+										</div>
+									</div>
+								</div>
+
+								<!---- begin panel -->
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											<a data-toggle="collapse" data-parent="#accordion" href="#collapseThirteen">How to I topup Mii-Funds?</a>
+										</h4>
+									</div>
+									<div id="collapseThirteen" class="panel-collapse collapse">
+										<div class="panel-body">
+											<p>You can topup your MiiFunds online under the MiiFunds section of this website using Credit Card, Cheque Card, Instant EFT or Standard Eft. You will also be albe to topup funds at events using the Mi-id service. </p>
+										</div>
+									</div>
+								</div>
+
+								<!---- begin panel -->
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											<a data-toggle="collapse" data-parent="#accordion" href="#collapseFourteen">Where can I use my MiiFunds?</a>
+										</h4>
+									</div>
+									<div id="collapseFourteen" class="panel-collapse collapse">
+										<div class="panel-body">
+											<p>You can use your funds to purchase tickets more quickly on our website or at any event using the Mi-id service. </p>
+										</div>
+									</div>
+								</div>
+
+								<!---- begin panel -->
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											<a data-toggle="collapse" data-parent="#accordion" href="#collapsefiveteen">Refunding my remaining Mii-Funds</a>
+										</h4>
+									</div>
+									<div id="collapsefiveteen" class="panel-collapse collapse">
+										<div class="panel-body">
+											<p>
+												If you would like a refund on unspent Mii-Funds all you need to do is fill in some details on the "refunds" section of the Mii-Funds page. We will email you to confirm details & your requested refund will be payed into you bank account. Please note that a small service fee will apply. Refunds can take up to a week to be processed.
+											</p>
+										</div>
+									</div>
+								</div>
+
+
+								<!---main sections-->
+
+								<h3>Tickets</h3>
+								<hr class="thin">
+								<p>  ***</p>
+
+
+								<!---- begin panel -->
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											<a data-toggle="collapse" data-parent="#accordion" href="#collapseseventeen1">How do I purchase a ticket for an event?</a>
+										</h4>
+									</div>
+									<div id="collapseseventeen1" class="panel-collapse collapse">
+										<div class="panel-body">
+											<p>Your Mi-id account is an online profile where you can purchase tickets & add funds to your electronic wallet so you can make cashless purchases at events using your MiiBand.</p>
+										</div>
+									</div>
+								</div>
+
+								<!---- begin panel -->
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											<a data-toggle="collapse" data-parent="#accordion" href="#collapseseventeen">What is a MiiBand?</a>
+										</h4>
+									</div>
+									<div id="collapseseventeen" class="panel-collapse collapse">
+										<div class="panel-body">
+											<p> To purchase a ticket to a selected event via the events page, click "purchase tickets" and follow the prompts.</p>
+										</div>
+									</div>
+								</div>
+
+								<!---- begin panel -->
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											<a data-toggle="collapse" data-parent="#accordion" href="#collapseeighteen">How do I pay for my ticket?</a>
+										</h4>
+									</div>
+									<div id="collapseeighteen" class="panel-collapse collapse">
+										<div class="panel-body">
+											<p> You can pay for your ticket using Credit Card, Cheque Card, Instant EFT, Standard Eft or by using your MiiFunds.</p>
+										</div>
+									</div>
+								</div>
+
+								<!---- begin panel -->
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											<a data-toggle="collapse" data-parent="#accordion" href="#collapsenineteen">Purchasing a ticket using MiiFunds</a>
+										</h4>
+									</div>
+									<div id="collapsenineteen" class="panel-collapse collapse">
+										<div class="panel-body">
+											<p>you have MiiFunds available on your account or are worried that your cards might not work online during ticket release dates you can topup your MiiFunds wallet and purchase tickets hassel free without having to worry about external factors affecting your purchase. </p>
+										</div>
+									</div>
+								</div>
+
+								<!-----mmain sections -->
+
+								<h3>Security</h3>
+								<hr class="thin">
+								<!---- begin panel -->
+
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											<a data-toggle="collapse" data-parent="#accordion" href="#collapsetwentyone1">What precautions does Mi-id take to ensure fund transfers are safe?</a>
+										</h4>
+									</div>
+									<div id="collapsetwentyone1" class="panel-collapse collapse">
+										<div class="panel-body">
+											<p>MiiD uses 3rd party gateways to complete online transactions. These companys are proven in there field to provide safe online transactions. Please read our terms and conditions for more information </p>
+										</div>
+									</div>
+								</div>
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											<a data-toggle="collapse" data-parent="#accordion" href="#collapsetwentyone">Encrypted data</a>
+										</h4>
+									</div>
+									<div id="collapsetwentyone" class="panel-collapse collapse">
+										<div class="panel-body">
+											<p>Mi-id uses SSL certificates. This means that your data is encrypted once it is sent from our site or our 3rd party payment gateways. Please read our terms and conditions for more information </p>
+										</div>
+									</div>
+								</div>
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											<a data-toggle="collapse" data-parent="#accordion" href="#collapsetwentythree">MiiBand Security</a>
+										</h4>
+									</div>
+									<div id="collapsetwentythree" class="panel-collapse collapse">
+										<div class="panel-body">
+											<p>Your MiiBand is protected pin-protected with a pin of your choice. You can also cancel your band if lost allowing your funds to stay safe while you wait to receive a new band.</p>
+										</div>
+									</div>
+								</div>
+								<div class="panel panel-default">
+
+									<div lass="panel">
+										<div class="panel-body">
+											<h3>Cant find what you are looking for?</h3>
+											<hr>
+											<p> Drop us a message at <a href="mailto:support@miid.co.za">support@miid.co.za</a> or alternatively you can contact us via our <a href="https://www.facebook.com/miidevents/">facebook account</a>  </p>
+										</div>
+									</div>
+								</div>
+
+
+
+
+							</div>
+
+						</div>
+					</div>
+
+
+
+				</section>
+			</div>
+		</div>
+	</div>
+</div>
+
+

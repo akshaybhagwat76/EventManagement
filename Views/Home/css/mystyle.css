@@ -1,0 +1,75 @@
+/* Header */
+
+
+
+#rightnav {margin-top:15px;
+background: #578ee9;
+}
+
+
+
+/* Top login */
+}
+
+
+/* Search */
+.search {margin:15px 0; width:200px;}
+.search .s0 {
+	border: 1px solid #C7C7C7;
+    float: left;
+    font-size: 11px;
+    height: 17px;
+    padding: 4px 4px 0;
+    width: 180px;
+}
+.search .s1 {float:left;}
+.search .s2 {
+	border: 1px solid #C7C7C7;
+    float: left;
+    font-size: 11px;
+    height: 25px;
+    padding: 4px 4px 0;
+    width: 190px;
+}
+
+
+
+.smartobject{
+	
+    float: left;
+    font-size: 11px;
+    height: 17px;
+    padding: 4px 4px 0;
+    width: 60px;
+}
+/* Intro */
+.intro {margin: 15px 0 0 10px; width: 640px;  }
+.intro h3 {color:#3B1C00;}
+
+/* Categorylist */
+
+
+.smartobject p  { margin-left:75px;}
+.texttoObject p { margin-left:85px; float:left;}
+
+.images {float:left; width:370px;}
+.images img {border:1px solid #CCC;}
+.details {float:left; width:480px;}
+.details form label {width:25px;}
+.details form input {width:20px;}
+.details form input.button {width:120px; margin-left:10px;}
+.view {background:#f3f3f3; padding:3px 0px;}
+.product-list form p.view {background:none;}
+
+.pages {background:#FF9C1B; border:1px solid #CCC; padding:0px 7px;}
+
+/* Footer */
+
+
+
+
+
+
+/* Clear */
+.clear {clear:both;}
+.clear-all {clear:both; border:0px; height:0; line-height:0; margin:0; padding:0; font-size:0;}

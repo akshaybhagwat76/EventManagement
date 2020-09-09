@@ -1,0 +1,81 @@
+﻿@using Microsoft.AspNet.Identity
+@model IEnumerable<MiidWeb.Models.NFCTagViewModel>
+@using MiidWeb.Models
+@using MiidWeb.Repositories
+@{
+    ViewBag.Title = "Index";
+    string notification = "";
+    //Layout = null;
+    if (HttpContext.Current.Session["ErrorMessage"] != null)
+    {
+        notification = HttpContext.Current.Session["ErrorMessage"].ToString();
+    }
+    int ActiveID = MiidWeb.Helpers.StatusHelper.StatusID("NFCTag", "Active");
+    bool AnyActive = Model.Where(x => x.StatusID == ActiveID) != null && Model.Where(x => x.StatusID == ActiveID).Count() > 0;
+
+    EndUserViewModel user = new EndUserViewModel(EndUserRepository.GetByUserID(ViewBag.EndUserID));
+    // MiidWeb.Controllers.UserModel u1 = MiidWeb.Helpers.SessionManager.EndUser;
+
+}
+
+    <div class="main-wrapper">
+        <h5>@notification</h5>
+        <div class="container">
+            <div class="row">
+                @Html.Partial("MyChildrenTagStatus", (object)ViewBag.ParentID)
+                
+                <div class="col-md-3">
+                    <div class="card">
+
+                        <div class="card-body">
+                            <h5 class="card-title">Register a child account</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="~/EndUsers/RegisterChildAccount" class="btn btn-primary btn-block">Register</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+
+                @if (ViewBag.ShowStuff)
+                {
+                    if (AnyActive)
+                    {   <div>
+                        @foreach (var item in Model.OrderBy(x => x.StatusCode))
+                        {
+                            @Html.HiddenFor(modelItem => item.ActivationDate)
+                            @Html.HiddenFor(modelItem => item.ActivationCode)
+                            @Html.HiddenFor(modelItem => item.TagPin)
+                        }
+                     </div>
+                    }
+                }
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

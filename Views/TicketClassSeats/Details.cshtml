@@ -1,0 +1,74 @@
+﻿@model MiidWeb.TicketClassSeat
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>TicketClassSeat</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.TicketClassID)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TicketClassID)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.RowNumber)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.RowNumber)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.SeatNumber)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.SeatNumber)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.StatusID)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.StatusID)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Ticket.TicketNumber)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Ticket.TicketNumber)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TicketClassSeatRange.RowNumber)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TicketClassSeatRange.RowNumber)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

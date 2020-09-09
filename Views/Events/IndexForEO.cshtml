@@ -1,0 +1,98 @@
+﻿@model MiidWeb.Models.EventListViewModel
+@{
+    ViewBag.Title = "IndexForEO";
+    Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("LayoutEventOrganiser");
+
+}
+
+
+        <!-- //market-->
+
+
+        <div class="row">
+            <div class="panel-body">
+                <div class="col-md-12 w3ls-graph">
+                    <!--agileinfo-grap-->
+                    <div class="agileinfo-grap">
+                        <div class="agileits-box">
+                            <h3>Upcoming Events</h3>
+                            <hr>
+                            @foreach (var ev in Model.Events.Where(x => x.Event.EndDateTime >= DateTime.Now))
+                            {
+                                <header class="agileits-box-header clearfix">
+                                    <div class="col-md-1 col-sm-3  col-xs-3 ">
+                                        <img src="../../Uploads/@ev.EventLogoURL" class="img-responsive img-circle">
+
+                                    </div>
+
+                                    <div class="col-md-5">
+                                        <h4>@ev.Event.EventName</h4>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12  col-xs-12 mobile-20-top-bottom">
+										<a href="~/Events/EditByEOCentral/@ev.Event.ID"> <h4 class="">Edit Event details and view sales <i class="fas fa-chevron-circle-right blue-font"></i></h4></a>
+                                    </div>
+                                </header>
+                                <hr>
+
+                            }
+
+
+                        </div>
+                    </div>
+                    <!--//agileinfo-grap-->
+
+
+
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="panel-body">
+                <div class="col-md-12 w3ls-graph">
+                    <!--agileinfo-grap-->
+                    <div class="agileinfo-grap">
+                        <div class="agileits-box">
+                            <h3>Previous Events</h3>
+                            <hr>
+                            @foreach (var ev in Model.Events.Where(x => x.Event.EndDateTime < DateTime.Now))
+                            {
+                                <header class="agileits-box-header clearfix">
+                                    <div class="col-md-1 col-sm-3  col-xs-3 ">
+                                        <img src="../../Uploads/@ev.EventLogoURL" class="img-responsive img-circle" alt="Cinque Terre">
+
+                                    </div>
+
+                                    <div class="col-md-5">
+                                        <h4>@ev.Event.EventName</h4><h4><small>Edit</small></h4>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12  col-xs-12 mobile-20-top-bottom">
+                                        <h4 class="">Manage Event <a href="~/Events/EditByEOCentral/@ev.Event.ID"><i class="fas fa-chevron-circle-right blue-font"></i></a></h4>
+                                    </div>
+                                </header>
+                                <hr>
+
+                            }
+
+
+
+                        </div>
+                    </div>
+                    <!--//agileinfo-grap-->
+
+
+
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+  
+
+

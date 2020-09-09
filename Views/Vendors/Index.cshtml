@@ -1,0 +1,94 @@
+﻿@model IEnumerable<MiidWeb.Vendor>
+
+@{
+	ViewBag.Title = "Manage Vendors";
+
+
+	// Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("LayoutAdmin");
+	Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="col-md-9">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="content-box-header">
+				<div class="panel-title">Vendor List</div>
+				<div class="panel-title pull-right" style="margin-top:-7px;">@Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary btn-sm" })</div>
+
+
+			</div>
+			<div class="content-box-large box-with-header">
+
+				<div class="table-responsive">
+					<table class="table table-bordered table-striped">
+						<thead>
+							<tr>
+								<th colspan="3">Action</th>
+								<th>Vendor</th>
+								<th>Code</th>
+								<th>Telephone </th>
+								<th>Vendor Contact </th>
+								<th>Vendor Email</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							@foreach (var item in Model)
+							{
+							<tr>
+								<td class="table_blue">
+									@Html.ActionLink("View", "Details", new { id = item.ID })
+
+								</td>
+								<td class="table_blue">
+									@Html.ActionLink("Edit", "Edit", new { id = item.ID })
+
+								</td>
+								<td class="table_blue">
+									@Html.ActionLink("Delete", "Delete", new { id = item.ID })
+
+								</td>
+								<td>
+									@Html.DisplayFor(modelItem => item.Name)
+								</td>
+								<td>
+									@Html.DisplayFor(modelItem => item.VendorCode)
+								</td>
+								<td>
+									@Html.DisplayFor(modelItem => item.Telephone)
+								</td>
+								<td>
+									@Html.DisplayFor(modelItem => item.ContactName)
+								</td>
+								<td>
+									@Html.DisplayFor(modelItem => item.Email)
+								</td>
+
+							</tr>
+							}
+						</tbody>
+					</table>
+				</div>
+				</section>
+			</div>
+			</section>
+			<!-- One -->
+		</div>
+	</div>
+
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

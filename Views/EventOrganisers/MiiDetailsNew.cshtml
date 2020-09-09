@@ -1,0 +1,145 @@
+﻿@model MiidWeb.Models.EventOrganiserViewModel
+
+@{
+    ViewBag.Title = "MiiD Profile";
+    Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("LayoutEventOrganiser");
+
+}
+
+<!-- One -->
+<div id="page-content-wrapper">
+    <div class="page-content">
+        <div class="container-fluid" style="min-height:600px;">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <h2>@Model.EventOrganiser.CompanyName</h2>
+                        <hr>
+
+
+                        <p>
+                            This is your online dashboard.
+                            View and manage your events below.
+
+                        </p>
+
+
+                        <p>Active Events: @Model.MyEvents.Count()</p>
+                        @*<li class="fa-bolt">@Html.ActionLink("Create New Event", "CreateByEO", "Events") </li>*@
+
+                    </div>
+
+
+                    <!-- Two -->
+                    <!-- start event info container --->
+
+
+                    @foreach (var ev in Model.MyEvents)
+                    {
+
+
+
+
+                        <div class="col-md-10 col-md-offset-1">
+                            <div class="col-md-12" style="background-color:#ffffff; padding:10px; border-bottom:4px solid #d4d4d4;">
+                                <h3 class="underline_div">@ev.Event.EventName</h3>
+                                <p>Days Left till event: @ev.DaysTilEvent</p>
+
+                                <hr class="thin">
+                                <div class="col-md-4">
+                                    @{
+                                        if (ev.EventImages.Where(x => x.ImageAltText == "logo").Count() > 0)
+                                        {
+                                            <img src="../../Uploads/@ev.EventLogoURL" class=" search_event_img" width="100%" />
+                                        }
+                                    }
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="col-md-12">
+                                        <h4>Total ticket sales: @ev.TicketsSold</h4>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>T/Class</th>
+                                                    <th>T/Sold</th>
+                                                    <th>Revenue</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var tc in ev.TicketClasses)
+                                                {
+                                                    <tr>
+
+                                                        <td>@tc.TicketClass.Description </td>
+                                                        <td>@tc.TicketsSold</td>
+                                                        <td>R @tc.TotalCost </td>
+                                                    </tr>
+
+                                                }
+
+
+                                            </tbody>
+
+                                        </table>
+
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <p>Total Vendors: @ev.Vendors.Count()</p>
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>Vendor Revenue: R @ev.Vendors.Sum(x => x.RevenueForEvent)</p>
+
+                                    </div>
+                                    <div class="col-md-12">
+                                        <hr class="thin">
+                                        <h3><strong>Total Revenue: R @ev.RevenueGenerated</strong></h3>
+                                        <hr class="thin">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p>@Html.ActionLink("Manage Event", "EditByEOCentral", "Events", new { id = @ev.Event.ID }, new { @class = "btn btn-primary btn-block" })</p>
+
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p>@Html.ActionLink("Create Tickets", "EditByEOCentral", "Events", new { id = @ev.Event.ID }, new { @class = "btn btn-primary btn-block" })</p>
+
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p>@Html.ActionLink("View Event", "DetailsByEO", "Events", new { id = @ev.Event.ID }, new { @class = "btn btn-primary btn-block" })</p>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+                    }
+                    <!-- ender event info container --->
+
+
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

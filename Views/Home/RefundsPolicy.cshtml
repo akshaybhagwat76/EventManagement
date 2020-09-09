@@ -1,0 +1,76 @@
+﻿@using Microsoft.AspNet.Identity
+
+@model MiidWeb.Models.LoginViewModel
+@{
+	ViewBag.Title = "MiiD Event Organiser Landing Page";
+	ViewBag.Title = "Contact";
+
+	bool IAmEventOrganiser = false;
+	if (Request.IsAuthenticated)
+	{
+		IAmEventOrganiser = MiidWeb.Repositories.EndUserRepository.AmIAnEventOrganiser(User.Identity.GetUserName());
+	}
+
+}
+
+@if (IAmEventOrganiser)
+{
+	Layout = "~/Views/Shared/_LayoutEventOrganiser.cshtml";
+}
+else
+{
+	    Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("Layout");
+
+}
+
+<meta property="og:image" content="https://www.miid.co.za/Uploads/genric.png" />
+<div>
+
+
+
+
+	<div id="page-content-wrapper">
+		<div class="page-content">
+			<div class="container-fluid">
+				<div class="container">
+					<div class="row">
+
+                        <div class="col-md-10  col-md-offset-1">
+                            <h1>Refund Policy</h1>
+                            <hr>
+                            The event organiser hosting the event for which you have purchased tickets have sole discretion over refund policy and can choose to either use Mi-id’s refund policy or implement their own. Please contact either Mi-id or the event organizer to see which policy applies.
+                            <br><br>
+                            Mi-id’s refund policy is as follows:
+                            <br><br>
+
+                            Should you choose to cancel your ticket more than 30 Days prior to the event a 15% cancellation fee will be charged or a minimum of R20 whichever is greater
+                            <br><br>
+                            If you cancel your tickets less than 30 days before the event a 50% cancellation fee will apply.
+                            <br><br>
+                            Tickets cannot be cancelled less than 7 days before the event.
+
+                            <br><br>
+                            Refunds can take up to 7 working days.
+                            <br><br>
+                            Should the person who has purchased the ticket be unable to attend the event due to hospitalization or death the necessary documentation needs to be supplied. In this case, the tickets will be refunded in full.
+                            <br><br>
+                            Should hospitalization be the, reason medical documentation needs to be supplied before or on the event date.
+                            <br><br>
+
+                            @if (Request.IsAuthenticated)
+                            {
+                        <div> You can request a refund directly from the event organiser @Html.ActionLink("here", "RefundTickets", "Events", null, new { @class = "" })</div>
+                            }
+
+                            else {
+                        <div>To request a refund directly from the event organiser, sign in and com back to this page.</div>
+
+                            }
+                        </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+

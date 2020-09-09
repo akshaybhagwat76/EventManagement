@@ -1,0 +1,127 @@
+﻿sha@model System.Web.Mvc.HandleErrorInfo
+
+@{
+	ViewBag.Title = "Error";
+	Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("Layout");
+}
+<div class="container bg-grey">
+	<div class="row vertical-offset-40px">
+
+
+		<div class="col-md-6 col-md-offset-3">
+
+			<div class="panel panel-default ">
+
+				<div class="panel-body text-center">
+
+					<br>
+
+					<h1>Oops! Something went wrong.</h1>
+					<h4>
+						Looks like you found a problem that we missed!
+					</h4>
+					@if (Model != null)
+					{
+						<h4>We would love it if you let us know about the issue. Click the copy button below and send it to us by <a href="~/Account/Register">clicking here</a>.</h4>
+						<div>Otherwise, you can go back to our home page and continue browsing.</div>
+					}
+					<br><br>
+					<a class="btn  btn-default btn-block btn-lg" href="~/home/index">Take Me Home</a>
+
+
+
+
+
+
+					@if (Model != null)
+					{
+						<input type="button" class="btn btn-info btn-block btn-lg" onclick="myFunction()" value="COPY ERROR" />
+						<br>
+						<br>
+
+
+						<textarea id="myInput" class="input-lg form-control">
+                      @Model.Exception.ToString()<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                     Thrown in: @Model.ControllerName @Model.ActionName<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                     @Model.Exception.GetType().Name<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </textarea>
+						<script>
+
+							var $myInput = $('#myInput');
+							$myInput.val($myInput.val().slice(0, -3));
+						</script>
+						<script>
+							function myFunction() {
+								var copyText = document.getElementById("myInput");
+								copyText.select();
+								document.execCommand("copy");
+								alert("Copied the text: " + copyText.value);
+							}
+						</script>
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,214 @@
+﻿@model MiidWeb.Models.LoginViewModel
+@{
+    ViewBag.Title = "NFC event tickets";
+
+
+}
+
+
+<style>
+    .orange-background {
+        background-color: #fbaa19;
+        padding-top: 20px;
+        padding-bottom: 60px;
+        ;
+        color: #ffffff;
+    }
+
+    .grey-background {
+        background-color: #efefef;
+        padding-top: 40px;
+        padding-bottom: 60px;
+        ;
+    }
+
+    .white-background {
+        background-color: #ffffff;
+        padding-top: 40px;
+        padding-bottom: 80px;
+        ;
+        ;
+    }
+
+    .smallhr {
+        background-color: #fbaa19;
+        height: 4px;
+        border: 4px solid ##fbaa19;
+        width: 15%;
+    }
+</style>
+
+
+<title>Mi-id NFC Event Tickets. The most secure form of event ticketing</title>
+<meta name="description" content="Mi-id's event tickets cannot be duplicated or copied. The most secure way to sell tickets to your event" />
+
+<style>
+    .orange-background {
+        background-color: #fbaa19;
+        padding-top: 20px;
+        padding-bottom: 60px;
+        ;
+        color: #ffffff;
+    }
+
+    .grey-background {
+        background-color: #efefef;
+        padding-top: 40px;
+        padding-bottom: 60px;
+        ;
+    }
+
+    .white-background {
+        background-color: #ffffff;
+        padding-top: 40px;
+        padding-bottom: 80px;
+        ;
+        ;
+    }
+
+    .smallhr {
+        background-color: #fbaa19;
+        height: 4px;
+        border: 4px solid ##fbaa19;
+        width: 15%;
+        margin-bottom: 30px;
+    }
+</style>
+
+<meta property="og:image" content="https://www.miid.co.za/Uploads/genric.png" />
+<!-- Page Features -->
+<div class="row text-center bg-grey" style="padding:40px;">
+    <br><br>
+    <div class="col-md-offset-4 col-md-4"><img src="~/Content/images/newimages/ticket1.svg" alt="online tickets" style="width:20%" /></div>
+
+
+    <div class="col-lg-12 col-md-12 mb-12 text-center ">
+        <div class="">
+
+            <h1>The most secure way to sell  event tickets</h1>
+
+            <p class="lead" style="margin-left:20px; margin-right:20px;">
+                Tickets cannot be duplicated or copied, eliminating the risks associated with printed tickets 
+                <br>
+            </p>
+            <div class="smallhr"></div>
+            <br><br>
+
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-4 mb-4">
+        <div class="card" style="min-height:285px;">
+            <div class="card-img-top"><i class="fas fa-lock  fa-3x" aria-hidden="true"></i></div>
+            <div class="card-body">
+                <h4 class="card-title">Secure</h4>
+                <p class="card-text">
+                    Mi-ids wristband tags are linked directly to a users account. This ensures tickets can only be used by the intended person.
+                </p>
+            </div>
+            <div class="card-footer">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-4 mb-4">
+        <div class="card" style="min-height:285px;">
+            <div class="card-img-top"><i class="fas fa-sync-alt fa-3x" aria-hidden="true"></i></div>
+            <div class="card-body">
+                <h4 class="card-title">Easily Replaceable</h4>
+                <p class="card-text">
+                   If the tag is lost the user can easily cancel it via their profile and activate a new one.
+                </p>
+            </div>
+            <div class="card-footer">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-4 mb-4">
+        <div class="card" style="min-height:285px;">
+            <div class="card-img-top"><i class="fas fa-sign-out-alt fa-3x" aria-hidden="true"></i></div>
+            <div class="card-body">
+                <h4 class="card-title">Reusable</h4>
+                <p class="card-text">
+                    Mi-d's festival wristbands can be used over and over again for subsequent events. There is no need for your customer to have to purchase a new tag at every event.
+                </p>
+            </div>
+            <div class="card-footer">
+
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+
+
+
+</div>
+
+
+<!--second section----->
+<!-- Page Features -->
+<div class="row text-center" style="padding:40px;">
+
+    
+    <div class="col-lg-4 col-md-4 mb-4">
+        <div class="card">
+            <div class="card-img-top"><i class="fa fa-check-circle fa-3x" aria-hidden="true"></i></div>
+            <div class="card-body">
+                <h4 class="card-title">Save on costs</h4>
+                <p class="card-text">No need to rent expensive scanning equipment. All you need is a Mi-id account and an NFC enabled android phone. </p>
+            </div>
+            <div class="card-footer">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-4 mb-4">
+        <div class="card">
+            <div class="card-img-top"><i class="fa fa-check-circle fa-3x" aria-hidden="true"></i></div>
+            <div class="card-body">
+                <h4 class="card-title">Reduce Reduce queues </h4>
+                <p class="card-text">Mi-id's ticketing app scans tickets in a flash. With pre-sold tickets and the Mi-id app queuing times are shortened drastically.  </p>
+            </div>
+            <div class="card-footer">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-4 mb-4">
+        <div class="card">
+            <div class="card-img-top"><i class="fa fa-check-circle fa-3x" aria-hidden="true"></i></div>
+            <div class="card-body">
+                <h4 class="card-title">Offline Secure Ticketing</h4>
+                <p class="card-text">
+                    Mi-id's NFC technology can be applied to pre-made printed tickets allowing you to verify the authenticity. This can be applied to anything from event tickets and transport cards to raffles.
+                </p>
+            </div>
+            <div class="card-footer">
+
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+
+
+
+</div>
+<div class="row text-center bg-grey">
+	<div class="col-md-12">
+
+		<br>
+		<a href="~/Account/Register" class="btn btn-default  btn-lg" style="margin-top:10px">Start Selling Tickets</a>
+
+		<a href="~/Eventorganisers/Register2" class="btn btn-info  btn-lg" style="margin-top:10px">Request a callback</a>
+		<br><br>
+
+	</div>
+</div>

@@ -1,0 +1,201 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <title>MiiD cashless payment sytems for music festivals. concerts & Events in Cape Town  |   Home,</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Use your festival wristband to make purchases without cash Easy, safe, quick & secure cashless purchases.">
+    <!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-TKCDRPP');</script>
+    <!-- End Google Tag Manager -->
+    <link rel="stylesheet" href="~/Scripts/growl.css" type="text/css">
+    <!--  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet"> -->
+    <!--new css-->
+    @Styles.Render("~/content/Css/EOcss2018/Bootstrap.css")
+    @Styles.Render("~/content/Css/EOcss2018/style.css")
+    @Styles.Render("~/content/Css/EOcss2018/steps.css")
+    @Styles.Render("~/content/Css/EOcss2018/style-responsive.css")
+    @Styles.Render("https://use.fontawesome.com/releases/v5.5.0/css/all.css")
+    @Styles.Render("~/content/Css/EOcss2018/font.css")
+  
+    @Styles.Render("~/content/Css/EOcss2018/font-awesome.css")
+
+
+
+    @Scripts.Render("~/content/js/jquery-1-12-4-min.js")
+    @Scripts.Render("~/content/js/jquery-touchswipe-min.js")
+
+
+    <!--new js-->
+    @Scripts.Render("~/content/js/EOjs2018/jquery2.0.3.min.js")
+    @Scripts.Render("~/content/js/EOjs2018/steps.js")
+
+
+    <!-- Custom CSS -->
+
+
+
+
+
+    <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
+    <!--fresh chat -->
+
+
+
+</head>
+
+<body>
+
+    <section id="container">
+        <!--header start-->
+        <header class="header fixed-top clearfix">
+            <!--logo start-->
+            <div class="brand">
+                <a href="~/EventOrganisers/MyDetails" class="logo">
+                    <img src="https://www.miid.co.za/Content/images/newimages/logo_dark.svg" width="140px">
+                </a>
+                <div class="sidebar-toggle-box">
+                    <div class="fa fa-bars"></div>
+                </div>
+            </div>
+            <!--logo end-->
+
+            <div class="top-nav clearfix">
+                <!--search & user info start-->
+                <ul class="nav pull-right top-menu">
+                    @using MiidWeb.Repositories;
+
+
+                    @if (Request.IsAuthenticated)
+                    {
+                        var eventOrganiser = EventOrganiserRepository.GetEventOrganiserByEmail(User.Identity.Name);
+                        string profilePicURL = "avatar_blank.png";
+                        string eoProfilePic = eventOrganiser.ProfilePicURL ?? profilePicURL;
+
+
+
+
+                        <!-- user login dropdown start-->
+                        <li class="dropdown">
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <img alt="" src="~/Uploads/@eoProfilePic">
+                                <span class="username"> @eventOrganiser.CompanyName</span>
+                                <b class="caret"></b>
+                            </a>
+							<ul class="dropdown-menu extended logout">
+								<li><a href="~/EventOrganisers/EditMyDetails"><i class=" fa fa-suitcase"></i>Company Profile</a></li>
+								<li><a href="~/EventOrganisers/BankingDetailsView"><i class="fas fa-university"></i> Banking Details</a></li>
+								<li><a href="~/EventOrganisers/PinDetails"><i class="fas fa-mobile-alt"></i> App PIN</a></li>
+								<li><a href="~/Account/ForgotPassword"><i class="fas fa-key"></i>Password Reset</a></li>
+								<li><a href="~/Account/Logoff"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
+							</ul>
+                        </li>
+                        <!-- user login dropdown end -->
+                    }
+                </ul>
+                <!--search & user info end-->
+            </div>
+        </header>
+        <!--header end-->
+        <!--whole nave  start-->
+
+        @Html.Partial("_LoginPartialEO")
+
+        <!--whole nave  end-->
+
+
+
+        <section id="main-content">
+            <section class="wrapper">
+
+
+                @RenderBody()
+
+
+
+
+                <!-- /.container -->
+
+
+            </section>
+        </section>
+
+
+    </section>
+
+
+
+
+
+
+
+
+
+
+            @Scripts.Render("~/content/js/EOjs2018/bootstrap.js")
+            @Scripts.Render("~/content/js/EOjs2018/jquery.dcjqaccordion.2.7.js")
+            @Scripts.Render("~/content/js/EOjs2018/scripts.js")
+            @Scripts.Render("~/content/js/EOjs2018/jquery.slimscroll.js")
+            @Scripts.Render("~/content/js/EOjs2018/jquery.nicescroll.js")
+            @Scripts.Render("~/content/js/EOjs2018/jquery.scrollTo.js")
+            @Scripts.Render("~/Scripts/jquery.tokeninput.js")
+
+
+
+
+
+            @RenderSection("scripts", required: false)
+
+            @{
+                string[] parts = new string[10];
+
+                if (TempData.ContainsKey("Growl") && !String.IsNullOrEmpty((string)TempData["Growl"]))
+                {
+                    string growl = (string)TempData["Growl"];
+                    parts = growl.Split(':');
+
+
+
+                    <script type="text/javascript">
+                        growl('@parts[0]', '@parts[1]');
+                    </script>
+                }
+
+            }
+
+            <!-- Google Tag Manager (noscript) -->
+            <noscript>
+                <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TKCDRPP"
+                        height="0" width="0" style="display:none;visibility:hidden"></iframe>
+            </noscript>
+            <!-- End Google Tag Manager (noscript) -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

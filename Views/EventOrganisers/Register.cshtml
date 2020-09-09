@@ -1,0 +1,104 @@
+﻿@using Microsoft.AspNet.Identity
+
+@model MiidWeb.EventOrganiser
+
+@{
+    ViewBag.Title = "Register";
+    ViewBag.Title = "Contact";
+
+    bool IAmEventOrganiser = false;
+    if (Request.IsAuthenticated)
+    {
+        IAmEventOrganiser = MiidWeb.Repositories.EndUserRepository.AmIAnEventOrganiser(User.Identity.GetUserName());
+    }
+
+}
+
+
+<head>
+    <script> function createFcn(nm){(window.freshsales)[nm]=function(){(window.freshsales).push([nm].concat(Array.prototype.slice.call(arguments,0)))}; } (function(url,appToken,formCapture){window.freshsales=window.freshsales||[];if(window.freshsales.length==0){list='init identify trackPageView trackEvent set'.split(' ');for(var i=0;i<list.length;i++){var nm=list[i];createFcn(nm);}var t=document.createElement('script');t.async=1;t.src='//d952cmcgwqsjf.cloudfront.net/assets/analytics.js';var ft=document.getElementsByTagName('script')[0];ft.parentNode.insertBefore(t,ft);freshsales.init('//mi-id.freshsales.io','5b524b53fcbbc0d91aee4d51ceba943bace10fe7fb0b30083948e755acebaf64',true);}})();</script>
+</head>
+
+
+
+
+
+<div class="container bg-grey">
+    <div class="row vertical-offset-40px">
+
+
+        <div class="col-md-8 col-md-offset-2">
+
+            <div class="panel panel-default ">
+
+                <div class="panel-body text-center">
+                    <form action="" method="post" id="fileForm" role="form">
+                        <div class="form-group col-md-12">
+
+                            <h1 class="meduim">Take the first step to making your event a success</h1>
+                            <p>
+                                Once you have completed your details, one of our event specialists will make contact with you and guide you through each of our services so you can choose one that best suites your event's needs.
+                            </p>
+
+
+                        </div>
+
+
+                        @using (Html.BeginForm())
+            {
+                            @Html.AntiForgeryToken()
+                            <span style="color:palevioletred">@Html.ValidationSummary()</span>
+
+                            @Html.HiddenFor(model => model.DateCreated)
+                            @Html.HiddenFor(model => model.DateUpdated)
+
+
+                                        <!-- Main -->
+
+
+                            <div class="form-group col-md-6">
+                                <label><span class="req">*</span>Company Name</label>
+                                @Html.EditorFor(model => model.CompanyName, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Company Name" } })
+                                @Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "red" })
+
+                            </div>
+                                    <div class="form-group col-md-6">
+                                        <label><span class="req">*</span>Contact Name</label>
+
+                                        @Html.EditorFor(model => model.ContactName, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Name" } })
+                                        @Html.ValidationMessageFor(model => model.ContactName, "", new { @class = "red" })
+
+                                    </div>
+                                    <div class="form-group col-md-6">
+
+                                        <label><span class="req">*</span>Phone number</label>
+
+                                        @Html.EditorFor(model => model.Telephone, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Contact Number" } })
+                                        @Html.ValidationMessageFor(model => model.Telephone, "", new { @class = "red" })
+
+                                    </div>
+                                            <div class="form-group col-md-6">
+                                                <label><span class="req">*</span>Verify Email <small>Email you signed up with</small></label>
+
+
+                                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Email" } })
+                                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "red" })
+
+                                            </div>
+                                            <div class="form-group col-md-12">
+
+
+                                                <input type="submit" value="Register" class="btn btn-default btn-block btn-lg">
+                                            </div>
+                                            <br>
+
+
+                        }
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

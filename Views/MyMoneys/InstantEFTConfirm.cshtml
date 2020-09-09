@@ -1,0 +1,390 @@
+﻿@model MiidWeb.Models.InstantEFTViewModel
+@using Microsoft.AspNet.Identity
+@using System.Text
+@{
+	ViewBag.Title = "Mii-Funds";
+	Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("Layout");
+	var notification = ViewBag.Notification;
+	// MiidWeb.Controllers.UserModel u1 = MiidWeb.Helpers.SessionManager.EndUser;
+
+
+	string purpose = Model.Purpose;
+
+	string disabled = "";
+
+	switch (purpose)
+	{
+		case "Ticket Purchase": disabled = "disabled"; break;
+		case "Mii-funds Topup": break;
+		default: break;
+
+	}
+	string SelectedTicketsString = "";
+	int EventID = 0;
+
+	var ptvm = Model.PurchaseTicketViewModel;
+
+	if (Model.PurchaseTicketViewModel != null && Model.PurchaseTicketViewModel.Event !=null)
+	{
+
+		EventID = Model.PurchaseTicketViewModel.Event.ID;
+
+		StringBuilder sb = new StringBuilder();
+
+		foreach (var ticket in Model.PurchaseTicketViewModel.TicketClasses.Where(x => x.TicketCount > 0))
+		{
+			sb.Append(String.Format("{0}:{1};", ticket.TicketClass.ID, ticket.TicketCount));
+		}
+		SelectedTicketsString = sb.ToString();
+	}
+
+
+}
+
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+	@Html.ValidationSummary(true, "", new { @class = "red" })
+
+	@Html.HiddenFor(model => model.PurchaseSessionID)
+	@Html.HiddenFor(model => model.Purpose)
+
+	@Html.HiddenFor(model => model.EndUserID)
+	@Html.HiddenFor(model => model.BuyerFirstName)
+	@Html.HiddenFor(model => model.BuyerLastName)
+	@Html.HiddenFor(model => model.BuyerEmail)
+	@Html.HiddenFor(model => model.ItemName)
+	@Html.HiddenFor(model => model.CustomInteger)
+	@Html.HiddenFor(model => model.CustomString)
+	@Html.HiddenFor(model => model.UniquePaymentID)
+
+
+	<style>
+		.list-group-item {
+			border: 0;
+		}
+
+
+		.panel-default > .no-border {
+			border: 0;
+			font-size: 10px;
+		}
+	</style>
+
+
+	if (purpose == "Ticket Purchase")
+	{
+
+
+
+
+		<div class="container bg-grey">
+			<div class="row vertical-offset-40px">
+
+
+				<div class="col-md-6 col-md-offset-3">
+
+					<div class="panel  panel-default text-left">
+
+						<div class="panel-body">
+
+							<div class="col-md-12">
+								<h3>
+									<i class="fa fa-lock" aria-hidden="true"></i>&nbsp;Ticket Purchase:Card / Instant Eft
+
+									<hr>
+								</h3>
+
+
+							</div>
+                            <div class=" col-md-12 ">
+                                <table cellpadding="30" class="table table-hover" style="background-color:#ffffff; ">
+                                    <thead>
+                                        <tr>
+                                            <th>Description</th>
+                                            <th>Qty</th>
+                                            <th>Total</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var ticket in Model.PurchaseTicketViewModel.TicketClasses.Where(x => x.TicketCount > 0))
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @ticket.TicketClass.Description
+                                                </td>
+                                                <td>
+                                                    @ticket.TicketCount
+                                                </td>
+                                                <td class="text-right">
+                                                    @{ decimal sub = (Decimal)(@ticket.TicketClass.Price * @ticket.TicketCount); }
+                                                    <h5>@sub.ToString("0.00")</h5>
+
+                                                </td>
+                                            </tr>
+
+                                        }
+
+                                        @if (ViewBag.DiscountAmount > 0)
+                                        {
+                                            <tr>
+
+                                                <td><h5>Less Discount</h5></td>
+                                                <td></td>
+                                                <td class="text-right"><h5><strong> - @ViewBag.DiscountAmount.ToString("0.00")</strong></h5></td>
+                                            </tr>
+                                        }
+                                        <tr>
+                                            @{decimal totalMinusFee = Model.TotalAmountInRands - Model.ConfiguredFeeAmount; }
+                                            @{Model.TotalMinusFee = totalMinusFee;}
+
+                                            <td><h5>Subtotal</h5></td>
+                                            <td></td>
+                                            <td class="text-right"><h5><strong>@totalMinusFee.ToString("0.00")</strong></h5></td>
+                                        </tr>
+
+                                        <tr>
+
+                                            <td><h5>Service Fee</h5></td>
+                                            <td></td>
+                                            <td class="text-right"><h5><strong> @Model.ConfiguredFeeAmount.ToString("0.00")</strong></h5></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3">
+                                                <div class="panel panel-default " style="border: solid 0px #ffffff; margin-bottom:1px; ">
+
+                                                    <ul class="list-group" style="border: solid 0px #ffffff;  background-color:#efefef;">
+                                                        <li class="list-group-item">
+                                                            <div class="row toggle" id="dropdown-detail-1" data-toggle="detail-1">
+                                                                <div class="col-xs-10 n" style="border: solid 0px #ffffff; font-size:10px; margin-left:0px; ">
+                                                                    What are service fees?
+                                                                </div>
+                                                                <div class="col-xs-2"><i class="fa fa-chevron-down pull-right"></i></div>
+                                                            </div>
+                                                            <div id="detail-1" style="font-size:10px;">
+                                                                <hr>
+
+
+
+                                                                We dislike service fees as much as you do, however, to process your transaction securely we use 3rd party payment gateways that can safely communicate with your bank or credit card company. These fees go directly to the payment gateways so you can rest assured your online transaction is secure.
+
+                                                                If you would like to avoid these fees we do offer a direct bank transfer option to pay
+
+
+
+
+                                                            </div>
+                                                        </li>
+                                                        <script>
+                                                            $(document).ready(function () {
+                                                                $('[id^=detail-]').hide();
+                                                                $('.toggle').click(function () {
+                                                                    $input = $(this);
+                                                                    $target = $('#' + $input.attr('data-toggle'));
+                                                                    $target.slideToggle();
+                                                                });
+                                                            });
+                                                        </script>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            @Html.HiddenFor(model => model.TotalAmountInRands)
+
+                                            <td><h3>Total</h3></td>
+                                            <td></td>
+                                            <td class="text-right">
+                                                <h3>
+                                                    <strong>
+                                                        @Model.TotalAmountInRands.ToString("0.00")
+                                                        @Html.ValidationMessageFor(model => model.TotalAmountInRands, "", new { @class = "red" })
+                                                    </strong>
+                                                </h3>
+                                            </td>
+                                        </tr>
+                                        <tr>
+
+                                            <td colspan="3" style="font-size:10px;">
+                                                Once you click continue you will be directed to the Payfast payment gateway. Upon successful payment, you will be emailed a copy of your ticket. Only purchase tickets from events and event organisers you know and trust. <br>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td colspan="4">
+                                                <input type="submit" class="btn btn-primary btn-block btn-lg" value="Continue" style="background-color:#13a048; border:0;" onclick="var e=this;setTimeout(function(){e.disabled=true;},0);return true;" />
+                                            </td>
+                                        </tr>
+                                     
+                                    </tbody>
+                                </table>
+                              
+                                <div class="row payment-conatiner">
+
+                                    <div class="col-md-6">
+
+                                        <img src="~/Content/images/newimages/secure1.svg" />
+
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        <img src="~/Content/images/newimages/secure3.svg" />
+
+                                    </div>
+                                </div>
+                            </div>
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+												}
+
+
+
+
+
+												else //Miifunds topup
+												{
+
+
+													<div class="container bg-grey">
+														<div class="row vertical-offset-40px">
+
+
+															<div class="col-md-6 col-md-offset-3">
+
+																<div class="panel  panel-default text-left">
+
+																	<div class="panel-body">
+
+																		<div class="col-md-12">
+																			<h3>
+																				<i class="fa fa-lock" aria-hidden="true"></i>&nbsp;Pre-paid Top-up:Card / Instant Eft
+
+																				<hr>
+																			</h3>
+																		</div>
+																		<div class=" col-md-12 ">
+																			<table cellpadding="30" class="table table-hover">
+																				<thead>
+																					<tr>
+
+																						<th>Description</th>
+
+
+																						<th class="text-right">Total</th>
+																					</tr>
+																				</thead>
+                                                                                <tbody>
+
+
+                                                                                    <tr>
+                                                                                        <td>Sub Total</td>
+
+
+                                                                                        <td class="text-right">
+                                                                                            @{decimal totalMinusFee = Model.TotalAmountInRands - Model.ConfiguredFeeAmount; }
+                                                                                            R @totalMinusFee.ToString("0.00")
+                                                                                        </td>
+                                                                                    </tr>
+
+                                                                                    <tr>
+                                                                                        <td>Admin Fee</td>
+                                                                                        <td class="text-right">R @Model.ConfiguredFeeAmount.ToString("0.00")</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><h4>Total</h4></td>
+                                                                                        <td class="text-right">
+                                                                                            <h4>
+                                                                                                @Model.TotalAmountInRands.ToString("0.00")
+                                                                                                @Html.HiddenFor(model => model.TotalAmountInRands)
+                                                                                                @Html.ValidationMessageFor(model => model.TotalAmountInRands, "", new { @class = "red" })
+                                                                                            </h4>
+                                                                                        </td>
+
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td colspan="3">
+                                                                                            <div class="panel panel-default " style="border: solid 0px #ffffff; margin-bottom:1px; ">
+
+                                                                                                <ul class="list-group" style="border: solid 0px #ffffff;  background-color:#efefef;">
+                                                                                                    <li class="list-group-item">
+                                                                                                        <div class="row toggle" id="dropdown-detail-1" data-toggle="detail-1">
+                                                                                                            <div class="col-xs-10 n" style="border: solid 0px #ffffff; font-size:10px; margin-left:0px; ">
+                                                                                                                What are service fees?
+                                                                                                            </div>
+                                                                                                            <div class="col-xs-2"><i class="fa fa-chevron-down pull-right"></i></div>
+                                                                                                        </div>
+                                                                                                        <div id="detail-1" style="font-size:10px;">
+                                                                                                            <hr>
+
+
+
+                                                                                                            We dislike service fees as much as you do, however, to process your transaction securely we use 3rd party payment gateways that can safely communicate with your bank or credit card company. These fees go directly to the payment gateways so you can rest assured your online transaction is secure.
+
+                                                                                                            If you would like to avoid these fees we do offer a direct bank transfer option to pay
+
+
+
+
+                                                                                                        </div>
+                                                                                                    </li>
+                                                                                                    <script>
+                                                                                                        $(document).ready(function () {
+                                                                                                            $('[id^=detail-]').hide();
+                                                                                                            $('.toggle').click(function () {
+                                                                                                                $input = $(this);
+                                                                                                                $target = $('#' + $input.attr('data-toggle'));
+                                                                                                                $target.slideToggle();
+                                                                                                            });
+                                                                                                        });
+                                                                                                    </script>
+                                                                                                </ul>
+                                                                                            </div>
+                                                                                        </td>
+                                                                                    </tr>
+
+                                                                                </tbody>
+																			</table>
+																		</div>
+																		<div class="row hidden">
+																			<div class="col-md-12">
+																				<hr>
+
+																				<label for="demo-copy">
+																					I have read &amp; Understood the Terms &amp; Conditions
+																					<input type="checkbox" id="acceptTerms" name="acceptTerms" checked="">
+																				</label>
+
+																				<hr>
+																			</div>
+																		</div>
+																		<div class="col-md-8" id="formsubmitbutton">
+																			<img src="https://www.miid.co.za/Content/images/newimages/secure1.svg">
+
+																		</div>
+																		<div class="col-md-4 " id="formsubmitbutton">
+																			<input type="submit" class="btn btn-default btn-block" value="Accept" onclick="ButtonClicked()">
+																		</div>
+																		<div class="col-md-4 pull-right" id="buttonreplacement" style=" display:none;">
+
+																			<button class="btn btn-default btn-block" value="Loading" disabled="">
+																				<i class="fa fa-circle-o-notch fa-spin"></i><span>
+																					&nbsp;Loading
+																				</span>
+																			</button>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+
+
+																									}
+
+																								}

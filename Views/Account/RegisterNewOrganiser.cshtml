@@ -1,0 +1,201 @@
+﻿@model MiidWeb.Models.RegisterViewModel
+@{
+	ViewBag.Title = "Register";
+
+
+	Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("Layout");
+
+
+
+}
+<link rel="stylesheet" type="text/css" href="~/Content/css/css2018/validate/jquery.validate.css" />
+<style>
+	.red {
+		color: #be1c1d;
+	}
+</style>
+
+
+
+<meta name="description" content="Sign up for a Mi-id account to purchase tickets online and top-up cashless funds for events" />
+
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "l", role = "form" }))
+{
+
+	@Html.Hidden("ReturnUrl", (object)ViewBag.ReturnUrl)
+
+
+
+
+
+
+	<div class="container bg-grey">
+		<div class="row vertical-offset-40px">
+
+
+			<div class="col-md-8 col-md-offset-2">
+
+				<div class="panel panel-default ">
+
+					<div class="panel-body text-center">
+
+						<br>
+						<div class="col-md-12">
+
+							<h4>Enter your login details. Use the same address you used to request a call back to gain instant access.</h4>
+							<br><br>
+
+							@Html.AntiForgeryToken()
+							@Html.ValidationSummary("", new { @style = "color:red" })
+						</div>
+						<div role="form">
+
+
+							<form action="" method="post" id="fileForm" role="form">
+
+								<p>
+									<div class="form-group col-md-6 ">
+										@Html.TextBoxFor(m => m.Email, new { @id = "ValidEmail", @class = "form-control input-lg", placeholder = "Enter Email" })
+									</div>
+								</p>
+								<p>
+
+									<div class="form-group col-md-6 ">
+										@Html.TextBoxFor(m => m.ConfirmEmail, new { @id = "ValidConfirmEmail", @class = "form-control input-lg", placeholder = "Confirm Email" })
+									</div>
+								</p>
+								<p>
+									<div class="form-group col-md-12">
+										<span style="color:#be1c1d">*Password must be at least 6 characters long</span>
+									</div>
+								</p>
+								<p>
+									<div class="form-group col-md-6 ">
+										@Html.PasswordFor(m => m.Password, new { @id = "ValidPassword", @class = "form-control input-lg", placeholder = "Choose Password" })-
+									</div>
+								</p>
+								<p>
+
+									<div class="form-group col-md-6 ">
+										@Html.PasswordFor(m => m.ConfirmPassword, new { @id = "ValidConfirmPassword", @class = "form-control input-lg", placeholder = " Confirm Password" })
+									</div>
+								</p>
+
+
+								<div class="form-group pull-left col-md-12 ">
+									<input type="checkbox" onclick="ShowPassword2();ShowPassword1()" />
+									<label>Show Password</label>
+
+								</div>
+								<br>
+								<div class="form-group col-md-12 ">
+									<input type="submit" value="Continue" class="btn btn-lg btn-default btn-block">
+								</div>
+
+							</form>
+
+
+
+							<div class="form-group pull-left col-md-12 ">
+								<p class="subtext"> Your information is secure</p>
+							</div>
+
+						</div>
+						<div class="form-group pull-left col-md-12 ">
+							<p>Can't remember your password? Click <a href="~/Account/ForgotPassword">here</a> to retrieve it.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+}
+<!--igonre spces that where copied and pasted-->
+<script>
+    $('#ValidEmail').on("input", function () {
+        $(this).val($(this).val().replace(/ /g, ""));
+    });
+</script>
+<script>
+    $('#ValidConfirmEmail').on("input", function () {
+        $(this).val($(this).val().replace(/ /g, ""));
+    });
+</script>
+<script>
+    $('#ValidPassword').on("input", function () {
+        $(this).val($(this).val().replace(/ /g, ""));
+    });
+</script>
+<script>
+    $('#ValidConfirmPassword').on("input", function () {
+        $(this).val($(this).val().replace(/ /g, ""));
+    });
+</script>
+
+<!-- show hide password-->
+
+<script>
+	function ShowPassword2() {
+		var x = document.getElementById("ValidConfirmPassword");
+		if (x.type === "password") {
+			x.type = "text";
+		} else {
+			x.type = "password";
+		}
+	}
+</script>
+<script>
+	function ShowPassword1() {
+		var x = document.getElementById("ValidPassword");
+		if (x.type === "password") {
+			x.type = "text";
+		} else {
+			x.type = "password";
+		}
+	}
+</script>
+
+<!--Close show hide password-->
+<!--disable spaces-->
+
+<script>
+
+
+	function doIt(e) {
+		var e = e || event;
+
+		if (e.keyCode == 32) return false;
+
+	}
+	window.onload = function () {
+		var inp = document.getElementById("ValidConfirmEmail");
+		var inpa = document.getElementById("ValidPassword");
+		var inpb = document.getElementById("ValidConfirmPassword");
+		var inpc = document.getElementById("ValidEmail");
+
+		inp.onkeydown = doIt;
+		inpa.onkeydown = doIt;
+		inpb.onkeydown = doIt;
+		inpc.onkeydown = doIt;
+	};
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+@Scripts.Render("~/Scripts/lib_validate/jquery/jquery-1.3.2.js")
+@Scripts.Render("~/Scripts/validate/jquery.validate.js")

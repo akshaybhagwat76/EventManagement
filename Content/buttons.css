@@ -1,0 +1,59 @@
+/* start landing page genreal buttons */ 
+
+.orangebutton  { color:#fff; background: #f6ac1d; 
+                font-weight:normal; 
+                 font-size: 20px; 
+                 padding: 10px 65px;  
+                 display: inline-block; t
+                 text-transform: uppercase; 
+                 margin:20px;}
+                 
+.orangebutton:hover  { color:#f6ac1d; background: #fff; 
+                font-weight:normal; 
+                 font-size: 20px; 
+                 padding: 10px 65px;  
+                 display: inline-block; t
+                 text-transform: uppercase; 
+                 margin:20px;}
+                 
+ .bluebutton  { color:#fff; background: #007ec6; 
+                font-weight:normal; 
+                 font-size: 20px; 
+                 padding: 10px 65px;  
+                 display: inline-block; t
+                 text-transform: uppercase; 
+                 margin:20px;}     
+                 
+                 
+  .bluebutton:hover  { color:#fff; background: #f6ac1d; 
+                font-weight:normal; 
+                 font-size: 20px; 
+                 padding: 10px 65px;  
+                 display: inline-block; t
+                 text-transform: uppercase; 
+                 margin:20px;}                 
+                 
+ .registerbutton  { color:#fff; background: #007ec6; 
+                font-weight:normal; 
+                 font-size: 20px; 
+                 padding: 10px 65px;  
+                 display: inline-block; t
+                 text-transform: uppercase; 
+                 margin-top:20px;} 
+                 
+                 
+                 
+ .registerbutton:hover  { color:#fff; background: #f6ac1d; 
+                font-weight:normal; 
+                 font-size: 20px; 
+                 padding: 10px 65px;  
+                 display: inline-block; t
+                 text-transform: uppercase; 
+                 margin-top:20px;}   
+                 
+                 
+/* end landing pagegenreal buttons */ 
+                 
+                 
+            
+                              

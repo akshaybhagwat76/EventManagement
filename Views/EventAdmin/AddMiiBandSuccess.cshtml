@@ -1,0 +1,71 @@
+﻿@model MiidWeb.Models.EndUserViewModel
+@{
+	Layout = "~/Views/Shared/_LayoutBackEnd.cshtml";
+}
+<!DOCTYPE HTML>
+
+
+
+<div class="col-md-9">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="content-box-header">
+				<div class="panel-title">Band Active</div>
+
+				<div class="panel-options">
+
+				</div>
+			</div>
+			<div class="content-box-large box-with-header">
+				<div class="panel panel-success">
+					<div class="panel-heading"><strong>Band has been activated on the Mi-id system</strong></div>
+					<div class="panel-body">
+						Users can top-up funds and deposit funds into their account
+
+					</div>
+					<div class="table-wrapper">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Surname</th>
+									<th>ID Number</th>
+									<th>Band Satus</th>
+
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>@Model.EndUser.Firstname</td>
+									<td>@Model.EndUser.Surname</td>
+									<td>@Model.EndUser.IDNumber</td>
+									<td>@Model.TagStatus</td>
+
+
+									<td>@Html.ActionLink("Transaction", "Transactions", new { id = Model.EndUser.ID })</td>
+
+								</tr>
+
+
+
+
+
+							</tbody>
+
+						</table>
+					</div>
+				</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+						
+
+
+
+
+
+
+

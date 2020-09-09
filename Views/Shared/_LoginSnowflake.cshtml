@@ -1,0 +1,97 @@
+﻿@using Microsoft.AspNet.Identity
+@using MiidWeb.Helpers
+@if (Request.IsAuthenticated)
+{
+	var endUser = MiidWeb.Repositories.EndUserRepository.GetUser(User.Identity.GetUserName(), true);
+
+	bool IAmEventOrganiser = false;
+
+	IAmEventOrganiser = MiidWeb.Repositories.EndUserRepository.AmIAnEventOrganiser(User.Identity.GetUserName());
+
+
+
+	if (endUser == null && !IAmEventOrganiser) { Response.Redirect("~/Account/Logoff"); }
+
+
+
+	@* @Html.ActionLink("Forgot your password?", "ForgotPassword", "Account")*@
+	<ul class="largenav pull-right">
+
+
+
+		@if (endUser != null)
+		{
+
+			<li class="upper-links">@Html.ActionLink("Home", "EndUserProfile", "EndUsers", new { id = @MiidWeb.Helpers.UserHelper.UserID(User.Identity.GetUserName()), loggedInUserID = @MiidWeb.Helpers.UserHelper.UserID(User.Identity.GetUserName()) }, new { @class = "links" })</li>
+				<li class="upper-links">@Html.ActionLink("All Events", "Search", "Events", null, new { @class = "links" })</li>
+						<li class="upper-links">@Html.ActionLink("Your Tickets", "MiiEvents", "Events", null, new { @class = "links" })</li>
+
+
+		}
+
+
+		<li class="upper-links">@Html.ActionLink("Sign Out", "Logoff", "Account", null, new { @class = "links" })</li>
+		<li class="upper-links"><a href="https://www.snowflakevenue.com" class="links">Back to Main Site</a></li>
+
+
+	</ul>
+	<div id="mySidenav" class="sidenav">
+		<div class="container" style="background-color: #68a7b9; padding-top: 10px;">
+			<span class="sidenav-heading">Menu</span>
+			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+		</div>
+		@Html.ActionLink("Home", "EndUserProfile", "EndUsers", new { id = @MiidWeb.Helpers.UserHelper.UserID(User.Identity.GetUserName()), loggedInUserID = @MiidWeb.Helpers.UserHelper.UserID(User.Identity.GetUserName()) }, new { @class = "mobile-nav-link" })
+		@Html.ActionLink("All Events", "Search", "Events", null, new { @class = "mobile-nav-link" })
+		@Html.ActionLink("Your Tickets", "MiiEvents", "Events", null, new { @class = "mobile-nav-link" })
+
+
+
+		@Html.ActionLink("Sign Out", "Logoff", "Account", null, new { @class = "mobile-nav-link" })
+		<a class="mobile-nav-link" href="https://www.snowflakevenue.com">Back to Main Site</a>
+
+
+	</div>
+
+	@* @Html.ActionLink("Forgot your password?", "ForgotPassword", "Account")*@
+
+
+
+
+
+}
+else
+{
+
+	<header style="display:none;">
+		<!--IMPORTANT...this is part of the url redirect when user logs on and taken back to events-->
+		<div class="p">
+			@{ var model = new MiidWeb.Models.LoginViewModel(ReturnUrl: Request.RawUrl);}
+			@Html.Partial("_Login", @model)
+		</div>
+	</header>
+
+	<ul class="largenav pull-right">
+		<li class="upper-links"><a href="~/Events/Search" class="links">All Events &amp; Festivals</a></li>
+		<li class="upper-links"><a href="~/Home/Index" class="links"> Home</a></li>
+		<li class="upper-links"><a href="~/Account/Register" class="links">Register</a></li>
+		<li class="upper-links"><a href="https://www.snowflakevenue.com" class="links">Back to Main Site</a></li>
+
+
+
+
+
+	</ul>
+	<div id="mySidenav" class="sidenav">
+		<div class="container" style="background-color: #68a7b9; padding-top: 10px;">
+			<span class="sidenav-heading">Menu</span>
+			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+		</div>
+		<a href="~/Events/Search" class="mobile-nav-link">All Events</a>
+		<a href="~/Home/Index" class="mobile-nav-link">Home</a>
+		<a href="~/Account/Register" class="mobile-nav-link">Register</a>
+		<a href="https://www.snowflakevenue.com" class="mobile-nav-link">Back to Main Site</a>
+
+
+	</div>
+
+				}

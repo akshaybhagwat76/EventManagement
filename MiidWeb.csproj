@@ -1,0 +1,2198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\Microsoft.Net.Compilers.3.3.1\build\Microsoft.Net.Compilers.props" Condition="Exists('packages\Microsoft.Net.Compilers.3.3.1\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5536F59C-C9D0-4D8A-89D2-B28F71B0DA95}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MiidWeb</RootNamespace>
+    <AssemblyName>MiidWeb</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <TargetFrameworkProfile />
+    <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation">
+      <HintPath>..\packages\FluentValidation.5.1.0.0\lib\Net40\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation.Mvc">
+      <HintPath>..\packages\FluentValidation.MVC4.5.1.0.0\lib\Net40\FluentValidation.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="LumenWorks.Framework.IO, Version=3.9.1.0, Culture=neutral, PublicKeyToken=5ad3ea2f85776344, processorArchitecture=MSIL">
+      <HintPath>packages\LumenWorksCsvReader.3.9.1\lib\net20\LumenWorks.Framework.IO.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.900.148\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.900.148\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.900.148\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.900.148\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebDesign, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.900.148\lib\net40\Microsoft.ReportViewer.WebDesign.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.900.148\lib\net40\Microsoft.ReportViewer.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.900.148\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SendGrid.SmtpApi">
+      <HintPath>..\packages\SendGrid.SmtpApi.1.3.1\lib\net40\SendGrid.SmtpApi.dll</HintPath>
+    </Reference>
+    <Reference Include="SendGridMail">
+      <HintPath>..\packages\Sendgrid.6.1.0\lib\SendGridMail.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http, Version=4.1.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Net.Http.Formatting.Extension.5.2.3.0\lib\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\System.Net.Http.Formatting.Extension.5.2.3.0\lib\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Net.Http.Formatting.Extension.5.2.3.0\lib\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.Core.5.2.0\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.WebHost.5.2.0\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.0\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.0\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.0\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.0\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.0\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Zen.Barcode.Core, Version=3.1.0.0, Culture=neutral, PublicKeyToken=b5ae55aa76d2d9de, processorArchitecture=MSIL">
+      <HintPath>packages\Zen.Barcode.Rendering.Framework.3.1.10729.1\lib\Zen.Barcode.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Zen.Barcode.Design, Version=3.1.0.0, Culture=neutral, PublicKeyToken=b5ae55aa76d2d9de, processorArchitecture=MSIL">
+      <HintPath>packages\Zen.Barcode.Rendering.Framework.Web.3.1.10729.1\lib\Zen.Barcode.Design.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Zen.Barcode.Web, Version=3.1.0.0, Culture=neutral, PublicKeyToken=b5ae55aa76d2d9de, processorArchitecture=MSIL">
+      <HintPath>packages\Zen.Barcode.Rendering.Framework.Web.3.1.10729.1\lib\Zen.Barcode.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Zen.Barcode.Web.Mvc, Version=3.1.0.0, Culture=neutral, PublicKeyToken=b5ae55aa76d2d9de, processorArchitecture=MSIL">
+      <HintPath>packages\Zen.Barcode.Rendering.Framework.Web.3.1.10729.1\lib\Zen.Barcode.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.1.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccountType.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AdminRemoveUser.aspx.cs">
+      <DependentUpon>AdminRemoveUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminRemoveUser.aspx.designer.cs">
+      <DependentUpon>AdminRemoveUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminWebservice.asmx.cs">
+      <DependentUpon>AdminWebservice.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="api\ReportApi.cs" />
+    <Compile Include="ApplyPromotion_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="AreThereMoreTicketsThanBank_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BankTransaction.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BoxOfficeReportSummary_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BoxOfficeReport_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CancelMyTags_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CM.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CodeGen_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ConfigurationsController.cs" />
+    <Compile Include="Controllers\ServiceController.cs" />
+    <Compile Include="Controllers\SubdomainController.cs" />
+    <Compile Include="Controllers\TestApiController.cs" />
+    <Compile Include="Controllers\TicketClassSeatRangesController.cs" />
+    <Compile Include="Controllers\TicketClassSeatsController.cs" />
+    <Compile Include="DaysAvailable_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Device.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DeviceLogin.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EndUser.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EORemarketingReport_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EOTicketReportExport_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EOTicketReport_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorLog.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Event.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EventCategory.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EventImage.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EventOrganiser.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EventSummaryByEventOrganiser_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FeeConfiguration.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Friend.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GenerateNFCTags_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetMyDadsIDNumber_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetMyEventsOnly_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetMyEvents_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetRefundableTickets_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetRequestedTicketRefunds_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetTicketClassesForEvent_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetTicket_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\ABList.cs" />
+    <Compile Include="Helpers\JsonCleaner.cs" />
+    <Compile Include="Incident.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LastRecord.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LazyLoading.cs" />
+    <Compile Include="LogShipper.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="marker.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EOTicketReport.cs" />
+    <Compile Include="Models\MyMoneyViewModel.cs" />
+    <Compile Include="Models\RefundTicketViewModel.cs" />
+    <Compile Include="Models\TransferMiiFundsViewModel.cs" />
+    <Compile Include="Models\PromoCodeViewModel.cs" />
+    <Compile Include="Models\TicketSeatTuple.cs" />
+    <Compile Include="MyMoney.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewsFeed.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewsFeedComment.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NFCTag.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ParentChild.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POSTagScan.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POSTransaction.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PrivateMessage.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PromoCode.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PromoCodeAvailable_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PromoCodeGeneric.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PromoCodeReport.aspx.cs">
+      <DependentUpon>PromoCodeReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PromoCodeReport.aspx.designer.cs">
+      <DependentUpon>PromoCodeReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BoxOfficeReport.aspx.cs">
+      <DependentUpon>BoxOfficeReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BoxOfficeReport.aspx.designer.cs">
+      <DependentUpon>BoxOfficeReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CardPaymentOrderBak.aspx.cs">
+      <DependentUpon>CardPaymentOrderBak.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CardPaymentOrderBak.aspx.designer.cs">
+      <DependentUpon>CardPaymentOrderBak.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CardPaymentOrder.aspx.cs">
+      <DependentUpon>CardPaymentOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CardPaymentOrder.aspx.designer.cs">
+      <DependentUpon>CardPaymentOrder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CMsController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\EventAdminController.cs" />
+    <Compile Include="Controllers\LoginAlternativeController.cs" />
+    <Compile Include="Controllers\PromotionUploadController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Enums\TenderTypeEnum.cs" />
+    <Compile Include="GlobalVariables.cs" />
+    <Compile Include="Helpers\ConfiguredFeeHelper.cs" />
+    <Compile Include="Helpers\ImageHelper.cs" />
+    <Compile Include="Helpers\LookupHelper.cs" />
+    <Compile Include="Helpers\SessionManager.cs" />
+    <Compile Include="IveriError.aspx.cs">
+      <DependentUpon>IveriError.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IveriError.aspx.designer.cs">
+      <DependentUpon>IveriError.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="IveriFail.aspx.cs">
+      <DependentUpon>IveriFail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IveriFail.aspx.designer.cs">
+      <DependentUpon>IveriFail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="IveriResult.aspx.cs">
+      <DependentUpon>IveriResult.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IveriResult.aspx.designer.cs">
+      <DependentUpon>IveriResult.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="IveriSuccess.aspx.cs">
+      <DependentUpon>IveriSuccess.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IveriSuccess.aspx.designer.cs">
+      <DependentUpon>IveriSuccess.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="IveriTryLater.aspx.cs">
+      <DependentUpon>IveriTryLater.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IveriTryLater.aspx.designer.cs">
+      <DependentUpon>IveriTryLater.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ModelAttributes\TicketClassModelAttribute.cs" />
+    <Compile Include="Models\ChooseTender.cs" />
+    <Compile Include="Models\ContactViewModel.cs" />
+    <Compile Include="Models\EndUserGridViewModel.cs" />
+    <Compile Include="Models\EventSearchModel.cs" />
+    <Compile Include="Models\QuickAddModels.cs" />
+    <Compile Include="Models\TicketReportModel.cs" />
+    <Compile Include="Navigation\AuthorizeWithReturnCookieAttribute.cs" />
+    <Compile Include="Navigation\NavigationCookies.cs" />
+    <Compile Include="Navigation\ReturnAfterAuthenticationAttribute.cs" />
+    <Compile Include="PayfastCancel.aspx.cs">
+      <DependentUpon>PayfastCancel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PayfastCancel.aspx.designer.cs">
+      <DependentUpon>PayfastCancel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PayfastConfirm.aspx.cs">
+      <DependentUpon>PayfastConfirm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PayfastConfirm.aspx.designer.cs">
+      <DependentUpon>PayfastConfirm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AccountTypesController.cs" />
+    <Compile Include="Controllers\BankTransactionsController.cs" />
+    <Compile Include="Controllers\EndUsersController.cs" />
+    <Compile Include="Controllers\EndUsersControllerBAK.cs" />
+    <Compile Include="Controllers\EventCategoriesController.cs" />
+    <Compile Include="Controllers\EventOrganisersController.cs" />
+    <Compile Include="Controllers\EventOrganisersControllerBak.cs" />
+    <Compile Include="Controllers\EventsController.cs" />
+    <Compile Include="Controllers\FeeConfigurationsController.cs" />
+    <Compile Include="Controllers\FriendsController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IncidentsController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MyMoneysController.cs" />
+    <Compile Include="Controllers\NewsFeedCommentsController.cs" />
+    <Compile Include="Controllers\NewsFeedsController.cs" />
+    <Compile Include="Controllers\NFCTagsController.cs" />
+    <Compile Include="Controllers\StaffsController.cs" />
+    <Compile Include="Controllers\StaffTypesController.cs" />
+    <Compile Include="Controllers\StatusController.cs" />
+    <Compile Include="Controllers\TestJqueryController.cs" />
+    <Compile Include="Controllers\TicketClassesController.cs" />
+    <Compile Include="Controllers\TicketsController.cs" />
+    <Compile Include="Controllers\UserModel.cs" />
+    <Compile Include="Controllers\UserResultModel.cs" />
+    <Compile Include="Controllers\VendorEventsController.cs" />
+    <Compile Include="Controllers\VendorsController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\ControlHelper.cs" />
+    <Compile Include="Helpers\DatasetHelper.cs" />
+    <Compile Include="Helpers\DateHelper.cs" />
+    <Compile Include="Helpers\EmailHelper.cs" />
+    <Compile Include="Helpers\Extensions.cs" />
+    <Compile Include="Helpers\HtmlHelperExtensions.cs" />
+    <Compile Include="Helpers\LogHelper.cs" />
+    <Compile Include="Helpers\LogshipHelper.cs" />
+    <Compile Include="Helpers\PaymentHelper.cs" />
+    <Compile Include="Helpers\StatusHelper.cs" />
+    <Compile Include="Helpers\UserHelper.cs" />
+    <Compile Include="LogShipMirrorWebService.asmx.cs">
+      <DependentUpon>LogShipMirrorWebService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MiidWebService.asmx.cs">
+      <DependentUpon>MiidWebService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="ModelAttributes\EventOrganiserModelAttribute.cs" />
+    <Compile Include="ModelAttributes\EndUserModelAttribute.cs" />
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\BankTransactionViewModel.cs" />
+    <Compile Include="Models\CalendarViewModel.cs" />
+    <Compile Include="Models\EndUserViewModel.cs" />
+    <Compile Include="Models\EOEventSummaryItem.cs" />
+    <Compile Include="Models\EventOrganiserViewModel.cs" />
+    <Compile Include="Models\FriendViewModel.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MiiFundsRequestWithdrawalViewModel.cs" />
+    <Compile Include="Models\MyEventsViewModel.cs" />
+    <Compile Include="Models\EventViewModel.cs" />
+    <Compile Include="Models\MyViewModel.cs" />
+    <Compile Include="Models\NewsFeedViewModel.cs" />
+    <Compile Include="Models\NFCTagViewModel.cs" />
+    <Compile Include="Models\PurchaseTicketFailViewModel.cs" />
+    <Compile Include="Models\PurchaseTicketViewModel.cs" />
+    <Compile Include="Models\TicketClassViewModel.cs" />
+    <Compile Include="Models\ManualEFTViewModel.cs" />
+    <Compile Include="Models\InstantEFTViewModel.cs" />
+    <Compile Include="Models\CardPaymentViewModel.cs" />
+    <Compile Include="Models\VendorEventViewModel.cs" />
+    <Compile Include="Models\VendorReportModel.cs" />
+    <Compile Include="Models\VendorViewModel.cs" />
+    <Compile Include="Models\TicketViewModel.cs" />
+    <Compile Include="PayfastNotify.aspx.cs">
+      <DependentUpon>PayfastNotify.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PayfastNotify.aspx.designer.cs">
+      <DependentUpon>PayfastNotify.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PayfastOrder.aspx.cs">
+      <DependentUpon>PayfastOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PayfastOrder.aspx.designer.cs">
+      <DependentUpon>PayfastOrder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Promotion.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PromotionInsert_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Region.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReportPromoCodes_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTicketGetMulti_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTicketGet_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReportVendorSummary_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repositories\BankTransactionRepository.cs" />
+    <Compile Include="Repositories\CMSRepository.cs" />
+    <Compile Include="Repositories\ConfigRepo.cs" />
+    <Compile Include="Repositories\DataDumpRepository.cs" />
+    <Compile Include="Repositories\EndUserRepository.cs" />
+    <Compile Include="Repositories\EventOrganiserRepository.cs" />
+    <Compile Include="Repositories\ExportCsvRepository.cs" />
+    <Compile Include="Repositories\MyMoneyRepository.cs" />
+    <Compile Include="Repositories\NFCTagRepository.cs" />
+    <Compile Include="Repositories\PayGeniusRepository.cs" />
+    <Compile Include="Repositories\ReportRepository.cs" />
+    <Compile Include="Repositories\SiteUserRepository.cs" />
+    <Compile Include="Repositories\TicketRepository.cs" />
+    <Compile Include="Repositories\DeviceRepository.cs" />
+    <Compile Include="Repositories\VendorEventRepository.cs" />
+    <Compile Include="Repositories\VendorRepository.cs" />
+    <Compile Include="RestPasswordToP1_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Rules\EventViewValidator.cs" />
+    <Compile Include="Rules\MyViewModelValidator.cs" />
+    <Compile Include="SaveSomething.cs" />
+    <Compile Include="SessionTimeoutAttribute.cs" />
+    <Compile Include="Site1.Master.cs">
+      <DependentUpon>Site1.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site1.Master.designer.cs">
+      <DependentUpon>Site1.Master</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="Staff.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StaffType.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Startup.cs" />
+    <Compile Include="Status.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Subdomain.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Ticket.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TicketClass.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TicketClassSeat.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TicketClassSeatRange.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TicketPurchaseCheckByReference_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransactionType.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vendor.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VendorEvent.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VendorReport.aspx.cs">
+      <DependentUpon>VendorReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VendorReport.aspx.designer.cs">
+      <DependentUpon>VendorReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm2.aspx.cs">
+      <DependentUpon>WebForm2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm2.aspx.designer.cs">
+      <DependentUpon>WebForm2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm3.aspx.cs">
+      <DependentUpon>WebForm3.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm3.aspx.designer.cs">
+      <DependentUpon>WebForm3.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm5.aspx.cs">
+      <DependentUpon>WebForm5.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm5.aspx.designer.cs">
+      <DependentUpon>WebForm5.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Webform7.aspx.cs">
+      <DependentUpon>Webform7.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Webform7.aspx.designer.cs">
+      <DependentUpon>Webform7.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Webform8.aspx.cs">
+      <DependentUpon>Webform8.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Webform8.aspx.designer.cs">
+      <DependentUpon>Webform8.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AdminRemoveUser.aspx" />
+    <Content Include="AdminWebservice.asmx" />
+    <Content Include="Content\css\AdminCss\bootstrap\css\bootstrap-theme.css" />
+    <Content Include="Content\css\AdminCss\bootstrap\css\bootstrap-theme.min.css" />
+    <Content Include="Content\css\AdminCss\bootstrap\css\bootstrap.css" />
+    <Content Include="Content\css\AdminCss\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Content\css\AdminCss\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\css\AdminCss\bootstrap\js\bootstrap.js" />
+    <Content Include="Content\css\AdminCss\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\css\AdminCss\css\buttons.css" />
+    <Content Include="Content\css\AdminCss\css\forms.css" />
+    <Content Include="Content\css\AdminCss\css\styles.css" />
+    <Content Include="Content\css\AdminCss\js\custom.js" />
+    <Content Include="Content\css\css2018\BokMain.css" />
+    <Content Include="Content\css\css2018\bootstrapLulaTickets.css" />
+    <Content Include="Content\css\css2018\BootstrapBokRadio.css" />
+    <Content Include="Content\css\css2018\Bootstrapjacarandafm.css" />
+    <Content Include="Content\css\css2018\BootstrapjGigCulture.css" />
+    <Content Include="Content\css\css2018\FarmYardParkBootstrap.css" />
+    <Content Include="Content\css\css2018\FarmYardParkMain.css" />
+    <Content Include="Content\css\css2018\fontawesome.css" />
+    <Content Include="Content\css\css2018\GlobalTicketsBootstrap.css" />
+    <Content Include="Content\css\css2018\GlobalTicketsMain.css" />
+    <Content Include="Content\css\css2018\BootstrapTakeYouThere.css" />
+    <Content Include="Content\css\css2018\jacarandafmMain.css" />
+    <Content Include="Content\css\css2018\mainLulaTickets.css" />
+    <Content Include="Content\css\css2018\MainGigCulture.css" />
+    <Content Include="Content\css\css2018\TakeYouThereMain.css" />
+    <Content Include="Content\css\css2020\Main.css" />
+    <Content Include="Content\css\EOcss2018\bootstrap.css" />
+    <Content Include="Content\css\EOcss2018\bootstrap.min.css" />
+    <Content Include="Content\css\EOcss2018\font-awesome.css" />
+    <Content Include="Content\css\EOcss2018\font.css" />
+    <Content Include="Content\css\EOcss2018\jqvmap.css" />
+    <Content Include="Content\css\EOcss2018\lightbox.css" />
+    <Content Include="Content\css\EOcss2018\minimal.css" />
+    <Content Include="Content\css\EOcss2018\monthly.css" />
+    <Content Include="Content\css\EOcss2018\morris.css" />
+    <Content Include="Content\css\EOcss2018\steps.css" />
+    <Content Include="Content\css\EOcss2018\style-responsive.css" />
+    <Content Include="Content\css\EOcss2018\style.css" />
+    <Content Include="Content\css\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\EmailTemplates\account_active_lulatickets.html" />
+    <Content Include="Content\EmailTemplates\miifunds_topup-requested.html" />
+    <Content Include="Content\EmailTemplates\prorata_lulatickets.html" />
+    <Content Include="Content\EmailTemplates\registration_lulatickets.html" />
+    <Content Include="Content\EmailTemplates\ticketexpire_lulatickets.html" />
+    <Content Include="Content\EmailTemplates\ticketexpire.html" />
+    <Content Include="Content\EmailTemplates\prorata.html" />
+    <Content Include="Content\EmailTemplates\ticket_purchase_eft_lulatickets.html" />
+    <Content Include="Content\EmailTemplates\ticket_purchase_lulatickets.html" />
+    <Content Include="Content\EmailTemplates\userupdate_lulatickets.html" />
+    <Content Include="Content\EO_landing_pages\css\bootstrap.css" />
+    <Content Include="Content\EO_landing_pages\css\bootstrap.min.css" />
+    <Content Include="Content\EO_landing_pages\css\slick-theme.css" />
+    <Content Include="Content\EO_landing_pages\css\slick.css" />
+    <Content Include="Content\EO_landing_pages\css\style.css" />
+    <Content Include="Content\EO_landing_pages\fonts\slick.svg" />
+    <Content Include="Content\EO_landing_pages\images\amid logo.png" />
+    <Content Include="Content\EO_landing_pages\images\arrowright.png" />
+    <Content Include="Content\EO_landing_pages\images\balance.png" />
+    <Content Include="Content\EO_landing_pages\images\box-bundle.png" />
+    <Content Include="Content\EO_landing_pages\images\brand1.png" />
+    <Content Include="Content\EO_landing_pages\images\brand2.png" />
+    <Content Include="Content\EO_landing_pages\images\branded-domain.png" />
+    <Content Include="Content\EO_landing_pages\images\car-1.png" />
+    <Content Include="Content\EO_landing_pages\images\car-2.png" />
+    <Content Include="Content\EO_landing_pages\images\car-3.png" />
+    <Content Include="Content\EO_landing_pages\images\car-4.png" />
+    <Content Include="Content\EO_landing_pages\images\cashless-app.png" />
+    <Content Include="Content\EO_landing_pages\images\city varcity.png" />
+    <Content Include="Content\EO_landing_pages\images\fa_angle_left2.png" />
+    <Content Include="Content\EO_landing_pages\images\fa_angle_left_1277800.png" />
+    <Content Include="Content\EO_landing_pages\images\flow.gif" />
+    <Content Include="Content\EO_landing_pages\images\flow.png" />
+    <Content Include="Content\EO_landing_pages\images\gal-accom.png" />
+    <Content Include="Content\EO_landing_pages\images\gal-business.png" />
+    <Content Include="Content\EO_landing_pages\images\gal-festival.png" />
+    <Content Include="Content\EO_landing_pages\images\gal-theater.png" />
+    <Content Include="Content\EO_landing_pages\images\gardener.png" />
+    <Content Include="Content\EO_landing_pages\images\img_547625.png" />
+    <Content Include="Content\EO_landing_pages\images\logo-city.png" />
+    <Content Include="Content\EO_landing_pages\images\logo-gardener.png" />
+    <Content Include="Content\EO_landing_pages\images\logo-nwu.png" />
+    <Content Include="Content\EO_landing_pages\images\mask.png" />
+    <Content Include="Content\EO_landing_pages\images\nwu.png" />
+    <Content Include="Content\EO_landing_pages\images\Paper Cardboard Branding Mockup copy 2.png" />
+    <Content Include="Content\EO_landing_pages\images\phon2 copy 2.png" />
+    <Content Include="Content\EO_landing_pages\images\phon2.png" />
+    <Content Include="Content\EO_landing_pages\images\phone-ticket-screen.png" />
+    <Content Include="Content\EO_landing_pages\images\phone3.png" />
+    <Content Include="Content\EO_landing_pages\images\poduct-hero-ticket.png" />
+    <Content Include="Content\EO_landing_pages\images\printer-hero.png" />
+    <Content Include="Content\EO_landing_pages\images\printer2.png" />
+    <Content Include="Content\EO_landing_pages\images\Rectangle 3.png" />
+    <Content Include="Content\EO_landing_pages\images\responimg.png" />
+    <Content Include="Content\EO_landing_pages\images\scanticket.png" />
+    <Content Include="Content\EO_landing_pages\images\tickets-stacked.png" />
+    <Content Include="Content\EO_landing_pages\images\vectors\branded-domain.svg" />
+    <Content Include="Content\EO_landing_pages\images\vectors\branded-tickets.svg" />
+    <Content Include="Content\EO_landing_pages\images\vectors\calendar.svg" />
+    <Content Include="Content\EO_landing_pages\images\vectors\cashless-easy.svg" />
+    <Content Include="Content\EO_landing_pages\images\vectors\cashless.svg" />
+    <Content Include="Content\EO_landing_pages\images\vectors\cashout.svg" />
+    <Content Include="Content\EO_landing_pages\images\vectors\check.svg" />
+    <Content Include="Content\EO_landing_pages\images\vectors\download-ticket.svg" />
+    <Content Include="Content\EO_landing_pages\images\vectors\intergrate.svg" />
+    <Content Include="Content\EO_landing_pages\images\vectors\marketing.svg" />
+    <Content Include="Content\EO_landing_pages\images\vectors\PIN.svg" />
+    <Content Include="Content\EO_landing_pages\images\vectors\qr-code.svg" />
+    <Content Include="Content\EO_landing_pages\images\vectors\reuse.svg" />
+    <Content Include="Content\EO_landing_pages\images\vectors\save-pig.svg" />
+    <Content Include="Content\EO_landing_pages\images\vectors\save.svg" />
+    <Content Include="Content\EO_landing_pages\images\vectors\scanning-phone.svg" />
+    <Content Include="Content\EO_landing_pages\images\vectors\seating.svg" />
+    <Content Include="Content\EO_landing_pages\images\vectors\setup.svg" />
+    <Content Include="Content\EO_landing_pages\images\vectors\support.svg" />
+    <Content Include="Content\EO_landing_pages\images\vectors\ticket.svg" />
+    <Content Include="Content\EO_landing_pages\images\vectors\ticketing-sell.svg" />
+    <Content Include="Content\EO_landing_pages\images\vectors\tracking.svg" />
+    <Content Include="Content\EO_landing_pages\images\vectors\vanity-url.svg" />
+    <Content Include="Content\EO_landing_pages\images\vectors\voucher.svg" />
+    <Content Include="Content\EO_landing_pages\images\website-desktop-bundle.png" />
+    <Content Include="Content\EO_landing_pages\images\website.png" />
+    <Content Include="Content\EO_landing_pages\images\wristband-bundle.png" />
+    <Content Include="Content\EO_landing_pages\js\bootstrap.min.js" />
+    <Content Include="Content\EO_landing_pages\js\jquery-3.3.1.min.js" />
+    <Content Include="Content\EO_landing_pages\js\slick.js" />
+    <Content Include="Content\favicons\bok\android-chrome-72x72.png" />
+    <Content Include="Content\favicons\bok\apple-touch-icon.png" />
+    <Content Include="Content\favicons\bok\browserconfig.xml" />
+    <Content Include="Content\favicons\bok\favicon-16x16.png" />
+    <Content Include="Content\favicons\bok\favicon-32x32.png" />
+    <Content Include="Content\favicons\bok\favicon.ico" />
+    <Content Include="Content\favicons\bok\mstile-150x150.png" />
+    <Content Include="Content\favicons\bok\safari-pinned-tab.svg" />
+    <Content Include="Content\images2018\bg.png" />
+    <Content Include="Content\images2018\company\bok-logo.png" />
+    <Content Include="Content\images2018\company\farmyardpark\farm-yard-background.jpg" />
+    <Content Include="Content\images2018\company\farmyardpark\farmyard-vector-logo.svg" />
+    <Content Include="Content\images2018\company\farmyardpark\farmyard-vector-transparent.png" />
+    <Content Include="Content\images2018\company\gigculture\logo.png" />
+    <Content Include="Content\images2018\company\GlobalTickets\global-tickets.svg" />
+    <Content Include="Content\images2018\company\GlobalTickets\untitled.png" />
+    <Content Include="Content\images2018\company\lulatickets\logo-light.png" />
+    <Content Include="Content\images2018\company\Orion_ticket.svg" />
+    <Content Include="Content\images2018\pg-card.svg" />
+    <Content Include="Content\js\EOjs2018\bootstrap.js" />
+    <Content Include="Content\js\EOjs2018\jquery.dcjqaccordion.2.7.js" />
+    <Content Include="Content\js\EOjs2018\jquery.fileupload.js" />
+    <Content Include="Content\js\EOjs2018\jquery.min.js" />
+    <Content Include="Content\js\EOjs2018\jquery.nicescroll.js" />
+    <Content Include="Content\js\EOjs2018\jquery.scrollTo.js" />
+    <Content Include="Content\js\EOjs2018\jquery.slimscroll.js" />
+    <Content Include="Content\js\EOjs2018\jquery.validate.min.js" />
+    <Content Include="Content\js\EOjs2018\jquery2.0.3.min.js" />
+    <Content Include="Content\js\EOjs2018\lightbox-plus-jquery.min.js" />
+    <Content Include="Content\js\EOjs2018\material-bootstrap-wizard.js" />
+    <Content Include="Content\js\EOjs2018\script.js" />
+    <Content Include="Content\js\EOjs2018\scripts.js" />
+    <Content Include="Content\js\EOjs2018\steps.js" />
+    <Content Include="PromoCodeReport.aspx" />
+    <Content Include="BoxOfficeReport.aspx" />
+    <Content Include="browserconfig.xml" />
+    <Content Include="buyer_registration.html" />
+    <Content Include="CardPaymentOrderBak.aspx" />
+    <Content Include="Content\buttons.css" />
+    <Content Include="Content\css\acordion\css\reset %281%29.css" />
+    <Content Include="Content\css\acordion\css\reset%282%29.css" />
+    <Content Include="Content\css\acordion\css\reset.css" />
+    <Content Include="Content\css\acordion\css\rjaccordion %281%29.css" />
+    <Content Include="Content\css\acordion\css\rjaccordion%282%29.css" />
+    <Content Include="Content\css\acordion\css\rjaccordion.css" />
+    <Content Include="Content\css\bootstrap.css" />
+    <Content Include="Content\css\buttons.css" />
+    <Content Include="Content\css\crop.css" />
+    <Content Include="Content\css\css2018\Birchwoodmain.css" />
+    <Content Include="Content\css\css2018\bootstrap-theme.css" />
+    <Content Include="Content\css\css2018\bootstrap-theme.min.css" />
+    <Content Include="Content\css\css2018\bootstrap.css" />
+    <Content Include="Content\css\css2018\bootstrap.min.css" />
+    <Content Include="Content\css\css2018\Global.css" />
+    <Content Include="Content\css\css2018\glpros.css" />
+    <Content Include="Content\css\css2018\main.css" />
+    <Content Include="Content\css\css2018\Snowflakemain.css" />
+    <Content Include="Content\css\css2018\sticky-footer.css" />
+    <Content Include="Content\css\css2018\validate\jquery.validate.css" />
+    <Content Include="Content\css\css2018\validate\style.css" />
+    <Content Include="Content\css\eft_approve.css" />
+    <Content Include="Content\css\font-awesome.min.css" />
+    <Content Include="Content\css\forms.css" />
+    <Content Include="Content\css\ie8.css" />
+    <Content Include="Content\css\images\background.jpg" />
+    <Content Include="Content\css\images\backround_2.jpg" />
+    <Content Include="Content\css\images\div_background.jpg" />
+    <Content Include="Content\css\images\images\tiled_background_1.jpg" />
+    <Content Include="Content\css\images\tiled_background_1.jpg" />
+    <Content Include="Content\css\images\tiled_background_2.jpg" />
+    <Content Include="Content\css\jquery.mentionsInput.css" />
+    <Content Include="Content\css\layout.css" />
+    <Content Include="Content\css\mainreports.css" />
+    <Content Include="Content\css\main.css" />
+    <Content Include="Content\css\newcss\bootstrap.css" />
+    <Content Include="Content\css\newcss\bootstrap.min.css" />
+    <Content Include="Content\css\newcss\carousel.css" />
+    <Content Include="Content\css\newcss\font-awesome.css" />
+    <Content Include="Content\css\newcss\footer.css" />
+    <Content Include="Content\css\newcss\help.css" />
+    <Content Include="Content\css\newcss\HeroCarousel.css" />
+    <Content Include="Content\css\newcss\images\jumbo.jpg" />
+    <Content Include="Content\css\newcss\login.css" />
+    <Content Include="Content\css\newcss\main2.css" />
+    <Content Include="Content\css\newcss\portfolio-item.css" />
+    <Content Include="Content\css\newcss\product.css" />
+    <Content Include="Content\css\newcss\search.css" />
+    <Content Include="Content\css\newcss\sidebar.css" />
+    <Content Include="Content\css\popup.css" />
+    <Content Include="Content\css\seller_profile.css" />
+    <Content Include="Content\css\temp.css" />
+    <Content Include="Content\demo.css" />
+    <Content Include="Content\EmailTemplates\account_active.html" />
+    <Content Include="Content\EmailTemplates\images\facebook.png" />
+    <Content Include="Content\EmailTemplates\images\facebook_round.png" />
+    <Content Include="Content\EmailTemplates\images\facebook_small.png" />
+    <Content Include="Content\EmailTemplates\images\how_to.png" />
+    <Content Include="Content\EmailTemplates\images\instagram.png" />
+    <Content Include="Content\EmailTemplates\images\instagram_round.png" />
+    <Content Include="Content\EmailTemplates\images\logo.png" />
+    <Content Include="Content\EmailTemplates\images\twitter.png" />
+    <Content Include="Content\EmailTemplates\images\twitter_round.png" />
+    <Content Include="Content\EmailTemplates\images\twitter_small.png" />
+    <Content Include="Content\EmailTemplates\miifunds_topup_eft.html" />
+    <Content Include="Content\EmailTemplates\miifunds_topup.html" />
+    <Content Include="Content\EmailTemplates\userupdate.html" />
+    <Content Include="Content\EmailTemplates\registration.html" />
+    <Content Include="Content\EmailTemplates\ticket_purchase_miifunds.html" />
+    <Content Include="Content\EmailTemplates\ticket_purchase_eft.html" />
+    <Content Include="Content\EmailTemplates\ticket_purchase.html" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\forms.css" />
+    <Content Include="Content\images2018\company\glpros.jpg" />
+    <Content Include="Content\images2018\company\logo-white-background.jpg" />
+    <Content Include="Content\images2018\dwb.png" />
+    <Content Include="Content\images2018\gardener.png" />
+    <Content Include="Content\images2018\jumpque.svg" />
+    <Content Include="Content\images2018\login.svg" />
+    <Content Include="Content\images2018\logo.svg" />
+    <Content Include="Content\images2018\myciti.png" />
+    <Content Include="Content\images2018\psymedia.png" />
+    <Content Include="Content\images2018\tickethero.svg" />
+    <Content Include="Content\images2018\ticketing-hero.svg" />
+    <Content Include="Content\images\about_image_3.png" />
+    <Content Include="Content\images\about_image_5 %281%29.png" />
+    <Content Include="Content\images\attending\comingsoon_grey.png.jpg" />
+    <Content Include="Content\images\attending\event_icon_cal.png" />
+    <Content Include="Content\images\attending\event_icon_place.png" />
+    <Content Include="Content\images\attending\event_icon_time.jpg" />
+    <Content Include="Content\images\attending\event_icon_time.png" />
+    <Content Include="Content\images\attending\img1.jpg" />
+    <Content Include="Content\images\attending\img10.jpg" />
+    <Content Include="Content\images\attending\img11.jpg" />
+    <Content Include="Content\images\attending\img12.jpg" />
+    <Content Include="Content\images\attending\img13.jpg" />
+    <Content Include="Content\images\attending\img14.jpg" />
+    <Content Include="Content\images\attending\img15.jpg" />
+    <Content Include="Content\images\attending\img16.jpg" />
+    <Content Include="Content\images\attending\img17.jpg" />
+    <Content Include="Content\images\attending\img18.jpg" />
+    <Content Include="Content\images\attending\img19.jpg" />
+    <Content Include="Content\images\attending\img2.jpg" />
+    <Content Include="Content\images\attending\img3.jpg" />
+    <Content Include="Content\images\attending\img4.jpg" />
+    <Content Include="Content\images\attending\img5.jpg" />
+    <Content Include="Content\images\attending\img6.jpg" />
+    <Content Include="Content\images\attending\img7.jpg" />
+    <Content Include="Content\images\attending\img8.jpg" />
+    <Content Include="Content\images\attending\img9.jpg" />
+    <Content Include="Content\images\attending\money_icon_place.png" />
+    <Content Include="Content\images\avatar %281%29.png" />
+    <Content Include="Content\images\avatar.jpg" />
+    <Content Include="Content\images\avatar.png" />
+    <Content Include="Content\images\avatar.png.jpg" />
+    <Content Include="Content\images\bands_banner.png" />
+    <Content Include="Content\images\bankinglogos.svg" />
+    <Content Include="Content\images\cal\cal_event1.png" />
+    <Content Include="Content\images\cal\cal_event2.png" />
+    <Content Include="Content\images\cal\cal_event3.png" />
+    <Content Include="Content\images\cashless_bands %281%29.png" />
+    <Content Include="Content\images\cashless_bands.png" />
+    <Content Include="Content\images\drop_menu.png" />
+    <Content Include="Content\images\EO_USP_1.jpg" />
+    <Content Include="Content\images\facebook.svg" />
+    <Content Include="Content\images\forms.css" />
+    <Content Include="Content\images\geotrust.svg" />
+    <Content Include="Content\images\geotrustsquare.png" />
+    <Content Include="Content\images\help1.png" />
+    <Content Include="Content\images\help2.png" />
+    <Content Include="Content\images\help3.png" />
+    <Content Include="Content\images\iveri.svg" />
+    <Content Include="Content\images\layout.css" />
+    <Content Include="Content\images\logo %281%29.png" />
+    <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\logo.svg" />
+    <Content Include="Content\images\logo_.svg" />
+    <Content Include="Content\images\logo_dark.png" />
+    <Content Include="Content\images\logo_dark.svg" />
+    <Content Include="Content\images\mag_glass.png" />
+    <Content Include="Content\images\mag_glass.svg" />
+    <Content Include="Content\images\main %281%29.css" />
+    <Content Include="Content\images\main.css" />
+    <Content Include="Content\images\mastercard.svg" />
+    <Content Include="Content\images\miifunds.jpg" />
+    <Content Include="Content\images\miimoney %281%29.jpg" />
+    <Content Include="Content\images\miimoney.jpg" />
+    <Content Include="Content\images\newimages\banking.svg" />
+    <Content Include="Content\images\newimages\blacksail %281%29.jpg" />
+    <Content Include="Content\images\newimages\blacksail.jpg" />
+    <Content Include="Content\images\newimages\cashless.svg" />
+    <Content Include="Content\images\newimages\cashless2.svg" />
+    <Content Include="Content\images\newimages\credit.svg" />
+    <Content Include="Content\images\newimages\desktophero.jpg" />
+    <Content Include="Content\images\newimages\doubleT_thumb %281%29.png" />
+    <Content Include="Content\images\newimages\doubleT_thumb.png" />
+    <Content Include="Content\images\newimages\dwb-prepaid.jpg" />
+    <Content Include="Content\images\newimages\dwb-season.jpg" />
+    <Content Include="Content\images\newimages\event-banner-holder.jpg" />
+    <Content Include="Content\images\newimages\help.svg" />
+    <Content Include="Content\images\newimages\lock_plain.svg" />
+    <Content Include="Content\images\newimages\login.svg" />
+    <Content Include="Content\images\newimages\logo_dark.svg" />
+    <Content Include="Content\images\newimages\logo_splash.svg" />
+    <Content Include="Content\images\newimages\marketing.svg" />
+    <Content Include="Content\images\newimages\miiband.svg" />
+    <Content Include="Content\images\newimages\mobilehero.jpg" />
+    <Content Include="Content\images\newimages\new_medical.svg" />
+    <Content Include="Content\images\newimages\payfast-card.svg" />
+    <Content Include="Content\images\newimages\pin.svg" />
+    <Content Include="Content\images\newimages\pos.svg" />
+    <Content Include="Content\images\newimages\quicklink1.jpg" />
+    <Content Include="Content\images\newimages\quicklink4.jpg" />
+    <Content Include="Content\images\newimages\quicklink5.jpg" />
+    <Content Include="Content\images\newimages\quicklink6.jpg" />
+    <Content Include="Content\images\newimages\quicklink7.jpg" />
+    <Content Include="Content\images\newimages\quicklink8.jpg" />
+    <Content Include="Content\images\newimages\report1.svg" />
+    <Content Include="Content\images\newimages\rfid.svg" />
+    <Content Include="Content\images\newimages\save.svg" />
+    <Content Include="Content\images\newimages\search-events.svg" />
+    <Content Include="Content\images\newimages\secure1 %281%29.svg" />
+    <Content Include="Content\images\newimages\secure1 %282%29.svg" />
+    <Content Include="Content\images\newimages\secure1 %283%29.svg" />
+    <Content Include="Content\images\newimages\secure1.svg" />
+    <Content Include="Content\images\newimages\secure2.svg" />
+    <Content Include="Content\images\newimages\secure3.svg" />
+    <Content Include="Content\images\newimages\stats.svg" />
+    <Content Include="Content\images\newimages\support.svg" />
+    <Content Include="Content\images\newimages\thumbsnew.svg" />
+    <Content Include="Content\images\newimages\thumbsup.svg" />
+    <Content Include="Content\images\newimages\ticket.svg" />
+    <Content Include="Content\images\newimages\ticket1.svg" />
+    <Content Include="Content\images\newimages\tickethero.svg" />
+    <Content Include="Content\images\newimages\tickethero2.svg" />
+    <Content Include="Content\images\newimages\ticket_plain.svg" />
+    <Content Include="Content\images\newimages\ticket_win.svg" />
+    <Content Include="Content\images\newimages\trust1.png" />
+    <Content Include="Content\images\newimages\trust2.png" />
+    <Content Include="Content\images\newimages\trust3.png" />
+    <Content Include="Content\images\newimages\user.svg" />
+    <Content Include="Content\images\newimages\wristband_plain.svg" />
+    <Content Include="Content\images\newimages\wrong-password.svg" />
+    <Content Include="Content\images\news\new1%282%29.png" />
+    <Content Include="Content\images\news\new1.png" />
+    <Content Include="Content\images\news\new2%282%29.png" />
+    <Content Include="Content\images\news\new2.png" />
+    <Content Include="Content\images\nfc.png" />
+    <Content Include="Content\images\payfast %281%29.svg" />
+    <Content Include="Content\images\payfast.svg" />
+    <Content Include="Content\images\payment.png" />
+    <Content Include="Content\images\payment_process.png" />
+    <Content Include="Content\images\phone_tag.png" />
+    <Content Include="Content\images\photo3.png" />
+    <Content Include="Content\images\photo_band.png" />
+    <Content Include="Content\images\photo_event2.png" />
+    <Content Include="Content\images\photo_fun.png" />
+    <Content Include="Content\images\photo_fun2.png" />
+    <Content Include="Content\images\photo_fun3.png" />
+    <Content Include="Content\images\photo_love.png" />
+    <Content Include="Content\images\photo_people.png" />
+    <Content Include="Content\images\photo_scan.png" />
+    <Content Include="Content\images\photo_vendor.png" />
+    <Content Include="Content\images\placeholderHero.png" />
+    <Content Include="Content\images\placeholder_narrow.jpg" />
+    <Content Include="Content\images\place_holder %281%29.jpg" />
+    <Content Include="Content\images\place_holder.jpg" />
+    <Content Include="Content\images\place_holder.png" />
+    <Content Include="Content\images\place_holder1.png" />
+    <Content Include="Content\images\place_holder_long.jpg" />
+    <Content Include="Content\images\product_cashless.png" />
+    <Content Include="Content\images\product_stats.png" />
+    <Content Include="Content\images\product_ticket.png" />
+    <Content Include="Content\images\psymedia_thumb.jpg" />
+    <Content Include="Content\images\securepay.svg" />
+    <Content Include="Content\images\seller_profile.css" />
+    <Content Include="Content\images\social\mail.svg" />
+    <Content Include="Content\images\social\share_fb.svg" />
+    <Content Include="Content\images\social\share_twitter.svg" />
+    <Content Include="Content\images\ticketvector.png" />
+    <Content Include="Content\images\ticket_logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\images\topbanner_welcom.jpg" />
+    <Content Include="Content\images\twitter.svg" />
+    <Content Include="Content\images\Untitled-1.png" />
+    <Content Include="Content\images\update.jpg" />
+    <Content Include="Content\images\update_image.jpg" />
+    <Content Include="Content\images\update_pic.jpg" />
+    <Content Include="Content\images\upload.jpg" />
+    <Content Include="Content\images\venue.jpg" />
+    <Content Include="Content\images\visa.svg" />
+    <Content Include="Content\js\bootstrap.min.js" />
+    <Content Include="Content\js\jquery-1-12-4-min.js" />
+    <Content Include="Content\js\jquery-touchswipe-min.js" />
+    <Content Include="Content\js\jquery-touchswipe-min.js.js" />
+    <Content Include="Content\js\jquery1.1.2\jquery.min.js" />
+    <Content Include="Content\js\jquery2.1.3\jquery.min.js" />
+    <Content Include="Content\layout.css" />
+    <Content Include="Content\main.css" />
+    <Content Include="Content\mystyle.css" />
+    <Content Include="Content\new.css" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\popup.css" />
+    <Content Include="Content\seller_profile.css" />
+    <Content Include="Content\styles.css" />
+    <Content Include="demo\Content\images\band_edit_cross.png" />
+    <Content Include="demo\Content\images\banner1.jpg" />
+    <Content Include="demo\views\shared\1.1.1_End_User Registration.html" />
+    <Content Include="demo\views\shared\1.1.2_End_User Registration.html" />
+    <Content Include="demo\views\shared\1.4.1_activate_band.html" />
+    <Content Include="demo\views\shared\1.4.1_MiiBand.html" />
+    <Content Include="demo\views\shared\1.4.2_activate_band copy.html" />
+    <Content Include="demo\views\shared\1.4.3_activate_band.html" />
+    <Content Include="demo\views\shared\1.4.4_Reset_Pin.html" />
+    <Content Include="demo\views\shared\1.4.5 confirmation.html" />
+    <Content Include="demo\views\shared\1.4.activate band.html" />
+    <Content Include="demo\views\shared\1.6.1 MiiFunds -  EFT.html" />
+    <Content Include="demo\views\shared\1.6.2.2 MiiFunds -Add MiiFunds - Card Payment - Finalise.html" />
+    <Content Include="demo\views\shared\1.6.3.1 MiiFunds -Add MiiFunds - instant EFT.html" />
+    <Content Include="demo\views\shared\1.6.4_Withdrawl.html" />
+    <Content Include="demo\views\shared\1.6_miifunds.html" />
+    <Content Include="demo\views\shared\3.2.1 Add _ Edit Event Process - Create EVent.htm" />
+    <Content Include="demo\views\shared\3.3.1_EO_Profile_Page_Event Summary.htm" />
+    <Content Include="demo\views\shared\3.3.2.EO Profile - Event_info.htm" />
+    <Content Include="demo\views\shared\3.5. ,manage_vedors.htm" />
+    <Content Include="demo\views\shared\3.5. Add Vendor..html" />
+    <Content Include="demo\views\shared\3.5.1 EO overview.htm" />
+    <Content Include="demo\views\shared\table.html" />
+    <Content Include="CardPaymentOrder.aspx" />
+    <Content Include="favicon-16x16.png" />
+    <Content Include="favicon-32x32.png" />
+    <Content Include="HtmlPage1.html" />
+    <Content Include="images\avatar_blank.png" />
+    <Content Include="images\facebook.png" />
+    <Content Include="images\facebook_round.png" />
+    <Content Include="images\facebook_small.png" />
+    <Content Include="images\how_to.png" />
+    <Content Include="images\instagram.png" />
+    <Content Include="images\instagram_round.png" />
+    <Content Include="images\twitter.png" />
+    <Content Include="images\twitter_round.png" />
+    <Content Include="images\twitter_small.png" />
+    <Content Include="IveriError.aspx" />
+    <Content Include="IveriFail.aspx" />
+    <Content Include="IveriResult.aspx" />
+    <Content Include="IveriSuccess.aspx" />
+    <Content Include="IveriTryLater.aspx" />
+    <Content Include="PayfastCancel.aspx" />
+    <Content Include="PayfastConfirm.aspx" />
+    <Content Include="css\forms.css" />
+    <Content Include="css\layout.css" />
+    <Content Include="css\main.css" />
+    <Content Include="css\seller_profile.css" />
+    <Content Include="demo\Content\css\forms.css" />
+    <Content Include="demo\Content\css\layout.css" />
+    <Content Include="demo\Content\css\main.css" />
+    <Content Include="demo\Content\css\popup.css" />
+    <Content Include="demo\Content\css\temp.css" />
+    <Content Include="demo\Content\images\about_image_1.png" />
+    <Content Include="demo\Content\images\about_image_2.png" />
+    <Content Include="demo\Content\images\about_image_3.png" />
+    <Content Include="demo\Content\images\about_image_4.png" />
+    <Content Include="demo\Content\images\about_image_5.png" />
+    <Content Include="demo\Content\images\avatar.png.jpg" />
+    <Content Include="demo\Content\images\background.jpg" />
+    <Content Include="demo\Content\images\bands_banner.jpg" />
+    <Content Include="demo\Content\images\bands_banner.png" />
+    <Content Include="demo\Content\images\band_edit_icon.png" />
+    <Content Include="demo\Content\images\band_edit_tick.png" />
+    <Content Include="demo\Content\images\banner.jpg" />
+    <Content Include="demo\Content\images\banner1_1.jpg" />
+    <Content Include="demo\Content\images\banner1_2.jpg" />
+    <Content Include="demo\Content\images\banner1_3.jpg" />
+    <Content Include="demo\Content\images\banner1_5.jpg" />
+    <Content Include="demo\views\1.4.2_activate_band copy.html" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="images\attending\event_icon_cal.png" />
+    <Content Include="images\attending\event_icon_place.png" />
+    <Content Include="images\attending\event_icon_time.jpg" />
+    <Content Include="images\attending\event_icon_time.png" />
+    <Content Include="images\attending\img1.jpg" />
+    <Content Include="images\attending\img10.jpg" />
+    <Content Include="images\attending\img11.jpg" />
+    <Content Include="images\attending\img12.jpg" />
+    <Content Include="images\attending\img13.jpg" />
+    <Content Include="images\attending\img14.jpg" />
+    <Content Include="images\attending\img15.jpg" />
+    <Content Include="images\attending\img16.jpg" />
+    <Content Include="images\attending\img17.jpg" />
+    <Content Include="images\attending\img18.jpg" />
+    <Content Include="images\attending\img19.jpg" />
+    <Content Include="images\attending\img2.jpg" />
+    <Content Include="images\attending\img3.jpg" />
+    <Content Include="images\attending\img4.jpg" />
+    <Content Include="images\attending\img5.jpg" />
+    <Content Include="images\attending\img6.jpg" />
+    <Content Include="images\attending\img7.jpg" />
+    <Content Include="images\attending\img8.jpg" />
+    <Content Include="images\attending\img9.jpg" />
+    <Content Include="images\cal\cal_event1.png" />
+    <Content Include="images\cal\cal_event2.png" />
+    <Content Include="images\cal\cal_event3.png" />
+    <Content Include="images\comingsoon_grey.png" />
+    <Content Include="images\drop_menu.png" />
+    <Content Include="images\drop_menu1.png" />
+    <Content Include="images\drop_menu_hover.png" />
+    <Content Include="images\drop_menu_small.jpg" />
+    <Content Include="images\drop_menu_small.png" />
+    <Content Include="images\event_image.jpg" />
+    <Content Include="images\icon1.png" />
+    <Content Include="images\icon2.png" />
+    <Content Include="images\icon3.png" />
+    <Content Include="images\icon4.png" />
+    <Content Include="images\landing.jpg" />
+    <Content Include="images\landing.png" />
+    <Content Include="images\landing2.png" />
+    <Content Include="images\left_icon_placeholder.png" />
+    <Content Include="images\logo.png" />
+    <Content Include="images\menu_icon_1.jpg" />
+    <Content Include="images\menu_icon_1a.jpg" />
+    <Content Include="images\menu_icon_2.jpg" />
+    <Content Include="images\menu_icon_2a.jpg" />
+    <Content Include="images\miiImage.jpg" />
+    <Content Include="images\place_holder.jpg" />
+    <Content Include="images\place_holder.png" />
+    <Content Include="images\place_holder1.png" />
+    <Content Include="images\place_holder_long.jpg" />
+    <Content Include="images\profile.jpg" />
+    <Content Include="images\profile_band.png" />
+    <Content Include="images\profile_band_icon.png" />
+    <Content Include="images\profile_calendar_icon.png" />
+    <Content Include="images\profile_camera_icon.png" />
+    <Content Include="images\profile_event_icon.png" />
+    <Content Include="images\profile_friends_icon.png" />
+    <Content Include="images\profile_kids_icon.png" />
+    <Content Include="images\profile_money_icon.png" />
+    <Content Include="images\profile_ticket_icon.png" />
+    <Content Include="images\purchase_funds.png" />
+    <Content Include="images\purchase_yes.png" />
+    <Content Include="images\r1p1.jpg" />
+    <Content Include="images\regbanner.jpg" />
+    <Content Include="images\registration_banner.jpg" />
+    <Content Include="images\search_icon.png" />
+    <Content Include="images\small_calader_arrow_left.png" />
+    <Content Include="images\small_calader_arrow_right.png" />
+    <Content Include="images\smartobject1_2.gif" />
+    <Content Include="images\smartobject1_3.gif" />
+    <Content Include="images\smartobject1_4.gif" />
+    <Content Include="images\smartobject_info.gif" />
+    <Content Include="images\smartobject_ticket.gif" />
+    <Content Include="images\social_icons_fb.png" />
+    <Content Include="images\social_icons_twit.png" />
+    <Content Include="images\tablet.png" />
+    <Content Include="images\tick_icon.png" />
+    <Content Include="images\topicon1.png" />
+    <Content Include="images\topicon1a.png" />
+    <Content Include="images\topicon2.png" />
+    <Content Include="images\topicon2a.png" />
+    <Content Include="images\topicon3.png" />
+    <Content Include="images\topicon3a.png" />
+    <Content Include="images\topicon4.png" />
+    <Content Include="images\topicon4a.png" />
+    <Content Include="images\topicon5.png" />
+    <Content Include="images\topicon5a.png" />
+    <Content Include="images\Untitled-1.png" />
+    <Content Include="images\update.jpg" />
+    <Content Include="images\update_image.jpg" />
+    <Content Include="images\update_pic.jpg" />
+    <Content Include="images\venue.jpg" />
+    <Content Include="img\building1.jpg" />
+    <Content Include="img\building2.jpg" />
+    <Content Include="img\building3.jpg" />
+    <Content Include="img\building4.jpg" />
+    <Content Include="img\building5.jpg" />
+    <Content Include="img\building6.jpg" />
+    <Content Include="LogShipMirrorWebService.asmx" />
+    <Content Include="MiidWebService.asmx" />
+    <Content Include="PayfastNotify.aspx" />
+    <Content Include="PayfastOrder.aspx" />
+    <Content Include="Scripts\Accordion\dist\rjAccordion.js" />
+    <Content Include="Scripts\Accordion\src\app\rjAccordion copy.js" />
+    <Content Include="Scripts\Accordion\src\app\rjAccordion.js" />
+    <Content Include="Scripts\Accordion\src\index.html" />
+    <Content Include="Scripts\assets\example2.js" />
+    <Content Include="Scripts\assets\examples.js" />
+    <Content Include="Scripts\assets\style.css" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\carousel\jquery-1.8.2.min.js" />
+    <Content Include="Scripts\cropbox.js" />
+    <Content Include="Scripts\cropbox\avatar.png" />
+    <Content Include="Scripts\cropbox\cropbox-min.js" />
+    <Content Include="Scripts\cropbox\cropbox.js" />
+    <Content Include="Scripts\cropbox\jquery-1.11.1.min.js" />
+    <Content Include="Scripts\cropbox\require.js" />
+    <Content Include="Scripts\growlnew.css" />
+    <Content Include="Scripts\growl.js" />
+    <Content Include="Scripts\growl.css" />
+    <Content Include="Scripts\jquery-1.11.1.min.js" />
+    <Content Include="Scripts\lib\jquery.elastic.js" />
+    <Content Include="Scripts\lib_validate\jquery\.svn\all-wcprops" />
+    <Content Include="Scripts\lib_validate\jquery\.svn\entries" />
+    <Content Include="Scripts\lib_validate\jquery\.svn\format" />
+    <Content Include="Scripts\lib_validate\jquery\.svn\text-base\jquery-1.3.2.js.svn-base" />
+    <Content Include="Scripts\lib_validate\jquery\.svn\text-base\jquery-1.3.2.min.js.svn-base" />
+    <Content Include="Scripts\lib_validate\jquery\jquery-1.3.2.js" />
+    <Content Include="Scripts\lib_validate\jquery\jquery-1.3.2.min.js" />
+    <Content Include="Scripts\lib_validate\jquery\registration1.js" />
+    <Content Include="Scripts\main.js" />
+    <Content Include="Scripts\popup\main.js" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
+    <Content Include="Content\EmailTemplates\images\.DS_Store" />
+    <Content Include="images\.DS_Store" />
+    <Content Include="Content\images\contact_us.png.orig" />
+    <Content Include="Scripts\qrcode-display\index-svg.html" />
+    <Content Include="Scripts\qrcode-display\index.html" />
+    <Content Include="Scripts\qrcode-display\index.svg" />
+    <Content Include="Scripts\qrcode-display\jquery.min.js" />
+    <Content Include="Scripts\qrcode-display\qrcode.js" />
+    <Content Include="Scripts\qrcode-display\qrcode.min.js" />
+    <Content Include="Scripts\splitEmail.js" />
+    <Content Include="Scripts\timepicker\jquery-ui-sliderAccess.js" />
+    <Content Include="Scripts\timepicker\jquery-ui-timepicker-addon.css" />
+    <Content Include="Scripts\timepicker\jquery-ui-timepicker-addon.js" />
+    <Content Include="Scripts\timepicker\jquery-ui-timepicker-addon.min.css" />
+    <Content Include="Scripts\timepicker\jquery-ui-timepicker-addon.min.js" />
+    <Content Include="Scripts\validate_\jquery.validate.js" />
+    <Content Include="Scripts\validate_\jquery.validation.functions.js" />
+    <Content Include="SQl Scripts\AddTicketForEndUser.sql" />
+    <Content Include="SQl Scripts\code gen vendor fields.sql" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll" />
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll" />
+    <Content Include="SqlServerTypes\x86\msvcr120.dll" />
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll" />
+    <Content Include="Views\Content\images\social\mail.svg" />
+    <Content Include="Views\Content\images\social\share_fb.svg" />
+    <Content Include="Views\Content\images\social\share_twitter.svg" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\AdminIndex.cshtml" />
+    <Content Include="Views\Home\AppApks.cshtml" />
+    <Content Include="Views\Home\BoxOffice.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\css\forms.css" />
+    <Content Include="Views\Home\css\layout.css" />
+    <Content Include="Views\Home\css\main.css" />
+    <Content Include="Views\Home\css\mystyle.css" />
+    <Content Include="Views\Home\css\seller_profile.css" />
+    <Content Include="Views\Home\Distribution.cshtml" />
+    <Content Include="Views\Home\ExtraServices.cshtml" />
+    <Content Include="Views\Home\FAQ.cshtml" />
+    <Content Include="Views\Home\ForgotPassword.cshtml" />
+    <Content Include="Views\Home\ForgotPasswordEventOrganiser.cshtml" />
+    <Content Include="Views\Home\google23e0f61b5adf42bf.html" />
+    <Content Include="Views\Home\Help.cshtml" />
+    <Content Include="Views\Home\HelpEventOrganiser.cshtml" />
+    <Content Include="Views\Home\images\background.jpg" />
+    <Content Include="Views\Home\images\banner.jpg" />
+    <Content Include="Views\Home\images\banner1_1.jpg" />
+    <Content Include="Views\Home\images\banner1_2.jpg" />
+    <Content Include="Views\Home\images\banner1_3.jpg" />
+    <Content Include="Views\Home\images\banner1_5.jpg" />
+    <Content Include="Views\Home\images\banner1_6.jpg" />
+    <Content Include="Views\Home\images\comingsoon_blue.png" />
+    <Content Include="Views\Home\images\comingsoon_grey.png" />
+    <Content Include="Views\Home\images\drop_menu.png" />
+    <Content Include="Views\Home\images\drop_menu_hover.png" />
+    <Content Include="Views\Home\images\drop_menu_small.jpg" />
+    <Content Include="Views\Home\images\drop_menu_small.png" />
+    <Content Include="Views\Home\images\icon1.png" />
+    <Content Include="Views\Home\images\icon2.png" />
+    <Content Include="Views\Home\images\icon3.png" />
+    <Content Include="Views\Home\images\icon4.png" />
+    <Content Include="Views\Home\images\landing.jpg" />
+    <Content Include="Views\Home\images\landing.png" />
+    <Content Include="Views\Home\images\landing2.png" />
+    <Content Include="Views\Home\images\left_icon_placeholder.png" />
+    <Content Include="Views\Home\images\logo.png" />
+    <Content Include="Views\Home\images\menu_icon_1.jpg" />
+    <Content Include="Views\Home\images\menu_icon_1a.jpg" />
+    <Content Include="Views\Home\images\menu_icon_2.jpg" />
+    <Content Include="Views\Home\images\menu_icon_2a.jpg" />
+    <Content Include="Views\Home\images\miiImage.jpg" />
+    <Content Include="Views\Home\images\place_holder.jpg" />
+    <Content Include="Views\Home\images\place_holder.png" />
+    <Content Include="Views\Home\images\place_holder1.png" />
+    <Content Include="Views\Home\images\place_holder_long.jpg" />
+    <Content Include="Views\Home\images\profile.jpg" />
+    <Content Include="Views\Home\images\profile_calendar_icon.png" />
+    <Content Include="Views\Home\images\profile_camera_icon.png" />
+    <Content Include="Views\Home\images\profile_ticket_icon.png" />
+    <Content Include="Views\Home\images\regbanner.jpg" />
+    <Content Include="Views\Home\images\registration_banner.jpg" />
+    <Content Include="Views\Home\images\search_icon.png" />
+    <Content Include="Views\Home\images\small_calader_arrow_left.png" />
+    <Content Include="Views\Home\images\small_calader_arrow_right.png" />
+    <Content Include="Views\Home\images\smartobject1_2.gif" />
+    <Content Include="Views\Home\images\smartobject1_3.gif" />
+    <Content Include="Views\Home\images\smartobject1_4.gif" />
+    <Content Include="Views\Home\images\smartobject_info.gif" />
+    <Content Include="Views\Home\images\smartobject_ticket.gif" />
+    <Content Include="Views\Home\images\social_icons_fb.png" />
+    <Content Include="Views\Home\images\social_icons_twit.png" />
+    <Content Include="Views\Home\images\tablet.png" />
+    <Content Include="Views\Home\images\tick_icon.png" />
+    <Content Include="Views\Home\images\topicon1.png" />
+    <Content Include="Views\Home\images\topicon1a.png" />
+    <Content Include="Views\Home\images\topicon2.png" />
+    <Content Include="Views\Home\images\topicon2a.png" />
+    <Content Include="Views\Home\images\topicon3.png" />
+    <Content Include="Views\Home\images\topicon3a.png" />
+    <Content Include="Views\Home\images\topicon4.png" />
+    <Content Include="Views\Home\images\topicon4a.png" />
+    <Content Include="Views\Home\images\topicon5.png" />
+    <Content Include="Views\Home\images\topicon5a.png" />
+    <Content Include="Views\Home\images\Untitled-1.png" />
+    <Content Include="Views\Home\images\update.jpg" />
+    <Content Include="Views\Home\images\update_image.jpg" />
+    <Content Include="Views\Home\images\update_pic.jpg" />
+    <Content Include="Views\Home\img\building1.jpg" />
+    <Content Include="Views\Home\img\building2.jpg" />
+    <Content Include="Views\Home\img\building3.jpg" />
+    <Content Include="Views\Home\img\building4.jpg" />
+    <Content Include="Views\Home\img\building5.jpg" />
+    <Content Include="Views\Home\img\building6.jpg" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\IndexDemo.cshtml" />
+    <Content Include="Views\Home\IndexEO.cshtml" />
+    <Content Include="Views\Home\Logout.cshtml" />
+    <Content Include="Views\Home\MiiBandExplanation.cshtml" />
+    <Content Include="Views\Home\MiiFundsExplanation.cshtml" />
+    <Content Include="Views\Home\News.cshtml" />
+    <Content Include="Views\Home\NfcTickets.cshtml" />
+    <Content Include="Views\Home\ProductSummary.cshtml" />
+    <Content Include="Views\Home\RegisterDoc.cshtml" />
+    <Content Include="Views\Home\sitemap.xml" />
+    <Content Include="Views\Home\TermsConditions.cshtml" />
+    <Content Include="Views\Home\TicketingExplanation.cshtml" />
+    <Content Include="Views\Scripts\main.js" />
+    <Content Include="WebForm2.aspx" />
+    <Content Include="email_templates\.DS_Store" />
+    <Content Include="WebForm3.aspx" />
+    <Content Include="Content\css\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\css\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\css\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\css\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\css\fonts\FontAwesome.otf" />
+    <Content Include="Content\css\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\css\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="WebForm5.aspx" />
+    <Content Include="Content\css\AdminCss\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\css\AdminCss\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\css\AdminCss\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Webform7.aspx" />
+    <Content Include="Webform8.aspx" />
+    <Content Include="Content\favicons\bok\favicon_package_v0.16.zip" />
+    <Content Include="Content\favicons\bok\site.webmanifest" />
+    <Content Include="Content\EO_landing_pages\fonts\slick.eot" />
+    <Content Include="Content\EO_landing_pages\fonts\slick.ttf" />
+    <Content Include="Content\EO_landing_pages\fonts\slick.woff" />
+    <Content Include="Content\EO_landing_pages\images\ticket-phone.psd" />
+    <Content Include="Content\EO_landing_pages\images\_DS_Store" />
+    <None Include="Properties\PublishProfiles\MiiD.pubxml" />
+    <Content Include="Scripts\Accordion\dist\.gitkeep" />
+    <Content Include="Scripts\Accordion\dist\_gitkeep" />
+    <None Include="Properties\PublishProfiles\miid2.pubxml" />
+    <Content Include="Uploads\3002_DanielEvents.png" />
+    <Content Include="Uploads\avatar_blank.png" />
+    <Content Include="Uploads\Banner_Placeholder.jpg" />
+    <Content Include="Uploads\Bnr_150724_014450_5450210876_3af6f1080c_b.jpg" />
+    <Content Include="VendorReport.aspx" />
+    <Content Include="Views\AccountTypes\Create.cshtml" />
+    <Content Include="Views\AccountTypes\Delete.cshtml" />
+    <Content Include="Views\AccountTypes\Details.cshtml" />
+    <Content Include="Views\AccountTypes\Edit.cshtml" />
+    <Content Include="Views\AccountTypes\Index.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\_RemoveAccountPartial.cshtml" />
+    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\EndUsersBAK\Create.cshtml" />
+    <Content Include="Views\EndUsersBAK\CreateFirst.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\EndUsersBAK\Delete.cshtml" />
+    <Content Include="Views\EndUsersBAK\Details.cshtml" />
+    <Content Include="Views\EndUsersBAK\Edit.cshtml" />
+    <Content Include="Views\EndUsersBAK\Index.cshtml" />
+    <Content Include="Views\EndUsers\assets\example2.js" />
+    <Content Include="Views\EndUsers\assets\examples.js" />
+    <Content Include="Views\EndUsers\assets\style.css" />
+    <Content Include="Scripts\jquery.mentionsInput.css" />
+    <Content Include="Scripts\jquery.mentionsInput.js" />
+    <Content Include="Views\EndUsers\lib\jquery.elastic.js" />
+    <Content Include="Views\EventCategories\Create.cshtml" />
+    <Content Include="Views\EventCategories\Delete.cshtml" />
+    <Content Include="Views\EventCategories\Details.cshtml" />
+    <Content Include="Views\EventCategories\Edit.cshtml" />
+    <Content Include="Views\EventCategories\Index.cshtml" />
+    <Content Include="Views\EventOrganisersBak\Create.cshtml" />
+    <Content Include="Views\EventOrganisersBak\Delete.cshtml" />
+    <Content Include="Views\EventOrganisersBak\Details.cshtml" />
+    <Content Include="Views\EventOrganisersBak\Edit.cshtml" />
+    <Content Include="Views\EventOrganisersBak\Index.cshtml" />
+    <Content Include="Views\Events\Create.cshtml" />
+    <Content Include="Views\Events\Delete.cshtml" />
+    <Content Include="Views\Events\Details.cshtml" />
+    <Content Include="Views\Events\Edit.cshtml" />
+    <Content Include="Views\Events\Index.cshtml" />
+    <Content Include="Views\Incidents\Create.cshtml" />
+    <Content Include="Views\Incidents\Delete.cshtml" />
+    <Content Include="Views\Incidents\Details.cshtml" />
+    <Content Include="Views\Incidents\Edit.cshtml" />
+    <Content Include="Views\Incidents\Index.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\NFCTags\Create.cshtml" />
+    <Content Include="Views\NFCTags\Delete.cshtml" />
+    <Content Include="Views\NFCTags\Details.cshtml" />
+    <Content Include="Views\NFCTags\Edit.cshtml" />
+    <Content Include="Views\NFCTags\Index.cshtml" />
+    <Content Include="Views\Shared\css\forms.css" />
+    <Content Include="Views\Shared\css\layout.css" />
+    <Content Include="Views\Shared\css\main.css" />
+    <Content Include="Views\Shared\css\seller_profile.css" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\images\background.jpg" />
+    <Content Include="Views\Shared\images\banner.jpg" />
+    <Content Include="Views\Shared\images\banner1_1.jpg" />
+    <Content Include="Views\Shared\images\banner1_2.jpg" />
+    <Content Include="Views\Shared\images\banner1_3.jpg" />
+    <Content Include="Views\Shared\images\banner1_5.jpg" />
+    <Content Include="Views\Shared\images\banner1_6.jpg" />
+    <Content Include="Views\Shared\images\comingsoon_blue.png" />
+    <Content Include="Views\Shared\images\comingsoon_grey.png" />
+    <Content Include="Views\Shared\images\drop_menu.png" />
+    <Content Include="Views\Shared\images\drop_menu_hover.png" />
+    <Content Include="Views\Shared\images\drop_menu_small.jpg" />
+    <Content Include="Views\Shared\images\drop_menu_small.png" />
+    <Content Include="Views\Shared\images\icon1.png" />
+    <Content Include="Views\Shared\images\icon2.png" />
+    <Content Include="Views\Shared\images\icon3.png" />
+    <Content Include="Views\Shared\images\icon4.png" />
+    <Content Include="Views\Shared\images\landing %281%29.png" />
+    <Content Include="Views\Shared\images\landing.jpg" />
+    <Content Include="Views\Shared\images\landing.png" />
+    <Content Include="Views\Shared\images\landing2.png" />
+    <Content Include="Views\Shared\images\left_icon_placeholder.png" />
+    <Content Include="Views\Shared\images\logo.png" />
+    <Content Include="Views\Shared\images\menu_icon_1.jpg" />
+    <Content Include="Views\Shared\images\menu_icon_1a.jpg" />
+    <Content Include="Views\Shared\images\menu_icon_2.jpg" />
+    <Content Include="Views\Shared\images\menu_icon_2a.jpg" />
+    <Content Include="Views\Shared\images\miiImage.jpg" />
+    <Content Include="Views\Shared\images\place_holder %281%29.jpg" />
+    <Content Include="Views\Shared\images\place_holder.jpg" />
+    <Content Include="Views\Shared\images\place_holder.png" />
+    <Content Include="Views\Shared\images\place_holder1.png" />
+    <Content Include="Views\Shared\images\place_holder_long.jpg" />
+    <Content Include="Views\Shared\images\profile.jpg" />
+    <Content Include="Views\Shared\images\profile_calendar_icon.png" />
+    <Content Include="Views\Shared\images\profile_camera_icon.png" />
+    <Content Include="Views\Shared\images\profile_ticket_icon.png" />
+    <Content Include="Views\Shared\images\regbanner.jpg" />
+    <Content Include="Views\Shared\images\registration_banner.jpg" />
+    <Content Include="Views\Shared\images\search_icon.png" />
+    <Content Include="Views\Shared\images\small_calader_arrow_left.png" />
+    <Content Include="Views\Shared\images\small_calader_arrow_right.png" />
+    <Content Include="Views\Shared\images\smartobject1_2.gif" />
+    <Content Include="Views\Shared\images\smartobject1_3.gif" />
+    <Content Include="Views\Shared\images\smartobject1_4.gif" />
+    <Content Include="Views\Shared\images\smartobject_info.gif" />
+    <Content Include="Views\Shared\images\smartobject_ticket.gif" />
+    <Content Include="Views\Shared\images\social_icons_fb.png" />
+    <Content Include="Views\Shared\images\social_icons_twit.png" />
+    <Content Include="Views\Shared\images\tablet.png" />
+    <Content Include="Views\Shared\images\tick_icon.png" />
+    <Content Include="Views\Shared\images\topicon1.png" />
+    <Content Include="Views\Shared\images\topicon1a.png" />
+    <Content Include="Views\Shared\images\topicon2.png" />
+    <Content Include="Views\Shared\images\topicon2a.png" />
+    <Content Include="Views\Shared\images\topicon3.png" />
+    <Content Include="Views\Shared\images\topicon3a.png" />
+    <Content Include="Views\Shared\images\topicon4.png" />
+    <Content Include="Views\Shared\images\topicon4a.png" />
+    <Content Include="Views\Shared\images\topicon5.png" />
+    <Content Include="Views\Shared\images\topicon5a.png" />
+    <Content Include="Views\Shared\images\Untitled-1.png" />
+    <Content Include="Views\Shared\images\update.jpg" />
+    <Content Include="Views\Shared\images\update_image.jpg" />
+    <Content Include="Views\Shared\images\update_pic.jpg" />
+    <Content Include="Views\Shared\img\ajax-loader.gif" />
+    <Content Include="Views\Shared\img\bg.jpg" />
+    <Content Include="Views\Shared\img\building1.jpg" />
+    <Content Include="Views\Shared\img\building2.jpg" />
+    <Content Include="Views\Shared\img\building3.jpg" />
+    <Content Include="Views\Shared\img\building4.jpg" />
+    <Content Include="Views\Shared\img\building5.jpg" />
+    <Content Include="Views\Shared\img\building6.jpg" />
+    <Content Include="Views\Shared\img\rot_small.gif" />
+    <Content Include="Views\Shared\invalid_logging.html" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\script.js" />
+    <Content Include="Views\Shared\_Calendar - Copy.cshtml" />
+    <Content Include="Views\Shared\_Calendar.cshtml" />
+    <Content Include="Views\Shared\_CalendarMini.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_LayoutEndUserProfile.cshtml" />
+    <Content Include="Views\Shared\_LayoutLogin.cshtml" />
+    <Content Include="Views\Shared\_LayoutMinimal.cshtml" />
+    <Content Include="Views\Shared\_Layouttest.cshtml" />
+    <Content Include="Views\Shared\_Login.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_MiiEvents.cshtml" />
+    <Content Include="Views\Shared\_NewsFeed.cshtml" />
+    <Content Include="Views\Staffs\Create.cshtml" />
+    <Content Include="Views\Staffs\Delete.cshtml" />
+    <Content Include="Views\Staffs\Details.cshtml" />
+    <Content Include="Views\Staffs\Edit.cshtml" />
+    <Content Include="Views\Staffs\Index.cshtml" />
+    <Content Include="Views\StaffTypes\Create.cshtml" />
+    <Content Include="Views\StaffTypes\Delete.cshtml" />
+    <Content Include="Views\StaffTypes\Details.cshtml" />
+    <Content Include="Views\StaffTypes\Edit.cshtml" />
+    <Content Include="Views\StaffTypes\Index.cshtml" />
+    <Content Include="Views\Status\Create.cshtml" />
+    <Content Include="Views\Status\Delete.cshtml" />
+    <Content Include="Views\Status\Details.cshtml" />
+    <Content Include="Views\Status\Edit.cshtml" />
+    <Content Include="Views\Status\Index.cshtml" />
+    <Content Include="Views\TicketClasses\Create.cshtml" />
+    <Content Include="Views\TicketClasses\Delete.cshtml" />
+    <Content Include="Views\TicketClasses\Details.cshtml" />
+    <Content Include="Views\TicketClasses\Edit.cshtml" />
+    <Content Include="Views\TicketClasses\Index.cshtml" />
+    <Content Include="Views\Tickets\Create.cshtml" />
+    <Content Include="Views\Tickets\Delete.cshtml" />
+    <Content Include="Views\Tickets\Details.cshtml" />
+    <Content Include="Views\Tickets\Edit.cshtml" />
+    <Content Include="Views\Tickets\Index.cshtml" />
+    <Content Include="Views\VendorEvents\Create.cshtml" />
+    <Content Include="Views\VendorEvents\Delete.cshtml" />
+    <Content Include="Views\VendorEvents\Details.cshtml" />
+    <Content Include="Views\VendorEvents\Edit.cshtml" />
+    <Content Include="Views\VendorEvents\Index.cshtml" />
+    <Content Include="Views\Vendors\Create.cshtml" />
+    <Content Include="Views\Vendors\Delete.cshtml" />
+    <Content Include="Views\Vendors\Details.cshtml" />
+    <Content Include="Views\Vendors\Edit.cshtml" />
+    <Content Include="Views\Vendors\Index.cshtml" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="WebForm1.aspx" />
+    <EntityDeploy Include="Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
+    <Content Include="Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
+    <Content Include="Scripts\assets\data.json" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\EndUsersBAK\MiiDetails.cshtml" />
+    <Content Include="Views\EndUsersBAK\EndUserProfile.cshtml" />
+    <Content Include="Views\EventOrganisersBak\ThankYou.cshtml" />
+    <Content Include="Views\EventOrganisersBak\Register.cshtml" />
+    <Content Include="Views\EventOrganisers\Create.cshtml" />
+    <Content Include="Views\EventOrganisers\Delete.cshtml" />
+    <Content Include="Views\EventOrganisers\Details.cshtml" />
+    <Content Include="Views\EventOrganisers\Edit.cshtml" />
+    <Content Include="Views\EventOrganisers\Index.cshtml" />
+    <Content Include="Views\EventOrganisers\Register.cshtml" />
+    <Content Include="Views\EventOrganisers\ThankYou.cshtml" />
+    <Content Include="Views\Roles\Create.cshtml" />
+    <Content Include="Views\Account\RoleIndex.cshtml" />
+    <Content Include="Views\Account\RoleDelete.cshtml" />
+    <Content Include="Views\Account\RoleAddToUser.cshtml" />
+    <Content Include="Views\Account\RoleCreate.cshtml" />
+    <Content Include="Views\NewsFeeds\Create.cshtml" />
+    <Content Include="Views\NewsFeeds\Delete.cshtml" />
+    <Content Include="Views\NewsFeeds\Details.cshtml" />
+    <Content Include="Views\NewsFeeds\Edit.cshtml" />
+    <Content Include="Views\NewsFeeds\Index.cshtml" />
+    <Content Include="Views\NewsFeedComments\Create.cshtml" />
+    <Content Include="Views\NewsFeedComments\Delete.cshtml" />
+    <Content Include="Views\NewsFeedComments\Details.cshtml" />
+    <Content Include="Views\NewsFeedComments\Edit.cshtml" />
+    <Content Include="Views\NewsFeedComments\Index.cshtml" />
+    <Content Include="Views\Friends\Create.cshtml" />
+    <Content Include="Views\Friends\Delete.cshtml" />
+    <Content Include="Views\Friends\Details.cshtml" />
+    <Content Include="Views\Friends\Edit.cshtml" />
+    <Content Include="Views\Friends\Index.cshtml" />
+    <Content Include="Views\EndUsersBAK\EndUserProfile - Copy.cshtml" />
+    <Content Include="Views\EndUsers\Create.cshtml" />
+    <Content Include="Views\EndUsers\Delete.cshtml" />
+    <Content Include="Views\EndUsers\Details.cshtml" />
+    <Content Include="Views\EndUsers\Edit.cshtml" />
+    <Content Include="Views\EndUsers\Index.cshtml" />
+    <Content Include="Views\EndUsers\CreateFirst.cshtml" />
+    <Content Include="Views\EndUsers\EndUserProfile.cshtml" />
+    <Content Include="Views\EndUsers\MiiDetails.cshtml" />
+    <Content Include="Views\EndUsers\ErrorConfirmEmail.cshtml" />
+    <Content Include="Views\EndUsers\ConfirmEmail.cshtml" />
+    <Content Include="Views\Friends\IndexByEndUser.cshtml" />
+    <Content Include="Views\EndUsers\CheckEmail.cshtml" />
+    <Content Include="Views\Events\PurchaseTickets.cshtml" />
+    <Content Include="Views\MyMoneys\PurchaseTicketsFail.cshtml" />
+    <Content Include="Views\MyMoneys\Create.cshtml" />
+    <Content Include="Views\MyMoneys\Delete.cshtml" />
+    <Content Include="Views\MyMoneys\Details.cshtml" />
+    <Content Include="Views\MyMoneys\Edit.cshtml" />
+    <Content Include="Views\MyMoneys\Index.cshtml" />
+    <Content Include="Views\MyMoneys\AddFunds.cshtml" />
+    <Content Include="Views\EndUsers\AdditionalDetails.cshtml" />
+    <Content Include="Views\EndUsers\GetToken.cshtml" />
+    <Content Include="Views\EndUsers\assets\data.json" />
+    <Content Include="Views\Shared\_Info.cshtml" />
+    <Content Include="Views\EndUsers\ConfirmEmailLink.cshtml" />
+    <Content Include="Views\EventOrganisers\EventSummary.cshtml" />
+    <Content Include="Views\EventOrganisers\EditMyDetails.cshtml" />
+    <Content Include="Views\EventOrganisers\IndexList.cshtml" />
+    <Content Include="Views\EventOrganisers\MyDetails.cshtml" />
+    <Content Include="Views\Events\CreateByEO.cshtml" />
+    <Content Include="Views\Events\EditByEO.cshtml" />
+    <Content Include="Views\Events\Upload.cshtml" />
+    <Content Include="Views\TicketClasses\CreateForEvent.cshtml" />
+    <Content Include="Views\NFCTags\CreateByUser.cshtml" />
+    <Content Include="Views\NFCTags\EditByUser.cshtml" />
+    <Content Include="Views\NFCTags\IndexByUserID.cshtml" />
+    <Content Include="Views\MyMoneys\PurchaseSuccess.cshtml" />
+    <Content Include="Views\MyMoneys\FinaliseMiifundsTicketPayment.cshtml" />
+    <Content Include="Views\Shared\_LayoutDemo.cshtml" />
+    <Content Include="Views\Shared\_LoginPartialDemo.cshtml" />
+    <Content Include="Views\Vendors\AddVendorToEvent.cshtml" />
+    <Content Include="Views\MyMoneys\SelectTopupMethod.cshtml" />
+    <Content Include="Views\MyMoneys\CardPayment.cshtml" />
+    <Content Include="Views\MyMoneys\ManualEFT.cshtml" />
+    <Content Include="Views\MyMoneys\InstantEFT.cshtml" />
+    <Content Include="Views\MyMoneys\ManualEFTConfirm.cshtml" />
+    <Content Include="Views\FeeConfigurations\Create.cshtml" />
+    <Content Include="Views\FeeConfigurations\Delete.cshtml" />
+    <Content Include="Views\FeeConfigurations\Details.cshtml" />
+    <Content Include="Views\FeeConfigurations\Edit.cshtml" />
+    <Content Include="Views\FeeConfigurations\Index.cshtml" />
+    <Content Include="Views\Events\CreateByEONoTickets.cshtml" />
+    <Content Include="Views\Events\EditByEONoTickets.cshtml" />
+    <Content Include="Views\Events\DetailsByEONoTickets.cshtml" />
+    <Content Include="Views\EventOrganisers\MyDetails - Copy.cshtml" />
+    <Content Include="Views\Vendors\VendorManagement.cshtml" />
+    <Content Include="Views\EventOrganisers\MyDetailsNoTickets.cshtml" />
+    <Content Include="Views\BankTransactions\Create.cshtml" />
+    <Content Include="Views\BankTransactions\Delete.cshtml" />
+    <Content Include="Views\BankTransactions\Details.cshtml" />
+    <Content Include="Views\BankTransactions\Edit.cshtml" />
+    <Content Include="Views\BankTransactions\Index.cshtml" />
+    <Content Include="Views\MyMoneys\DetailedBalance.cshtml" />
+    <Content Include="Views\BankTransactions\IndexApprovals.cshtml" />
+    <Content Include="Views\MyMoneys\RequestWithdrawal.cshtml" />
+    <Content Include="Views\MyMoneys\WithdrawalRequestConfirmation.cshtml" />
+    <Content Include="Views\Shared\_LayoutPreMobi.cshtml" />
+    <Content Include="Views\Shared\_LayoutWithNoLogin.cshtml" />
+    <Content Include="Views\Shared\_LoginPartialEO.cshtml" />
+    <Content Include="Views\Shared\_NewsFeed %281%29.cshtml" />
+    <Content Include="Views\Shared\_NewsFeed[Conflict].cshtml" />
+    <Content Include="Views\Shared\_LayoutHome.cshtml" />
+    <Content Include="Views\NFCTags\CancelByUser.cshtml" />
+    <Content Include="Views\NFCTags\PinChangeConfirmation.cshtml" />
+    <Content Include="Views\MyMoneys\TopupFundsMenu.cshtml" />
+    <Content Include="Views\Shared\_AdminNavBar.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\MyMoneys\ManualEFTConfirmSuccess.cshtml" />
+    <Content Include="Views\Shared\_LayoutEventOrganiser.cshtml" />
+    <Content Include="Views\Shared\_EventOrganiserNavBar.cshtml" />
+    <Content Include="Views\Events\IndexForEO.cshtml" />
+    <Content Include="Views\Events\EditByEOCentral.cshtml" />
+    <Content Include="Views\Events\DetailsByEO.cshtml" />
+    <Content Include="Views\Events\Search.cshtml" />
+    <Content Include="Views\Events\MiiEvents.cshtml" />
+    <Content Include="Views\CMs\Create.cshtml" />
+    <Content Include="Views\CMs\Delete.cshtml" />
+    <Content Include="Views\CMs\Details.cshtml" />
+    <Content Include="Views\CMs\Edit.cshtml" />
+    <Content Include="Views\CMs\Index.cshtml" />
+    <Content Include="Views\MyMoneys\ChooseTender.cshtml" />
+    <Content Include="Views\Shared\_LayoutRegistration.cshtml" />
+    <Content Include="Views\NFCTags\CancelConfirmed.cshtml" />
+    <Content Include="Views\MyMoneys\RequestWithdrawalConfirm.cshtml" />
+    <Content Include="Views\Shared\_LayoutNoNav.cshtml" />
+    <Content Include="Views\Events\DetailsPreLogin.cshtml" />
+    <Content Include="Views\Events\PurchaseTicketsPreLogin.cshtml" />
+    <Content Include="Views\TicketClasses\EditByEO.cshtml" />
+    <Content Include="Views\ForgotPassword\Index.cshtml" />
+    <Content Include="Views\EventAdmin\AddMiiBand.cshtml" />
+    <Content Include="Views\EventAdmin\AddMiiBandSuccess.cshtml" />
+    <Content Include="Views\EventAdmin\AddSiteUser.cshtml" />
+    <Content Include="Views\EventAdmin\AddSiteUserSuccess.cshtml" />
+    <Content Include="Views\EventAdmin\EditMiiBand.cshtml" />
+    <Content Include="Views\EventAdmin\EditMiiBandSuccess.cshtml" />
+    <Content Include="Views\EventAdmin\FindUserFilterable.cshtml" />
+    <Content Include="Views\EventAdmin\Index.cshtml" />
+    <Content Include="Views\EventAdmin\Transactions.cshtml" />
+    <Content Include="Views\EventAdmin\TransactionSuccess.cshtml" />
+    <Content Include="Views\PromotionUpload\Index.cshtml" />
+    <Content Include="Views\EventOrganisers\Register2.cshtml" />
+    <Content Include="Views\LoginAlternative\LoginAlternative.cshtml" />
+    <Content Include="Scripts\lib_validate\.svn\all-wcprops" />
+    <Content Include="Scripts\lib_validate\.svn\entries" />
+    <Content Include="Scripts\lib_validate\.svn\format" />
+    <Content Include="Views\Home\IndexEO.cshtml.orig" />
+    <Content Include="Views\Home\WhiteLabel.cshtml" />
+    <Content Include="Views\MyMoneys\RequestWithdrawalBankDetails.cshtml" />
+    <Content Include="Views\Tickets\QuickAddTicket.cshtml" />
+    <Content Include="Views\Shared\_Layoutbirchwood.cshtml" />
+    <Content Include="Views\Shared\_LoginBirchwood.cshtml" />
+    <Content Include="Views\MyMoneys\InstantEFTConfirm.cshtml" />
+    <Content Include="Views\Shared\_Layouttrainingmiidcoza.cshtml" />
+    <Content Include="Views\Report\Index.cshtml" />
+    <Content Include="Views\Shared\_Layoutglpros.cshtml" />
+    <Content Include="Views\Shared\_Loginglpros.cshtml" />
+    <Content Include="Views\Shared\_Layoutlocalhost.cshtml" />
+    <Content Include="Views\Shared\_Layoutsnowflake.cshtml" />
+    <Content Include="Views\Shared\_LoginSnowflake.cshtml" />
+    <Content Include="Views\Shared\_Layoutshemurai.cshtml" />
+    <Content Include="Views\Shared\_LoginShemurai.cshtml" />
+    <Content Include="Views\Events\PurchaseTicketsSeatPlan.cshtml" />
+    <Content Include="Views\Home\HowItWorks.cshtml" />
+    <Content Include="Views\EventOrganisers\MiiDetailsNew.cshtml" />
+    <Content Include="Views\Events\CreateTicketIndex.cshtml" />
+    <Content Include="Views\TicketClasses\CreateMultiForEvent.cshtml" />
+    <Content Include="Views\Shared\_LayoutFarmYardPark.cshtml" />
+    <Content Include="Views\Shared\_LoginFarmYard.cshtml" />
+    <Content Include="Views\EventOrganisers\BankingDetailsView.cshtml" />
+    <Content Include="Views\EventOrganisers\PinDetails.cshtml" />
+    <Content Include="Views\Account\RegisterEventOrganiser.cshtml" />
+    <Content Include="Site1.Master" />
+    <Content Include="Views\EventOrganisers\EventOrganiserCreate.cshtml" />
+    <Content Include="Views\Shared\_LayoutBackend.cshtml" />
+    <Content Include="Views\Shared\_BackendNavbar.cshtml" />
+    <Content Include="Views\EventOrganisers\EOTicketReport.cshtml" />
+    <Content Include="Views\Shared\_Layoutmiidgigculturecoza.cshtml" />
+    <Content Include="Views\Shared\_LoginGlobalTickets.cshtml" />
+    <Content Include="Views\Home\IndexMiidService.cshtml" />
+    <Content Include="Views\Home\IndexFarmYardPark.cshtml" />
+    <Content Include="Views\Home\Indextrainingmiidcoza.cshtml" />
+    <Content Include="Views\Home\IndexTakeYouThere.cshtml" />
+    <Content Include="Views\Shared\_LayoutTakeYouThere.cshtml" />
+    <Content Include="Views\Shared\_LoginTakeYouThere.cshtml" />
+    <Content Include="Views\Shared\_Layoutgoodtree.cshtml" />
+    <Content Include="Views\MyMoneys\CardPaymentPg.cshtml" />
+    <Content Include="Views\Home\PaygeniusResponse.cshtml" />
+    <Content Include="Views\Shared\_LoginPartialBokRadio.cshtml" />
+    <Content Include="Views\Shared\_LayoutLandingPages.cshtml" />
+    <Content Include="Views\EventOrganisers\EORemarketingReport.cshtml" />
+    <Content Include="Views\Shared\_LayoutBokbeursie.cshtml" />
+    <Content Include="Views\EndUsers\RegisterChildAccount.cshtml" />
+    <Content Include="Views\Shared\MyChildren.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MyMoneys\TransferFunds.cshtml" />
+    <Content Include="Views\Shared\MyChildrenTagStatus.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Shared\_MyRefundableTickets.cshtml" />
+    <Content Include="Views\Events\RefundTickets.cshtml" />
+    <Content Include="Views\Shared\_RefundTicketsBankDetails.cshtml" />
+    <Content Include="Views\Events\RefundApprovals.cshtml" />
+    <Content Include="Views\Home\RefundsPolicy.cshtml" />
+    <Content Include="Views\Home\TicketCalculator.cshtml" />
+    <Content Include="Views\Configurations\Create.cshtml" />
+    <Content Include="Views\Configurations\Delete.cshtml" />
+    <Content Include="Views\Configurations\Details.cshtml" />
+    <Content Include="Views\Configurations\Edit.cshtml" />
+    <Content Include="Views\Configurations\Index.cshtml" />
+    <Content Include="Views\Shared\_Layoutmiid.co.za.cshtml" />
+    <Content Include="Views\EndUsers\EndUserProfileMiid.co.za.cshtml" />
+    <Content Include="Views\Home\IndexMiid.co.za.cshtml" />
+    <Content Include="Views\Shared\_LayoutGigCulture.miid.co.za.cshtml" />
+    <Content Include="Views\EndUsers\EndUserProfileGigCulture.miid.co.za.cshtml" />
+    <Content Include="Views\Shared\_LoginPartialGigCulture.cshtml" />
+    <Content Include="Views\Shared\_LayoutLandingPages{0}.cshtml" />
+    <Content Include="Views\Home\IndexLulaTickets.miid.co.za.cshtml" />
+    <Content Include="Views\Shared\_LayoutLulaTickets.miid.co.za.cshtml" />
+    <Content Include="Views\EndUsers\EndUserProfileLulatickets.cshtml" />
+    <Content Include="Views\Shared\_LoginPartiallulaTickets.cshtml" />
+    <Content Include="Views\EndUsers\EndUserProfileLulatickets.miid.co.za.cshtml" />
+    <Content Include="Views\Subdomain\Create.cshtml" />
+    <Content Include="Views\Subdomain\Delete.cshtml" />
+    <Content Include="Views\Subdomain\Details.cshtml" />
+    <Content Include="Views\Subdomain\Edit.cshtml" />
+    <Content Include="Views\Subdomain\Index.cshtml" />
+    <EmbeddedResource Include="TicketReport_lulatickets.Miid.co.za.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <Content Include="Scripts\qrcode-display\.gitignore" />
+    <Content Include="Scripts\qrcode-display\bower.json" />
+    <Content Include="Scripts\qrcode-display\LICENSE" />
+    <Content Include="Scripts\qrcode-display\README.md" />
+    <Content Include="Views\EndUsers\EndUserProfilefarmyardpark.cshtml" />
+    <Content Include="Views\EndUsers\EndUserProfileTraining.co.za.cshtml" />
+    <Content Include="Views\Home\Indextraining.miid.co.za.cshtml" />
+    <Content Include="Views\Home\BrandedExperience.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="bin\" />
+    <Folder Include="Content\images\organiser_banners\" />
+    <Folder Include="distribution\" />
+    <Folder Include="MiiDTicketPDFs\" />
+    <Folder Include="packages\" />
+    <Folder Include="Scripts\lib_validate\.svn\prop-base\" />
+    <Folder Include="Scripts\lib_validate\.svn\props\" />
+    <Folder Include="Scripts\lib_validate\.svn\text-base\" />
+    <Folder Include="Scripts\lib_validate\.svn\tmp\prop-base\" />
+    <Folder Include="Scripts\lib_validate\.svn\tmp\props\" />
+    <Folder Include="Scripts\lib_validate\.svn\tmp\text-base\" />
+    <Folder Include="Scripts\lib_validate\jquery\.svn\prop-base\" />
+    <Folder Include="Scripts\lib_validate\jquery\.svn\props\" />
+    <Folder Include="Scripts\lib_validate\jquery\.svn\tmp\prop-base\" />
+    <Folder Include="Scripts\lib_validate\jquery\.svn\tmp\props\" />
+    <Folder Include="Scripts\lib_validate\jquery\.svn\tmp\text-base\" />
+    <Folder Include="Views\Base\" />
+    <Folder Include="Views\ErrorPage\" />
+    <Folder Include="Views\TestJquery\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TicketReport_FarmYardPark.Miid.co.za.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TicketReport_GigCulture.miid.co.za.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TicketReport.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TicketReport_miid.co.za.rdlc" />
+    <EmbeddedResource Include="TicketReport_Training.miid.co.za.rdlc" />
+    <EmbeddedResource Include="TicketReportSingle.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VendorSummaryReport.rdlc" />
+    <EmbeddedResource Include="VendorDetailReport.rdlc" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>58085</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:58088/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\Microsoft.Net.Compilers.3.3.1\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.Net.Compilers.3.3.1\build\Microsoft.Net.Compilers.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

@@ -1,0 +1,242 @@
+﻿@using Microsoft.AspNet.Identity
+
+@model MiidWeb.Models.LoginViewModel
+@{
+    ViewBag.Title = "MiiD Event Organiser Landing Page";
+    ViewBag.Title = "Contact";
+
+    Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("LayoutLanding");
+
+    bool IAmEventOrganiser = false;
+    if (Request.IsAuthenticated)
+    {
+        IAmEventOrganiser = MiidWeb.Repositories.EndUserRepository.AmIAnEventOrganiser(User.Identity.GetUserName());
+    }
+
+}
+
+@* @if (IAmEventOrganiser)
+    {
+        Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("LayoutEventOrganiser");
+    }
+    else
+    {
+        Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("Layout");
+    }
+
+*@
+
+<title>Online ticket sales cost calculator.</title>
+<meta name="description" content="FInd out how much online ticket sales will cost for your event">
+<style>
+    .calculator__info2 {
+        font-weight:bold;
+        color:#3e814b;
+    }
+    .calculator__info {
+        font-weight:bold;
+        color:#a13a3a;
+    }
+
+</style>
+<section id="navigation">
+
+    <div class="box7">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="hd1 text-center">Compare the cost for selling tickes for your event online</h1>
+
+                </div>
+
+                <center class="iconenter">
+                    <div class="chevron">
+                        <a href="#bill"><i class="fas fa-angle-down"></i></a>
+                    </div>
+                </center>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+
+    <script>
+        window.console = window.console || function (t) { };
+    </script>
+    <script>
+        if (document.location.search.match(/type=embed/gi)) {
+            window.parent.postMessage("resize", "*");
+        }
+    </script>
+
+
+
+    <script>
+        function AdditionBy() {
+            num1 = document.getElementById("first").value;
+            num2 = document.getElementById("second").value;
+            document.getElementById("result").innerHTML = Number(num1) + Number(num2);
+        }
+
+        function SubtractionBy() {
+            num1 = document.getElementById("first").value;
+            num2 = document.getElementById("second").value;
+            document.getElementById("result").innerHTML = Number(num1) - Number(num2);
+        }
+    </script>
+    
+</section>
+
+
+
+
+<section id="cards1">
+    <div class="container">
+        <div class="row">
+
+
+            <div class="col-md-8 col-lg-8 offset-md-2 offset-lg-2">
+                <div class="card">
+                    <div class="imagein">
+                        <center><img class="cardimg" src="~/content/EO_landing_pages/images/vectors/voucher.svg" alt="ticket promo code"></center>
+
+                    </div>
+                    <br><br>
+                        <form class="calculator" _lpchecked="1">
+                            <div class="form-group col-md-12">
+                                <h4 class="text-center">Enter total expected sales revenue:</h4>
+                                <input type="text" id="bill" class="calculator__bill form-control text-center col-md-6 offset-md-3" value="" required="">
+                            </div>
+                            <br><br>
+                            <div class="form-group col-md-12">
+                                <h4 class="text-center">Set commission:<br><small>The amount you would normaly pay</small></h4>
+
+                                <input type="range" min="4" max="15" value="0" step="1" class="calculator__tip form-control-range col-md-6 offset-md-3" id="tip" required="">
+
+                            </div>
+                            <div class="form-group col-md-12 text-center">
+                                <h2 class="calculator__info"><span class="tip-amount">0%</span></h2>
+
+                            </div>
+
+                            <div class="form-group col-md-12 text-center">
+                                <h4 class="calculator__info ">Competitors commission = R<span class="calculator__result" id="first"></span></h4>
+
+                            </div>
+                            <div class="form-group col-md-12 text-center">
+                                <h4 class="calculator__info2">Our commission at 2.5% = R<span class="calculator__result2" id="second"></span></h4>
+                            </div>
+                            <br>
+                            <div class="col-md-4 offset-md-4">
+                                <a href="~/Eventorganisers/Register2" class="click3">START SELLING</a>
+                            </div>
+
+                        </form>
+
+
+                </div>
+            </div>
+
+        </div>
+       
+
+    </div>
+</section>
+
+
+
+
+
+<section id="footer">
+    <div class="container">
+        <h2 class="text-center heading1">Used by</h2>
+        <div class="row row2">
+            <div class="col-md-4  col-4 col1">
+                <img src="~/content/EO_landing_pages/images/logo-gardener.png" class="img-fluid" alt="Mi-id existing customer">
+            </div>
+            <div class="col-md-4 col-4 col1">
+                <img src="~/content/EO_landing_pages/images/logo-nwu.png" class="img-fluid" alt="Mi-id existing customer">
+            </div>
+            <div class="col-md-4  col-4 col1">
+                <img src="~/content/EO_landing_pages/images/logo-city.png" class="img-fluid" alt="Mi-id existing customer">
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script id="rendered-js">
+    $(document).ready(function () {
+
+        // VARIABLES
+        // ----------------------------------------------------------
+
+        var amount, percent, result;
+        var calculator = $('.calculator');
+        var calculatorBill = calculator.find('.calculator__bill');
+        var calculatorTip = calculator.find('.calculator__tip');
+        var calculatorResult = calculator.find('.calculator__result');
+        var calculatorResult2 = calculator.find('.calculator__result2');
+        var tipAmount = calculator.find('.tip-amount');
+
+
+        // INIT BILL
+        // ----------------------------------------------------------
+
+        $(window).on('DOMContentLoaded', function () {
+            tipAmount.text(calculatorTip.val() + '%');
+            amount = calculatorBill.val() * 1;
+            percent = calculatorTip.val() * 1;
+            result = amount + amount * (percent / 100);
+            //  result = amount + amount * (percent / 100);
+            calculatorResult.text(result.toFixed(2));
+        });
+
+        $(window).on('DOMContentLoaded', function () {
+            tipAmount.text(calculatorTip.val() + '%');
+            amount = calculatorBill.val() * 1;
+            percent = calculatorTip.val() * 1;
+            result = amount + amount * (percent / 100);
+            //  result = amount + amount * (percent / 100);
+            calculatorResult2.text(result.toFixed(2));
+        });
+
+
+        // RANGE FUNCTION
+        // ----------------------------------------------------------
+
+        calculatorTip.on('change', function () {
+
+            if (calculatorBill.val() === '' || isNaN(calculatorBill.val())) {
+                alert('Enter total expected revenue from ticket sales');
+            } else {
+                amount = calculatorBill.val() * 1;
+            }
+
+            tipAmount.text(calculatorTip.val() + '%');
+            percent = calculatorTip.val() * 1;
+            result = amount * (percent / 100);
+            calculatorResult.text(result.toFixed(2));
+        });
+
+
+        calculatorTip.on('change', function () {
+
+            if (calculatorBill.val() === '' || isNaN(calculatorBill.val())) {
+                alert('Enter bill amount, please!');
+            } else {
+                amount = calculatorBill.val() * 1;
+            }
+
+            tipAmount.text(calculatorTip.val() + '%');
+            percent = calculatorTip.val() * 1;
+            result = amount * 0.025;
+            calculatorResult2.text(result.toFixed(2));
+        });
+
+    });
+          //# sourceURL=pen.js
+</script>

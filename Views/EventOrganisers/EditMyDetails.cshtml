@@ -1,0 +1,246 @@
+﻿@model MiidWeb.EventOrganiser
+@{
+    ViewBag.Title = "Edit EO";
+    Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("LayoutEventOrganiser");
+}
+
+
+<link rel="stylesheet" href="../../content/css/crop.css" type="text/css" />
+
+<script src="../../scripts/jquery.min.js"></script>
+
+<script src="../../scripts/cropbox/cropbox.js"></script>
+
+
+
+<div class="row">
+    <div class="panel-body">
+        <div class="col-md-12 w3ls-graph">
+            <!--agileinfo-grap-->
+            <div class="agileinfo-grap">
+                <div class="agileits-box">
+                    <div class="agileits-box-body clearfix">
+						<div class="form-group col-md-12">
+
+
+							@using (Html.BeginForm())
+							{
+								@Html.AntiForgeryToken()
+
+								<span style="color:palevioletred">@Html.ValidationSummary()</span>
+
+								@Html.HiddenFor(model => model.ID)
+								@Html.HiddenFor(model => model.StartDate)
+								@Html.HiddenFor(model => model.DateCreated)
+								@Html.HiddenFor(model => model.DateUpdated)
+								@Html.HiddenFor(model => model.StatusID)
+								@Html.HiddenFor(model => model.Email)
+								@Html.HiddenFor(model => model.ProfilePicURL)
+								@Html.HiddenFor(model => model.HandHeldLoginPassword)
+								@Html.HiddenFor(model => model.Bank)
+								@Html.HiddenFor(model => model.BankAccountHolder)
+								@Html.HiddenFor(model => model.BankAccountNumber)
+								@Html.HiddenFor(model => model.BranchCode)
+								@Html.HiddenFor(model => model.BankType)
+
+
+
+
+
+
+								<div class="panel  panel-default text-left">
+
+									<div class="panel-body">
+										<div class="row">
+											<div class="form-group col-md-12">
+
+												<h3>Company Details</h3>
+
+
+											</div>
+										</div>
+										<div class="alert alert-success">
+											<div class="row">
+												<div class="form-group col-md-6">
+													Company Name: @Html.DisplayFor(model => model.CompanyName, new { htmlAttributes = new { placeholder = "Company Name" } })
+												</div>
+												<div class="form-group col-md-6">
+													Contact Name: @Html.DisplayFor(model => model.ContactName, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Contact Name" } })
+												</div>
+												<div class="form-group col-md-6">
+													Primary Phone Number: @Html.DisplayFor(model => model.Telephone, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Telephone" } })
+												</div>
+												<div class="form-group col-md-6">
+													Primary Email @Html.DisplayFor(model => model.Email, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Email", disabled = true } })
+												</div>
+												<div class="form-group col-md-6">
+													Secondary Contact: @Html.DisplayFor(model => model.SecondaryContactName, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Secondary Contact Name" } })
+												</div>
+												<div class="form-group col-md-6">
+													Secondary Phone Number: @Html.DisplayFor(model => model.SecondaryContactTelephone, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Secondary Contact Telephone" } })
+												</div>
+												<div class="form-group col-md-12">
+													Secondary Email:  @Html.DisplayFor(model => model.SecondaryContactEmail, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Secondary Contact Email" } })
+												</div>
+
+											</div>
+										</div>
+									</div>
+								</div>
+
+
+								<div class="panel  panel-default text-left">
+
+									<div class="panel-body">
+										<div class="row">
+											<div class="form-group col-md-12">
+
+												<h3>Edit Company Details</h3>
+
+
+											</div>
+
+
+
+
+											<div class="form-group col-md-12">
+												<label>Company Name</label>
+												@Html.EditorFor(model => model.CompanyName, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Company Name" } })
+												@Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "red" })
+											</div>
+											<div class="form-group col-md-6">
+												<label>Contact Name</label>
+												@Html.EditorFor(model => model.ContactName, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Contact Name" } })
+												@Html.ValidationMessageFor(model => model.ContactName, "", new { @class = "red" })
+											</div>
+											<div class="form-group col-md-6">
+												<label>Contact Number</label>
+												@Html.EditorFor(model => model.Telephone, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Telephone" } })
+												@Html.ValidationMessageFor(model => model.Telephone, "", new { @class = "red" })
+											</div>
+											<div class="form-group col-md-6">
+												<label>Primary Email address</label>
+												@Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Email", disabled = true } })
+												@Html.ValidationMessageFor(model => model.Email, "", new { @class = "red" })
+											</div>
+											<div class="form-group col-md-6">
+												<label>Secondary Contact Name</label>
+												@Html.EditorFor(model => model.SecondaryContactName, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Secondary Contact Name" } })
+												@Html.ValidationMessageFor(model => model.SecondaryContactName, "", new { @class = "red" })
+											</div>
+											<div class="form-group col-md-6">
+												<label>Secondary Contact Number</label>
+												@Html.EditorFor(model => model.SecondaryContactTelephone, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Secondary Contact Telephone" } })
+												@Html.ValidationMessageFor(model => model.SecondaryContactTelephone, "", new { @class = "red" })
+											</div>
+											<div class="form-group col-md-6">
+												<label>Secondary Contact Email</label>
+												@Html.EditorFor(model => model.SecondaryContactEmail, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Secondary Contact Email" } })
+												@Html.ValidationMessageFor(model => model.SecondaryContactEmail, "", new { @class = "red" })
+											</div>
+										</div>
+									</div>
+								</div>
+
+
+
+
+
+
+
+
+								<div class="form-group col-md-12 hidden">
+									<div><input type="file" id="file" class="custom-file-input"></div>
+								</div>
+								<div class="form-group col-md-6 hidden">
+									<div class="imageBox">
+										<div class="thumbBox"></div>
+										<div class="spinner">Upload Picture</div>
+									</div>
+								</div>
+								<div class="form-group col-md-3 hidden">
+									<div class="cropped">
+										<img id="imageID" src="../../content/images/avatar.png" />
+									</div>
+								</div>
+								<div class="form-group col-md-6 hidden">
+									<input type="hidden" name="imageData" id="imageData" />
+									<div class="action_crop">
+										<div class="crop_button_container"><input style="" type="button" id="btnCrop" value="Crop" class="btn btn-primary btn-block "></div>
+										<div class="crop_button_container"><input type="button" id="btnZoomIn" value="+" class="btn btn-primary btn-block"></div>
+										<div class="crop_button_container"> <input type="button" id="btnZoomOut" value="-" class="btn btn-primary btn-block"></div>
+									</div>
+								</div>
+								<div class="form-group col-md-12 ">
+									<hr class="thin">
+								</div>
+
+
+								<div class="form-group col-md-6">
+									<input type="submit" value="Save" class="btn btn-primary btn-block btn-lg" />
+									@*<a href="temp_Profile Summary.html" class="button special">Update</a>*@
+								</div>
+								<div class="form-group col-md-6">
+									@Html.ActionLink("Cancel", "MyDetails", null, new { @class = "btn btn-default btn-block btn-lg" })
+								</div>
+
+
+
+
+
+
+
+							}
+
+						</div>
+                                </div>
+                            </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+    
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+        <script src="../../scripts/cropbox/jquery-1.11.1.min.js"></script>
+        <script src="../../scripts/cropbox/cropbox.js"></script>
+    }
+
+    <!-- Scripts -->
+    <script type="text/javascript">
+        $(window).load(function () {
+            var options =
+            {
+                thumbBox: '.thumbBox',
+                spinner: '.spinner',
+                imgSrc: '../../images/' + $('#ProfilePicURL').val()
+            }
+            var cropper = $('.imageBox').cropbox(options);
+            $('#file').on('change', function () {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    options.imgSrc = e.target.result;
+                    cropper = $('.imageBox').cropbox(options);
+                }
+                reader.readAsDataURL(this.files[0]);
+                this.files = [];
+            })
+            $('#btnCrop').on('click', function () {
+                debugger;
+                var img = cropper.getDataURL();
+                $("#imageID").attr('src', img);
+                //$('.cropped').append('<img src="'+img+'">');
+                var image = img.replace('data:image/png;base64,', '');
+                $("#imageData").val(image);
+            })
+            $('#btnZoomIn').on('click', function () {
+                cropper.zoomIn();
+            })
+            $('#btnZoomOut').on('click', function () {
+                cropper.zoomOut();
+            })
+        });
+    </script>

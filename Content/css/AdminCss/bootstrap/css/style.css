@@ -1,0 +1,28 @@
+﻿
+
+.infection-no-lg {
+    font-size: 55px;
+    font-weight: bold;
+    color: #53b2a0;
+    display: block;
+    text-align: center;
+    margin-bottom: -10px
+}
+
+.number-col {
+    border-right: 1px dotted #333333;
+}
+
+    .number-col:last-child {
+        border: none
+    }
+
+
+
+
+.infection-no-text {
+    color: #333333;
+    display: block;
+    text-align: center;
+    text-transform: uppercase;
+}

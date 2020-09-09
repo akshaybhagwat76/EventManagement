@@ -1,0 +1,10 @@
+﻿@model MiidWeb.Models.MyViewModel
+@using (Html.BeginForm())
+{
+    @Html.Hidden("DateToCompareAgainst", Model.DateToCompareAgainst.ToString("yyyy-MM-dd"))
+
+    @Html.LabelFor(x => x.StartDate)
+    @Html.EditorFor(x => x.StartDate)
+    @Html.ValidationMessageFor(x => x.StartDate)
+    <button type="submit">OK</button>
+}

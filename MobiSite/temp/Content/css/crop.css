@@ -1,0 +1,131 @@
+/*----------------------------------upload images---------------------------------x */
+
+.cropped_container_one {width: 500px; background-color:#ccc;}
+                     
+                            
+
+
+
+.zoom_button {  margin-right: 5px; 
+                margin-bottom:0px; 
+                background-color: #007ec6 ; 
+                border: 0; color: #fff; 
+                height:22px;
+                width:22px; 
+                         border-radius: 5px;
+                            -webkit-border-radius:5px; 
+                            -moz-border-radius:5px;
+                            font-weight:bold;
+                            text-align: center }
+                            
+                            
+.zoom_button:hover {  margin-right: 5px; 
+                margin-bottom:0px; 
+                background-color: #f6ac1d ; 
+                border: 0; color: #fff; 
+                height:22px;
+                width:22px; 
+                         border-radius: 5px;
+                            -webkit-border-radius:5px; 
+                            -moz-border-radius:5px;
+                            font-weight:bold;
+                            text-align: center }
+
+.crop_button {  margin-right: 5px; 
+                margin-bottom:0px; 
+                background-color: #007ec6 ; 
+                border: 0; color: #fff; 
+                padding: 3px 10px ; 
+                         border-radius: 4px;
+                            -webkit-border-radius:5px; 
+                            -moz-border-radius:5px;
+                           }
+                     
+                     
+.crop_button:hover {  margin-right: 5px; 
+                margin-bottom:0px; 
+                background-color: #f6ac1d ; 
+                border: 0; color: #fff; 
+                padding: 3px 20px ; 
+                         border-radius: 4px;
+                            -webkit-border-radius:5px; 
+                            -moz-border-radius:5px;
+                           }
+                     
+
+	                
+.imageBox
+{  
+    position: relative;
+    height: 232px;
+    width: 252px;
+    display:inline-block;
+    background: #fff;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    cursor:move;
+}
+
+ .thumbBox
+{ 
+    position: absolute; 
+    top: 50%;
+    left: 50%;
+    width: 252px;
+    height: 232px;
+    margin-top: -113px;
+    margin-left: -113px;
+    
+   
+    background: none repeat scroll 0% 0% transparent;
+    
+}
+
+
+.cropped {display:inline-block; margin-top:30px;}
+
+ .spinner
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    text-align: center;
+    line-height: 200px;
+    background: rgba(0,0,0,0.7);
+}      
+
+.container_crop
+        {
+           
+            top: 10%; left: 10%; right: 0; bottom: 0;  width:350px;
+        }
+        .action_crop
+        {
+            width: 200px;
+            height: 30px;
+            margin: 10px 0;
+            
+        }
+        .cropped>img
+        {
+            margin-left: 0px;
+            width:232px;
+            height:232px;
+            
+        }
+        
+        
+ .upload_pic_button { width: 200px;  
+                    clear: right; 
+                     margin-top:10px; 
+                     margin-bottom:5px;} 
+                     
+                     
+.action_crop { display:table; width:300px; background-color:#ccc; }
+
+.crop_button_container {margin:2px; display: inline-block;}
+                     
+                     
+/*----------------------------------end upload images---------------------------------x */   

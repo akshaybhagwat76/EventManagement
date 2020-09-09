@@ -1,0 +1,189 @@
+﻿@model IEnumerable<MiidWeb.EndUser>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Surname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Firstname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfBirth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IDNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Age)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sex)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RaceID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StreetAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Suburb)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PostalCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telephone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cell)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AccountBalance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsChildUser)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NextOfKin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NextOfKinTelephone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Medication)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MedicalAidCompany)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MedicalAidNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Allergies)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KnownConditions)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AccountType.Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndUser2.Surname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status.Code)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Surname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Firstname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateOfBirth)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Age)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sex)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RaceID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StreetAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Suburb)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.City)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PostalCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telephone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cell)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AccountBalance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsChildUser)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NextOfKin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NextOfKinTelephone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Medication)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MedicalAidCompany)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MedicalAidNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Allergies)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KnownConditions)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AccountType.Code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndUser2.Surname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status.Code)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

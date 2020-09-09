@@ -1,0 +1,698 @@
+﻿@model MiidWeb.Models.EventViewModel
+
+@{
+    /**/
+
+    ViewBag.Title = "MiiD Edit Event";
+    Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("LayoutEventOrganiser");
+
+    string bannerImage = ""; int eventImageID = 0; string seatingplanImage = "";
+    if (Model.EventImages.Where(x => x.ImageAltText == "banner").Count() > 0)
+    {
+        bannerImage = Model.EventImages.Where(x => x.ImageAltText == "banner").First().ImageURL;
+        eventImageID = Model.EventImages.Where(x => x.ImageAltText == "banner").First().ID;
+    }
+    if (Model.EventImages.Where(x => x.ImageAltText == "seatingplan").Count() > 0)
+    {
+
+        seatingplanImage = Model.EventImages.Where(x => x.ImageAltText == "seatingplan").First().ImageURL;
+        eventImageID = Model.EventImages.Where(x => x.ImageAltText == "seatingplan").First().ID;
+    }
+
+
+
+
+}
+
+
+<link rel="stylesheet" href="../../content/css/crop.css" type="text/css" />
+
+<script src="../../scripts/jquery.min.js"></script>
+
+<script src="../../scripts/cropbox/cropbox.js"></script>
+<style>
+    .cropped {
+        margin-top: 0px;
+    }
+</style>
+
+<!-- Wrapper -->
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <!-- Main -->
+
+
+    @*@Html.HiddenFor(model => model.Event.EventName)*@
+
+
+
+    <!-- //market-->
+    <div class="row">
+        <div class="panel-body">
+            <div class="col-md-12 w3ls-graph">
+
+
+                <!--wizard open -->
+                <div class="agileinfo-grap">
+                    <div class="wizard">
+
+                        <div class="wizard-inner">
+                            <div class="connecting-line"></div>
+                            <ul class="nav nav-tabs" role="tablist">
+
+                                <li role="presentation" class="active">
+                                    <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
+                                        <span class="round-tab">
+                                            <i class="glyphicon glyphicon-th-list"></i>
+
+                                        </span>
+                                    </a>
+
+                                </li>
+
+                                <li role="presentation" class="disabled">
+                                    <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
+                                        <span class="round-tab">
+                                            <i class="glyphicon glyphicon-picture"></i>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li role="presentation" class="disabled">
+                                    <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
+                                        <span class="round-tab">
+                                            <i class="glyphicon glyphicon-calendar"></i>
+                                        </span>
+                                    </a>
+                                </li>
+
+                                <li role="presentation" class="disabled">
+                                    <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
+                                        <span class="round-tab">
+                                            <i class="glyphicon glyphicon-ok"></i>
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <form role="form">
+                            <div class="tab-content">
+                                <div class="tab-pane active" role="tabpanel" id="step1">
+                                    <div class="form-group col-md-12">
+                                        <h2>Edit event</h2>
+                                        <h3>Event Details:</h3>
+                                        <p><b>Tip:</b> This wording will appear on your event page, be unique and descriptive. Answer as many questions as possible before your customer asks them such as what entertainment will be at the event, will there be food available, is their parking space etc.</p>
+                                    </div>
+                                    <div class="form-group col-md-12">
+
+                                        @Html.HiddenFor(model => model.SubdomainID)
+                                        @Html.HiddenFor(model => model.Event.ID)
+                                        @Html.Hidden("EventOrganiserID", (object)@ViewBag.EventOrganiserID)
+                                        @Html.HiddenFor(model => model.Event.StatusID)
+                                        <span style="color:palevioletred">@Html.ValidationSummary()</span>
+                                        <hr>
+
+                                        @Html.Hidden("StatusID", (object)@ViewBag.StatusID)
+                                        @Html.ValidationSummary(true, "", new { @class = "red" })
+                                        @Html.HiddenFor(model => model.Event.ID)
+                                        @Html.Hidden("EventOrganiserID", (object)@ViewBag.EventOrganiserID)
+                                        @Html.HiddenFor(model => model.Event.StatusID)
+                                        @Html.HiddenFor(model => model.Event.HasSeatingPlan)
+                                        <span style="color:palevioletred">@Html.ValidationSummary()</span>
+                                    </div>
+                                    <h1 style="display:none;">Add Event Details @Html.DisplayFor(x => x.Event.EventName)</h1>
+
+                                    <div class="form-group col-md-12">
+                                        <label for="exampleInputEmail1">Event Name</label>
+                                        @Html.EditorFor(model => model.Event.EventName, new { htmlAttributes = new { @class = "form-control input-lg", @placeholder = "Event Name", @autocomplete = "off", id = "textarea1" } })
+                                        @Html.ValidationMessageFor(model => model.Event.EventName, "", new { @class = "red" })
+
+                                        <small id="emailHelp" class="form-text text-muted">Be unique.</small>
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <label for="exampleInputEmail1">Short description</label>
+                                        @Html.TextAreaFor(model => model.ShortDescription, new { @class = "form-control input-lg", @maxlength = "100", id = "textarea1", row = "3" })
+
+                                        <small id="emailHelp" class="form-text text-muted">A sentence or two that will grab your customers attention.</small>
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+
+                                        <label for="exampleInputEmail1">Long description</label>
+                                        @Html.TextAreaFor(model => model.LongDescription, new { @class = "form-control input-lg", id = "textarea2", rows = "10" })
+
+                                        <small id="emailHelp" class="form-text text-muted">Go into as much detail here as possible, answer any questions your customer might have and sell the event to them.</small>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <hr>
+                                        <ul class="list-inline pull-right">
+                                            <li><button id="btn" type="button" class="scrollToTop btn btn-info  btn-lg next-step">Next</button></li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+
+                                <div class="tab-pane" role="tabpanel" id="step2">
+                                    <div class="form-group col-md-12">
+                                        <h3>Event Images:</h3>
+                                        <p>
+                                            <b>Tip:</b> Use high-quality images that are not pixilated. A low-quality image can be a bad example on your event.
+                                        </p>
+                                    </div>
+
+                                    <!-- Two -->
+                                    <div class="form-group col-md-12">
+                                        <hr class="thin">
+                                        <h4>Event Banner</h4>
+                                        <p>This image will appear on your event's page. For best results use dimensions 440W by 380H.</p>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label class="custom-file">
+                                            <input type="file" id="bannerupload" class="custom-file-input">
+                                            <span class="custom-file-control"></span>
+                                            <input type="hidden" name="bannerImageData" id="bannerImageData" />
+
+                                            <div style="display:none">@Html.HiddenFor(model => model.EventBannerURL)</div>
+
+
+                                        </label>
+
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <img id="bannerimg" src="~/Uploads/@bannerImage" class=" img-responsive fullscreen" />
+
+                                    </div>
+                                    <!-- Two -->
+                                    <div class="form-group col-md-12">
+                                        <hr class="thin">
+                                        <h4>Seating plan image</h4>
+                                        <p>This image will appear on your event's seating plan page. For best results use dimensions 440W by 380H.</p>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label class="custom-file">
+                                            <input type="file" name="seatingplanupload" id="seatingplanupload" class="custom-file-input">
+                                            <span class="custom-file-control"></span>
+                                            <input type="hidden" name="seatingplanImageData" id="seatingplanImageData" />
+
+                                            <div style="display:none">@Html.HiddenFor(model => model.SeatPlanImage)</div>
+
+
+                                        </label>
+
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <img id="seatingplanimg" src="~/Uploads/@seatingplanImage" class=" img-responsive fullscreen" />
+
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <hr>
+                                        <h4>Ticket and app images</h4>
+                                        <p>This image will appear on your ticket and the Mi-id Ticketin app. Press the "Use Image" button to confirm your selection.</p>
+
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <input type="file" id="file" class="upload_pic_button" />
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <div class="imageBox">
+                                            <div class="thumbBox"></div>
+                                            <div class="spinner">Upload Picture</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <div class="cropped">
+                                            <img id="imageID" src="../../content/images/avatar.png" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <input type="hidden" name="imageData" id="imageData" />
+                                        @Html.HiddenFor(model => model.EventLogoURL)
+
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="action_crop">
+                                            <div class="crop_button_container"><input type="button" id="btnZoomIn" value="zoom +" class="btn btn-primary" /></div>
+                                            <div class="crop_button_container"> <input type="button" id="btnZoomOut" value="zoom -" class="btn btn-primary" /></div>
+                                            <div class="crop_button_container"><input style="" type="button" id="btnCrop" value="Use Image " class="btn btn-primary" /></div>
+
+                                        </div>
+
+                                    </div>
+
+
+
+                                    <div class="form-group col-md-12">
+                                        <hr>
+                                        <ul class="list-inline pull-right">
+                                            <li><button id="btn" type="button" class="scrollToTop btn btn-default btn-lg  prev-step">Previous</button></li>
+                                            <li><button id="btn" type="button" class="scrollToTop btn btn-info  btn-lg  next-step">Next</button></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" role="tabpanel" id="step3">
+                                    <div class="form-group col-md-12">
+                                        <h3>Time, date &amp; Tickets</h3>
+                                        <p>Select the time your event will start and end as well as ticket cut of times</p>
+                                        <hr>
+                                    </div>
+                                    <div class="form-group col-md-8">
+
+                                        <p>
+                                            Multi-Day Event<br>
+                                            <small id="emailHelp" class="form-text text-muted">
+                                                If your event spans over multiple days you can choose to use a date selector on the purchase ticket page. We only suggest using this for events that are more than 5 days or have a large number of ticket types.
+                                                Is MultiDay Event
+                                            </small>
+                                        </p>
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label for=""> Is MultiDay Event</label>
+
+                                        @Html.EditorFor(model => model.IsMultiDayEvent, new { htmlAttributes = new { @class = "form-control input-lg" } })
+                                        @Html.ValidationMessageFor(model => model.IsMultiDayEvent, "", new { @class = "red" })
+
+
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label for=""> Is Cashless Event</label>
+
+                                        @Html.EditorFor(model => model.IsCashless, new { htmlAttributes = new { @class = "form-control input-lg" } })
+                                        @Html.ValidationMessageFor(model => model.IsCashless, "", new { @class = "red" })
+
+
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label for=""> Limit One Ticket Per User</label>
+
+                                        @Html.EditorFor(model => model.LimitOneTicketPerUser, new { htmlAttributes = new { @class = "form-control input-lg" } })
+                                        @Html.ValidationMessageFor(model => model.LimitOneTicketPerUser, "", new { @class = "red" })
+
+
+                                    </div>
+
+                                    @Html.Hidden("DateToCompareAgainst", Model.DateToCompareAgainst.ToString("yyyy-MM-dd"))
+                                    @*@if (Model.Event.StartDateTime != null) { ((DateTime)Model.Event.StartDateTime).ToString("dd MMM yyyy HH:mm"); }*@
+                                    <div class="form-group col-md-12">
+                                        <hr>
+                                        <h4>Start</h4>
+
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="sel1">Year</label>
+                                        @Html.DropDownListFor(x => x.StartDateYear, (IEnumerable<SelectListItem>)Model.StartDateYears, htmlAttributes: new { @class = "form-control input-lg" })
+
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="sel1">Month</label>
+                                        @Html.DropDownListFor(x => x.StartDateMonth, (IEnumerable<SelectListItem>)Model.StartDateMonths, htmlAttributes: new { @class = "form-control input-lg" })
+
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="sel1">Day</label>
+                                        @Html.DropDownListFor(x => x.StartDateDay, (IEnumerable<SelectListItem>)Model.StartDateDays, htmlAttributes: new { @class = "form-control input-lg" })
+
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="sel1">Time</label>
+                                        @Html.DropDownListFor(x => x.StartDateTimeTime, (IEnumerable<SelectListItem>)Model.StartDateTimeTimes, htmlAttributes: new { @class = "form-control input-lg" })
+
+                                    </div>
+                                    @*@if (Model.Event.EndDateTime != null) { ((DateTime)Model.Event.EndDateTime).ToString("dd MMM yyyy HH:mm"); }*@
+                                    <div class="form-group col-md-12">
+                                        <hr>
+                                        <h4>End</h4>
+
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="sel1">Year</label>
+                                        @Html.DropDownListFor(x => x.EndDateYear, (IEnumerable<SelectListItem>)Model.EndDateYears, htmlAttributes: new { @class = "form-control input-lg" })
+
+
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="sel1">Month</label>
+                                        @Html.DropDownListFor(x => x.EndDateMonth, (IEnumerable<SelectListItem>)Model.EndDateMonths, htmlAttributes: new { @class = "form-control input-lg" })
+
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="sel1">Day</label>
+                                        @Html.DropDownListFor(x => x.EndDateDay, (IEnumerable<SelectListItem>)Model.EndDateDays, htmlAttributes: new { @class = "form-control input-lg" })
+
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="sel1">Time</label>
+                                        @Html.DropDownListFor(x => x.EndDateTimeTime, (IEnumerable<SelectListItem>)Model.EndDateTimeTimes, htmlAttributes: new { @class = "form-control input-lg" })
+
+                                    </div>
+                                    <div class="form-group col-md-12">
+
+                                        @Html.ValidationMessage("StartDateTime", new { style = "color: red" })
+                                        @Html.ValidationMessage("EndDateTime", new { style = "color: red" })
+
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <hr>
+                                        <h4>Ticket Cut Off</h4>
+
+
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="sel1">Year</label>
+                                        @Html.ValidationMessage("TicketCutoffDate", new { style = "color: red" })
+                                        @if (Model.Event.TicketCutoffDate != null) { ((DateTime)Model.Event.TicketCutoffDate).ToString("dd MMM yyyy"); }
+                                        @Html.DropDownListFor(x => x.TicketCutoffYear, (IEnumerable<SelectListItem>)Model.TicketCutoffYears, htmlAttributes: new { @class = "form-control input-lg" })
+
+
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="sel1">Month</label>
+                                        @Html.DropDownListFor(x => x.TicketCutoffMonth, (IEnumerable<SelectListItem>)Model.TicketCutoffMonths, htmlAttributes: new { @class = "form-control input-lg" })
+
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="sel1">Day</label>
+                                        @Html.DropDownListFor(x => x.TicketCutoffDay, (IEnumerable<SelectListItem>)Model.TicketCutoffDays, htmlAttributes: new { @class = "form-control input-lg" })
+
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="sel1">Time</label>
+                                        @Html.DropDownListFor(x => x.TicketCutoffTime, (IEnumerable<SelectListItem>)Model.TicketCutoffTimes, htmlAttributes: new { @class = "form-control input-lg" })
+
+                                    </div>
+                                    <div class="form-group col-md-12">
+
+                                        @Html.ValidationMessage("StartDateTime", new { style = "color: red" })
+                                        @Html.ValidationMessage("EndDateTime", new { style = "color: red" })
+
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <hr>
+                                        <ul class="list-inline pull-right">
+                                            <li><button type="button" class="scrollToTop btn btn-default btn-lg prev-step">Previous</button></li>
+
+                                            <li><button type="button" class="scrollToTop btn btn-info btn-lg  btn-info-full next-step">Next</button></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" role="tabpanel" id="complete">
+                                    <div class="form-group col-md-12">
+                                        <h3>Extra Info</h3>
+                                        <p>The following details will appear on your event page and are not compulsory but can help your customers with extra information</p>
+                                        <hr>
+                                    </div>
+                                    <h3>Extra info</h3>
+                                    <p>Lorem ipsum</p>
+                                    <div class="form-group col-md-12">
+                                        <h3>Address</h3>
+                                        <hr class="thin">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="">Street Address</label>
+                                        @Html.EditorFor(model => model.Event.StreetAddress, new { htmlAttributes = new { @class = "form-control input-lg", @placeholder = "Street Adress" } })
+                                        @Html.ValidationMessageFor(model => model.Event.StreetAddress, "", new { @class = "red" })
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="">Suburb</label>
+                                        @Html.EditorFor(model => model.Event.Suburb, new { htmlAttributes = new { @class = "form-control input-lg", @placeholder = "Suburb" } })
+                                        @Html.ValidationMessageFor(model => model.Event.Suburb, "", new { @class = "red" })
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label for="">City</label>
+                                        @Html.EditorFor(model => model.Event.City, new { htmlAttributes = new { @class = "form-control input-lg", @placeholder = "City" } })
+                                        @Html.ValidationMessageFor(model => model.Event.City, "", new { @class = "red" })
+
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="">Postal Code</label>
+                                        @Html.EditorFor(model => model.Event.PostalCode, new { htmlAttributes = new { @class = "form-control input-lg", @placeholder = "PostalCode" } })
+                                        @Html.ValidationMessageFor(model => model.Event.PostalCode, "", new { @class = "red" })
+
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <h3>Extra information</h3>
+                                        <hr class="thin">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="">GPS Coordinates</label>
+                                        @Html.EditorFor(model => model.Event.GPSCoordinates, new { htmlAttributes = new { @class = "form-control input-lg", @placeholder = "GPS Coordinates" } })
+                                        @Html.ValidationMessageFor(model => model.Event.GoogleMapsLink, "", new { @class = "red" })
+
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="">Google Map Link</label>
+                                        @Html.EditorFor(model => model.Event.GoogleMapsLink, new { htmlAttributes = new { @class = "form-control input-lg", @placeholder = "Google Maps Link" } })
+                                        @Html.ValidationMessageFor(model => model.Event.GoogleMapsLink, "", new { @class = "red" })
+
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="">Age Limit</label>
+                                        @*@Html.HiddenFor(model => model.Event.AgeLimit)*@
+                                        @Html.EditorFor(model => model.Event.AgeLimit, new { htmlAttributes = new { @class = "form-control input-lg", @placeholder = "eg. 21" } })
+                                        @Html.ValidationMessageFor(model => model.Event.AgeLimit, "", new { @class = "red" })
+
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="">Event Type</label>
+                                        @Html.DropDownList("EventCategoryID", null, htmlAttributes: new { @class = "form-control input-lg" })
+                                        @Html.ValidationMessageFor(model => model.Event.EventCategoryID, "", new { @class = "red" })
+
+                                    </div>
+
+
+
+
+
+
+
+                                    <div class="form-group col-md-12">
+                                        <hr>
+                                        <ul class="list-inline pull-right">
+                                            <li><button type="button" class="scrollToTop btn btn-default btn-lg prev-step">Previous</button></li>
+
+                                            <li><button type="submit" class=" btn btn-info btn-lg  btn-info-full next-step " value="Create" style="background-color:#13a048; border:0;" data-loading-text="Creating Event..." data-reset-text="Try again">Confirm</button></li>
+                                        </ul>
+                                    </div>
+
+
+                                    <div class="clearfix"></div>
+                                    <div class="form-group col-md-12  text-right">
+                                        By clicking "Create" you agree to the <a href="~/Home/RegisterDoc">terms &amp; conditions</a>
+                                    </div>
+
+                                </div>
+
+                                <div class="clearfix"></div>
+                            </div>
+                        </form>
+
+
+                    </div>
+                </div>
+                <!-- // wizard open -->
+
+
+
+
+
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+    <script>
+        $(document).ready(function () {
+
+            //Check to see if the window is top if not then display button
+
+
+            //Click event to scroll to top
+            $('.scrollToTop').click(function () {
+                $('html, body').animate({ scrollTop: 0 }, 800);
+                return false;
+            });
+
+        });
+    </script>
+
+
+
+
+
+}
+
+<script>
+    $('#textarea1').bind('keypress', function (e) {
+        var c = this.selectionStart,
+            r = /[^a-z0-9_ .,'-]/gi,
+            v = $(this).val();
+        if (r.test(v)) {
+            $(this).val(v.replace(r, ''));
+            c--;
+        }
+        this.setSelectionRange(c, c);
+    });
+</script>
+
+<script type="text/javascript">
+    $(window).load(function () {
+        debugger;
+        var options =
+        {
+            thumbBox: '.thumbBox',
+            spinner: '.spinner',
+            imgSrc: '../../Uploads/' + $('#EventLogoURL').val()
+        }
+        var url1 = '../../Uploads/' + $('#EventLogoURL').val();
+        var cropper = $('.imageBox').cropbox(options);
+        $('#file').on('change', function () {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                options.imgSrc = e.target.result;
+                cropper = $('.imageBox').cropbox(options);
+            }
+            reader.readAsDataURL(this.files[0]);
+            this.files = [];
+        })
+        $('#btnCrop').on('click', function () {
+            debugger;
+            var img = cropper.getDataURL();
+            $("#imageID").attr('src', img);
+            var image = img.replace('data:image/png;base64,', '');
+            $("#imageData").val(image);
+
+            //$('.cropped').append('<img src="'+img+'">');
+        })
+        $('#btnZoomIn').on('click', function () {
+            cropper.zoomIn();
+        })
+        $('#btnZoomOut').on('click', function () {
+            cropper.zoomOut();
+        })
+    });
+</script>
+<script>
+    function readURL(input) {
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#bannerimg').attr('src', e.target.result);
+                var img = e.target.result;
+                var image = img.replace('data:image/png;base64,', '');
+                var image = img.replace('data:image/jpg;base64,', '');
+                var image = img.replace('data:image/jpeg;base64,', '');
+                var image = img.replace('data: image / jpeg; base64,', '');
+                var image = img.replace('data: image / jpg; base64,', '');
+
+                $("#bannerImageData").val(image);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#bannerupload").change(function () {
+        readURL(this);
+    });
+
+
+    function readSeatingPlanURL(input) {
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#seatingplanimg').attr('src', e.target.result);
+                var img = e.target.result;
+                var image = img.replace('data:image/png;base64,', '');
+                var image = img.replace('data:image/jpg;base64,', '');
+                var image = img.replace('data:image/jpeg;base64,', '');
+                var image = img.replace('data: image / jpeg; base64,', '');
+                var image = img.replace('data: image / jpg; base64,', '');
+
+                $("#seatingplanImageData").val(image);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#seatingplanupload").change(function () {
+        readSeatingPlanURL(this);
+    });
+
+
+
+    function EL(id) { return document.getElementById(id); } // Get el by ID helper function
+
+    function readFile() {
+        debugger;
+        if (this.files && this.files[0]) {
+            var FR = new FileReader();
+            FR.onload = function (e) {
+                EL("bannerimg").src = e.target.result;
+                //EL("bannerImageData").val(e.target.result);
+            };
+            FR.readAsDataURL(this.files[0]);
+
+        }
+    }
+
+    EL("bannerupload").addEventListener("change", readFile, false);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+@*<div>
+        @Html.ActionLink("Browse", "Upload", "Events", new { id = @eventImageID, eventid = @Model.Event.ID }, new { @class = "upload_botton_add_event" })
+    </div>
+    <div class="register_text_top">Upload Event Logo / Thumbnail </div>
+
+    <input type="file" id="file" class="upload_pic_button" />
+    <div class="container">
+        <div class="imageBox">
+            <div class="thumbBox"></div>
+            <div class="spinner" style="display: none">Loading...</div>
+        </div>
+        <div class="action">
+
+            <input type="button" class="crop_button" id="btnCrop" value="Crop" style="float: left" />
+            <input type="button" class="zoom_button" id="btnZoomIn" value="+" style="float: left" />
+            <input type="button" class="zoom_button" id="btnZoomOut" value="-" style="float: left" />
+        </div>
+        <div class="cropped">
+            <img id="imageID" src="../../content/images/avatar.png" />
+        </div>
+    </div>
+    <input type="hidden" name="imageData" id="imageData" />*@
+
+
+
+
+
+
+

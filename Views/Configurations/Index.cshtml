@@ -1,0 +1,1317 @@
+﻿@model IEnumerable<MiidWeb.Configuration>
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+}
+
+<style>
+    td {
+        white-space: normal !important;
+    }
+</style>
+
+<!--Payfast keys-->
+<div class="col-md-9">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="content-box-header">
+                <div class="panel-title">Payfast Keys</div>
+
+
+                <div class="panel-options">
+                    @Html.ActionLink("Create New", "Create")
+                </div>
+                <div class="panel-options">
+                    <div class="col-md-6">
+                        <a class="" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            Open/Close
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="content-box-large box-with-header">
+                <div style="padding: 20px ">
+                    <div class="row">
+
+
+
+                        <div class="col-md-12">
+                            <div class="collapse" id="collapseExample">
+                                <div class="card card-body">
+
+
+
+                                    <!-- Merchant ID-->
+                                    <div class="col-md-12">
+
+                                        <h4>Payfast Merchant ID</h4>
+                                        <table class="table table-striped ">
+                                            <tr>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Subdomain.SubdomainName)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Key)
+                                                </th>
+
+
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Value)
+                                                </th>
+                                                <th></th>
+                                            </tr>
+                                            @foreach (var item in Model)
+                                            {
+                                                if (item.Key == "PF_MerchantId")
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Subdomain.SubdomainName)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Key)
+                                                        </td>
+
+
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Value)
+                                                        </td>
+                                                        <td>
+                                                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                                            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                                        </td>
+                                                    </tr>
+                                                }
+
+
+                                            }
+                                        </table>
+                                    </div>
+                                    <!-- Merchant Key-->
+                                    <div class="col-md-12">
+
+                                        <h4>Payfast Merchant Key</h4>
+                                        <table class="table table-striped">
+                                            <tr>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Subdomain.SubdomainName)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Key)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Value)
+                                                </th>
+
+                                                <th></th>
+                                            </tr>
+                                            @foreach (var item in Model)
+                                            {
+                                                if (item.Key == "PF_MerchantKey")
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Subdomain.SubdomainName)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Key)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Value)
+                                                        </td>
+
+                                                        <td>
+                                                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                                            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                                        </td>
+                                                    </tr>
+                                                }
+
+
+                                            }
+                                        </table>
+                                    </div>
+                                    <!-- Return Ticket URL-->
+                                    <div class="col-md-12">
+
+                                        <h4>Payfast Return URL for ticket</h4>
+                                        <table class="table table-striped">
+                                            <tr>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Subdomain.SubdomainName)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Key)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Value)
+                                                </th>
+
+                                                <th></th>
+                                            </tr>
+                                            @foreach (var item in Model)
+                                            {
+                                                if (item.Key == "PF_ReturnURL_Ticket")
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Subdomain.SubdomainName)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Key)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Value)
+                                                        </td>
+
+                                                        <td>
+                                                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                                            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                                        </td>
+                                                    </tr>
+                                                }
+
+
+                                            }
+                                        </table>
+                                    </div>
+                                    <!-- Retirm URL-->
+                                    <div class="col-md-12">
+
+                                        <h4>Payfast Return URL</h4>
+                                        <table class="table table-striped">
+                                            <tr>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Subdomain.SubdomainName)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Key)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Value)
+                                                </th>
+
+                                                <th></th>
+                                            </tr>
+                                            @foreach (var item in Model)
+                                            {
+                                                if (item.Key == "PF_ReturnURL")
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Subdomain.SubdomainName)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Key)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Value)
+                                                        </td>
+
+                                                        <td>
+                                                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                                            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                                        </td>
+                                                    </tr>
+                                                }
+
+
+                                            }
+                                        </table>
+                                    </div>
+                                    <!-- Cancel URL-->
+                                    <div class="col-md-12">
+
+                                        <h4>Payfast Cancel URL</h4>
+                                        <table class="table table-striped">
+                                            <tr>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Subdomain.SubdomainName)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Key)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Value)
+                                                </th>
+
+                                                <th></th>
+                                            </tr>
+                                            @foreach (var item in Model)
+                                            {
+                                                if (item.Key == "PF_CancelURL")
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Subdomain.SubdomainName)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Key)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Value)
+                                                        </td>
+
+                                                        <td>
+                                                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                                            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                                        </td>
+                                                    </tr>
+                                                }
+
+
+                                            }
+                                        </table>
+                                    </div>
+                                    <!-- notify URL-->
+                                    <div class="col-md-12">
+
+                                        <h4>Payfast PF_NotifyURL</h4>
+                                        <table class="table">
+                                            <tr>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Subdomain.SubdomainName)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Key)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Value)
+                                                </th>
+
+                                                <th></th>
+                                            </tr>
+                                            @foreach (var item in Model)
+                                            {
+                                                if (item.Key == "PF_NotifyURL")
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Subdomain.SubdomainName)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Key)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Value)
+                                                        </td>
+
+                                                        <td>
+                                                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                                            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                                        </td>
+                                                    </tr>
+                                                }
+
+
+                                            }
+                                        </table>
+                                    </div>
+
+                                    <!-- Payfast Vat-->
+                                    <div class="col-md-12">
+
+                                        <h4>Payfast vat</h4>
+                                        <table class="table table-striped ">
+                                            <tr>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Subdomain.SubdomainName)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Key)
+                                                </th>
+
+
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Value)
+                                                </th>
+                                                <th></th>
+                                            </tr>
+                                            @foreach (var item in Model)
+                                            {
+                                                if (item.Key == "PayfastVat")
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Subdomain.SubdomainName)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Key)
+                                                        </td>
+
+
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Value)
+                                                        </td>
+                                                        <td>
+                                                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                                            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                                        </td>
+                                                    </tr>
+                                                }
+
+
+                                            }
+                                        </table>
+                                    </div>
+                                    <!-- Payfast fixed-->
+                                    <div class="col-md-12">
+
+                                        <h4>Payfast Fixed Fee</h4>
+                                        <table class="table table-striped ">
+                                            <tr>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Subdomain.SubdomainName)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Key)
+                                                </th>
+
+
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Value)
+                                                </th>
+                                                <th></th>
+                                            </tr>
+                                            @foreach (var item in Model)
+                                            {
+                                                if (item.Key == "PayfastFixed")
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Subdomain.SubdomainName)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Key)
+                                                        </td>
+
+
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Value)
+                                                        </td>
+                                                        <td>
+                                                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                                            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                                        </td>
+                                                    </tr>
+                                                }
+
+
+                                            }
+                                        </table>
+                                    </div>
+                                    <!-- close-->
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="content-box-header">
+                <div class="panel-title">Email Host Keys</div>
+
+
+                <div class="panel-options">
+                    @Html.ActionLink("Create New", "Create")
+                </div>
+                <div class="panel-options">
+                    <div class="col-md-6">
+                        <a class="" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            Open/Close
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="content-box-large box-with-header">
+                <div style="padding: 20px ">
+                    <div class="row">
+
+
+
+                        <div class="col-md-12">
+                            <div class="collapse" id="collapseExample2">
+                                <div class="card card-body">
+                                    <!-- Email Host-->
+                                    <div class="col-md-12">
+
+                                        <h4>Email Host</h4>
+                                        <table class="table table-striped ">
+                                            <tr>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Subdomain.SubdomainName)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Key)
+                                                </th>
+
+
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Value)
+                                                </th>
+                                                <th></th>
+                                            </tr>
+                                            @foreach (var item in Model)
+                                            {
+                                                if (item.Key == "EmailHost")
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Subdomain.SubdomainName)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Key)
+                                                        </td>
+
+
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Value)
+                                                        </td>
+                                                        <td>
+                                                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                                            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                                        </td>
+                                                    </tr>
+                                                }
+
+
+                                            }
+                                        </table>
+                                    </div>
+                                    <!-- Email Port-->
+                                    <div class="col-md-12">
+
+                                        <h4>Email Port</h4>
+                                        <table class="table table-striped">
+                                            <tr>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Subdomain.SubdomainName)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Key)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Value)
+                                                </th>
+
+                                                <th></th>
+                                            </tr>
+                                            @foreach (var item in Model)
+                                            {
+                                                if (item.Key == "EmailPort")
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Subdomain.SubdomainName)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Key)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Value)
+                                                        </td>
+
+                                                        <td>
+                                                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                                            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                                        </td>
+                                                    </tr>
+                                                }
+
+
+                                            }
+                                        </table>
+                                    </div>
+                                    <!-- User Name-->
+                                    <div class="col-md-12">
+
+                                        <h4>User Name</h4>
+                                        <table class="table table-striped">
+                                            <tr>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Subdomain.SubdomainName)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Key)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Value)
+                                                </th>
+
+                                                <th></th>
+                                            </tr>
+                                            @foreach (var item in Model)
+                                            {
+                                                if (item.Key == "EmailUserName")
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Subdomain.SubdomainName)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Key)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Value)
+                                                        </td>
+
+                                                        <td>
+                                                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                                            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                                        </td>
+                                                    </tr>
+                                                }
+
+
+                                            }
+                                        </table>
+                                    </div>
+                                    <!-- User Password-->
+                                    <div class="col-md-12">
+
+                                        <h4>Email Password</h4>
+                                        <table class="table table-striped">
+                                            <tr>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Subdomain.SubdomainName)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Key)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Value)
+                                                </th>
+
+                                                <th></th>
+                                            </tr>
+                                            @foreach (var item in Model)
+                                            {
+                                                if (item.Key == "EmailPassword")
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Subdomain.SubdomainName)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Key)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Value)
+                                                        </td>
+
+                                                        <td>
+                                                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                                            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                                        </td>
+                                                    </tr>
+                                                }
+
+
+                                            }
+                                        </table>
+                                    </div>
+                                    <!-- Contactt email-->
+                                    <div class="col-md-12">
+
+                                        <h4>Contact Email</h4>
+                                        <table class="table table-striped">
+                                            <tr>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Subdomain.SubdomainName)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Key)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Value)
+                                                </th>
+
+                                                <th></th>
+                                            </tr>
+                                            @foreach (var item in Model)
+                                            {
+                                                if (item.Key == "EmailContactEmail")
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Subdomain.SubdomainName)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Key)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Value)
+                                                        </td>
+
+                                                        <td>
+                                                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                                            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                                        </td>
+                                                    </tr>
+                                                }
+
+
+                                            }
+                                        </table>
+                                    </div>
+                                    <!-- From title-->
+                                    <div class="col-md-12">
+
+                                        <h4>Email From Address Name</h4>
+                                        <table class="table table-striped">
+                                            <tr>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Subdomain.SubdomainName)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Key)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Value)
+                                                </th>
+
+                                                <th></th>
+                                            </tr>
+                                            @foreach (var item in Model)
+                                            {
+                                                if (item.Key == "EmailFromAddressTitle")
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Subdomain.SubdomainName)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Key)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Value)
+                                                        </td>
+
+                                                        <td>
+                                                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                                            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                                        </td>
+                                                    </tr>
+                                                }
+
+
+                                            }
+                                        </table>
+                                    </div>
+                                    <!--close-->
+                                    <!-- From title-->
+                                    <div class="col-md-12">
+
+                                        <h4>From Email Address</h4>
+                                        <table class="table table-striped">
+                                            <tr>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Subdomain.SubdomainName)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Key)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Value)
+                                                </th>
+
+                                                <th></th>
+                                            </tr>
+                                            @foreach (var item in Model)
+                                            {
+                                                if (item.Key == "EmailFromAddress")
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Subdomain.SubdomainName)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Key)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Value)
+                                                        </td>
+
+                                                        <td>
+                                                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                                            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                                        </td>
+                                                    </tr>
+                                                }
+
+
+                                            }
+                                        </table>
+                                    </div>
+                                    <!--close-->
+                                    <!-- From title-->
+                                    <div class="col-md-12">
+
+                                        <h4>Is SSL enables</h4>
+                                        <table class="table table-striped">
+                                            <tr>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Subdomain.SubdomainName)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Key)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Value)
+                                                </th>
+
+                                                <th></th>
+                                            </tr>
+                                            @foreach (var item in Model)
+                                            {
+                                                if (item.Key == "EmailSslEnabled")
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Subdomain.SubdomainName)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Key)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Value)
+                                                        </td>
+
+                                                        <td>
+                                                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                                            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                                        </td>
+                                                    </tr>
+                                                }
+
+
+                                            }
+                                        </table>
+                                    </div>
+                                    <!--close-->
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<!-- Pay genius keys -->
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="content-box-header">
+                <div class="panel-title">Pay Genius</div>
+
+
+                <div class="panel-options">
+                    @Html.ActionLink("Create New", "Create")
+                </div>
+                <div class="panel-options">
+                    <div class="col-md-6">
+                        <a class="" data-toggle="collapse" href="#collapseExample4" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            Open/Close
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="content-box-large box-with-header">
+                <div style="padding: 20px ">
+                    <div class="row">
+
+
+
+                        <div class="col-md-12">
+                            <div class="collapse" id="collapseExample4">
+                                <div class="card card-body">
+                                    <!-- Secrte key-->
+                                    <div class="col-md-12">
+
+                                        <h4>Pay Genius Secrete Key</h4>
+                                        <table class="table table-striped ">
+                                            <tr>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Subdomain.SubdomainName)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Key)
+                                                </th>
+
+
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Value)
+                                                </th>
+                                                <th></th>
+                                            </tr>
+                                            @foreach (var item in Model)
+                                            {
+                                                if (item.Key == "PGsecret")
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Subdomain.SubdomainName)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Key)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Value)
+                                                        </td>
+
+                                                        <td>
+                                                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                                            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                                        </td>
+                                                    </tr>
+                                                }
+
+
+                                            }
+                                        </table>
+                                    </div>
+
+
+                                    <!-- Secrte key-->
+                                    <div class="col-md-12">
+
+                                        <h4>Pay Genius Token</h4>
+                                        <table class="table table-striped ">
+                                            <tr>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Subdomain.SubdomainName)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Key)
+                                                </th>
+
+
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Value)
+                                                </th>
+                                                <th></th>
+                                            </tr>
+                                            @foreach (var item in Model)
+                                            {
+                                                if (item.Key == "PGendpoint")
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Subdomain.SubdomainName)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Key)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Value)
+                                                        </td>
+
+                                                        <td>
+                                                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                                            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                                        </td>
+                                                    </tr>
+                                                }
+
+
+                                            }
+                                        </table>
+                                    </div>
+
+                                    <!--End Point-->
+                                    <div class="col-md-12">
+
+                                        <h4>Pay Genius End Point</h4>
+                                        <table class="table table-striped ">
+                                            <tr>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Subdomain.SubdomainName)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Key)
+                                                </th>
+
+
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Value)
+                                                </th>
+                                                <th></th>
+                                            </tr>
+                                            @foreach (var item in Model)
+                                            {
+                                                if (item.Key == "PGtoken")
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Subdomain.SubdomainName)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Key)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Value)
+                                                        </td>
+
+                                                        <td>
+                                                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                                            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                                        </td>
+                                                    </tr>
+                                                }
+
+
+                                            }
+                                        </table>
+                                    </div>
+
+
+                                    <!--End Point-->
+                                    <div class="col-md-12">
+
+                                        <h4>Pay Genius Look Up End Point</h4>
+                                        <table class="table table-striped ">
+                                            <tr>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Subdomain.SubdomainName)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Key)
+                                                </th>
+
+
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Value)
+                                                </th>
+                                                <th></th>
+                                            </tr>
+                                            @foreach (var item in Model)
+                                            {
+                                                if (item.Key == "PGlookupendpoint")
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Subdomain.SubdomainName)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Key)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Value)
+                                                        </td>
+
+                                                        <td>
+                                                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                                            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                                        </td>
+                                                    </tr>
+                                                }
+
+
+                                            }
+                                        </table>
+                                    </div>
+
+
+                                    <!--End Point-->
+                                    <div class="col-md-12">
+
+                                        <h4>Pay Genius Cancel URL</h4>
+                                        <table class="table table-striped ">
+                                            <tr>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Subdomain.SubdomainName)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Key)
+                                                </th>
+
+
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Value)
+                                                </th>
+                                                <th></th>
+                                            </tr>
+                                            @foreach (var item in Model)
+                                            {
+                                                if (item.Key == "PGcancelUrl")
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Subdomain.SubdomainName)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Key)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Value)
+                                                        </td>
+
+                                                        <td>
+                                                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                                            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                                        </td>
+                                                    </tr>
+                                                }
+
+
+                                            }
+                                        </table>
+                                    </div>
+
+                                    <!--Error URL-->
+                                    <div class="col-md-12">
+
+                                        <h4>Pay Genius Error URL</h4>
+                                        <table class="table table-striped ">
+                                            <tr>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Subdomain.SubdomainName)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Key)
+                                                </th>
+
+
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Value)
+                                                </th>
+                                                <th></th>
+                                            </tr>
+                                            @foreach (var item in Model)
+                                            {
+                                                if (item.Key == "PGerrorUrl")
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Subdomain.SubdomainName)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Key)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Value)
+                                                        </td>
+
+                                                        <td>
+                                                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                                            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                                        </td>
+                                                    </tr>
+                                                }
+
+
+                                            }
+                                        </table>
+                                    </div>
+
+
+                                    <!--Success URL-->
+                                    <div class="col-md-12">
+
+                                        <h4>Pay Genius Success URL</h4>
+                                        <table class="table table-striped ">
+                                            <tr>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Subdomain.SubdomainName)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Key)
+                                                </th>
+
+
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Value)
+                                                </th>
+                                                <th></th>
+                                            </tr>
+                                            @foreach (var item in Model)
+                                            {
+                                                if (item.Key == "PGsuccessUrl")
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Subdomain.SubdomainName)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Key)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Value)
+                                                        </td>
+
+                                                        <td>
+                                                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                                            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                                        </td>
+                                                    </tr>
+                                                }
+
+
+                                            }
+                                        </table>
+                                    </div>
+
+
+
+
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+<!-- all keys -->
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="content-box-header">
+                <div class="panel-title">All</div>
+
+
+                <div class="panel-options">
+                    @Html.ActionLink("Create New", "Create")
+                </div>
+                <div class="panel-options">
+                    <div class="col-md-6">
+                        <a class="" data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            Open/Close
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="content-box-large box-with-header">
+                <div style="padding: 20px ">
+                    <div class="row">
+
+
+
+                        <div class="col-md-12">
+                            <div class="collapse" id="collapseExample3">
+                                <div class="card card-body">
+                                    <!-- Email Host-->
+                                    <div class="col-md-12">
+
+                                        <h4>All</h4>
+                                        <table class="table table-striped ">
+                                            <tr>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Subdomain.SubdomainName)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Key)
+                                                </th>
+
+
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Value)
+                                                </th>
+                                                <th></th>
+                                            </tr>
+                                            @foreach (var item in Model)
+                                            {
+
+                                                <tr>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Subdomain.SubdomainName)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Key)
+                                                    </td>
+
+
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Value)
+                                                    </td>
+                                                    <td>
+                                                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                                        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                                        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                                    </td>
+                                                </tr>
+
+
+
+                                            }
+                                        </table>
+                                    </div>
+
+
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

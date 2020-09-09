@@ -1,0 +1,269 @@
+﻿<!DOCTYPE html>
+
+@using Microsoft.AspNet.Identity
+@using MiidWeb.Helpers
+
+
+<!--
+    Read Only by HTML5 UP
+    html5up.net |
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html lang="en" xml:lang="en">
+<head>
+    <title>MiiD cashless payment sytems for music festivals. concerts & Events in Cape Town  |   Home,</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Use your festival wristband to make purchases without cash Easy, safe, quick & secure cashless purchases.">
+
+
+
+
+
+
+
+    <link rel="stylesheet" href="~/Scripts/growl.css" type="text/css">
+    <!--  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet"> -->
+    <!-- Google Tag Manager -->
+    <script>
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TKCDRPP');</script>
+    <!-- End Google Tag Manager -->
+
+    @Styles.Render("~/content/css/newcss/bootstrap.min.css")
+    @Styles.Render("~/content/css/newcss/sidebar.css")
+    @Styles.Render("~/content/css/newcss/help.css")
+    @Styles.Render("~/content/css/newcss/portfolio-item.css")
+
+    @Styles.Render("~/content/css/newcss/footer.css")
+    @Styles.Render("~/content/css/newcss/product.css")
+
+
+
+
+    @Styles.Render("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css")
+
+
+
+    @Scripts.Render("~/content/js/jquery-1-12-4-min.js")
+    @Scripts.Render("~/content/js/jquery-touchswipe-min.js")s
+
+
+
+
+    <!-- Custom CSS -->
+    <!-- splash screen loaded -->
+    <!-- splash screen loaded -->
+    <script type="text/javascript">
+		jQuery(document).ready(function () {
+			$("#loader").delay(800).fadeOut(400, function () {
+				$("#your-page").fadeIn(400);
+			});
+		});
+    </script>
+
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+
+
+    <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
+
+
+
+</head>
+
+<body>
+    <div id="loader">
+        <div>
+            <img src="~/Content/images/newimages/logo_splash.svg" class="logo-splash"></a>
+            <div>
+                <button class="btn btn-default btn-lg" style="border:0px; background-color: transparent;"><i class="fa fa-circle-o-notch fa-spin" style="color:#383838"></i><span style="color:#383838">&nbsp;Loading</span></button>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!--your-page is what loads after splash screen -->
+    <div id="your-page">
+        <div id="wrapper">
+            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+
+                        <button type="button" class="navbar-toggle2 collapsed" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            @if (Request.IsAuthenticated)
+                            {
+                                var eventOrganiser = EventOrganiserRepository.GetEventOrganiserByEmail(User.Identity.Name);
+                                string profilePicURL = "avatar_blank.png";
+                                string eoProfilePic = eventOrganiser.ProfilePicURL ?? profilePicURL;
+                                        <!--  <span class="image avatar"><img src="~/Uploads/@eoProfilePic" alt="" /></span> -->
+
+                                <div style="padding-top:7px"><a href="~/EventOrganisers/EditMyDetails">Edit @eventOrganiser.CompanyName</a></div>
+                            }
+                        </button>
+                        <div class="navbar-brand">
+                            <i id="menu-toggle" href="#" class="fa fa-bars"></i>
+                            <i id="menu-toggle" href="#">   <a href="https://www.miid.co.za/"> <img src="~/Content/images/newimages/logo_dark.svg" class="logo"></a></i>
+                        </div>
+                    </div>
+                    <div id="navbar" class="collapse navbar-collapse">
+
+
+                        <ul class="nav navbar-nav pull-right">
+                            @using MiidWeb.Repositories;
+
+
+                            @if (Request.IsAuthenticated)
+                            {
+                                var eventOrganiser = EventOrganiserRepository.GetEventOrganiserByEmail(User.Identity.Name);
+                                string profilePicURL = "avatar_blank.png";
+                                string eoProfilePic = eventOrganiser.ProfilePicURL ?? profilePicURL;
+                                        <!--  <span class="image avatar"><img src="~/Uploads/@eoProfilePic" alt="" /></span> -->
+                                <li> <a href="~/EventOr
+                                <li> <a href="~/EventOrganisers/EditMyDetails">Edit company Details</a></li>
+                                <li><a href="~/EventOrganisers/EditMyDetails"> @eventOrganiser.CompanyName</a></li>
+                            }
+
+                        </ul>
+
+                    </div><!--/.nav-collapse -->
+                </div>
+            </nav>
+            <div id="sidebar-wrapper">
+                <nav id="spy">
+                    <ul class="sidebar-nav nav">
+
+                        @Html.Partial("_LoginPartialEO")
+                    </ul>
+                </nav>
+            </div>
+
+
+            <!-- Header -->
+
+
+
+
+
+            @RenderBody()
+
+
+            <footer>
+
+                <div class="footer" id="footer">
+
+                    <div class="container">
+                        <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
+                                <h3> General </h3>
+                                <ul>
+                                    <li> <a href="http://blog.miid.co.za/"> Blog </a> </li>
+                                    <li>@Html.ActionLink("Help", "Help", "Home")</li>
+                                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
+                                <h3> Event Organisers</h3>
+                                <ul>
+
+                                    <li> <a href="~/Home/ProductSummary">Services &amp; Products </a> </li>
+                                    <li> <a href="~/Home/HelpEventOrganiser">Event Organiser's FAQ's </a> </li>
+
+                                </ul>
+                            </div>
+                            <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
+                                <h3> Extra info</h3>
+                                <ul>
+                                    <li> <a href="~/Home/RegisterDoc">  Terms & Conditions </a> </li>
+                                    <li> <a href="~/Home/TermsConditions">  Privacey Policey </a> </li>
+
+                                </ul>
+                            </div>
+                            <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
+                                <h3> Contact us </h3>
+                                <ul>
+                                    <li> <p>MiiD (PTY) ltd</p> </li>
+                                    <li> <p>Cape Town</p> </li>
+                                    <li> <p>South Afica</p> </li>
+                                    <li> <p>info@Miid.co.za</p> </li>
+
+                                </ul>
+                            </div>
+                            <div class="col-lg-3  col-md-3 col-sm-6 col-xs-12 ">
+                                <h3>Keep in touch</h3>
+                                <!-- <ul>
+                                    <li>
+                                        <div class="input-append newsletter-box text-center">
+                                            <input type="text" class="full text-center" placeholder="Email ">
+                                            <br><br>
+                                            <button class="btn" type="button"> Sign up to our newsletter </button>
+                                        </div>
+                                    </li>
+                                </ul>-->
+                                <ul class="social">
+                                    <li> <a href="https://www.facebook.com/miidevents/"> <i class="fa fa-facebook"></i> </a> </li>
+
+                                    <li><a href="https://api.whatsapp.com/send?phone=27614512633"> <i class="fa fa-whatsapp"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--/.row-->
+                    </div>
+                    <!--/.container-->
+                </div>
+                <!--/.footer-->
+                <!--/.footer-bottom-->
+            </footer>
+        </div>
+
+    </div>   <!-- /.container -->
+    <!-- Bootstrap Core JavaScript -->
+    <script src="~/Scripts/jsnew/bootstrap.min.js"></script>
+    <script type="text/javascript">
+            /*Menu-toggle*/
+            $("#menu-toggle").click(function (e) {
+                e.preventDefault();
+                $("#wrapper").toggleClass("active");
+            });</script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+
+
+
+    @{
+        string[] parts = new string[10];
+
+        if (TempData.ContainsKey("Growl") && !String.IsNullOrEmpty((string)TempData["Growl"]))
+        {
+            string growl = (string)TempData["Growl"];
+            parts = growl.Split(':');
+
+
+
+            <script type="text/javascript">
+                    growl('@parts[0]', '@parts[1]');
+            </script>}
+
+    }
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TKCDRPP"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+
+    <!--fresh desk support chat script -->
+    <script type='text/javascript'>var fc_CSS=document.createElement('link');fc_CSS.setAttribute('rel','stylesheet');var fc_isSecured = (window.location && window.location.protocol == 'https:');var fc_lang = document.getElementsByTagName('html')[0].getAttribute('lang'); var fc_rtlLanguages = ['ar','he']; var fc_rtlSuffix = (fc_rtlLanguages.indexOf(fc_lang) >= 0) ? '-rtl' : '';fc_CSS.setAttribute('type','text/css');fc_CSS.setAttribute('href',((fc_isSecured)? 'https://d36mpcpuzc4ztk.cloudfront.net':'http://assets1.chat.freshdesk.com')+'/css/visitor'+fc_rtlSuffix+'.css');document.getElementsByTagName('head')[0].appendChild(fc_CSS);var fc_JS=document.createElement('script'); fc_JS.type='text/javascript'; fc_JS.defer=true;fc_JS.src=((fc_isSecured)?'https://d36mpcpuzc4ztk.cloudfront.net':'http://assets.chat.freshdesk.com')+'/js/visitor.js';(document.body?document.body:document.getElementsByTagName('head')[0]).appendChild(fc_JS);window.livechat_setting= 'eyJ3aWRnZXRfc2l0ZV91cmwiOiJtaS1pZC5mcmVzaGRlc2suY29tIiwicHJvZHVjdF9pZCI6bnVsbCwibmFtZSI6Ik1pLWlkIiwid2lkZ2V0X2V4dGVybmFsX2lkIjpudWxsLCJ3aWRnZXRfaWQiOiJkYjA1YmY2Yy1mMjJlLTQwMDAtODRhYy03MDkyZjlkYTYxYjMiLCJzaG93X29uX3BvcnRhbCI6ZmFsc2UsInBvcnRhbF9sb2dpbl9yZXF1aXJlZCI6ZmFsc2UsImxhbmd1YWdlIjoiZW4iLCJ0aW1lem9uZSI6IkF0aGVucyIsImlkIjo0MjAwMDAwNzE0MiwibWFpbl93aWRnZXQiOjEsImZjX2lkIjoiNjBjZTU2ODdkNTJmZWIzNjk5YjMwZDI5YWY5YzFiZTYiLCJzaG93IjoxLCJyZXF1aXJlZCI6MiwiaGVscGRlc2tuYW1lIjoiTWktaWQiLCJuYW1lX2xhYmVsIjoiTmFtZSIsIm1lc3NhZ2VfbGFiZWwiOiJNZXNzYWdlIiwicGhvbmVfbGFiZWwiOiJQaG9uZSIsInRleHRmaWVsZF9sYWJlbCI6IlRleHRmaWVsZCIsImRyb3Bkb3duX2xhYmVsIjoiRHJvcGRvd24iLCJ3ZWJ1cmwiOiJtaS1pZC5mcmVzaGRlc2suY29tIiwibm9kZXVybCI6ImNoYXQuZnJlc2hkZXNrLmNvbSIsImRlYnVnIjoxLCJtZSI6Ik1lIiwiZXhwaXJ5IjoxNTI1MjY4OTI3MDAwLCJlbnZpcm9ubWVudCI6InByb2R1Y3Rpb24iLCJlbmRfY2hhdF90aGFua19tc2ciOiJUaGFuayB5b3UhISEiLCJlbmRfY2hhdF9lbmRfdGl0bGUiOiJFbmQiLCJlbmRfY2hhdF9jYW5jZWxfdGl0bGUiOiJDYW5jZWwiLCJzaXRlX2lkIjoiNjBjZTU2ODdkNTJmZWIzNjk5YjMwZDI5YWY5YzFiZTYiLCJhY3RpdmUiOjEsInJvdXRpbmciOnsiY2hvaWNlcyI6eyJsaXN0MSI6WyIwIl0sImxpc3QyIjpbIjAiXSwibGlzdDMiOlsiMCJdLCJkZWZhdWx0IjpbIjAiXX0sImRyb3Bkb3duX2Jhc2VkIjoiZmFsc2UifSwicHJlY2hhdF9mb3JtIjoxLCJidXNpbmVzc19jYWxlbmRhciI6bnVsbCwicHJvYWN0aXZlX2NoYXQiOjEsInByb2FjdGl2ZV90aW1lIjoxODAsInNpdGVfdXJsIjoibWktaWQuZnJlc2hkZXNrLmNvbSIsImV4dGVybmFsX2lkIjpudWxsLCJkZWxldGVkIjowLCJtb2JpbGUiOjEsImFjY291bnRfaWQiOm51bGwsImNyZWF0ZWRfYXQiOiIyMDE4LTA0LTAyVDEzOjUyOjM2LjAwMFoiLCJ1cGRhdGVkX2F0IjoiMjAxOC0wNC0wNFQyMjo1OToxMC4wMDBaIiwiY2JEZWZhdWx0TWVzc2FnZXMiOnsiY29icm93c2luZ19zdGFydF9tc2ciOiJZb3VyIHNjcmVlbnNoYXJlIHNlc3Npb24gaGFzIHN0YXJ0ZWQiLCJjb2Jyb3dzaW5nX3N0b3BfbXNnIjoiWW91ciBzY3JlZW5zaGFyaW5nIHNlc3Npb24gaGFzIGVuZGVkIiwiY29icm93c2luZ19kZW55X21zZyI6IllvdXIgcmVxdWVzdCB3YXMgZGVjbGluZWQiLCJjb2Jyb3dzaW5nX2FnZW50X2J1c3kiOiJBZ2VudCBpcyBpbiBzY3JlZW4gc2hhcmUgc2Vzc2lvbiB3aXRoIGN1c3RvbWVyIiwiY29icm93c2luZ192aWV3aW5nX3NjcmVlbiI6IllvdSBhcmUgdmlld2luZyB0aGUgdmlzaXRvcuKAmXMgc2NyZWVuIiwiY29icm93c2luZ19jb250cm9sbGluZ19zY3JlZW4iOiJZb3UgaGF2ZSBhY2Nlc3MgdG8gdmlzaXRvcuKAmXMgc2NyZWVuLiIsImNvYnJvd3NpbmdfcmVxdWVzdF9jb250cm9sIjoiUmVxdWVzdCB2aXNpdG9yIGZvciBzY3JlZW4gYWNjZXNzICIsImNvYnJvd3NpbmdfZ2l2ZV92aXNpdG9yX2NvbnRyb2wiOiJHaXZlIGFjY2VzcyBiYWNrIHRvIHZpc2l0b3IgIiwiY29icm93c2luZ19zdG9wX3JlcXVlc3QiOiJFbmQgeW91ciBzY3JlZW5zaGFyaW5nIHNlc3Npb24gIiwiY29icm93c2luZ19yZXF1ZXN0X2NvbnRyb2xfcmVqZWN0ZWQiOiJZb3VyIHJlcXVlc3Qgd2FzIGRlY2xpbmVkICIsImNvYnJvd3NpbmdfY2FuY2VsX3Zpc2l0b3JfbXNnIjoiU2NyZWVuc2hhcmluZyBpcyBjdXJyZW50bHkgdW5hdmFpbGFibGUgIiwiY29icm93c2luZ19hZ2VudF9yZXF1ZXN0X2NvbnRyb2wiOiJBZ2VudCBpcyByZXF1ZXN0aW5nIGFjY2VzcyB0byB5b3VyIHNjcmVlbiAiLCJjYl92aWV3aW5nX3NjcmVlbl92aSI6IkFnZW50IGNhbiB2aWV3IHlvdXIgc2NyZWVuICIsImNiX2NvbnRyb2xsaW5nX3NjcmVlbl92aSI6IkFnZW50IGhhcyBhY2Nlc3MgdG8geW91ciBzY3JlZW4gIiwiY2Jfdmlld19tb2RlX3N1YnRleHQiOiJZb3VyIGFjY2VzcyB0byB0aGUgc2NyZWVuIGhhcyBiZWVuIHdpdGhkcmF3biAiLCJjYl9naXZlX2NvbnRyb2xfdmkiOiJBbGxvdyBhZ2VudCB0byBhY2Nlc3MgeW91ciBzY3JlZW4gIiwiY2JfdmlzaXRvcl9zZXNzaW9uX3JlcXVlc3QiOiJBZ2VudCBzZWVrcyBhY2Nlc3MgdG8geW91ciBzY3JlZW4gIn19';</script>
+
+</body>
+
+
+</html>

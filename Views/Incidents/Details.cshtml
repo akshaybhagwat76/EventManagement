@@ -1,0 +1,50 @@
+﻿@model MiidWeb.Incident
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Incident</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IncidentDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IncidentDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Event.EventName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Event.EventName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Staff.Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Staff.Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status.Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status.Code)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

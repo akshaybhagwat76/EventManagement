@@ -1,0 +1,44 @@
+﻿@model MiidWeb.Models.LoginViewModel
+@{
+    ViewBag.Title = "ConfirmEmailLink";
+
+    
+}
+<div class="container bg-grey">
+    <div class="row vertical-offset-40px">
+
+
+        <div class="col-md-6 col-md-offset-3">
+
+            <div class="panel panel-default ">
+
+                <div class="panel-body text-center">
+
+
+                    <h3>Check your email</h3>
+                    <i class="fa fa-exclamation-triangle fa-5x" aria-hidden="true" style="color:#be1c1d"></i>
+                    <p>A verification email was sent to @ViewBag.Email</p>
+                    <p>Open it up and click on the activation link.</p>
+                    <small>If you cannot see the email please check your spam folder</small>
+
+
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(x => x.Email)
+                        @Html.HiddenFor(x => x.Password)
+                        @Html.HiddenFor(x => x.RememberMe)
+                      
+                          <div class="form-group">
+                            <input type="submit" value="Resend Link" class="btn btn-lg btn-default btn-block" />
+                        </div>
+
+                    }
+             </div>
+            </div>
+ 
+        </div>
+
+ </div>
+</div>

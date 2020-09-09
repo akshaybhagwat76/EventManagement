@@ -1,0 +1,135 @@
+﻿@using Microsoft.AspNet.Identity
+@model MiidWeb.Models.MiiFundsRequestWithdrawalViewModel
+
+@{
+    ViewBag.Title = "Mii-Funds Request Withdrawal Bank Details";
+
+
+    var u1 = MiidWeb.Repositories.EndUserRepository.GetUser(User.Identity.GetUserName(), true);
+
+   
+
+}
+
+
+<!-- One -->
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.EndUserID)
+
+
+    @Html.HiddenFor(model => model.FirstName)
+
+    @Html.HiddenFor(model => model.Surname)
+
+
+    @Html.HiddenFor(model => model.TotalFunds)
+
+
+    @Html.HiddenFor(model => model.AvailableFunds)
+
+
+    @Html.HiddenFor(model => model.AdminFee)
+
+    @Html.ValidationMessageFor(model => model.RequestedAmount, "", new { @class = "red" })
+
+
+
+<div class="container bg-grey">
+	<div class="row vertical-offset-40px">
+
+
+		<div class="col-md-6 col-md-offset-3">
+
+			<div class="panel panel-default ">
+				
+				<div class="panel-body">
+
+					<br>
+
+					<h4 class="text-center"><strong>Secure withdraw</strong></h4>
+
+					<h5 class="text-center">By completing the form below you allow us to securely  deposit your remaining funds into your account</h5>
+					<p class="text-center">Please note: We only use your banking details until we have transferred the funds. You will need to enter your details each time you make a withdrawal. </p>
+
+
+
+
+					<div class="form-group">
+						<br>
+						<label><span class="req">* </span>Country</label>
+
+						@Html.TextBoxFor(model => model.Country, new { @class = "form-control input-lg", placeholder = "eg. South Africa" , required="required" })
+
+					</div>
+
+					<div class="form-group">
+						<label><span class="req">* </span>Bank</label>
+						@Html.TextBoxFor(model => model.Bank, new { @class = "form-control input-lg", placeholder = "eg. FNB" , required="required" })
+
+					</div>
+
+					<div class="form-group">
+						<label><span class="req">* </span>Branch Code</label>
+						@Html.TextBoxFor(model => model.BranchCode, new { @class = "form-control input-lg", placeholder = "eg. 250650" , required="required" })
+
+					</div>
+
+					<div class="form-group">
+						<label><span class="req">* </span>Account Number</label>
+						@Html.TextBoxFor(model => model.AccountNumber, new { @class = "form-control input-lg", placeholder = "eg. 4575010000", required="required" })
+
+					</div>
+
+					<div class="form-group">
+						<label><span class="req">* </span>Account Type</label>
+						@Html.TextBoxFor(model => model.AccountType, new { @class = "form-control input-lg", placeholder = "eg. Savings" , required="required"})
+
+					</div>
+
+					<div class="form-group">
+						<label><span class="req">* </span>Account Holder Name</label>
+						@Html.TextBoxFor(model => model.AccountHolderName, new { @class = "form-control input-lg", placeholder = "eg. Your name", required="required" })
+
+					</div>
+					<div class="form-group">
+						<label>Notes</label>
+						@Html.TextAreaFor(model => model.Notes, new { @class = "form-control input-lg", placeholder = "eg. Any special instructions" })
+
+					</div>
+
+					<div class="form-group">
+
+
+						<input type="submit" class="btn btn-lg btn-default btn-block" value="Withdraw Funds">
+						<br>
+
+
+					</div>
+
+
+
+				</div>
+			</div>
+			
+
+				
+			
+
+
+
+
+
+
+		</div>
+	</div>
+
+</div>
+
+
+
+
+
+
+                                                    }

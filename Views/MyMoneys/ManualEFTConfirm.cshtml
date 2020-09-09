@@ -1,0 +1,640 @@
+﻿@using Microsoft.AspNet.Identity
+@model MiidWeb.Models.ManualEFTViewModel
+@{
+    ViewBag.Title = "Mii-Funds";
+
+    var notification = ViewBag.Notification;
+    //MiidWeb.Controllers.UserModel u1 = MiidWeb.Helpers.SessionManager.EndUser;
+
+    string purpose = Model.Purpose;
+    string heading = "";
+    string disabled = "";
+
+    switch (purpose)
+    {
+        case "Ticket Purchase": heading = "Ticket Purchase by EFT"; disabled = "disabled"; break;
+        case "Mii-funds Topup": heading = "Mii-Funds Manual EFT Topup"; break;
+        default: break;
+
+    }
+   Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("Layout");
+}
+
+<style>
+    #note {
+   
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #ff0000;
+    color:#ffffff;
+    text-align: center;
+    line-height: 3;
+    overflow: hidden; 
+    -webkit-box-shadow: 0 0 5px black;
+    -moz-box-shadow:    0 0 5px black;
+    box-shadow:         0 0 5px black;
+}
+</style>
+<!-- One -->
+
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+    <div class="form_wrapper">
+        <!-- starat banner -->
+        @Html.ValidationSummary(true, "", new { @class = "red" })
+
+
+        @Html.HiddenFor(model => model.EndUserID)
+        @Html.HiddenFor(model => model.FirstName)
+        @Html.HiddenFor(model => model.Surname)
+        @Html.HiddenFor(model => model.PaymentDate)
+        @Html.HiddenFor(model => model.TotalAmountInRands)
+        @Html.HiddenFor(model => model.UniquePaymentID)
+        @Html.HiddenFor(model => model.PurchaseSessionID)
+        @Html.HiddenFor(model => model.Purpose)
+
+        @if (purpose == "Ticket Purchase")
+        {
+        <div id="note">
+            Do not press back or exit your browser or your ticket selection will be canceled. 
+          
+        </div>
+            <div class="container bg-grey  bg">
+                <div class="row vertical-offset-40px">
+
+
+
+
+
+                    <!-- start wizard -->
+                    <div class="col-md-6 col-md-offset-3">
+                        <div class="wizard">
+
+                            <div class="wizard-inner">
+                                <div class="connecting-line"></div>
+                                <ul class="nav nav-tabs" role="tablist">
+
+                                    <li role="presentation" class="active">
+                                        <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
+                                            <span class="round-tab">
+                                                1
+
+                                            </span>
+                                        </a>
+
+                                    </li>
+
+                                    <li role="presentation" class="disabled">
+                                        <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
+                                            <span class="round-tab">
+                                                2
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li role="presentation" class="disabled">
+                                        <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
+                                            <span class="round-tab">
+                                                3
+                                            </span>
+                                        </a>
+                                    </li>
+
+                                    <li role="presentation" class="disabled">
+                                        <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
+                                            <span class="round-tab">
+                                                4
+                                            </span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                            <form role="form">
+                                <div class="tab-content">
+                                    <div class="tab-pane active" role="tabpanel" id="step1" style="padding-top:10px;">
+                                        <div class="form-group">
+                                            <h2 class="text-center"><small>STEP 1</small><br>IMPORTANT</h2>
+                                            <h4 class="text-center">During the payment process, ensure that you read all the information carefully and complete all the steps in order to receive your tickets.</h4>
+
+                                                <br>
+                                                <ul>
+                                                    <li style="text-align:left; margin-bottom:5px">In the event that all the steps are not fully completed your tickets<strong><span style="color:#ff0000"> will not</span></strong> be assigned to your account.</li>
+                                                    <li style="text-align:left; margin-bottom:5px">If you do not complete this transaction you will need to repeat the purchase process and use the new refernce number that will be generated.</li>
+                                                    <li style="text-align:left; margin-bottom:5px">Payment will take up to three days to be processed<strong><span style="color:#ff0000"> irrespective of which bank you bank with</span></strong>.</li>
+
+                                                </ul>
+                                            <p class="text-center"></p>
+                                            <p class="text-center">
+                                                 Should you make your payment within 3 days of the event start date we cannot guarantee your tickets will be processed before the event starts. Should you wish to purchase tickets within this 3-day window use our alternative payment methods.
+                                            </p>
+                                        </div>
+
+                                        <div class="form-group text-center">
+                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" onchange="document.getElementById('btn').disabled = !this.checked;">
+
+                                            <label>&nbsp;&nbsp;I have read the above paragraph</label>
+                                        </div>
+
+                                        <div class="form-group">
+
+                                            <button id="btn" type="button" class="scrollToTop btn btn-info  btn-lg next-step btn-block" disabled>Next</button>
+
+
+                                        </div>
+                                        <div class="text-center">
+                                            <img src="~/Content/images/newimages/banking.svg" style="width:60%;" />
+                                        </div>
+                                    </div>
+
+
+                                    <div class="tab-pane" role="tabpanel" id="step2" style="padding-top:10px;">
+                                        <div class="form-group">
+                                            <h2 class="text-center"><small>STEP 3</small><br>Your Reference number</h2>
+                                            <div class="col-md-8 col-sm-8 col-xs-8">
+                                                <input type="text" value="@Html.DisplayFor(model => model.UniquePaymentID)" id="myInput" class="input-lg form-control" />
+                                            </div>
+                                            <div class="col-md-4 col-sm-4 col-xs-4">
+                                                <input type="button" class="btn-block btn-lg btn-primary" onclick="myFunction()" value="COPY" />
+                                            </div>
+                                            <script>
+
+                                            var $myInput = $('#myInput');
+                                            $myInput.val($myInput.val().slice(0, -3));
+                                            </script>
+                                            <script>
+                                            function myFunction() {
+                                                var copyText = document.getElementById("myInput");
+                                                copyText.select();
+                                                document.execCommand("copy");
+                                                alert("Copied the text: " + copyText.value);
+                                            }
+                                            </script>
+
+
+
+                                            <br>
+                                            <div class="">
+                                                <p class="text-center col-md-12 col-sm-12 col-xs-12">
+                                                    <br>
+
+                                                    This is your unique reference number that is only valid for this transaction. Use this exact reference number when making payment. This number will be used to track your payment.
+                                                </p>
+                                            </div>
+
+                                            <div class="form-group text-center col-md-12 col-sm-12 col-xs-12">
+                                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" onchange="document.getElementById('btn3').disabled = !this.checked;">
+
+                                                <label>&nbsp;&nbsp;I have copied the correct reference number above</label>
+                                            </div>
+
+                                            <div class="form-group text-center">
+
+                                                <button id="btn3" type="button" class="scrollToTop btn btn-info  btn-lg next-step btn-block" disabled>Next</button>
+                                                <div class="scrollToTop btn  btn-lg prev-step ">Previous</div>
+
+                                            </div>
+                                            <div class="col-md-12 text-center">
+                                                <img src="~/Content/images/newimages/banking.svg" style="width:60%;" />
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" role="tabpanel" id="step3" style="padding-top:10px;">
+                                        <div class="form-group">
+                                            <h2 class="text-center"><small>STEP 3</small><br>Payment</h2>
+                                            <p class="text-center">
+                                                <br>
+                                                Please log onto your online banking now and use the following details when making payment
+                                            </p>
+
+                                            @{ var totalAmount = 0; }
+
+
+
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-left">Ticket Type:</th>
+                                                        <th>QTY</th>
+                                                        <th class="text-right">Unit Price</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    @foreach (var tc in Model.PurchaseTicketViewModel.TicketClasses.Where(x => x.TicketCount > 0))
+                                                    {
+                                                        <tr>
+                                                            <td class="text-left">@tc.TicketClass.Description : </td>
+                                                            <td>@tc.TicketCount </td>
+                                                            <td class="text-right"> R @tc.TicketClass.Price</td>
+                                                        </tr>
+totalAmount += (int)(tc.TotalCost);
+
+
+                                                    }
+                                                </tbody>
+                                                <tfoot>
+                                                    @if (ViewBag.DiscountAmount > 0)
+                                                    {
+                                                        <tr>
+
+                                                            <td><h5>Less Discount</h5></td>
+                                                            <td></td>
+                                                            <td class="text-right"><h5><strong> - @ViewBag.DiscountAmount.ToString("0.00")</strong></h5></td>
+                                                        </tr>
+                                                    }
+                                                    <tr>
+                                                        <td colspan="3" class="text-right"><h3><strong>Total Amount: R @totalAmount </strong></h3><hr> </td>
+
+
+                                                    </tr>
+                                                </tfoot>
+
+
+                                            </table>
+
+                                            <Table class="table table-striped">
+
+                                                <tr class="text-left"><td>Bank Name:</td><td class="text-right"> FNB</td></tr>
+                                                <tr class="text-left"><td>Acc Name:</td><td class="text-right"> Miid</td></tr>
+                                                <tr class="text-left"><td>Acc Type:</td><td class="text-right"> Cheque Account</td> </tr>
+                                                <tr class="text-left"><td>Acc Number:</td><td class="text-right">6267 0245 200</td></tr>
+                                                <tr class="text-left"><td>Branch Code:</td><td class="text-right"> 250 655</td></tr>
+
+
+
+                                            </Table>
+
+                                            <p class="text-center">
+                                                <br>
+                                                Only purchase tickets from events and event organisers you know and trust.
+                                            </p>
+
+
+
+
+
+                                            <div class="text-left">
+                                                <div class="form-check ">
+                                                    @Html.RadioButtonFor(model => model.ReferenceInSafePlace, true, new { id = "Yes" })
+                                                    <label for="Yes">Yes</label>
+                                                    @Html.RadioButtonFor(model => model.ReferenceInSafePlace, false, new { id = "No" })
+                                                    <label for="No">No</label>
+                                                    <label class="form-check-label" for="defaultCheck1">
+                                                        &nbsp; &nbsp; &nbsp; I have made the transfer
+
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="text-left">
+                                                <div class="form-check">
+                                                    @Html.RadioButtonFor(model => model.TermsAndConditions, true, new { id = "TermsAndConditions1" })
+                                                    <label for="TermsAndConditions1">Yes</label>
+                                                    @Html.RadioButtonFor(model => model.TermsAndConditions, false, new { id = "TermsAndConditions2" })
+                                                    <label for="TermsAndConditions2">No</label>
+                                                    <label class="form-check-label" for="defaultCheck1">
+                                                        &nbsp; &nbsp; &nbsp; I have read the Terms & Conditions
+                                                    </label>
+                                                </div>
+                                                <br>
+                                                <div class="form-group  text-center">
+
+                                                    <input type="submit" id="load-purschase" class="btn btn-primary btn-block btn-lg " value="Complete Reservation" style="background-color:#13a048; border:0;" onclick="var e=this;setTimeout(function(){e.disabled=true;},0);return true;" />
+                                                    <div class="scrollToTop btn  btn-lg prev-step">Previous</div>
+                                                </div>
+                                                <div class="col-md-12 text-center">
+                                                    <img src="~/Content/images/newimages/banking.svg" style="width:60%;" />
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+                            </form>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end wizard-->
+
+
+
+        }
+        else   //MiiFunds Topup Confirmation
+        {
+
+
+
+            <div class="container bg-grey">
+                <div class="row vertical-offset-40px">
+
+                    <div class="col-md-6 col-md-offset-3">
+                        <div class="wizard">
+
+                            <div class="wizard-inner">
+                                <div class="connecting-line"></div>
+                                <ul class="nav nav-tabs" role="tablist">
+
+                                    <li role="presentation" class="active">
+                                        <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
+                                            <span class="round-tab">
+                                                1
+
+                                            </span>
+                                        </a>
+
+                                    </li>
+
+                                    <li role="presentation" class="disabled">
+                                        <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
+                                            <span class="round-tab">
+                                                2
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li role="presentation" class="disabled">
+                                        <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
+                                            <span class="round-tab">
+                                                3
+                                            </span>
+                                        </a>
+                                    </li>
+
+                                    <li role="presentation" class="disabled">
+                                        <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
+                                            <span class="round-tab">
+                                                4
+                                            </span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                            <!--end numbers container-->
+                            <!--start tabbed in  content-->
+                            <form role="form">
+                                <div class="tab-content">
+
+                                    <!--start setp 1-->
+                                    <div class="tab-pane active" role="tabpanel" id="step1" style="padding-top:10px;">
+                                        <div class="form-group">
+                                            <h2 class="text-center"><small>STEP 1</small><br>IMPORTANT</h2>
+                                            <br>
+                                            <p class="text-center">During the payment process, ensure that you read all the information carefully and complete all the steps in order to receive your pre-paid funds.<p>
+                                            <p class="text-center">In the event that all the steps are not fully completed <strong><span style="color:#ff0000">your funds will not</span></strong> be assigned to your account.</p>
+                                            <p class="text-center">
+                                                Payment will take up to three days to be processed irrespective of which bank you bank with. Should you make your <strong><span style="color:#ff0000">payment within 3 days of the event</span></strong> start date we cannot guarantee your funds will be processed before the event starts. Should you wish to top-up within this 3-day window use our alternative payment methods.
+                                            </p>
+                                        </div>
+                                        <div class="form-group text-center">
+                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" onchange="document.getElementById('btn').disabled = !this.checked;">
+                                            <label>&nbsp;&nbsp;I have read the above paragraph</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <button id="btn" type="button" class="scrollToTop btn btn-info  btn-lg next-step btn-block" disabled>Next</button>
+                                        </div>
+                                        <div class="text-center">
+                                            <img src="~/Content/images/newimages/banking.svg" style="width:60%;" />
+                                        </div>
+                                    </div>
+                                    <!--end setp 1-->
+                                    <!--start setp 2-->
+                                    <div class="tab-pane" role="tabpanel" id="step2" style="padding-top:10px;">
+                                        <div class="form-group">
+                                            <h2 class="text-center"><small>STEP 3</small><br>Your Reference number</h2>
+                                            <div class="col-md-8 col-sm-8 col-xs-8">
+                                                <input type="text" value="@Html.DisplayFor(model => model.UniquePaymentID)" id="myInput" class="input-lg form-control" />
+                                            </div>
+                                            <div class="col-md-4 col-sm-4 col-xs-4">
+                                                <input type="button" class="btn-block btn-lg btn-primary" onclick="myFunction()" value="COPY" />
+                                            </div>
+                                            <!--copy ref code script-->
+                                            <script>
+                                            var $myInput = $('#myInput');
+                                            $myInput.val($myInput.val().slice(0, -3));
+                                            </script>
+                                            <script>
+                                            function myFunction() {
+                                                var copyText = document.getElementById("myInput");
+                                                copyText.select();
+                                                document.execCommand("copy");
+                                                alert("Copied the text: " + copyText.value);
+                                            }
+                                            </script>
+                                            <!--End ref code script-->
+                                            <br>
+                                            <div class="">
+                                                <p class="text-center col-md-12 col-sm-12 col-xs-12">
+                                                    <br>
+                                                    This is your unique reference number that is only valid for this top-up. Use this exact reference number when making payment. This number will be used to track your payment.
+                                                </p>
+                                            </div>
+
+                                            <div class="form-group text-center col-md-12 col-sm-12 col-xs-12">
+                                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" onchange="document.getElementById('btn3').disabled = !this.checked;">
+                                                <label>&nbsp;&nbsp;I have copied the correct reference number above</label>
+                                            </div>
+                                            <div class="form-group text-center">
+                                                <button id="btn3" type="button" class="scrollToTop btn btn-info  btn-lg next-step btn-block" disabled>Next</button>
+                                                <div class="scrollToTop btn  btn-lg prev-step ">Previous</div>
+                                            </div>
+                                            <div class="col-md-12 text-center">
+                                                <img src="~/Content/images/newimages/banking.svg" style="width:60%;" />
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <!--end setp 2-->
+                                    <!--start setp 3-->
+                                    <div class="tab-pane" role="tabpanel" id="step3" style="padding-top:10px;">
+                                        <div class="form-group">
+                                            <h2 class="text-center"><small>STEP 3</small><br>Payment</h2>
+                                            <p class="text-center">
+                                                <br>
+                                                Please log onto your online banking now and use the following details when making payment
+                                            </p>
+
+                                            <table class="table table-striped">
+
+                                                <tr class="text-left"><td>Bank Name:</td><td class="text-right"> FNB</td></tr>
+                                                <tr class="text-left"><td>Acc Name:</td><td class="text-right"> Miid</td></tr>
+                                                <tr class="text-left"><td>Acc Type:</td><td class="text-right"> Cheque Account</td> </tr>
+                                                <tr class="text-left"><td>Acc Number:</td><td class="text-right">6267 0245 200</td></tr>
+                                                <tr class="text-left"><td>Branch Code:</td><td class="text-right"> 250 655</td></tr>
+                                                <tr class="text-left"><td>Refernce:</td><td class="text-right"> @Html.DisplayFor(model => model.UniquePaymentID)</td></tr>
+                                                <tr class="text-left"><td>Amount:</td><td class="text-right"> @Html.DisplayFor(model => model.ActualAmount)</td></tr>
+
+                                            </table>
+                                            <div class="text-left">
+                                                <div class="form-check ">
+                                                    @Html.RadioButtonFor(model => model.ReferenceInSafePlace, true, new { id = "Yes" })
+                                                    <label for="Yes">Yes</label>
+                                                    @Html.RadioButtonFor(model => model.ReferenceInSafePlace, false, new { id = "No" })
+                                                    <label for="No">No</label>
+                                                    <label class="form-check-label" for="defaultCheck1">
+                                                        &nbsp; &nbsp; &nbsp; I have made the transfer though my bank
+
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="text-left">
+                                                <div class="form-check">
+                                                    @Html.RadioButtonFor(model => model.TermsAndConditions, true, new { @checked = "checked", id = "TermsAndConditions1" })
+                                                    <label for="TermsAndConditions1">Yes</label>
+                                                    @Html.RadioButtonFor(model => model.TermsAndConditions, false, new { @checked = "checked", id = "TermsAndConditions1" })
+                                                    <label for="TermsAndConditions2">No</label>
+                                                    <label class="form-check-label" for="defaultCheck1">
+                                                        &nbsp; &nbsp; &nbsp; I have read the Terms & Conditions
+                                                    </label>
+                                                </div>
+                                                <br>
+                                                <div class="form-group  text-center">
+
+                                                    <input type="submit" id="load" class="btn btn-primary btn-block btn-lg " value="Complete Reservation" style="background-color:#13a048; border:0;" onclick="var e=this;setTimeout(function(){e.disabled=true;},0);return true;" />
+                                                    <div class="scrollToTop btn  btn-lg prev-step">Previous</div>
+                                                </div>
+                                                <div class="col-md-12 text-center">
+                                                    <img src="~/Content/images/newimages/banking.svg" style="width:60%;" />
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+                                    </div>
+                                    <!--end setp 3-->
+
+
+
+                                </div>
+                            </form>
+
+
+
+                            <!--end main container-->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <script>
+            $(document).ready(function () {
+                //Check to see if the window is top if not then display button
+                //Click event to scroll to top
+                $('.scrollToTop').click(function () {
+                    $('html, body').animate({ scrollTop: 0 }, 800);
+                    return false;
+                });
+
+            });
+            </script>
+            <script>
+
+            $('.btn').on('click', function () {
+                var $this = $(this);
+                $this.button('loading');
+
+            });
+
+            </script>
+
+
+
+
+
+            <script>
+            var copyTextareaBtn = document.querySelector('.js-textareacopybtn');
+
+            copyTextareaBtn.addEventListener('click', function (event) {
+                var copyTextarea = document.querySelector('.js-copytextarea');
+                copyTextarea.select();
+
+                try {
+                    var successful = document.execCommand('copy');
+                    var msg = successful ? 'successful' : 'unsuccessful';
+                    console.log('Copying text command was ' + msg);
+                } catch (err) {
+                    console.log('Oops, unable to copy');
+                }
+            });
+            </script>
+            <script>
+            var copyTextareaBtn = document.querySelector('.js-textareacopybtn1');
+
+            copyTextareaBtn.addEventListener('click', function (event) {
+                var copyTextarea = document.querySelector('.js-copytextarea1');
+                copyTextarea.select();
+
+                try {
+                    var successful = document.execCommand('copy');
+                    var msg = successful ? 'successful' : 'unsuccessful';
+                    console.log('Copying text command was ' + msg);
+                } catch (err) {
+                    console.log('Oops, unable to copy');
+                }
+            });
+            </script>
+            <script>
+            var copyTextareaBtn = document.querySelector('.js-textareacopybtn2');
+
+            copyTextareaBtn.addEventListener('click', function (event) {
+                var copyTextarea = document.querySelector('.js-copytextarea2');
+                copyTextarea.select();
+
+                try {
+                    var successful = document.execCommand('copy');
+                    var msg = successful ? 'successful' : 'unsuccessful';
+                    console.log('Copying text command was ' + msg);
+                } catch (err) {
+                    console.log('Oops, unable to copy');
+                }
+            });
+            </script>
+
+            <!--*********************************-->
+            <!-- One -->
+
+
+            @Html.HiddenFor(model => model.FirstName)
+            @Html.HiddenFor(model => model.Surname)
+            @Html.HiddenFor(model => model.PaymentDate)
+
+
+        }
+
+    </div>
+															}
+
+
+<!--disabled button once clicked-->
+<script type="text/javascript">
+
+
+function ButtonClicked()
+{
+   document.getElementById("formsubmitbutton").style.display = "none"; // to undisplay
+   document.getElementById("buttonreplacement").style.display = ""; // to display
+   return true;
+}
+var FirstLoading = true;
+function RestoreSubmitButton()
+{
+   if( FirstLoading )
+   {
+      FirstLoading = false;
+      return;
+   }
+   document.getElementById("formsubmitbutton").style.display = ""; // to display
+   document.getElementById("buttonreplacement").style.display = "none"; // to undisplay
+}
+
+</script>

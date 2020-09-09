@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Body>
+    <ReportItems>
+      <Rectangle Name="Rectangle1">
+        <ReportItems>
+          <Image Name="Logo">
+            <Source>Embedded</Source>
+            <Value>miid_email_logo</Value>
+            <Sizing>FitProportional</Sizing>
+            <Top>0.60325cm</Top>
+            <Height>1.73813cm</Height>
+            <Width>7.82354cm</Width>
+            <ToolTip>Logo</ToolTip>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Image>
+        </ReportItems>
+        <KeepTogether>true</KeepTogether>
+        <Top>0.78528cm</Top>
+        <Left>0.52599cm</Left>
+        <Height>2.5cm</Height>
+        <Width>18.94354cm</Width>
+        <Style>
+          <Border>
+            <Color>Gray</Color>
+            <Style>None</Style>
+            <Width>2.5pt</Width>
+          </Border>
+          <BottomBorder>
+            <Style>Solid</Style>
+          </BottomBorder>
+        </Style>
+      </Rectangle>
+      <Textbox Name="Textbox19">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Hi </Value>
+                <Style>
+                  <FontSize>11pt</FontSize>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!Firstname.Value</Value>
+                <Style>
+                  <FontSize>11pt</FontSize>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>.</Value>
+                <Style>
+                  <FontSize>11pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontSize>11pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Below is your digital ticket for </Value>
+                <Style>
+                  <FontSize>11pt</FontSize>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!EventName.Value</Value>
+                <Style>
+                  <FontSize>11pt</FontSize>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>. Please print this ticket or have it ready on your phone to show upon entry to the event.</Value>
+                <Style>
+                  <FontSize>11pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox19</rd:DefaultName>
+        <Top>4.09787cm</Top>
+        <Left>0.81703cm</Left>
+        <Height>2.21396cm</Height>
+        <Width>18.29562cm</Width>
+        <ZIndex>1</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Rectangle Name="Rectangle2">
+        <ReportItems>
+          <Textbox Name="Textbox20">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value xml:space="preserve"> </Value>
+                    <Style>
+                      <FontSize>12pt</FontSize>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>=Fields!EventName.Value</Value>
+                    <Style>
+                      <FontSize>12pt</FontSize>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value xml:space="preserve">                   </Value>
+                    <Style>
+                      <FontSize>12pt</FontSize>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>=Fields!StreetAddress.Value</Value>
+                    <Style>
+                      <FontSize>12pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value xml:space="preserve"> </Value>
+                    <Style>
+                      <FontSize>12pt</FontSize>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>=Fields!StartDateTime.Value</Value>
+                    <Style>
+                      <FontSize>12pt</FontSize>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value xml:space="preserve">              </Value>
+                    <Style>
+                      <FontSize>12pt</FontSize>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>=Fields!Suburb.Value</Value>
+                    <Style>
+                      <FontSize>12pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value xml:space="preserve"> </Value>
+                    <Style>
+                      <FontSize>12pt</FontSize>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>=Fields!UserName.Value</Value>
+                    <Style>
+                      <FontSize>12pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value />
+                    <Style>
+                      <FontSize>12pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value xml:space="preserve"> </Value>
+                    <Style>
+                      <FontSize>14pt</FontSize>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>=Fields!TicketId.Value</Value>
+                    <Style>
+                      <FontFamily>Free 3 of 9</FontFamily>
+                      <FontSize>14pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox20</rd:DefaultName>
+            <Top>0.37042cm</Top>
+            <Left>0.34396cm</Left>
+            <Height>3.08708cm</Height>
+            <Width>12.10438cm</Width>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BackgroundColor>White</BackgroundColor>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Image Name="Eventlogo">
+            <Source>External</Source>
+            <Value>=First(Fields!ImageURL.Value, "TicketReportDataSet")</Value>
+            <Sizing>FitProportional</Sizing>
+            <Top>0.37042cm</Top>
+            <Left>12.88521cm</Left>
+            <Height>3.08708cm</Height>
+            <Width>4.93958cm</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Image>
+        </ReportItems>
+        <KeepTogether>true</KeepTogether>
+        <Top>6.90245cm</Top>
+        <Left>0.81703cm</Left>
+        <Height>3.84938cm</Height>
+        <Width>18.29562cm</Width>
+        <ZIndex>2</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <BackgroundColor>LightGrey</BackgroundColor>
+        </Style>
+      </Rectangle>
+    </ReportItems>
+    <Height>4.78125in</Height>
+    <Style />
+  </Body>
+  <Width>8.85827in</Width>
+  <Page>
+    <PageHeight>29.7cm</PageHeight>
+    <PageWidth>21cm</PageWidth>
+    <LeftMargin>2cm</LeftMargin>
+    <RightMargin>2cm</RightMargin>
+    <TopMargin>2cm</TopMargin>
+    <BottomMargin>2cm</BottomMargin>
+    <ColumnSpacing>0.13cm</ColumnSpacing>
+    <Style />
+  </Page>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="MiidWebRepositories">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>e4d0b245-5bf0-47b1-b409-1b1e82bdd3a1</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="TicketReportDataSet">
+      <Query>
+        <DataSourceName>MiidWebRepositories</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Firstname">
+          <DataField>Firstname</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="EventName">
+          <DataField>EventName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="StartDateTime">
+          <DataField>StartDateTime</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="StreetAddress">
+          <DataField>StreetAddress</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Suburb">
+          <DataField>Suburb</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="UserName">
+          <DataField>UserName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TicketId">
+          <DataField>TicketId</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ImageURL">
+          <DataField>ImageURL</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Image">
+          <DataField>Image</DataField>
+          <rd:TypeName>System.Byte[]</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>MiidWeb.Repositories</rd:DataSetName>
+        <rd:TableName>ReportRepository</rd:TableName>
+        <rd:ObjectDataSourceSelectMethod>GetTicketReportData</rd:ObjectDataSourceSelectMethod>
+        <rd:ObjectDataSourceSelectMethodSignature>System.Collections.Generic.List`1[MiidWeb.Models.TicketReportModel] GetTicketReportData(System.String)</rd:ObjectDataSourceSelectMethodSignature>
+        <rd:ObjectDataSourceType>MiidWeb.Repositories.ReportRepository, MiidWeb, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+      </rd:DataSetInfo>
+    </DataSet>
+  </DataSets>
+  <EmbeddedImages>
+    <EmbeddedImage Name="miid_email_logo">
+      <MIMEType>image/png</MIMEType>
+      <ImageData>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</ImageData>
+    </EmbeddedImage>
+  </EmbeddedImages>
+  <rd:ReportUnitType>Cm</rd:ReportUnitType>
+  <rd:ReportID>537b5ce5-1ca5-4da3-917e-72090c44f908</rd:ReportID>
+</Report>

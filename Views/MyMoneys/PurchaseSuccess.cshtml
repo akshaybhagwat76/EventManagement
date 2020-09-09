@@ -1,0 +1,100 @@
+﻿@model MiidWeb.Models.PurchaseTicketViewModel
+@{
+    ViewBag.Title = "Purchase Success";
+    decimal OrderTotal = 0.00M;
+    }
+
+
+
+
+
+                @using (Html.BeginForm("FinaliseMiifundsTicketPayment", "MyMoneys", FormMethod.Post, new { id = "form" }))
+                {
+                    <div class="form_container">
+
+
+
+
+                        <div class="purchase_heading_container">
+                            <div class="purchase_page_icon">
+                                <img src="../../content/images/purchase_yes.png" />
+                            </div>
+                            Ticket Details
+
+                        </div>
+                        
+
+                        <div class="purchase_container_form">
+
+
+                            <div class="left_ticket_container">
+
+                               
+                                <img src="~/Uploads/@Model.Event.EventImages.First().ImageURL" alt="" width="200" /> 
+                                <div class="sub_heading_bold_ticket">Enjoy the Event! </div>
+
+                                @Html.Hidden("hdnSessionID", (object)ViewBag.id)
+
+
+                                @foreach (var item in Model.TicketClasses)
+                                {
+
+                                    <div class="ticket_text_contaianer">
+
+                                        <div class="sub_heading_ticket">Ticket:</div>
+                                        <div class="sub_heading_bold_ticket">@Model.Event.EventName </div>
+                                        <div class="sub_heading_bold_ticket">@Html.DisplayFor(modelItem => item.TicketClass.Description) </div>
+                                    </div>
+                                    <div class="ticket_text_contaianer">
+                                        <div class="sub_heading_ticket">Quantity:</div>
+                                        <div class="sub_heading_bold_ticket">@Html.DisplayFor(modelItem => item.TicketCount) </div>
+
+                                    </div>
+
+
+                                    OrderTotal += item.TotalCost;
+                                }
+
+
+                                <div class="ticket_text_contaianer">
+                                    <div class="sub_heading_ticket">Total:</div>
+                                    <div class="sub_heading_bold_ticket">R @OrderTotal.ToString("0.00")  </div>
+
+                                </div>
+
+                                <div class="form_heading">Buyer Information</div>
+                                <div class="sub_heading_ticket">@Model.BuyerFirstName</div>
+                                <div class="sub_heading_ticket">@Model.BuyerLastName</div>
+                                <div class="sub_heading_ticket">@Model.BuyerEmail</div>
+
+
+
+
+                                <div class="tender_ticket_small_two">
+                                    We have sent a notification email. You will be able to view your ticket in the main menu.
+                                    If you have an active Mii-Band your ticket will automatically be linked to your band.
+                                </div>
+
+                             
+
+                            </div>
+
+
+
+
+                        </div>
+
+
+
+                    </div>
+
+                }
+            </div>
+
+
+
+        </div>
+
+
+    </div>
+    

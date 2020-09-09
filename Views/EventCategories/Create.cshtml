@@ -1,0 +1,92 @@
+﻿@model MiidWeb.EventCategory
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    //Layout = null;
+}
+
+    <style>
+        <!--
+
+        .glyphicon {
+            cursor: pointer;
+        }
+
+        input,
+        select {
+            width: 100%;
+        }
+        -->
+    </style>
+
+    <div class="col-md-9">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="content-box-header">
+                    <div class="panel-title">Event Categories</div>
+
+                    <div class="panel-options">
+                        <div class="col-md-12 form-group">
+
+                            @Html.ActionLink("Create New", "Create", null, htmlAttributes: new { @class = "btn btn-primary" })
+                        </div>
+                    </div>
+                </div>
+                <div class="content-box-large box-with-header">
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        @Html.ValidationSummary(true, "", new { @class = "red" })
+                       
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Code, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Code, "", new { @class = "red" })
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+
+                                    <div class="col-md-6">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "red" })
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" value="Update" class="btn btn-primary">Submit</button>
+                        </div>
+                    }
+
+                    <div>
+                        @Html.ActionLink("Back to List", "Index")
+                    </div>
+
+                    @section Scripts {
+                        @Scripts.Render("~/bundles/jqueryval")
+                    }
+
+                </div>
+                                </div>
+                            </div>
+</div>

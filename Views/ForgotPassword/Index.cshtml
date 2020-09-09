@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPretty.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+<div id="page-wrapper">
+
+    <!-- /.col-lg-12 -->
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Reset Password
+                </div>
+                <div class="panel-body">
+                    <!--start of input container -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <label>Enter your email address and click Reset Button</label>
+                            <div class="form-group">
+                                
+                                @*<input class="form-control">*@
+                                @Html.TextBox("UserName", null, new { htmlAttributes = new { @placeholder = "Email", @class = "form-control" } })
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <input type="submit" class="btn btn-primary btn-lg btn-block" value="Reset" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}

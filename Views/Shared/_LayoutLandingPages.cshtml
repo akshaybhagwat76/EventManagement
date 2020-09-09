@@ -1,0 +1,429 @@
+﻿<!DOCTYPE html>
+
+@using Microsoft.AspNet.Identity
+@using MiidWeb.Helpers
+
+@RenderSection("scripts", required: false)
+<html lang="en" xml:lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+	<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+
+
+	<!--facebook meta-->
+	<meta property="og:url" content="https://www.miid.co.za" />
+
+	<meta property="og:image" content="https://www.miid.co.za/Uploads/genricticket.jpg" />
+
+
+
+
+
+	<!-- Google Tag Manager -->
+	<script>
+		(function (w, d, s, l, i) {
+			w[l] = w[l] || []; w[l].push({
+				'gtm.start':
+					new Date().getTime(), event: 'gtm.js'
+			}); var f = d.getElementsByTagName(s)[0],
+				j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+					'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+		})(window, document, 'script', 'dataLayer', 'GTM-TKCDRPP');</script>
+	<!-- End Google Tag Manager -->
+
+
+
+
+	@Styles.Render("https://use.fontawesome.com/releases/v5.6.3/css/all.css")
+
+	@Styles.Render("~/content/EO_landing_pages/css/slick.css")
+	@Styles.Render("~/content/EO_landing_pages/css/slick-theme.css")
+	@Styles.Render("~/content/EO_landing_pages/css/style.css")
+	@Styles.Render("~/content/EO_landing_pages/css/bootstrap.css")
+	@Styles.Render("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
+
+
+
+
+
+
+	<!-- Custom CSS -->
+	<!-- splash screen loaded
+	<script type="text/javascript">
+		jQuery(document).ready(function () {
+			$("#loader").delay(800).fadeOut(400, function () {
+				$("#your-page").fadeIn(400);
+			});
+		});
+	</script> -->
+
+
+
+
+
+
+	<link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
+
+
+
+</head>
+
+<body>
+	<!-- Google Tag Manager (noscript) -->
+	<noscript>
+		<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TKCDRPP"
+				height="0" width="0" style="display:none;visibility:hidden"></iframe>
+	</noscript>
+	<!-- End Google Tag Manager (noscript) -->
+	<!--
+	 <div id="loader">
+		 <div>
+			 <img src="~/Content/images2018/logo.svg" class="logo-splash" alt="Mi-iD online ticket logo"></a>
+			 <div>
+				 <button class="btn btn-default btn-lg" style="border:0px; background-color: transparent;"><i class="fa fa-circle-o-notch fa-spin" style="color:#383838"></i><span style="color:#383838">&nbsp;Loading</span></button>
+			 </div>
+
+		 </div>
+	 </div>
+		-->
+	<span style="display:none" itemscope itemtype="http://schema.org/Organization">
+		<link itemprop="url" href="https://www.miid.co.za/">
+		<a itemprop="sameAs" href="https://www.facebook.com/miidevents/">FB</a>
+		<a itemprop="sameAs" href="https://twitter.com/MiiDEvents">Twitter</a>
+	</span>
+
+
+
+	<div id="wrapper">
+
+		<nav class="navbar navbar-expand-lg navbar-light">
+			<a class="navbar-brand" href="#">
+				<img src="~/Content/images2018/logo.svg" class="logo" alt="Mi-id Logo" style="" />
+			</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+
+                        <a href="~/Home/IndexEO" class="nav-link">Home</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            All Services
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+
+                            @Html.ActionLink("Online Ticketing", "TicketingExplanation", "Home", new { @class = "dropdown-item" })
+
+                            <div class="dropdown-divider"></div>
+
+                            @Html.ActionLink("Venue Ticketing", "BoxOffice", "Home", new { @class = "dropdown-item" })
+
+                            <div class="dropdown-divider"></div>
+
+                            @Html.ActionLink("Cashless Events", "MiiFundsExplanation", "Home", new { @class = "dropdown-item" })
+
+                            <div class="dropdown-divider"></div>
+
+                            @Html.ActionLink("Branded Sollutions", "BrandedExperience", "Home", new { @class = "dropdown-item" })
+
+                            <div class="dropdown-divider"></div>
+                        </div>
+                    </li>
+                   
+                    <li class="nav-item">
+                        @Html.ActionLink("Go to main site", "Index", "Home", new { @class = "nav-link" })
+
+                    </li>
+                    <li class="nav-item">
+                        <a href="~/Eventorganisers/Register2" class="nav-link">Register</a>
+
+                    </li>
+
+                </ul>
+
+			</div>
+		</nav>
+
+
+
+
+
+
+
+
+
+
+		@RenderBody()
+
+		<!--googleoff: index-->
+		<section id="product-footer">
+			<div class="container">
+				<div class="row row3">
+					<div class="col-md-2">
+						<div class="imgcenter">
+							<img src="~/content/EO_landing_pages/images/vectors/marketing.svg" class="img-fluid" alt="event marketing">
+						</div>
+					</div>
+					<div class="col-md-5">
+						<div class="foot">
+							<h3>
+								Want to grow your event and sell more tickets?<br>
+								<span class="span1">
+									Download our Ebook and receive all the
+									ingedients to help make your event a success
+								</span>
+							</h3>
+							<div class="para5">
+								<p>Your will also receive:</p>
+								<p>Marketing tips to help grow your social media presense</p>
+								<p>Updates on products that will help you sell more tickets</p>
+								<p>Exlusive promotional offers</p>
+							</div>
+
+						</div>
+					</div>
+					<div class="col-md-5">
+						<div class="form-div">
+							<!-- Begin Mailchimp Signup Form -->
+							<div id="mc_embed_signup">
+								<form action="https://Miid.us11.list-manage.com/subscribe/post?u=ed8a48e7c98e079fec3fc9d69&amp;id=bd84f5a2c4" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+									<div id="mc_embed_signup_scroll">
+										<div class="mc-field-group">
+											<p>Who should we send the Ebook to</p>
+											<div class="form-group">
+												<input type="text" value="" name="FNAME" class="form-control input-lg" id="mce-FNAME" placeholder="First Name">
+											</div>
+										</div>
+										<div class="mc-field-group">
+
+											<div class="form-group">
+												<input type="email" value="" name="EMAIL" class="required email form-control input-lg" id="mce-EMAIL" placeholder="Email">
+											</div>
+										</div>
+
+
+
+
+
+										<div id="mce-responses" class="clear">
+											<div class="response" id="mce-error-response" style="display:none"></div>
+											<div class="response" id="mce-success-response" style="display:none"></div>
+										</div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+										<div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_ed8a48e7c98e079fec3fc9d69_bd84f5a2c4" tabindex="-1" value=""></div>
+										<div class="form-group">
+											<div class="clear">
+												<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="btn btn-default btn-block">
+											</div>
+										</div>
+										<p class="para6">* We hate spam too. Yor email will only be used by Mi-id online ticketing, we do not share infomraiton with any 3rd parties</p>
+									</div>
+								</form>
+							</div>
+
+							<!--End mc_embed_signup-->
+							<form></form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+
+		<footer>
+			<div class="footer" id="footer">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-3  col-md-3 col-sm-12 col-xs-12">
+							<h3> General </h3>
+							<ul>
+								<li>@Html.ActionLink("Help", "Help", "Home")</li>
+								<li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+								<li> <a href="~/Home/TermsConditions">  Privacy Policy </a> </li>
+								<li>@Html.ActionLink("T&C's", "FAQ", "Home")</li>
+
+								<li> <a href="~/Home/RefundsPolicy"> Refund Policy </a> </li>
+
+
+							</ul>
+						</div>
+						<div class="col-lg-3  col-md-3 col-sm-12 col-xs-12">
+							<h3>Event Organisers</h3>
+							<ul>
+
+								@if (Request.IsAuthenticated)
+								{
+									<li><a class="" href="~/EventOrganisers/Create">Create Event</a> </li>
+								}
+								<li> <a href="~/Home/IndexEO">Event Organisers! </a> </li>
+								<li> <a href="~/Home/HowItWorks"> How it works </a> </li>
+								<li> <a href="~/Home/ProductSummary">Services &amp; Products </a> </li>
+								<li> <a href="~/Home/HelpEventOrganiser">Event Organiser's FAQ's </a> </li>
+								<li> <a href="~/Home/RegisterDoc"> Terms Of Service </a> </li>
+							</ul>
+						</div>
+						<div class="col-lg-3  col-md-3 col-sm-12 col-xs-12">
+							<h3>Products &amp; Services</h3>
+							<ul>
+
+								<li> <a href="~/Home/TicketingExplanation">Online Ticketing </a> </li>
+								<li> <a href="~/Home/BoxOffice">Box Office </a> </li>
+								<li> <a href="~/Home/NFCTickets">NFC Ticketing</a> </li>
+								<li> <a href="~/Home/MiiFundsExplanation">Cashless </a> </li>
+								<li> <a href="~/Home/WhiteLabel">White Label</a> </li>
+
+
+							</ul>
+
+
+						</div>
+
+
+
+						<div class="col-lg-3  col-md-3 col-sm-12 col-xs-12">
+
+							<h3>Follow Us</h3>
+
+							<ul class="social">
+								<li> <a href="https://www.facebook.com/miidevents/"> <i class="fab fa-facebook-f">   </i> </a> </li>
+
+							</ul>
+							<br><br><br>
+						</div>
+
+					</div>
+					<div class="row">
+						<div class="col-lg-3  col-md-3 col-sm-6 col-xs-12">
+
+							<ul>
+
+								<li><small>Download the Cashless App</small> </li>
+								<li><a href="https://play.google.com/store/apps/details?id=com.dsouchon.MiiDCashless"><img src="~/Content/images2018/google.svg" class="icon_custom_medium" / alt="Download cashless app"></a> </li>
+
+							</ul>
+						</div>
+
+						<div class="col-lg-3  col-md-3 col-sm-6 col-xs-12">
+							<ul>
+								<li><small>Download the Ticketing App</small> </li>
+
+								<li>   <a href="https://play.google.com/store/apps/details?id=com.dsouchon.TicketingMiiD"><img src="~/Content/images2018/google.svg" class="icon_custom_medium" alt="Download ticketing app" /></a></li>
+
+							</ul>
+
+						</div>
+
+
+					</div>
+					<!--/.row-->
+				</div>
+				<!--/.container-->
+			</div>
+			<!--/.footer-->
+			<!--/.footer-bottom-->
+		</footer>
+
+
+
+
+
+
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+	@Scripts.Render("~/content/EO_landing_pages/js/jquery-3.3.1.min.js")
+	<script src=""></script>
+	@Scripts.Render("https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js")
+	@Scripts.Render("~/content/EO_landing_pages/js/bootstrap.min.js")
+	@Scripts.Render("~/content/EO_landing_pages/js/slick.js")
+
+
+	<script>
+		$('.slidermfk').slick({
+			dots: true,
+			infinite: false,
+			speed: 300,
+			slidesToShow: 4,
+			slidesToScroll: 4,
+			responsive: [
+
+				{
+					breakpoint: 1200,
+					settings: {
+						slidesToShow: 3,
+						slidesToScroll: 1,
+
+					}
+				},
+
+				{
+					breakpoint: 1024,
+					settings: {
+						slidesToShow: 2,
+						slidesToScroll: 1,
+					}
+				},
+
+				{
+					breakpoint: 600,
+					settings: {
+						slidesToShow: 1,
+						slidesToScroll: 1
+					}
+				},
+
+				{
+					breakpoint: 480,
+					settings: {
+						slidesToShow: 1,
+						slidesToScroll: 1
+					}
+				}
+
+
+
+				// You can unslick at a given breakpoint now by adding:
+				// settings: "unslick"
+				// instead of a settings object
+			]
+		});
+	</script>
+
+
+
+</body>
+</html>

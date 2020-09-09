@@ -1,0 +1,110 @@
+
+
+.gold{
+    color: #FFBF00;
+}
+
+
+
+.product{
+   margin-bottom: 20px;
+}
+
+.product>img{
+    width:100%;
+  
+}
+
+.product-rating{
+    font-size: 20px;
+    margin-bottom: 25px;
+}
+
+.product-title{ font-weight: bold;
+    font-size: 20px;
+}
+
+.product-desc{
+    font-size: 12px;
+}
+
+.product-price{
+    font-size: 22px;
+}
+
+.product-details{
+    font-size: 11px;
+    
+  
+    margin: 0px;
+  
+}
+
+.product-stock{
+    color: #74DF00;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.product-info{
+        margin-top: 20px;
+
+}
+
+/*********************************************
+                    VIEW
+*********************************************/
+
+.content-wrapper {
+    max-width: 1140px;
+    background: #fff;
+    margin: 0 auto;
+    
+    margin-bottom: 25px;
+    border: 0px;
+    border-radius: 0px;
+}
+
+
+
+.view-wrapper {
+    float: right;
+    max-width: 70%;
+    margin-top: 25px;
+}
+
+.container {
+    padding-left: 0px;
+    padding-right: 0px;
+    max-width: 100%;
+    padding-top:30px;
+}
+   .product-text {
+        margin-bottom: 7px;
+         margin-top: 7px;
+    }
+
+/*********************************************
+                ITEM 
+*********************************************/
+@media (max-width:997px)  {
+    .product-text {
+        margin-bottom: 7px;
+         margin-top: 7px;
+    }
+
+
+.product-desc  {  margin-bottom: 7px;
+         margin-top: 7px;
+    }
+
+}
+
+
+.padding {padding:20px;}
+
+
+
+.fullscreen {width: 100%;}
+
+.row-container {margin-top:15px; margin-bottom:15px;}

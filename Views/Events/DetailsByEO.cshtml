@@ -1,0 +1,164 @@
+﻿@model MiidWeb.Models.EventViewModel
+@{
+
+    string start = ((DateTime)(Model.Event.StartDateTime)).ToString("yyyy-MM-dd");
+    string end = ((DateTime)(Model.Event.EndDateTime)).ToString("yyyy-MM-dd");
+    string startTime = ((DateTime)(Model.Event.StartDateTime)).ToString("HH:mm");
+    string endTime = ((DateTime)(Model.Event.EndDateTime)).ToString("HH:mm");
+    string ticketcut = ((DateTime)(Model.Event.TicketCutoffDate)).ToString("yyyy-MM-dd");
+    string ticketcutTime = ((DateTime)(Model.Event.TicketCutoffDate)).ToString("HH:mm");
+    int active = MiidWeb.Helpers.StatusHelper.StatusID("TicketClass", "Active");
+    ViewBag.Title = "DetailsByEO";
+    Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("LayoutEventOrganiser");
+}
+
+<div id="page-content-wrapper-top  ">
+    <div class="row">
+        <div class="col-md-12 center">
+            <img src="~/Uploads/@Model.EventBannerURL" class="img-responsive fullscreen" />
+        </div>
+    </div>
+</div>
+
+<div id="page-content-wrapper">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="content-wrapper">
+                <div class="item-container">
+                    <div class="container padding">
+                        <div>
+
+                            <div class="col-md-12">
+                                <h4>@Model.Event.EventName</h4>
+                                <hr>
+                                @Model.Event.ShortDescription
+                                <br><br>
+
+
+                            </div>
+
+                            <div class="col-md-6 ">
+                                <p>
+                                    Sales close in: @Model.DaysRemaining.ToString("0") days @Model.HoursRemaining.ToString("0") hours @Model.MinutesRemaining.ToString("0") minutes </h4>
+
+                                    <div class="product-desc">Start @start  @startTime</div>
+                                    <div class="product-desc">End Date @end  @endTime</div>
+                                    <div class="product-desc">
+                                        Entry Age:
+                                        @{ string ageLimit = "NONE"; if (Model.Event.AgeLimit != null) { ageLimit = Model.Event.AgeLimit.ToString(); } }
+                                        @ageLimit
+                                    </div>
+                                    <div class="row-container">
+
+                                        <div class="product-desc">
+                                            @Html.DisplayFor(model => model.Event.StreetAddress)
+                                        </div>
+                                        <div class="product-desc">
+                                            @Html.DisplayFor(model => model.Event.Suburb)
+                                        </div>
+                                        <div class="product-desc">
+                                            @Html.DisplayFor(model => model.Event.City)
+                                        </div>
+
+                                        <div class="product-desc">
+                                            @Model.Event.GPSCoordinates
+                                        </div>
+
+                                        <div class="product-desc">
+                                            <a href="@Model.Event.GoogleMapsLink">Click for Google Map</a>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="col-md-6 " style="background-color:#efefef">
+                                <div class="product-desc">
+                                    <div class="row-container">
+
+                                        <div class="col-md-12 product-text" style="margin-left:-15px; margin-right:-15px;">
+                                            <h4>Tickets:</h4>
+                                        </div>
+                                        @if (Model.TicketClasses.Count > 0)
+                                        {
+                                            foreach (var tc in Model.TicketClasses.Where(x => x.TicketClass.StatusID == @active))
+                                            {
+
+                                                <div class="product-desc">
+                                                    <div class="col-md-12  product-text" style="background-color:#f9f9f9; padding:10px; border-left:5px solid #b0b0b0;">
+                                                        <div style="display:inline-block">
+                                                            @tc.TicketClass.Code (@tc.TicketClass.Description)
+                                                        </div>
+                                                        <div style="display:inline-block">
+                                                            R @tc.TicketClass.Price
+                                                        </div>
+                                                        <div style="display:inline-block">
+                                                            @(DateTime.Parse(tc.TicketClass.StartDate.ToString()).ToString("dd - MM -yyyy"))
+                                                        </div>
+                                                        <div style="display:inline-block">
+                                                            @(DateTime.Parse(tc.TicketClass.EndDate.ToString()).ToString("dd - MM -yyyy"))
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            }
+                                        }
+                                        <div style="margin-left:-15px; margin-right:-15px;">
+                                            <div class="product-desc">
+                                                <div class="col-md-12 product-text">
+
+                                                    <a href="~/Events/IndexForEO" class="btn btn-primary btn-block">Back to Manage Events</a>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="content-wrapper">
+            <div class="item-container">
+                <div class="container padding">
+
+                    <div>
+                        <div class="col-md-12">
+                            <div class="col-md-12">
+                                <h3>Extra information</h3>
+                                <hr>
+                                <p style="white-space: pre-line"> @Model.Event.LongDescription </p>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-12">
+                                Get your tickets now before they sell out
+                                <hr>
+                            </div>
+
+                            <div class="col-md-4">
+                                <a href="~/Events/IndexForEO" class="btn btn-primary btn-block">Back to Manage Events</a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+
+

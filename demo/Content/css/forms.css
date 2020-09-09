@@ -1,0 +1,316 @@
+/* ---------------------------------general buttons   -----------------------*/ 
+/* ---------------------------------general buttons   -----------------------*/ 
+/* ---------------------------------general buttons   -----------------------*/ 
+
+
+.orangebutton  { color:#fff; background: #f6ac1d; 
+                font-weight:normal; 
+                 font-size: 20px; 
+                 padding: 10px 65px;  
+                 display: inline-block; t
+                 text-transform: uppercase; 
+                 margin:20px;}
+                 
+.orangebutton:hover  { color:#f6ac1d; background: #fff; 
+                font-weight:normal; 
+                 font-size: 20px; 
+                 padding: 10px 65px;  
+                 display: inline-block; t
+                 text-transform: uppercase; 
+                 margin:20px;}
+                 
+ .bluebutton  { color:#fff; background: #007ec6; 
+                font-weight:normal; 
+                 font-size: 20px; 
+                 padding: 10px 65px;  
+                 display: inline-block; t
+                 text-transform: uppercase; 
+                 margin:20px;}     
+                 
+                 
+  .bluebutton:hover  { color:#fff; background: #f6ac1d; 
+                font-weight:normal; 
+                 font-size: 20px; 
+                 padding: 10px 65px;  
+                 display: inline-block; t
+                 text-transform: uppercase; 
+                 margin:20px;}
+                 
+                 
+                 
+
+
+
+
+              
+              
+
+
+
+
+/* -------------------------start landing page genreal buttons--------------------- */ 
+/* -------------------------start landing page genreal buttons--------------------- */ 
+/* -------------------------start landing page genreal buttons--------------------- */ 
+/* -------------------------start landing page genreal buttons--------------------- */ 
+
+
+
+ 
+
+ .login_user_name {  margin-right:10px;
+                    border-radius: 4px;
+                            -webkit-border-radius:4px; 
+                            -moz-border-radius:4px; 
+                           width: 140px; height:20px;
+                           box-shadow: 1px 1px 4px  #ccc inset;}
+ 
+ .login_password { margin-right:5px;
+  border-radius: 4px;
+                            -webkit-border-radius:4px; 
+                            -moz-border-radius:4px; 
+                           width: 140px; height:20px;
+                           box-shadow: 1px 1px 4px  #ccc inset;}
+ 
+ 
+ .login_submit { margin-right:0px; 
+                background: #f6ac1d; 
+                border: 0px; 
+                border-radius: 4px;
+                            -webkit-border-radius:4px; 
+                            -moz-border-radius:4px; 
+                color:#fff;
+                padding:3px; }
+                
+                 
+ .registerbutton  { color:#fff; background: #007ec6; 
+                font-weight:normal; 
+                 font-size: 20px; 
+                 padding: 10px 65px;  
+                 display: inline-block; t
+                 text-transform: uppercase; 
+                 margin-top:20px;
+                     border-radius: 4px;
+                            -webkit-border-radius:5px; 
+                            -moz-border-radius:5px; 
+                          } 
+                 
+                 
+                 
+ .registerbutton:hover  { color:#fff; background: #f6ac1d; 
+                font-weight:normal; 
+                 font-size: 20px; 
+                 padding: 10px 65px;  
+                 display: inline-block; t
+                 text-transform: uppercase; 
+                 margin-top:20px;
+                    border-radius: 4px;
+                            -webkit-border-radius:5px; 
+                            -moz-border-radius:5px; 
+                          } 
+                 
+                 
+                 
+ 
+                 
+/* end landing page genreal buttons */ 
+ 
+ 
+ 
+ .login_form { margin-top:20px;}
+ 
+ 
+                 
+/* -----------------------------Start seller registration buttons-------------------- */ 
+/* -----------------------------Start seller registration buttons-------------------- */ 
+/* -----------------------------Start seller registration buttons-------------------- */ 
+/* -----------------------------Start seller registration buttons-------------------- */ 
+        
+
+                      
+.input_oraniser_sex     {  margin:15px;  }
+
+.break {clear:left;}
+
+.input_oraniser_birthday     { border: 0px; padding-left:6px;
+                             margin-top: 5px;  margin-bottom: 5px;; 
+                          
+                            -moz-border-radius:5px; 
+                           width: 117px; height:30px;
+                            	border: 0 !important;  /*Removes border*/
+							-webkit-appearance: none;  /*Removes default chrome and safari style*/
+							-moz-appearance: none; /* Removes Default Firefox style*/
+							background:url("../images/drop_menu_big.png")no-repeat  right;
+							text-indent: 0.01px; /* Removes default arrow from firefox*/
+							text-overflow: "";  /*Removes default arrow from firefox*/ /*My custom style for fonts*/
+							color: #000;
+							border-radius: 5px;
+							padding: 5px;
+							box-shadow: inset 0 0 5px rgba(000,000,000, 0.2);}
+                         
+                           
+
+ .input_registration_drop         {border: 0px; padding-left:6px;
+                             margin-top: 10px;  margin-bottom: 5px;; 
+                            border-radius: 4px;
+                           width: 364px; 
+                           height:30px;
+                           	border: 0 !important;  /*Removes border*/
+							-webkit-appearance: none;  /*Removes default chrome and safari style*/
+							-moz-appearance: none; /* Removes Default Firefox style*/
+							background:url("../images/drop_menu_big.png")no-repeat  right;
+							text-indent: 0.01px; /* Removes default arrow from firefox*/
+							text-overflow: "";  /*Removes default arrow from firefox*/ /*My custom style for fonts*/
+							color: #000;
+							border-radius: 5px;
+							padding: 5px;
+							box-shadow: inset 0 0 5px rgba(000,000,000, 0.2);}
+                             
+                                                  
+
+
+.input_registration         {border: 0px; padding-left:6px;
+                             margin-top: 10px;  margin-bottom: 5px;; 
+                            border-radius: 4px;
+                            -webkit-border-radius:5px; 
+                            -moz-border-radius:5px; 
+                           width: 108px; height:30px;
+                           box-shadow: 1px 1px 4px  #ccc inset;
+                           background-color: #fff;  }  
+                           
+                           
+                           
+                           
+                           
+                           
+                           
+                           
+                           
+                             
+                           
+.input_registration_add         { margin-left: 5px;  margin-right: 5px;  margin-top: 5px; margin-top: 10px;
+                           width: 300px; height:20px; }           
+
+
+
+                      
+.input_oraniser_province    { margin-left:0 px;margin-top:10px; margin-bottom: 10px;
+                          width: 300px; height: 30px;
+                          display: block;
+                          font-size: 12px;
+                          color: #6e6e6e }
+
+                      
+
+ .check_box {clear:left;}                       
+
+                        
+
+
+
+                      
+                      
+.input_company_list     { margin-left:0 px;margin-top:10px; margin-bottom: 10px;
+                          width: 365px; height: 25px;
+                          display: block;
+                          font-size: 12px;
+                          color: #6e6e6e }
+                          
+
+.input_organiser_submit   {
+                      margin: 20px;
+                      float: left; 
+                      background-color: #f6ac1d;
+                      border:none;
+                      color: #fff;
+                      padding-top: 5px;
+                      padding-bottom: 5px;
+                      padding-left: 45px;
+                      padding-right: 45px;
+                      font-size:18px;
+                      text-transform: uppercase;
+                      margin-left: 7px;
+                         border-radius: 4px;
+                            -webkit-border-radius:5px; 
+                            -moz-border-radius:5px; 
+                      }    
+                      
+.input_organiser_submit:hover   {
+                      margin: 20px;
+                      float: left; 
+                      background-color: #007ec6;
+                      border:none;
+                      color: #fff;
+                      padding-top: 5px;
+                      padding-bottom: 5px;
+                      padding-left: 45px;
+                      padding-right: 45px;
+                      font-size:18px;
+                      text-transform: uppercase;
+                      margin-left: 7px;
+                      }  
+
+
+
+
+/* -------------------------start landing page genreal buttons--------------------- */ 
+/* -------------------------start landing page genreal buttons--------------------- */ 
+/* -------------------------start landing page genreal buttons--------------------- */ 
+/* -------------------------start landing page genreal buttons--------------------- */ 
+
+.notification_container { display: inline-block;   position: relative;
+  top: 5%;
+  transform: translateY(35%);
+  margin-left: 10px; }
+
+ 
+ .notification_button { ; 
+                background: #007ec6; 
+                border: 0px; 
+                display:inline-block;
+                margin-left: -12px;
+                
+               
+                
+                }
+                
+.message_button { margin-bottom: 0px; 
+                background: #007ec6; 
+                border: 0px; 
+                display:inline-block;
+                
+                
+                }
+                
+/* ------------------------- events profile page--------------------- */ 
+                
+                
+.buy_ticket  { color:#fff; background: #007ec6; 
+                font-weight:normal; 
+                 font-size: 20px; 
+                 padding: 10px 65px;  
+                 display: inline-block; t
+                 text-transform: uppercase; 
+                 margin-top:20px;
+                 border: 0;
+                 margin:10px;
+                    border-radius: 4px;
+                            -webkit-border-radius:5px; 
+                            -moz-border-radius:5px; } 
+                            
+.buy_ticket:hover  { color:#fff; background: #f6ac1d; 
+                font-weight:normal; 
+                 font-size: 20px; 
+                 padding: 10px 65px;  
+                 display: inline-block; t
+                 text-transform: uppercase; 
+                 margin-top:20px;
+                 border: 0;
+                 margin:10px;
+                    border-radius: 4px;
+                            -webkit-border-radius:5px; 
+                            -moz-border-radius:5px; } 
+                
+
+                
+
+ 

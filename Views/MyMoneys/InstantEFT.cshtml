@@ -1,0 +1,166 @@
+﻿@model MiidWeb.Models.InstantEFTViewModel
+@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Mii-Funds";
+
+    var notification = ViewBag.Notification;
+  //  MiidWeb.Controllers.UserModel u1 = MiidWeb.Helpers.SessionManager.EndUser;
+
+
+    string purpose = Model.Purpose;
+
+    string disabled = "";
+
+    switch (purpose)
+    {
+        case "Ticket Purchase": disabled = "disabled"; break;
+        case "Mii-funds Topup": break;
+        default: break;
+
+    }
+
+Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("Layout");
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "red" })
+
+    @Html.HiddenFor(model => model.PurchaseSessionID)
+    @Html.HiddenFor(model => model.Purpose)
+
+    @Html.HiddenFor(model => model.EndUserID)
+    @Html.HiddenFor(model => model.BuyerFirstName)
+    @Html.HiddenFor(model => model.BuyerLastName)
+    @Html.HiddenFor(model => model.BuyerEmail)
+    @Html.HiddenFor(model => model.ItemName)
+    @Html.HiddenFor(model => model.CustomInteger)
+    @Html.HiddenFor(model => model.CustomString)
+    @Html.HiddenFor(model => model.UniquePaymentID)
+
+    @Html.HiddenFor(model => model.PurchaseTicketViewModel.DiscountAmount)
+    if (purpose == "Ticket Purchase")
+    {
+
+
+<div class="container bg-grey">
+	<div class="row vertical-offset-40px">
+
+
+		<div class="col-md-4 col-md-offset-4">
+
+			<div class="panel panel-default ">
+
+				<div class="panel-body text-center">
+
+					<h4>Processing</h4>
+
+					<p>Request</p>
+
+					<div style="display:none">
+						@Html.HiddenFor(model => model.TotalAmountInRands)
+						@Html.TextBoxFor(model => model.TotalAmountInRands, new { @class = "form-control input-lg", placeholder = "Amount eg. 120", disabled = @disabled })
+						@Html.ValidationMessageFor(model => model.TotalAmountInRands, "", new { @class = "red" })
+					</div>
+					<div>
+						<div><button class="btn btn-default btn-lg" style="border:0px; background-color: transparent;"><i class="fa fa-circle-o-notch fa-spin" style="color:#000000"></i><span style="color:#000000">&nbsp;Loading</span></button></div>
+					</div>
+					<input type="submit" class="btn btn-lg btn-info btn-block" id="modal" value="Confirm" />
+					<br>
+					<img src="~/Content/images/newimages/banking.svg" />
+					<script>
+						jQuery(function () {
+							jQuery('#modal').click();
+						});
+					</script>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+ <!--<div class="container bg-grey">
+	<div class="row vertical-offset-40px">
+
+
+		<div class="col-md-4 col-md-offset-4">
+
+			<div class="panel panel-default ">
+
+				<div class="panel-body text-center">
+
+					<ul class="actions">
+						<li><input type="submit" class="btn btn-lg btn-info btn-block" value="Confirm" /></li>
+					</ul>
+					<ul class="actions">
+						<li>
+							@Html.ActionLink("Back", "PurchaseTickets", "Events", new { EventID = @Model.PurchaseTicketViewModel.Event.ID }, new { @class = "cancel_button" })
+						</li>
+					</ul>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div> -->
+				}
+				else //Miifunds topup
+				{
+
+
+
+
+<div class="container bg-grey">
+	<div class="row vertical-offset-40px">
+
+
+		<div class="col-md-4 col-md-offset-4">
+
+			<div class="panel panel-default ">
+
+				<div class="panel-body text-center">
+
+					<h3> Card or Instant EFT Miifunds Topup</h3>
+					<p>
+						Please enter amount you would like to top up in Rand value. Once you have done so, you will be directed to the
+						Payment Confirmation page.
+					</p>
+
+					<p><strong>Enter Amount</strong></p>
+					<div class="form-group">
+
+						@Html.TextBoxFor(model => model.TotalAmountInRands, new { @class = "form-control input-lg", placeholder = "Amount eg. 120" })
+						@Html.ValidationMessageFor(model => model.TotalAmountInRands, "", new { @class = "red" })
+
+					</div>
+					
+
+					<div class="form-group">
+						<input type="submit" class="btn btn-lg btn-info btn-block" value="Confirm" />
+					</div>
+					<img src="~/Content/images/newimages/payfast-card.svg" style="width:80%" />
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+					}
+
+					}
+

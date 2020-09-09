@@ -1,0 +1,108 @@
+﻿
+
+
+
+
+@using Microsoft.AspNet.Identity
+@model MiidWeb.Models.ManualEFTViewModel
+@{
+	ViewBag.Title = "Mii-Funds";
+
+	var notification = ViewBag.Notification;
+	//MiidWeb.Controllers.UserModel u1 = MiidWeb.Helpers.SessionManager.EndUser;
+
+	Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("Layout");
+}
+
+@if (Model.Purpose == "Ticket Purchase")
+{
+    <!-- One -->
+	<div class="container bg-grey">
+		<div class="row vertical-offset-40px">
+			<div class="col-md-6 col-md-offset-3">
+
+				<div class="panel panel-default ">
+
+					<div class="panel-body text-center">
+
+						<h3>Ticket Reservation successful</h3>
+						<h1 class="fa fa-check  fa-3x" style="color:#10ae4b"></h1>
+						<p>
+							
+
+							
+							
+							<div class="alert alert-warning hidden" >
+								
+								<h3>Important!</h3>
+								Remember to use your unique reference number @Html.DisplayFor(model => model.UniquePaymentID)
+							</div>
+							Ticket purchase will be confirmed within 3 working days. You will receive an email confirming the transaction.
+							This time might vary according to which bank you bank with.
+
+							<br><br>
+							<a href="~/Events/MiiEvents" class="btn btn-default btn-block btn-lg">Continue</a>
+						</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+							}
+							else
+							{
+
+							<div class="container bg-grey">
+								<div class="row vertical-offset-40px">
+									<div class="col-md-6 col-md-offset-3">
+
+										<div class="panel panel-default ">
+
+											<div class="panel-body text-center">
+
+												<h3>Bank Transfer Request Received</h3>
+												<h1 class="fa fa-check  fa-3x" style="color:#10ae4b"></h1>
+						<p>
+							Thank you. Once we have received it the funds will reflect in your account.
+
+						</p>
+						<p>
+							Remember to use: <br>unique reference number: @Html.DisplayFor(model => model.UniquePaymentID) @Html.DisplayFor(model => model.ActualAmount)
+							<br>
+							Bank: FNB
+							Branch code: 250655
+							Acc No: 62670245200
+							Ref No: WALDONCDB45F
+
+							<br> so we know which account to transfer your funds into
+						</p>
+						<a href="~/MyMoneys/IndexByUserID" class="btn btn-default btn-block btn-lg">Back Pre-Paid Funds Page</a>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

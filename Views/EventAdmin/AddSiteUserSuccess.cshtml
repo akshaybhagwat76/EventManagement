@@ -1,0 +1,87 @@
+﻿@model MiidWeb.Models.EndUserViewModel
+@{
+	Layout = "~/Views/Shared/_LayoutBackend.cshtml";
+}
+
+
+<div class="col-md-9">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="content-box-header">
+				<div class="panel-title">Transaction Complete</div>
+
+				<div class="panel-options">
+
+				</div>
+			</div>
+			<div class="content-box-large box-with-header">
+				<div class="panel panel-success">
+					<div class="panel-heading"><strong>User has been added succesfully.</strong></div>
+					<div class="panel-body">
+						Profile registred on the Mi-id website
+
+						<div class="table-wrapper">
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>Name</th>
+										<th>Surname</th>
+										<th>ID Number</th>
+										<th>Band Status</th>
+										<th></th>
+										<th></th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>@Model.EndUser.Firstname</td>
+										<td>@Model.EndUser.Surname</td>
+										<td>@Model.EndUser.IDNumber</td>
+										<td>@Model.TagStatus</td>
+
+										<td>
+											@if (Model.TagStatus == "Active")
+											{
+												@Html.ActionLink("Cancel Band", "EditMiiBand", new { id = @Model.EndUser.ID }, null)
+											}
+										</td>
+										<td>
+											@if (Model.TagStatus != "Active")
+											{
+												@Html.ActionLink("Activate Band", "AddMiiBand", new { id = @Model.EndUser.ID }, null)
+											}
+										</td>
+
+										<td>@Html.ActionLink("Transactions", "Transactions", new { id = @Model.EndUser.ID }, null)</td>
+
+
+									</tr>
+
+
+
+
+
+								</tbody>
+
+							</table>
+						</div>
+
+					</div>
+				</div>
+
+
+			</div>
+
+		</div>
+	</div>
+</div>
+
+
+@Html.ActionLink("Back to Dashboard", "Index")
+
+
+
+
+
+

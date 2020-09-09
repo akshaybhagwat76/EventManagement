@@ -1,0 +1,333 @@
+﻿@model MiidWeb.Models.EventListViewModel
+@{
+    ViewBag.Title = "MiiEvents";
+    var showevents = Model.Events
+            .Where(company => company.LoggedInUserTickets.Any(user => user.Status != "Reserved"))
+            .ToList();
+    Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("Layout");
+}
+
+<script src="~/Scripts/qrcode-display/qrcode.min.js"></script>
+
+
+
+<div class="container">
+    <div class="row">
+    @if (showevents.Count > 0)
+
+    {
+        <div class="col-md-12">
+            <br>
+            <h1>@GlobalVariables.MyEventsHeading</h1>
+
+            <p>
+                @GlobalVariables.MyEventsParaTwo
+                <hr>
+            </p>
+
+        </div>
+    }
+
+    else
+    {
+        <div class="col-md-12">
+            <br>
+            <h1>@GlobalVariables.MyEventsHeading</h1>
+            <h4>@GlobalVariables.MyEventsParaOne</h4>
+            <hr>
+
+
+        </div>
+    }
+
+  </div>
+
+</div>
+
+<div class="container">
+
+
+
+    @foreach (var item in Model.Events)
+    {<!--tickets -->
+
+
+
+        <!-- @if (item.EventLogoURL != null)
+        {
+            <img src="~/Uploads/@item.EventLogoURL" />
+        }
+        else
+        {
+            <img src="https://www.miid.co.za/Uploads/square-place-holder.jpg" />
+        }-->
+
+
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    @item.Event.EventName
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Special title treatment</h5>
+
+                    Event Organiers: @Html.DisplayFor(modelItem => item.EventOrganiser.CompanyName)<br>
+                    Start Date: @{DateTime start = (DateTime)item.Event.StartDateTime;}<br>
+                    @start.ToString("dd MMM yyyy")<br>
+                    Start Time: @start.ToString("HH:mm")<br>
+                    <a href="@Url.Action("PurchaseTickets", "Events", new { EventID = item.Event.ID , @class= "" })" class="btn btn-primary">View Event</a>
+                </div>
+            </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            @foreach (var ticket in item.LoggedInUserTickets.Where(x => x.Status == "Purchased"))
+            {<!--open download ticket-->
+                <div class="col-md-3">
+                    <div class="card">
+
+                        <div class="card-body">
+
+                            <h5 class="card-title">@item.Event.EventName</h5>
+
+                            <div id="@ticket.Ticket.TicketNumber"></div>
+
+                            <script type="text/javascript">
+
+
+                        var qrcode = new QRCode(document.getElementById("@ticket.Ticket.TicketNumber"), {
+                            text: "Tic" + "@ticket.Ticket.TicketNumber",
+                            width: 128,
+                            height: 128,
+                            colorDark: "#000000",
+                            colorLight: "#ffffff",
+                            correctLevel: QRCode.CorrectLevel.H
+                        });
+                            </script>
+                            <p class="card-text">
+                                Ticket <strong>#@ticket.Ticket.TicketNumber </strong><br>
+                                Event: @ticket.TicketClass.Description<br>
+                                Valid From: @ticket.TicketClass.StartDate
+                                Valid To: @ticket.TicketClass.EndDate
+                            </p>
+                            @{ string myHref = String.Format("../EndUsers/DownloadMyTicket/{0}", ticket.Ticket.ID); }
+                            <a href="@myHref" class="btn btn-primary"> @GlobalVariables.ButtonDownload</a>
+                            <a class="btn" href="@Url.Action("PurchaseTickets", "Events", new { EventID = item.Event.ID , @class= "" })">View Event </a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            }
+            @foreach (var ticket in item.LoggedInUserTickets.Where(x => x.Status == "Reserved"))
+            {
+
+
+                <div class="card" style="width: 18rem;">
+
+                    <div class="card-body">
+
+                        <h5 class="card-title">@item.Event.EventName</h5>
+                        <div style="text-align:center;margin:auto">
+                            <div id="qrcode"></div>
+                        </div>
+                        <script type="text/javascript">
+
+
+                        var qrcode = new QRCode(document.getElementById("qrcode"), {
+                            text: "Tic" + "@ticket.Ticket.TicketNumber",
+                            width: 128,
+                            height: 128,
+                            colorDark: "#000000",
+                            colorLight: "#ffffff",
+                            correctLevel: QRCode.CorrectLevel.H
+                        });
+                        </script>
+                        <p class="card-text">
+                            Ticket <strong>#@ticket.Ticket.TicketNumber </strong><br>
+                            Event: @ticket.TicketClass.Description<br>
+                            Date: @ticket.TicketClass.StartDate -  @ticket.TicketClass.EndDate
+                        </p>
+                        @{ string myHref = String.Format("../EndUsers/DownloadMyTicket/{0}", ticket.Ticket.ID); }
+                        <a href="@myHref" class="btn btn-primary"> @GlobalVariables.ButtonDownload</a>
+                        <a class="btn" href="@Url.Action("PurchaseTickets", "Events", new { EventID = item.Event.ID , @class= "" })">View Event </a>
+                    </div>
+                </div>
+
+
+
+                <!--close download ticket-->
+
+            }
+
+
+            @foreach (var ticket in item.LoggedInUserTickets.Where(x => x.Status == "Refund Requested"))
+            {<!--open download ticket-->
+                <div class="card" style="width: 18rem;">
+
+                    <div class="card-body">
+
+                        <h5 class="card-title">@item.Event.EventName</h5>
+                        <div style="text-align:center;margin:auto">
+                            <div id="qrcode"></div>
+                        </div>
+                        <script type="text/javascript">
+
+
+                        var qrcode = new QRCode(document.getElementById("qrcode"), {
+                            text: "Tic" + "@ticket.Ticket.TicketNumber",
+                            width: 128,
+                            height: 128,
+                            colorDark: "#000000",
+                            colorLight: "#ffffff",
+                            correctLevel: QRCode.CorrectLevel.H
+                        });
+                        </script>
+                        <p class="card-text">
+                            Ticket <strong>#@ticket.Ticket.TicketNumber </strong><br>
+                            Event: @ticket.TicketClass.Description<br>
+                            Date: @ticket.TicketClass.StartDate -  @ticket.TicketClass.EndDate
+                        </p>
+                        @{ string myHref = String.Format("../EndUsers/DownloadMyTicket/{0}", ticket.Ticket.ID); }
+                        <a href="@myHref" class="btn btn-primary"> @GlobalVariables.ButtonDownload</a>
+                        <a class="btn" href="@Url.Action("PurchaseTickets", "Events", new { EventID = item.Event.ID , @class= "" })">View Event </a>
+                    </div>
+                </div>
+
+                <!--close download ticket-->
+
+
+            }
+
+            @foreach (var ticket in item.LoggedInUserTickets.Where(x => x.Status == "Refund Paid Out"))
+            {
+
+                <div class="card" style="width: 18rem;">
+
+                    <div class="card-body">
+
+                        <h5 class="card-title">@item.Event.EventName</h5>
+                        <div style="text-align:center;margin:auto">
+                            <div id="qrcode"></div>
+                        </div>
+                        <script type="text/javascript">
+
+
+                        var qrcode = new QRCode(document.getElementById("qrcode"), {
+                            text: "Tic" + "@ticket.Ticket.TicketNumber",
+                            width: 128,
+                            height: 128,
+                            colorDark: "#000000",
+                            colorLight: "#ffffff",
+                            correctLevel: QRCode.CorrectLevel.H
+                        });
+                        </script>
+                        <p class="card-text">
+                            Ticket <strong>#@ticket.Ticket.TicketNumber </strong><br>
+                            Event: @ticket.TicketClass.Description<br>
+                            Date: @ticket.TicketClass.StartDate -  @ticket.TicketClass.EndDate
+                        </p>
+                        @{ string myHref = String.Format("../EndUsers/DownloadMyTicket/{0}", ticket.Ticket.ID); }
+                        <a href="@myHref" class="btn btn-primary"> @GlobalVariables.ButtonDownload</a>
+                        <a class="btn" href="@Url.Action("PurchaseTickets", "Events", new { EventID = item.Event.ID , @class= "" })">View Event </a>
+                    </div>
+                </div>
+
+
+
+                <!--close download ticket-->
+
+            }
+
+        </div>
+
+
+
+        <!--tickets -->
+        }
+    </div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+       
+        <div id="accordion">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            @GlobalVariables.MyEventsHelpHeadingOne
+                        </button>
+                    </h5>
+                </div>
+
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        @GlobalVariables.MyEventsHelpOne
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            @GlobalVariables.MyEventsHelpHeadingTwo
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                        @GlobalVariables.MyEventsHelpTwo
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            @GlobalVariables.MyEventsHelpHeadingThree
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                    <div class="card-body">
+                        @GlobalVariables.MyEventsHelpThree
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingFour">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            I Bought my friend a ticket. Where is it?
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                    <div class="card-body">
+                        If you bought your friend a ticket an email will be sent to your freind with either a link to register
+                        and download their  ticket or the ticket PDF if they are a registered user. A email with all the tickets
+                        of you purchase will also be emailed to you.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+
+<script>
+    $(document).ready(function () {
+        $('[id^=detail-]').hide();
+        $('.toggle').click(function () {
+            $input = $(this);
+            $target = $('#' + $input.attr('data-toggle'));
+            $target.slideToggle();
+        });
+    });
+</script>

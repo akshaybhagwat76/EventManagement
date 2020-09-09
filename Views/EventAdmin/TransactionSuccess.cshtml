@@ -1,0 +1,100 @@
+﻿@model MiidWeb.Models.EndUserViewModel
+@{
+		Layout = "~/Views/Shared/_LayoutBackEnd.cshtml";
+}
+
+
+<div class="col-md-9">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="content-box-header">
+				<div class="panel-title">Transaction Complete</div>
+
+				<div class="panel-options">
+
+				</div>
+			</div>
+			<div class="content-box-large box-with-header">
+
+				@if (ViewBag.IsCreditTransaction)
+				{
+					<div class="panel panel-success">
+						<div class="panel-heading"><strong>Funds have been added succesfully.</strong></div>
+						<div class="panel-body">
+							Users funds have been added to their account.
+
+						</div>
+					</div>
+				}
+
+				else
+				{
+					<div class="panel panel-danger">
+						<div class="panel-heading"><strong>Funds have been removed succesfully.</strong></div>
+						<div class="panel-body">
+							Users funds have been removed from their account.
+
+						</div>
+					</div>
+				}
+
+				<div class="table-wrapper">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Surname</th>
+								<th>Transaction Amount</th>
+								<th>Current Balance</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>@Model.EndUser.Firstname</td>
+								<td>@Model.EndUser.Surname</td>
+								<td>@ViewBag.TransactionAmount</td>
+								<td>@Model.AvailableBalance</td>
+
+
+							</tr>
+
+
+
+
+
+						</tbody>
+
+					</table>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+
+							@Html.ActionLink("Back to Dashboard", "Index", null, new { @class = "btn btn-primary" })
+
+						</div>
+						<div class="form-group">
+
+							<p>@Html.ActionLink("Add more funds", "Transactions", "EventAdmin", new { id = Model.EndUser.ID }, new { @class = "btn btn-primary" })</p>
+
+						</div>
+
+
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+	</div>
+
+
+
+
+
+
+
+
+

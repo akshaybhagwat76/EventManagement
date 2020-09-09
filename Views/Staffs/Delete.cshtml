@@ -1,0 +1,152 @@
+﻿@model MiidWeb.Staff
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Staff</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AccessLevelID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccessLevelID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IDNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOfBirth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateOfBirth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StreetAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StreetAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Suburb)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Suburb)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PostalCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PostalCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cell)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cell)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tell)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tell)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NextKinName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NextKinName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NextKinTelephone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NextKinTelephone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NextKinEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NextKinEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StaffType.Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StaffType.Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status.Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status.Code)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

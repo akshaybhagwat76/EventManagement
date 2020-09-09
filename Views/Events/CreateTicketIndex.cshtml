@@ -1,0 +1,86 @@
+﻿@model MiidWeb.Models.EventViewModel
+@{
+    ViewBag.Title = "EditByEOCentral";
+    Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("LayoutEventOrganiser");
+}
+
+<!-- One -->
+
+
+
+
+
+
+
+        <!-- //market-->
+
+        <div class="row">
+            <div class="panel-body">
+                <!--agileinfo-grap-->
+                <div class="col-md-6 w3ls-graph">
+
+                    <div class="agileinfo-grap">
+                        <div class="agileits-box">
+                           
+
+                            <header class="agileits-box-header clearfix">
+                                <h3><i class="fas fa-ticket-alt"></i></h3>
+                                <h3>Create a single ticket</h3>
+                                <hr>
+                                <div class="ro mobile-20-top-bottom">
+                                    <div class="col-md-12 col-sm-12  col-xs-12">
+                                        <p>If your event is over a short period of time or you will only have a few ticket types.<br><br></p>
+                                    </div>
+
+
+                                    <div class="col-md-12 col-sm-12  col-xs-12 mobile-20-top-bottom">
+                                        @Html.ActionLink("Create a ticket", "CreateForEvent", "TicketClasses", new { @eventID = Model.Event.ID }, new { @class = "btn btn-primary btn-block btn-lg" })
+
+                                    </div>
+                                </div>
+                            </header>
+                            <hr>
+
+                        </div>
+                    </div>
+
+
+                </div>
+                <!--//agileinfo-grap-->
+                <!--agileinfo-grap-->
+                <div class="col-md-6 w3ls-graph">
+
+                    <div class="agileinfo-grap">
+                        <div class="agileits-box">
+                         
+
+                            <header class="agileits-box-header clearfix">
+                                <div class="col-md-12 col-sm-12  col-xs-12 mobile-20-top-bottom ">
+                                    <h3><i class="fas fa-clone"></i></h3>
+                                    <h3>Create multiple tickets</h3>
+                                    <hr>
+                                    <p>Create multiple tickets of the same type for different days. Perfect for bulk ticket generation.<br><br></p>
+                                </div>
+
+                                
+                                <div class="col-md-12 col-sm-12  col-xs-12 mobile-20-top-bottom">
+                                    @Html.ActionLink("Create tickets", "CreateMultiForEvent", "TicketClasses", new { @eventID = Model.Event.ID }, new { @class = "btn btn-primary btn-block btn-lg" })
+
+                                </div>
+                            </header>
+                            <hr>
+
+                        </div>
+                    </div>
+
+
+                </div>
+                <!--//agileinfo-grap-->
+
+
+            </div>
+        </div>
+        
+
+
+      

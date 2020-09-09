@@ -1,0 +1,82 @@
+﻿@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Mii-Funds";
+
+    var notification = ViewBag.Notification;
+    //MiidWeb.Controllers.UserModel u1 = MiidWeb.Helpers.SessionManager.EndUser;
+
+    //var u1 = MiidWeb.Repositories.EndUserRepository.GetUser(User.Identity.GetUserName(), true);
+
+}
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Pre-paid Funds</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                The funds avaiable on your MiiD account represent the amount that you can spend at events where the Mi-id Cashless Payments Service is being offered. Use this menu to top-up MiiFunds or request a withdrawal of your remaining funds.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Close  Modal -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <img class="card-img-top" src="..." alt="Card image cap">
+                <div class="card-body">
+                    <h1 class="card-title">R @ViewBag.MyBalance.ToString("0.00")</h1>
+                    <p class="card-text">
+                        available funds
+                    </p>
+
+                    <a href="~/MyMoneys/TopupFundsMenu" class="btn btn-raised btn-primary btn-block">Top up Funds</a>
+
+                    <a href="~/MyMoneys/TransferFunds" class="btn btn-raised btn-primary btn-block ">Transfer Funds</a>
+
+                    @Html.ActionLink("Transactions", "ViewDetailedBalance", "MyMoneys", new { id = @ViewBag.LoggedInUserID }, new { @class = "btn btn-raised btn-primary btn-block" })
+
+                    <a href="~/MyMoneys/RequestWithdrawal" class="btn btn-raised btn-primary btn-block">Withdraw Funds</a>
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card">
+                        <img class="card-img-top" src="..." alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Add a child account</h5>
+                            <p class="card-text">Lorem Ipsum</p>
+                            <a href="~/EndUsers/RegisterChildAccount" class="btn btn-primary btn-block">Add</a>
+                        </div>
+                    </div>
+                </div>
+                @Html.Partial("MyChildren", (object)ViewBag.LoggedInUserID)
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

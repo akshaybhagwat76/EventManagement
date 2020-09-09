@@ -1,0 +1,263 @@
+﻿@using Microsoft.AspNet.Identity
+@using MiidWeb.Helpers
+@model MiidWeb.Models.ContactViewModel
+@{
+				/**/
+
+				ViewBag.Title = "Contact";
+
+				bool IAmEventOrganiser = false;
+				if (Request.IsAuthenticated)
+				{
+					IAmEventOrganiser = MiidWeb.Repositories.EndUserRepository.AmIAnEventOrganiser(User.Identity.GetUserName());
+				}
+				<style>
+					/* footer social icons */
+					ul.social-network {
+						list-style: none;
+						display: inline;
+						margin-left: 0 !important;
+						padding: 0;
+					}
+
+						ul.social-network li {
+							display: inline;
+							margin: 0 5px;
+						}
+
+
+					/* footer social icons */
+					.social-network a.icoRss {
+						background-color: #F56505;
+					}
+
+					.social-network a.icoFacebook {
+						background-color: #3B5998;
+					}
+
+					.social-network a.icoTwitter {
+						background-color: #15974a;
+					}
+
+					.social-network a.icoGoogle {
+						background-color: #BD3518;
+					}
+
+					.social-network a.icoVimeo {
+						background-color: #0590B8;
+					}
+
+					.social-network a.icoLinkedin {
+						background-color: #007bb7;
+					}
+
+						.social-network a.icoRss i, .social-network a.icoFacebook i, .social-network a.icoTwitter i,
+						.social-network a.icoGoogle i, .social-network a.icoVimeo i, .social-network a.icoLinkedin i {
+							color: #fff;
+						}
+
+					a.socialIcon:hover, .socialHoverClass {
+						color: #44BCDD;
+					}
+
+					.social-circle li a {
+						display: inline-block;
+						position: relative;
+						margin: 0 auto 0 auto;
+						-moz-border-radius: 50%;
+						-webkit-border-radius: 50%;
+						border-radius: 50%;
+						text-align: center;
+						width: 50px;
+						height: 50px;
+						font-size: 20px;
+					}
+
+					.social-circle li i {
+						margin: 0;
+						line-height: 50px;
+						text-align: center;
+					}
+
+					.social-circle li a:hover i, .triggeredHover {
+						-moz-transform: rotate(360deg);
+						-webkit-transform: rotate(360deg);
+						-ms--transform: rotate(360deg);
+						transform: rotate(360deg);
+						-webkit-transition: all 0.2s;
+						-moz-transition: all 0.2s;
+						-o-transition: all 0.2s;
+						-ms-transition: all 0.2s;
+						transition: all 0.2s;
+					}
+				</style>
+				<meta name="description" content="Contact us to find out more about online ticketing and cahsless services or to assist with your account." />
+
+				<meta property="og:image" content="https://www.miid.co.za/Uploads/genric.png" />
+				<title> Contact Mi-id Online Ticketing and Cashless services </title>
+				<meta name="description" content="Let us know your feedback. Contact us here.">
+				<div>
+
+					@if (IAmEventOrganiser)
+					{
+						Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("LayoutEventOrganiser");
+					}
+					else
+					{
+						Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("Layout");
+					}
+
+
+
+
+
+
+
+
+
+					@using (Html.BeginForm("SendContactUsEmail", "Home", FormMethod.Post))
+					{
+						@Html.Hidden("returnUrl", this.Request.RawUrl)
+
+
+
+
+
+
+
+
+						<div class="container">
+							<div class="row">
+								<div class="col-md-7 col-md-offset-1">
+									<br>
+									<br>
+									<h1>Drop us a mail</h1>
+									We love to hear from you, whether it be compliments, complaints or queries. Let us know so we can help.
+									<br>
+									<br>
+
+									@if (TempData["contactSuccess"] != null)
+									{
+										if (TempData["contactSuccess"].ToString() == "1")
+										{
+											<h3 style="color:#10ae4b;">Message sent successfully.</h3>
+										}
+
+										else if (TempData["contactSuccess"].ToString() == "2")
+										{
+											<h3 style="color:#be1c1d;">Error sending message, please try again later.</h3>
+										}
+									}
+								</div>
+								<div class="col-md-7 col-md-offset-1">
+									<div class="well well-sm">
+										<form>
+											<div class="row">
+												<div class="col-md-5">
+													<div class="form-group">
+														<label for="name">
+															Name
+														</label>
+
+														@Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control input-lg", @placeholder = "Name" } })
+														@Html.ValidationMessageFor(model => model.name, "", new { @class = "red" })
+
+													</div>
+													<div class="form-group">
+														<label for="email">
+															Email Address
+														</label>
+														<div class="input-group">
+															<span class="input-group-addon">
+																<span class="glyphicon glyphicon-envelope"></span>
+															</span>
+
+															@Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control input-lg", @placeholder = "Email eg. john@doe.co.za" } })
+															@Html.ValidationMessageFor(model => model.email, "", new { @class = "red" })
+														</div>
+													</div>
+													<div class="form-group">
+														<label for="subject">
+															Subject
+														</label>
+														@Html.EditorFor(model => model.subject, new { htmlAttributes = new { @class = "form-control input-lg", @placeholder = "Subject" } })
+														@Html.ValidationMessageFor(model => model.subject, "", new { @class = "red" })
+													</div>
+												</div>
+												<div class="col-md-7">
+													<div class="form-group">
+														<label for="name">
+															Message
+														</label>
+
+														@Html.TextAreaFor(model => model.message, new { @class = "form-control input-lg", placeholder = "Message", rows = "9", cols = "25" })
+														@Html.ValidationMessageFor(model => model.message, "", new { @class = "red" })
+													</div>
+												</div>
+												<div class="col-md-12">
+
+													<input type="submit" class="btn btn-default btn-lg pull-right" id="contact" value="Send Message" />
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<form>
+										<legend><span class="glyphicon glyphicon-globe"></span> Our office</legend>
+										<address>
+											<strong>MIID PTY Ltd</strong><br>
+											Block 53 Unit 630<br>
+											De Zicht<br>
+											Cape Town<br>
+											
+										</address>
+										<address>
+											<strong>Contact</strong><br>
+											<a href="mailto:info@miid.co.za">info@miid.co.za</a><br>
+											071 929 1114<br>
+											061 451 2633
+
+										</address>
+									</form>
+
+								</div>
+
+
+
+							</div>
+						</div>
+
+
+
+
+
+						<!-- Footer -->
+					}
+
+					@Scripts.Render("~/bundles/jquery")
+					@Scripts.Render("~/bundles/bootstrap")
+					@Scripts.Render("~/Scripts/jquery.tokeninput.js")
+					@{
+						string[] parts = new string[10];
+
+						if (TempData.ContainsKey("Growl") && !String.IsNullOrEmpty((string)TempData["Growl"]))
+						{
+							string growl = (string)TempData["Growl"];
+							parts = growl.Split(':');
+
+
+
+							<script type="text/javascript">
+                                                growl('@parts[0]', '@parts[1]');
+							</script>
+						}
+
+					}
+
+
+
+				</div>
+}
+
+

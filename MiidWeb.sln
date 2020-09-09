@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiidWeb", "MiidWeb.csproj", "{5536F59C-C9D0-4D8A-89D2-B28F71B0DA95}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForgotPassword", "..\ForgotPassword\ForgotPassword.csproj", "{8DBB0253-3455-4152-AED8-1FA064CCA39E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMiidWebservice", "..\TestMiidWebservice\TestMiidWebservice.csproj", "{D8B25212-E9C5-4BC1-B9A1-4DB2E75F77B9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5536F59C-C9D0-4D8A-89D2-B28F71B0DA95} = {5536F59C-C9D0-4D8A-89D2-B28F71B0DA95}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication1", "..\ConsoleApplication1\ConsoleApplication1.csproj", "{22503918-7F04-44B7-B55D-3EA033DE86FF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5536F59C-C9D0-4D8A-89D2-B28F71B0DA95} = {5536F59C-C9D0-4D8A-89D2-B28F71B0DA95}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KoboGetDataService", "..\KoboGetDataService\KoboGetDataService.csproj", "{3DFB3350-FFFB-45C3-A5FC-6513E134793D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5536F59C-C9D0-4D8A-89D2-B28F71B0DA95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5536F59C-C9D0-4D8A-89D2-B28F71B0DA95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5536F59C-C9D0-4D8A-89D2-B28F71B0DA95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5536F59C-C9D0-4D8A-89D2-B28F71B0DA95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DBB0253-3455-4152-AED8-1FA064CCA39E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DBB0253-3455-4152-AED8-1FA064CCA39E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DBB0253-3455-4152-AED8-1FA064CCA39E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DBB0253-3455-4152-AED8-1FA064CCA39E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8B25212-E9C5-4BC1-B9A1-4DB2E75F77B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8B25212-E9C5-4BC1-B9A1-4DB2E75F77B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8B25212-E9C5-4BC1-B9A1-4DB2E75F77B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8B25212-E9C5-4BC1-B9A1-4DB2E75F77B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22503918-7F04-44B7-B55D-3EA033DE86FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22503918-7F04-44B7-B55D-3EA033DE86FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22503918-7F04-44B7-B55D-3EA033DE86FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22503918-7F04-44B7-B55D-3EA033DE86FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DFB3350-FFFB-45C3-A5FC-6513E134793D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DFB3350-FFFB-45C3-A5FC-6513E134793D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DFB3350-FFFB-45C3-A5FC-6513E134793D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DFB3350-FFFB-45C3-A5FC-6513E134793D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3F68C3BB-5325-4730-9C24-B27C892328F2}
+	EndGlobalSection
+EndGlobal

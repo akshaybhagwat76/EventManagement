@@ -1,0 +1,117 @@
+﻿@model MiidWeb.BankTransaction
+
+@{
+	ViewBag.Title = "Create";
+	Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="col-md-9">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="content-box-header">
+				<div class="panel-title">Create Transaction</div>
+
+				<div class="panel-options">
+
+				</div>
+			</div>
+			<div class="content-box-large box-with-header">
+				@using (Html.BeginForm())
+				{
+					@Html.AntiForgeryToken()
+
+				
+						
+						@Html.ValidationSummary(true, "", new { @class = "red" })
+						<div class="form-group">
+							@Html.LabelFor(model => model.TransactionDate, htmlAttributes: new { @class = "control-label" })
+							
+								@Html.EditorFor(model => model.TransactionDate, new { htmlAttributes = new { @class = "form-control" } })
+								@Html.ValidationMessageFor(model => model.TransactionDate, "", new { @class = "red" })
+						
+						</div>
+
+						<div class="form-group">
+							@Html.LabelFor(model => model.ConfirmationDate, htmlAttributes: new { @class = "control-label" })
+							
+								@Html.EditorFor(model => model.ConfirmationDate, new { htmlAttributes = new { @class = "form-control" } })
+								@Html.ValidationMessageFor(model => model.ConfirmationDate, "", new { @class = "red" })
+							
+						</div>
+
+						<div class="form-group">
+							@Html.LabelFor(model => model.EndUserID, htmlAttributes: new { @class = "control-label" })
+							
+								@Html.EditorFor(model => model.EndUserID, new { htmlAttributes = new { @class = "form-control" } })
+								@Html.ValidationMessageFor(model => model.EndUserID, "", new { @class = "red" })
+							
+						</div>
+
+						<div class="form-group">
+							@Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label" })
+							
+								@Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+								@Html.ValidationMessageFor(model => model.Description, "", new { @class = "red" })
+							
+						</div>
+
+						<div class="form-group">
+							@Html.LabelFor(model => model.TransactionTypeID, htmlAttributes: new { @class = "control-label" })
+							
+								@Html.EditorFor(model => model.TransactionTypeID, new { htmlAttributes = new { @class = "form-control" } })
+								@Html.ValidationMessageFor(model => model.TransactionTypeID, "", new { @class = "red" })
+							
+						</div>
+
+						<div class="form-group">
+							@Html.LabelFor(model => model.StatusID, htmlAttributes: new { @class = "control-label" })
+							
+								@Html.EditorFor(model => model.StatusID, new { htmlAttributes = new { @class = "form-control" } })
+								@Html.ValidationMessageFor(model => model.StatusID, "", new { @class = "red" })
+							
+						</div>
+
+						<div class="form-group">
+							@Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label" })
+						
+								@Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control" } })
+								@Html.ValidationMessageFor(model => model.Amount, "", new { @class = "red" })
+							
+						</div>
+
+						<div class="form-group">
+							@Html.LabelFor(model => model.UpdatedByUserName, htmlAttributes: new { @class = "control-label" })
+							
+								@Html.EditorFor(model => model.UpdatedByUserName, new { htmlAttributes = new { @class = "form-control" } })
+								@Html.ValidationMessageFor(model => model.UpdatedByUserName, "", new { @class = "red" })
+							
+						</div>
+
+						<div class="form-group">
+							@Html.LabelFor(model => model.DepositorName, htmlAttributes: new { @class = "control-label" })
+							
+								@Html.EditorFor(model => model.DepositorName, new { htmlAttributes = new { @class = "form-control" } })
+								@Html.ValidationMessageFor(model => model.DepositorName, "", new { @class = "red" })
+							
+						</div>
+
+						<div class="form-group">
+
+							<button type="submit" value="Create" class="btn btn-primary">Submit</button>
+							
+
+						</div>
+				
+				}
+
+				<div>
+					
+				</div>
+
+
+			</div>
+			</div>
+		</div>
+	</div>
+
+				

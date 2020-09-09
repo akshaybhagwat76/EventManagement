@@ -1,0 +1,408 @@
+﻿<!DOCTYPE html>
+
+@using Microsoft.AspNet.Identity
+@using MiidWeb.Helpers
+
+@RenderSection("scripts", required: false)
+<html lang="en" xml:lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="robots" content="noindex,nofollow">
+	<meta name="googlebot" content="noindex,nofollow">
+
+	<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+
+
+	<!--facebook meta-->
+	<meta property="og:url" content="https://www.miid.co.za" />
+
+	<meta property="og:image" content="https://www.miid.co.za/Uploads/genricticket.jpg" />
+
+
+
+
+	<link rel="stylesheet" href="~/Scripts/growl.css" type="text/css">
+	<!-- Google Tag Manager -->
+	<script>
+		(function (w, d, s, l, i) {
+			w[l] = w[l] || []; w[l].push({
+				'gtm.start':
+					new Date().getTime(), event: 'gtm.js'
+			}); var f = d.getElementsByTagName(s)[0],
+				j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+					'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+		})(window, document, 'script', 'dataLayer', 'GTM-TKCDRPP');</script>
+	<!-- End Google Tag Manager -->
+
+	@Styles.Render("~/content/css/css2018/bootstrap.css")
+	@Styles.Render("~/content/css/css2018/main.css")
+	@Styles.Render("~/content/Css/EOcss2018/steps.css")
+	@Styles.Render("~/content/css/css2018/global.css")
+
+	@Styles.Render("~/content/css/newcss/font-awesome.css")
+	@Styles.Render("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css")
+
+
+
+	@Scripts.Render("~/content/js/jquery-1-12-4-min.js")
+	@Scripts.Render("~/content/js/jquery-touchswipe-min.js")
+	@Scripts.Render("~/content/js/EOjs2018/steps.js")
+
+
+
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+
+	<!-- Custom CSS -->
+	<!-- splash screen loaded
+	<script type="text/javascript">
+		jQuery(document).ready(function () {
+			$("#loader").delay(800).fadeOut(400, function () {
+				$("#your-page").fadeIn(400);
+			});
+		});
+	</script> -->
+
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<Script>
+		function openNav() {
+			document.getElementById("mySidenav").style.width = "70%";
+			// document.getElementById("flipkart-navbar").style.width = "50%";
+			document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+		}
+
+		function closeNav() {
+			document.getElementById("mySidenav").style.width = "0";
+			document.body.style.backgroundColor = "rgba(0,0,0,0)";
+		}
+	</Script>
+
+	<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+	<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+
+
+	<link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
+
+
+
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TKCDRPP"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <!--
+     <div id="loader">
+         <div>
+             <img src="~/Content/images2018/logo.svg" class="logo-splash" alt="Mi-iD online ticket logo"></a>
+             <div>
+                 <button class="btn btn-default btn-lg" style="border:0px; background-color: transparent;"><i class="fa fa-circle-o-notch fa-spin" style="color:#383838"></i><span style="color:#383838">&nbsp;Loading</span></button>
+             </div>
+
+         </div>
+     </div>
+        -->
+    <span style="display:none" itemscope itemtype="http://schema.org/Organization">
+        <link itemprop="url" href="https://www.miid.co.za/">
+        <a itemprop="sameAs" href="https://www.facebook.com/miidevents/">FB</a>
+        <a itemprop="sameAs" href="https://twitter.com/MiiDEvents">Twitter</a>
+    </span>
+
+
+
+    <div id="wrapper">
+
+
+        <div class="navbar navbar-inverse  nav-backround-color " role="navigation">
+
+
+            <div class="navbar-header ">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="~/Home/Index">
+                        <img src="https://www.miid.co.za/Content/images2018/logo.svg" class="logo hidden-md hidden-lg" />
+                        <img src="https://www.miid.co.za/Content/images2018/logo.svg" class="logo hidden-sm hidden-xs" />
+                    </a>
+                    <div class="new-tag-line "><div class=" hidden-xs hidden-sm">Safe Secure Online ticketing &amp; Cashless Events</div></div>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+
+            </div>
+
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav pull-right navbar-padding-top hidden-sm hidden-xs" style="padding-top:0px;">
+                    @if (Request.IsAuthenticated)
+                    {
+
+
+                        var endUser = MiidWeb.Repositories.EndUserRepository.GetUser(User.Identity.GetUserName(), true);
+                        bool IAmEventOrganiser = false;
+                        IAmEventOrganiser = MiidWeb.Repositories.EndUserRepository.AmIAnEventOrganiser(User.Identity.GetUserName());
+                        // if (endUser == null && !IAmEventOrganiser) { Response.Redirect("../EndUsers/CreateFirst"); }
+                        <li style="padding-top:27px; color:#ffffff;">
+                            Hi, @endUser.FirstName
+                        </li>
+                        <li style="padding-top:2px; margin-right:-15px;">
+                            @{ string profilePic = "avatar_blank.png";
+                                if (!String.IsNullOrEmpty(endUser.ProfilePicURL))
+                                {
+                                    profilePic = endUser.ProfilePicURL;
+                                }
+                            }
+
+
+                            <a href="@Url.Action( "MiiDetails", "EndUsers", new { id = @endUser.Id })" style="background-color:transparent; display:inline-block"><i class="fas fa-user-circle fa-2x"></i></a>
+                            <!--   <img src="~/images/@profilePic" class="profile-image img-circle" style="width:50px; padding:5px;" /> -->
+                        </li>
+                        <li style="padding-top:2px;">
+                            <a href=" @Url.Action( "Logoff", "Account", null)" style="background-color:transparent; display:inline-block"><i class="fas fa-sign-out-alt fa-2x"></i></a>
+                        </li>
+                    }
+                    else
+
+                    {
+                        <li><button type="button" class="btn btn-warning navbar-btn" onclick="location.href = '../LoginAlternative/LoginAlternative' ">Sign In</button></li>
+                    }
+
+
+
+
+
+                </ul>
+
+            </div>
+        </div>
+        <div class="navbar navbar-inverse navbar-static-top" role="navigation">
+
+            @Html.Partial("_LoginPartial")
+
+
+        </div>
+
+
+
+
+
+
+
+
+        @RenderBody()
+
+
+
+        <footer>
+            <div class="footer" id="footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3  col-md-3 col-sm-12 col-xs-12">
+                            <h3> General </h3>
+                            <ul>
+                                <li>@Html.ActionLink("Help", "Help", "Home")</li>
+                                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                                <li> <a href="~/Home/TermsConditions">  Privacy Policy </a> </li>
+                                <li>@Html.ActionLink("T&C's", "FAQ", "Home")</li>
+
+                                <li> <a href="~/Home/RefundsPolicy"> Refund Policy </a> </li>
+
+
+                            </ul>
+                        </div>
+                        <div class="col-lg-3  col-md-3 col-sm-12 col-xs-12">
+                            <h3>Event Organisers</h3>
+                            <ul>
+
+                                @if (Request.IsAuthenticated)
+                                {
+                                    <li><a class="" href="~/EventOrganisers/Create">Create Event</a> </li>
+                                }
+
+                                <li> <a href="~/Home/HowItWorks"> How it works </a> </li>
+                                <li> <a href="~/Home/ProductSummary">Services &amp; Products </a> </li>
+                                <li> <a href="~/Home/HelpEventOrganiser">Event Organiser's FAQ's </a> </li>
+                                <li> <a href="~/Home/RegisterDoc"> Terms Of Service </a> </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-3  col-md-3 col-sm-12 col-xs-12">
+                            <h3>Products &amp; Services</h3>
+                            <ul>
+                                <li> <a href="~/Home/TicketingExplanation">Online Ticketing </a> </li>
+                                <li> <a href="~/Home/BoxOffice">Box Office </a> </li>
+                                <li> <a href="~/Home/NFCTickets">NFC Ticketing</a> </li>
+                                <li> <a href="~/Home/MiiFundsExplanation">Cashless </a> </li>
+                                <li> <a href="~/Home/WhiteLabel">White Label</a> </li>
+
+
+                            </ul>
+
+
+                        </div>
+
+
+
+                        <div class="col-lg-3  col-md-3 col-sm-12 col-xs-12">
+
+                            <h3>News, updates &amp; Ticket Give-Aways</h3>
+                            <ul>
+                                <li>
+                                    <div class="input-append newsletter-box text-center">
+
+                                        <link href="//cdn-images.mailchimp.com/embedcode/slim-10_7.css" rel="stylesheet" type="text/css">
+                                        <style type="text/css">
+                                            #mc_embed_signup {
+                                                clear: left;
+                                                font: 14px Helvetica,Arial,sans-serif;
+                                            }
+                                            /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+                                                    We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+                                        </style>
+                                        <div id="mc_embed_signup class="form-control">
+                                            <form action="https://Miid.us11.list-manage.com/subscribe/post?u=ed8a48e7c98e079fec3fc9d69&amp;id=7be4714437" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                                                <div id="mc_embed_signup_scroll">
+
+                                                    <input type="email" value="" name="EMAIL" class="form-control input-lg" id="mce-EMAIL" placeholder="email address" required>
+                                                    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                                                    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_ed8a48e7c98e079fec3fc9d69_7be4714437" tabindex="-1" value=""></div>
+                                                    <br>
+                                                    <input type="submit" value="Subscribe" name="subscribe" class="btn btn-primary btn-lg btn-block" id="mc-embedded-subscribe">
+                                                </div>
+                                            </form>
+                                        </div>
+
+
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="social">
+                                <li> <a href="https://www.facebook.com/miidevents/"> <i class="fab fa-facebook-f">   </i> </a> </li>
+
+                            </ul>
+                            <br><br><br>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3  col-md-3 col-sm-6 col-xs-12">
+
+                            <ul>
+
+                                <li><small>Download the Cashless App</small> </li>
+                                <a href="https://play.google.com/store/apps/details?id=com.dsouchon.MiiDCashless">	<li> <img src="~/Content/images2018/google.svg" class="icon_custom_medium" /> </li></a>
+
+                            </ul>
+                        </div>
+
+                        <div class="col-lg-3  col-md-3 col-sm-6 col-xs-12">
+                            <ul>
+                                <li><small>Download the Ticketing App</small> </li>
+
+                                <a href="https://play.google.com/store/apps/details?id=com.dsouchon.TicketingMiiD">	<li> <img src="~/Content/images2018/google.svg" class="icon_custom_medium" /></li></a>
+
+                            </ul>
+
+                        </div>
+
+
+                    </div>
+                    <!--/.row-->
+                </div>
+                <!--/.container-->
+            </div>
+            <!--/.footer-->
+
+            <div class="footer-bottom">
+                <div class="container">
+                    <p class="pull-left"> Copyright © Mii-D PTY ltd </p>
+                    <div class="pull-right">
+
+                        <ul class="nav nav-pills payments">
+                            <li>
+                                <span id="siteseal">
+                                    <script async type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=TQA32wHKjedbSITh3Zr7A8eyZnOYVHDeIR5ZxmxDOqq1i6cxqVrtlG6daMED"></script>
+                                </span>&nbsp;&nbsp;
+                            </li>
+                            <li><i class="fab fa-cc-visa fa-lg"></i></li>
+                            <li><i class="fab fa-cc-mastercard fa-lg"></i></li>
+
+
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+            <!--/.footer-bottom-->
+        </footer>
+
+
+
+
+
+        <script src="~/Scripts/jsnew/jquery.js"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="~/Scripts/jsnew/bootstrap.min.js"></script>
+
+        @Scripts.Render("~/content/js/jquery1.1.2/jquery.min.js")
+        @Scripts.Render("~/content/js/jquery2.1.3/jquery.min.js")
+        <!-- Latest compiled and minified JavaScript -->
+        @Scripts.Render("~/content/js/bootstrap.min.js")
+        @Scripts.Render("https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js")
+
+
+        @Scripts.Render("~/content/js/EOjs2018/bootstrap.js")
+    </div>
+
+
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+
+    @Scripts.Render("~/Scripts/jquery.tokeninput.js")
+
+
+
+    @{
+        string[] parts = new string[10];
+
+        if (TempData.ContainsKey("Growl") && !String.IsNullOrEmpty((string)TempData["Growl"]))
+        {
+            string growl = (string)TempData["Growl"];
+            parts = growl.Split(':');
+
+
+
+            <script type="text/javascript">
+        growl('@parts[0]', '@parts[1]');
+            </script>
+        }
+
+    }
+
+
+
+
+</body>
+</html>

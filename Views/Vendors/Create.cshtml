@@ -1,0 +1,255 @@
+﻿@model MiidWeb.Vendor
+
+@{
+	ViewBag.Title = "Create Vendor";
+	Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="col-md-9">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="content-box-header">
+				<div class="panel-title">Create Vendor</div>
+
+				<div class="panel-options">
+
+				</div>
+			</div>
+			<div class="content-box-large box-with-header">
+
+				@using (Html.BeginForm())
+				{
+					@Html.AntiForgeryToken()
+
+
+
+
+					@*@Html.HiddenFor(model => model.ID)*@
+					@Html.HiddenFor(model => model.StartDate)
+
+					<div class="panel panel-success">
+						<div class="panel-heading">Please ensure the below is filled in</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-12">
+									<div class="form-group">
+										<label>Status</label>
+										<select name="demo-category" id="demo-category" class="form-control">
+											<option value="">-Set status -</option>
+											<option value="1">Active</option>
+
+											<option value="1">Not active</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="form-group">
+										<label>Vendor Pin</label>
+
+										@Html.LabelFor(model => model.VendorPin)
+										@Html.TextBoxFor(model => model.VendorPin, new { @class = "form-control" })
+										@Html.ValidationMessageFor(model => model.VendorPin, "", new { @class = "red" })
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+					<span style="color:palevioletred">@Html.ValidationSummary()</span>
+
+					<div class="form-group">
+
+					</div>
+
+					<div class="row">
+						<div class="col-md-6">
+							<hr>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								<label>Company/Name</label>
+								@Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+								@Html.ValidationMessageFor(model => model.Name, "", new { @class = "red" })
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+
+						<div class="form-group">
+							<div class="col-md-6">
+								<label>ID Number</label>
+								@Html.TextBoxFor(model => model.IDNumber, new { @class = "form-control" })
+								@Html.ValidationMessageFor(model => model.IDNumber, "", new { @class = "red" })
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Contact Name</label>
+									@Html.TextBoxFor(model => model.ContactName, new { @class = "form-control" })
+									@Html.ValidationMessageFor(model => model.ContactName, "", new { @class = "red" })
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<lable>Email</lable>
+								@Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+								@Html.ValidationMessageFor(model => model.Email, "", new { @class = "red" })
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<lable>Phone</lable>
+								@Html.TextBoxFor(model => model.Telephone, new { @class = "form-control" })
+								@Html.ValidationMessageFor(model => model.Telephone, "", new { @class = "red" })
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								<lable>Company Description</lable>
+								@Html.TextBoxFor(model => model.Description, new { @class = "form-control" })
+								@Html.ValidationMessageFor(model => model.Description, "", new { @class = "red" })
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-6">
+							<hr>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								@Html.LabelFor(model => model.SecondaryContactName)
+								@Html.TextBoxFor(model => model.SecondaryContactName, new { @class = "form-control" })
+								@Html.ValidationMessageFor(model => model.SecondaryContactName, "", new { @class = "red" })
+							</div>
+						</div>
+
+						<div class="col-md-6">
+							<div class="form-group">
+
+								@Html.LabelFor(model => model.SecondaryContactTelephone)
+								@Html.TextBoxFor(model => model.SecondaryContactTelephone, new { @class = "form-control" })
+								@Html.ValidationMessageFor(model => model.SecondaryContactTelephone, "", new { @class = "red" })
+							</div>
+
+						</div>
+					</div>
+
+
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								@Html.LabelFor(model => model.SecondaryContactEmail)
+								@Html.TextBoxFor(model => model.ContactEmail, new { @class = "form-control" })
+								@Html.ValidationMessageFor(model => model.ContactEmail, "", new { @class = "red" })
+							</div>
+						</div>
+
+
+					</div>
+
+
+
+
+					<div class="row">
+						<div class="col-md-6">
+							<hr>
+						</div>
+					</div>
+
+
+
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								@Html.LabelFor(model => model.Bank)
+								@Html.TextBoxFor(model => model.Bank, new { @class = "form-control" })
+
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+
+							<div class="form-group">
+								<label>Account Holder Name</label>
+								@Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4">
+							<div class="form-group">
+
+								<lable>Account Number</lable>
+								@Html.TextBoxFor(model => model.AccountNumber, new { @class = "form-control" })
+							</div>
+						</div>
+						<div class="col-md-4">
+
+
+							<div class="form-group">
+								<lable>Branch Code</lable>
+								@Html.TextBoxFor(model => model.BranchCode, new { @class = "form-control" })
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+
+								<lable>Account Type</lable>
+								@Html.TextBoxFor(model => model.BankType, new { @class = "form-control" })
+							</div>
+
+						</div>
+					</div>
+					<div class="form-group">
+						<button type="submit" value="Save" class="btn btn-primary">Create</button>
+					</div>
+
+
+
+
+
+
+
+
+
+
+
+				}
+			</div>
+
+				</div>
+					</div>
+	</div>
+
+
+
+
+
+
+
+
+				<!-- One -->
+				
+						
+
+
+
+
+			
+

@@ -1,0 +1,13 @@
+body { font-family: Arial, Myriad ; color:#585859; font-size:12px; }
+
+
+tr:nth-child(odd)		{ background-color:#eee; }
+tr:nth-child(even)		{ background-color:#fff; }
+
+tr {font-size:11px}
+
+th {text-align:left; font-size:8px}
+
+h1 {font-size:24px; font-weight:bold;}
+
+h2 {font-size:20px; font-weight:bold; color:#be1c1d; text-decoration:none}

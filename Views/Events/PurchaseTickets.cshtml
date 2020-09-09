@@ -1,0 +1,709 @@
+﻿@using MiidWeb.Helpers;
+@model MiidWeb.Models.PurchaseTicketViewModel
+@{
+    ViewBag.Title = "Purchase Tickets";
+    ViewBag.Title = "Details";
+    string start2 = ((DateTime)(Model.Event.StartDateTime)).ToString("yyyy-MM-dd");
+    string end2 = ((DateTime)(Model.Event.EndDateTime)).ToString("yyyy-MM-dd");
+    string startTime = ((DateTime)(Model.Event.StartDateTime)).ToString("HH:mm");
+    string endTime = ((DateTime)(Model.Event.EndDateTime)).ToString("HH:mm");
+    int active = MiidWeb.Helpers.StatusHelper.StatusID("TicketClass", "Active");
+    string ticketcut = ((DateTime)(Model.Event.TicketCutoffDate)).ToString("yyyy-MM-dd");
+    string ticketcutTime = ((DateTime)(Model.Event.TicketCutoffDate)).ToString("HH:mm");
+    var Today = DateTime.Now;
+    Boolean IsBandActive = UserHelper.IsBandActive(User.Identity.Name);
+
+    Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("Layout");
+
+    String LimitOneTicketPerUser =  (Model.Event.LimitOneTicketPerUser ?? false).ToString().ToLower();
+}
+
+
+<head>
+
+    <!-- You can use open graph tags to customize link previews.
+    Learn more: https://developers.facebook.com/docs/sharing/webmasters -->
+    <meta property="og:url" content="https://www.miid.co.za/PurchaseTickets?EventID=@Model.Event.ID" />
+    <meta property="og:image" content="https://www.miid.co.za/Uploads/@Model.EventBannerURL" />
+
+    <meta property="og:title" content=" @Model.Event.EventName " />
+    <meta property="og:description" content="@Model.Event.EventName" />
+
+
+    <title> @Model.Event.EventName online ticket sales </title>
+    <meta name="description" content="@Model.Event.ShortDescription">
+  
+</head>
+
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.3"></script>
+
+
+
+<div class="container">
+    @Html.Hidden("LimitOneTicketPerUser", (object)LimitOneTicketPerUser)
+    <div class="row">
+        <div class="col-md-5">
+            <div class="card">
+                @if (Model.EventBannerURL != null)
+                {
+                    <img src="~/Uploads/@Model.EventBannerURL" class="card-img-top" alt="@Model.Event.EventName Banner" />
+                }
+                else
+                {
+                    <img class="card-img-top" src="~/Content/images2018/event-banner-holder.jpg" alt="Event image coming soon" />
+                }
+            <div class="card-body">
+                <h3 class="card-title">@Model.Event.EventName </h3>
+                <p class="card-text">
+                    @Model.Event.ShortDescription
+                </p>
+                @if (Model.Event.LimitOneTicketPerUser == true)
+                {
+                    <div class="alert alert-success">
+                        <strong>Only one ticket per user</strong>
+                    </div>
+                }
+                @if (Model.Event.IsCashless == true)
+                {
+                    <div class="alert alert-success">
+                        <strong>This is a cashless event</strong>
+                    </div>
+                }
+
+                @if (Model.Event.IsMultiDayEvent.HasValue && Model.Event.IsMultiDayEvent.Value && Model.Event.TicketClasses != null && Model.Event.TicketClasses.Count > 0)
+                {
+                    using (Html.BeginForm("GetTickets", "Events", FormMethod.Post, new { id = "formfilter" }))
+                    {
+                        if (Model.Event.TicketCutoffDate >= Today)
+                        {
+                            <h5 class="card-title">
+                                @GlobalVariables.PurchaseFilter
+                            </h5>
+                        }
+                        else
+                        {
+                            <h5 class="card-title">
+                                Ticket sales are closed
+                            </h5>
+                        }
+                        <p class="card-text">
+                            <div class="form-group">
+                                @Html.DropDownList("AvailableMonths", Model.AvailableMonths, new { id = "AvailableMonths", @class = "form-control", name = "AvailableMonths" })
+                            </div>
+                            <div class="form-group">
+                                <select id="AvailableDays" name="AvailableDays" class="form-control"></select>
+                            </div>
+                            <input type="hidden" id="hdnEventID" name="hdnEventID" value="@Model.Event.ID" />
+                            <input type="submit" value="@GlobalVariables.PurchaseFindTickets" class="btn btn-primary btn-block" />
+                        </p>
+                    }
+                }
+
+                @if (Model.Event.TicketCutoffDate >= Today)
+                {
+                    <h5 class="card-title">
+                        @GlobalVariables.PurchaseContainerHeading
+                    </h5>
+                }
+                else
+                {
+                    <h5 class="card-title">
+                        Ticket sales are closed
+                    </h5>
+
+                }
+                @if (Model.Event.TicketClasses != null && Model.Event.TicketClasses.Count > 0)
+                {
+                    using (Html.BeginForm("PurchaseTickets", "Events", FormMethod.Post, new { id = "form" }))
+                    {
+                        @Html.ValidationSummary(true, "", new { @class = "red" })
+
+                        <input type="hidden" id="EventID" name="EventID" value="@Model.Event.ID" />
+                        @*@Html.Hidden("EventID", Model.Event.ID, null)*@
+                        <h3>@ViewBag.ConfirmationMessage</h3>
+                        DateTime start = (DateTime)(Model.Event.StartDateTime);
+                        DateTime end = (DateTime)(Model.Event.EndDateTime);
+                        DateTime TicketCutoffDate = (DateTime)(Model.Event.TicketCutoffDate);
+                        string TicketClassQtyID = "";
+                        <div style="display:none">
+                            Start: @start.ToString("dd MMM yyyy") End: @end.ToString("dd MMM yyyy")
+                        </div>
+
+
+
+                        if (Model.TicketClasses != null)
+                        {
+                            foreach (var ticket in Model.TicketClasses.Where(x => x.IsOnline == true).OrderByDescending(i => i.TicketClass.Price))
+                            {
+                                TicketClassQtyID = "TicketClassQty_" + ticket.TicketClass.ID.ToString();
+
+
+
+                                <div class="form-group row">
+                                    <div class="col-md-8">
+                                        <span>Type: @ticket.TicketClass.Description</span><br>
+                                        <span>Valid From:  @ticket.TicketClass.StartDate </span>
+                                        <input id="price_@ticket.TicketClass.ID.ToString()" type="hidden" value="@ticket.TicketClass.Price" class="price" />
+                                        <input id="id_@ticket.TicketClass.ID.ToString()" type="hidden" value="@ticket.TicketClass.ID" class="identity" />
+                                    </div>
+                                    <div class="col-md-4">
+                                        @if (ticket.TicketClass.Quantity <= 0)
+                                        {
+                                            <p>@GlobalVariables.PurchaseSoldOut</p>
+                                        }
+                                        else
+                                        {
+                                            <h4>@GlobalVariables.Currency @ticket.TicketClass.Price </h4>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.DropDownList(@TicketClassQtyID, ticket.TicketQuantityList, new { id = @TicketClassQtyID, @class = "form-control quantity", name = @TicketClassQtyID })
+                                </div>
+
+
+
+                            }
+                        }
+
+
+
+                        @GlobalVariables.PurchaseTotalQunatity
+
+
+                        <div class="form-group">
+                            <input type="hidden" id="selectedTicketTypes" />
+                            <input type="text" id="ticketTotal" class="form-control" disabled>
+                        </div>
+
+
+                        <div class="form-group">
+                            @GlobalVariables.PurchaseSubTotal <span>excluding admin fee</span>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="ticketTotalCost" required="required" disabled">
+                        </div>
+                        <div class="form-group">
+                            <div id="accordion">
+                                <div class="card">
+                                    <div class="card-header" id="headingFive">
+                                        <h5 class="mb-0">
+                                            <div class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+                                                @GlobalVariables.VoucherHeading
+                                            </div>
+                                        </h5>
+                                    </div>
+
+                                    <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+                                        <div class="card-body">
+                                            <p class="card-text">@GlobalVariables.VoucherPara</p>
+                                            <div class="form-group">
+                                                <input type="hidden" id="hdnPromoCode" name="hdnPromoCode" />
+                                                <input type="text" id="txtPromoCode" name="txtPromoCode" class="form-control" placeholder="Enter code here">
+                                                <label id="txtPromoResultSuccess"></label>
+                                                <label id="txtPromoResultFail"></label>
+                                                <input id="btnPromo" type="button" value="Apply Code" class="btn  btn-primary btn-block" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            @if (@GlobalVariables.CustomTerms == "1")
+                            {
+                                <div class="form-group">
+                                    <div class="form-check">
+                                        @GlobalVariables.PurchaseTermsThree
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                        @GlobalVariables.PurchaseTermsOne
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" onchange="document.getElementById('sendNewSms').disabled = !this.checked;">
+                                        @GlobalVariables.PurchaseTermsTwo
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @if (Model.Event.TicketCutoffDate >= Today)
+                                    {
+                                        <input type="submit" value="@GlobalVariables.CallToActionPurchase" class="submitbutton btn btn-lg btn-primary btn-block" name="sendNewSms" id="sendNewSms" />
+                                    }
+                                    else
+                                    {
+                                        <input type="submit" value="@GlobalVariables.CallToActionPurchase" class="submitbutton btn btn-lg btn-primary btn-block" />
+                                    }
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="form-group">
+
+                                    @*<li>Select Payment Method</li>*@
+                                    @*<li>
+                            @Html.DropDownListFor(x => x.SelectedTenderTypeID, Model.TenderTypeList)
+                            </li>*@
+                                    @if (Model.Event.TicketCutoffDate >= Today)
+                                    {
+                                        <input type="submit" value="@GlobalVariables.CallToActionPurchase" data-toggle="snackbar" data-style="toast" data-content="Ticket Added" class="submitbutton btn btn-lg btn-primary btn-block" />
+                                    }
+                                    else
+                                    {
+                                        <input type="submit" value="@GlobalVariables.CallToActionPurchase" class="submitbutton btn btn-lg btn-primary btn-block" disabled />
+                                    }
+                                </div>
+                            }
+                        </div>
+                        <div>
+                        </div>
+
+
+                    }
+                }
+
+                @if (Model.Event.IsCashless == true)
+                {
+
+
+                    <div class="form-group">
+                        <h4>Top-up Funds</h4>
+                        <hr>
+                        <a href="~/MyMoneys/TopupFundsMenu?EventID=@Model.Event.ID" class="btn btn-lg btn-primary btn-block">Top up Funds</a>
+                        @Html.ActionLink("Pre-Paid Funds", "IndexByUserID", "MyMoneys", new { EventID = Model.Event.ID }, new { @class = "" }) @GlobalVariables.Currency @Model.MyMoneyCurrentBalance
+
+                    </div>
+
+                }
+
+            </div>
+
+                    </div>
+
+          
+
+
+           
+
+        </div>
+
+
+        <div class="col-md-7">
+            <div id="accordion">
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                @GlobalVariables.PurchaseInfo
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            <p class="card-text">  Event Organiser: @Html.DisplayFor(model => model.Event.EventOrganiser.CompanyName) </p>
+                            <p class="card-text">  @Model.Event.LongDescription </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingTwo">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                @GlobalVariables.PurchaseDetails
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                        <div class="card-body">
+                            <p>Start @start2  @startTime</p>
+                            <p>End Date @end2  @endTime</p>
+
+                            <p>@Html.DisplayFor(model => model.Event.StreetAddress)</p>
+                            <p>@Html.DisplayFor(model => model.Event.Suburb)</p>
+                            <p>@Html.DisplayFor(model => model.Event.City)</p>
+                            <p>@Model.Event.GPSCoordinates</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingThree">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                @GlobalVariables.PurchaseExtra
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                        <div class="card-body">
+                            <p>
+
+                                <strong>Event Organiser Details:</strong><br>
+                                @Html.DisplayFor(model => model.Event.EventOrganiser.CompanyName)<br>
+                                @Html.DisplayFor(model => model.Event.EventOrganiser.Email)<br>
+
+                            </p>
+                            <p>
+                                <strong>Event Type:</strong><br>
+                                @Html.DisplayFor(model => model.Event.EventCategory.Description)
+                            </p>
+                            <hr>
+                            <p>
+                                <strong>Entry Age:</strong>
+                                @{ string ageLimit = "NONE"; if (Model.Event.AgeLimit != null) { ageLimit = Model.Event.AgeLimit.ToString(); } }
+                                @ageLimit
+                            </p>
+                            <hr>
+                            <p style="word-wrap:break-word;">
+                                <strong>Location:</strong><br>
+                                GPS Coordinates: @Html.DisplayFor(model => model.Event.GPSCoordinates)<br>
+                                <a href="@Html.DisplayFor(model => model.Event.GoogleMapsLink)">Google Map Link</a> <br>
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingFour">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                Venue Layout
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                        <div class="card-body">
+
+                            @if (Model.SeatPlanImage != null)
+                            {
+                                <img src="~/Uploads/@Model.SeatPlanImage" class="card-img-top" alt="@Model.Event.EventName Seating Plan" />
+                            }
+
+                            else
+                            {
+                                <img class="card-img-top" src="~/Content/images2018/event-banner-holder.jpg" alt="Event image coming soon" />
+
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--models-->
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Why am I only allowed one ticket per person?</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                           Certain event's only allow one ticekt purchase per person. This is either to ensure everyone has a chance to purchase tickets or if the event is cashless, allow all customer to create a virtual wallet.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                         
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- One -->
+            @section Scripts {
+                @Scripts.Render("~/content/js/jquery-1-12-4-min.js")
+                @Scripts.Render("~/bundles/jqueryval")
+
+                <script>
+
+                    $(document).ready(function () {
+
+                        //first check if its a LimitOneTicketPerUser Event
+                        var hiddenField = $('#LimitOneTicketPerUser');
+                        //alert(hiddenField.val());
+                        if (hiddenField.val() === 'true') {
+
+
+
+                            $('body').on("change", ".emailcheck", function () {
+
+                                const $inputs = $('input.emailcheck');
+
+                                const uniques = new Set($inputs.map((i, el) => el.value).get());
+
+
+                                if (uniques.size < $inputs.length) {
+
+                                    $('.emailwarning').show();
+                                    //alert("disable the button");
+                                    $('.submitbutton').attr("disabled", true);
+
+                                }
+                                else {
+                                    $('.emailwarning').hide();
+                                    $('.submitbutton').removeAttr("disabled");
+                                }
+
+                                $("input.emailcheck").each(function (index) {
+                                    if (!$(this).val()) {
+                                        $('.emailwarning').show();
+                                        // alert("disable the button 2");
+                                        $('.submitbutton').attr("disabled", true);
+
+                                    }
+                                });
+
+                            });
+
+
+
+
+                            $('select.quantity').change(function () {
+                    debugger
+                                $('.' + this.id).remove();
+
+                                $('.submitbutton').attr("disabled", true);
+                                var ticketClassID = this.id;
+                                var qty = $(this).children("option:selected").val();
+
+
+                                for (var email = qty; email >= 1; email--) {
+                                    var div = $("<div />");
+                                    div.html('<div style="margin-top:10px"><label style="width:100%" class="' + this.id + '" for="Friend_' + ticketClassID + '_' + email + '" value="' + '"Friend_' + ticketClassID + '_' + email + '">' + "Ticket #" + email
+                                        + '&nbsp&nbsp<input class="emailcheck form-control" style="width:100%" name = "Friend_' + ticketClassID + '_' + email + '" type="email" placeholder="Who would you like to send this ticket to?" />'
+                                        + '<div class="alert alert-danger" role="alert">This event only allows one ticket person. Send a ticket to your frined.<i class="fas fa-info-circle"  data-toggle="modal" data-target="#exampleModal">What does this mean?</i> </div>'
+
+                                    );
+
+                                    $(this).after(div);
+                                }
+
+
+                                $(this).after(div);
+
+
+                            });
+
+                        }//End of LimitSingleTicketBlock
+
+                        $('select.quantity').change(function () {
+                            debugger;
+
+                            var total = 0;
+                            var totalCost = 0;
+                            var selectedIds = $("#selectedTicketTypes").val();
+
+                            var slides = document.getElementsByClassName("quantity");
+                            for (var i = 0; i < slides.length; i++) {
+                                var strUser = slides.item(i).options[slides.item(i).selectedIndex].value;
+                                //alert(strUser);
+
+                                var prices = document.getElementsByClassName("price");
+                                var ids = document.getElementsByClassName("identity");
+                                for (var k = 0; k < prices.length; k++) {
+                                    var strPrice = prices.item(k).value;
+                                    if (k == i) {
+                                        totalCost += (parseInt(strUser) * parseInt(strPrice))
+                                    }
+                                }
+                                for (var k = 0; k < prices.length; k++) {
+                                    var strID = ids.item(k).value;
+                                    if (k == i) {
+                                        var qty = parseInt(strUser);
+                                        if (qty > 0) {
+                                            AddRemoveTicketClass(strID, false);
+                                        }
+                                        else {
+                                            AddRemoveTicketClass(strID, true);
+                                        }
+                                    }
+                                }
+
+
+                                total += parseInt(strUser);
+                            }
+                            $("#ticketTotalCost").val("R" + totalCost);
+                            $("#ticketTotal").val(total);
+                        });
+
+
+
+
+                    });
+
+
+
+
+                    function GetDynamicTextBox(value) {
+                        return '<input name = "DynamicTextBox" type="text" value = "' + value + '" />&nbsp;' +
+                            '<input type="button" value="Remove" class="remove" />'
+                    }
+
+                </script>
+
+                <script>
+                    function AddRemoveTicketClass(ticketClassID, remove) {
+                        // returns string containing everything from the end of the string
+                        //   that is not a back/forward slash or an empty string on error
+                        //   so one can check if return_value===''
+
+                        if (!remove) {
+                            var list = $("#selectedTicketTypes").val();
+                            if (list.indexOf(ticketClassID) == -1) {
+                                $("#selectedTicketTypes").val(list + ';' + ticketClassID);
+                            }//add it if it doesnt already exist
+                            //alert(list);
+                        }
+                        else {
+                            var list2 = $("#selectedTicketTypes").val();
+
+                            var removeThisticketClassID = list2.replace(';' + ticketClassID, '');
+
+                            $("#selectedTicketTypes").val(removeThisticketClassID);
+                            //alert(removeThisDocumentType);
+                        }
+
+                    }
+                </script>
+
+            }
+            <script>
+                $(document).ready(function () {
+                    $(".btn-pref .btn").click(function () {
+                        $(".btn-pref .btn").removeClass("btn-warning").addClass("btn-warning");
+                        // $(".tab").addClass("active"); // instead of this do the below
+                        $(this).removeClass("btn-warning").addClass("btn-warning");
+                    });
+                });
+            </script>
+
+
+
+
+
+
+
+
+
+            <!--<div class="product-desc">
+    <a href="@Model.Event.GoogleMapsLink">Click for Google Map</a>
+    </div>-->
+
+
+
+        </div>
+
+
+
+
+
+        
+
+    </div>
+
+
+
+
+
+</div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //Dropdownlist Selectedchange event
+        $("#btnPromo").click(function () {
+
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("ValidatePromoCode")', // we are calling json method
+                dataType: 'json',
+                data: { id: $("#selectedTicketTypes").val(), promocode: $("#txtPromoCode").val() },
+                success: function (data) {
+
+                    // subdistricts contains the JSON formatted list
+                    // of subdistricts passed from the controller
+                    if (data)
+
+                        if (data.indexOf("checkout") != -1) {
+                            debugger;
+                            var pieces = data.split(",");
+                            //alert(pieces);
+                            $("#txtPromoResultSuccess").text(pieces[0]);
+                            $("#hdnPromoCode").val(pieces[1]);
+                            $("#txtPromoResultFail").hide();
+                            $("#txtPromoResultSuccess").show();
+                        }
+                        else {
+                            $("#txtPromoResultFail").text(data);
+                            $("#txtPromoResultSuccess").hide();
+                            $("#txtPromoResultFail").show();
+                        }
+
+
+
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve subdistricts.' + ex);
+                }
+            });
+            return false;
+        })
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#AvailableDays").empty();
+        $("#AvailableDays").append('<option value="0"> -- Select Day --</option>');
+
+        $("#AvailableMonths").change(function () {
+            $("#AvailableDays").empty();
+            $("#AvailableDays").append('<option value="0"> -- Select Day --</option>');
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetAvailableDays")', // we are calling json method
+                dataType: 'json',
+                data: { id: $("#AvailableMonths").val(), eventid: $("#EventID").val() },
+                success: function (subdistricts) {
+                    // subdistricts contains the JSON formatted list
+                    // of subdistricts passed from the controller
+                    $.each(subdistricts, function (i, subdistrict) {
+                        $("#AvailableDays").append('<option value="' + subdistrict.Value + '">' + subdistrict.Text + '</option>');
+                    }); // here we are adding option for subdistricts
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve days.' + ex);
+                }
+            });
+            return false;
+        })
+    });
+</script>
+
+@*<script type="text/javascript">
+    function validateMyForm()
+    {
+        debugger;
+        var i = 1;
+      if(i=1)
+      {
+        alert("validation failed false");
+        returnToPreviousPage();
+        return false;
+      }
+
+      alert("validations passed");
+      return true;
+    }
+
+    $("#formfilter").submit(function (event) {
+        alert("Handler for .submit() called.");
+        event.preventDefault();
+    });
+    </script>*@

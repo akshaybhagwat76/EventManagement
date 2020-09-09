@@ -1,0 +1,945 @@
+﻿@model MiidWeb.Subdomain
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Subdomain</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SubdomainName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubdomainName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompanyName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Active)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Active)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Text1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Text1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Text2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Text2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Text3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Text3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Text4)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Text4)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Text5)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Text5)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Text6)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Text6)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailFile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailFile)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailTicketPurchase)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailTicketPurchase)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailTicketPurchaseEFT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailTicketPurchaseEFT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailTicketPurchaseMiiFunds)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailTicketPurchaseMiiFunds)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailRegistration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailRegistration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailUserUpdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailUserUpdate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailAccountActive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailAccountActive)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailMiifundsTopup)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailMiifundsTopup)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailMiifundsTopupEFT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailMiifundsTopupEFT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailTicketPurchaseEFTExpired)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailTicketPurchaseEFTExpired)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LoginParaOne)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoginParaOne)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LoginParatwo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoginParatwo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HomeParaOne)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HomeParaOne)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HomeParatwo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HomeParatwo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HomeImageOne)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HomeImageOne)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HomeImagetwo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HomeImagetwo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HomeImagethree)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HomeImagethree)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HomeImageFour)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HomeImageFour)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HomeImageOneLink)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HomeImageOneLink)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HomeImageTwoLink)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HomeImageTwoLink)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HomeImageThreeLink)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HomeImageThreeLink)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HomeImageFourLink)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HomeImageFourLink)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HomeImageOneText)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HomeImageOneText)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HomeImageTwoText)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HomeImageTwoText)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HomeImageThreeText)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HomeImageThreeText)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HomeImageFourText)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HomeImageFourText)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HomeCardOneHeading)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HomeCardOneHeading)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HomeCardTwoHeading)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HomeCardTwoHeading)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HomeCardThreeHeading)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HomeCardThreeHeading)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HomeCardOnePara)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HomeCardOnePara)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HomeCardTwoPara)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HomeCardTwoPara)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HomeCardThreePara)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HomeCardThreePara)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CallToActionOne)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CallToActionOne)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CallToActionTwo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CallToActionTwo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CallToActionThree)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CallToActionThree)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CallToActionAll)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CallToActionAll)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PurchaseContainerHeading)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PurchaseContainerHeading)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PurchaseInfo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PurchaseInfo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PurchaseDetails)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PurchaseDetails)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PurchaseExtra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PurchaseExtra)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CallToActionPurchase)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CallToActionPurchase)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PurchaseTermsOne)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PurchaseTermsOne)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PurchaseTermsTwo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PurchaseTermsTwo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PurchaseSoldOut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PurchaseSoldOut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Currency)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Currency)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PurchaseNoAvailiblity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PurchaseNoAvailiblity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PurchaseFilter)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PurchaseFilter)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PurchaseFindTickets)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PurchaseFindTickets)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PurchaseRowNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PurchaseRowNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PurchaseSeatNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PurchaseSeatNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PurchaseTotalQunatity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PurchaseTotalQunatity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PurchaseSubTotal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PurchaseSubTotal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PurchaseTotal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PurchaseTotal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MyEventsHeading)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MyEventsHeading)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MyEventsParaOne)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MyEventsParaOne)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MyEventsParaTwo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MyEventsParaTwo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MyEventsParaHelpHeading)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MyEventsParaHelpHeading)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MyEventsHelpOne)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MyEventsHelpOne)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MyEventsHelpTwo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MyEventsHelpTwo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MyEventsHelpThree)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MyEventsHelpThree)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MyEventsDownLoadHeading)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MyEventsDownLoadHeading)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ButtonDownload)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ButtonDownload)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ButtonPending)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ButtonPending)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MyEventsHelpHeadingOne)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MyEventsHelpHeadingOne)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MyEventsHelpHeadingTwo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MyEventsHelpHeadingTwo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MyEventsHelpHeadingThree)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MyEventsHelpHeadingThree)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateFirstHeading)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateFirstHeading)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateFirstParaOne)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateFirstParaOne)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateFirstFirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateFirstFirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateFirstFirstNameSub)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateFirstFirstNameSub)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateFirstLastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateFirstLastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateFirstLastNameSub)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateFirstLastNameSub)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateFirstCell)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateFirstCell)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateFirstCellSub)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateFirstCellSub)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateFirstID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateFirstID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateFirstIDSub)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateFirstIDSub)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateFirstEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateFirstEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateFirstSeucrePurchase)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateFirstSeucrePurchase)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Terms)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Terms)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChooseTenderHeadingOne)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChooseTenderHeadingOne)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChooseTenderHeadingTwo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChooseTenderHeadingTwo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChooseTenderParaOne)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChooseTenderParaOne)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChooseTenderParaTwo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChooseTenderParaTwo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChooseTenderButtonOne)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChooseTenderButtonOne)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChooseTenderButtonTwo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChooseTenderButtonTwo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChooseTenderParaSubOne)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChooseTenderParaSubOne)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChooseTenderParaSubTwo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChooseTenderParaSubTwo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PurchaseArea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PurchaseArea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SeatingPlanImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SeatingPlanImage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ButtonAllEvents)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ButtonAllEvents)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShowPassword)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShowPassword)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ForgotpasswordText)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ForgotpasswordText)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RegisterParaOne)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RegisterParaOne)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VoucherHeading)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VoucherHeading)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CardPaymentHeading)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CardPaymentHeading)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CardPaymentPara)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CardPaymentPara)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ButtonBack)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ButtonBack)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ButtonConfirm)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ButtonConfirm)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VoucherPara)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VoucherPara)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RegisterPasswordLength)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RegisterPasswordLength)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KeyWordSearchText)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KeyWordSearchText)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ManualEftProRata)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ManualEftProRata)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomTerms)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomTerms)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PurchaseTermsThree)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PurchaseTermsThree)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ManauEFTtopUpRequest)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ManauEFTtopUpRequest)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ManauEFTtopUpConfirmed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ManauEFTtopUpConfirmed)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

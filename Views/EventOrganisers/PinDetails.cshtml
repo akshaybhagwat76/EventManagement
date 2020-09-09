@@ -1,0 +1,240 @@
+﻿@model MiidWeb.EventOrganiser
+@{
+	ViewBag.Title = "Edit EO";
+	Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("LayoutEventOrganiser");
+}
+
+
+<link rel="stylesheet" href="../../content/css/crop.css" type="text/css" />
+
+<script src="../../scripts/jquery.min.js"></script>
+
+<script src="../../scripts/cropbox/cropbox.js"></script>
+
+
+
+<div class="row">
+	<div class="panel-body">
+		<div class="col-md-12 w3ls-graph">
+			<!--agileinfo-grap-->
+			<div class="agileinfo-grap">
+				<div class="agileits-box">
+					<div class="agileits-box-body clearfix">
+						<div class="form-group col-md-12">
+
+
+							@using (Html.BeginForm())
+							{
+								@Html.AntiForgeryToken()
+
+								<span style="color:palevioletred">@Html.ValidationSummary()</span>
+
+								@Html.HiddenFor(model => model.ID)
+								@Html.HiddenFor(model => model.StartDate)
+								@Html.HiddenFor(model => model.DateCreated)
+								@Html.HiddenFor(model => model.DateUpdated)
+								@Html.HiddenFor(model => model.StatusID)
+								@Html.HiddenFor(model => model.Email)
+								@Html.HiddenFor(model => model.ProfilePicURL)
+								@Html.HiddenFor(model => model.ProfilePicURL)
+								@Html.HiddenFor(model => model.Bank)
+								@Html.HiddenFor(model => model.BankAccountHolder)
+								@Html.HiddenFor(model => model.BankAccountNumber)
+								@Html.HiddenFor(model => model.BranchCode)
+								@Html.HiddenFor(model => model.BankType)
+
+
+								<div class="panel  panel-default text-left">
+
+									<div class="panel-body" style="display:none;">
+										<div class="row">
+
+
+											<div class="form-group col-md-12">
+												<label>Company Name</label>
+												@Html.EditorFor(model => model.CompanyName, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Company Name" } })
+												@Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "red" })
+											</div>
+											<div class="form-group col-md-6">
+												<label>Contact Name</label>
+												@Html.EditorFor(model => model.ContactName, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Contact Name" } })
+												@Html.ValidationMessageFor(model => model.ContactName, "", new { @class = "red" })
+											</div>
+											<div class="form-group col-md-6">
+												<label>Contact Number</label>
+												@Html.EditorFor(model => model.Telephone, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Telephone" } })
+												@Html.ValidationMessageFor(model => model.Telephone, "", new { @class = "red" })
+											</div>
+											<div class="form-group col-md-6">
+												<label>Primary Email address</label>
+												@Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Email", disabled = true } })
+												@Html.ValidationMessageFor(model => model.Email, "", new { @class = "red" })
+											</div>
+											<div class="form-group col-md-6">
+												<label>Secondary Contact Name</label>
+												@Html.EditorFor(model => model.SecondaryContactName, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Secondary Contact Name" } })
+												@Html.ValidationMessageFor(model => model.SecondaryContactName, "", new { @class = "red" })
+											</div>
+											<div class="form-group col-md-6">
+												<label>Secondary Contact Number</label>
+												@Html.EditorFor(model => model.SecondaryContactTelephone, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Secondary Contact Telephone" } })
+												@Html.ValidationMessageFor(model => model.SecondaryContactTelephone, "", new { @class = "red" })
+											</div>
+											<div class="form-group col-md-6">
+												<label>Secondary Contact Email</label>
+												@Html.EditorFor(model => model.SecondaryContactEmail, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Secondary Contact Email" } })
+												@Html.ValidationMessageFor(model => model.SecondaryContactEmail, "", new { @class = "red" })
+											</div>
+										</div>
+									</div>
+								</div>
+
+
+
+								<div class="panel  panel-default text-left">
+
+									<div class="panel-body">
+										<div class="row">
+											<div class="form-group col-md-12">
+
+												<h3>App details &amp; PIN</h3>
+												<p style="margin-top:10px;">
+													The details below allow you to log into the Mi-id Ticketing app which allows you to scan tickets to see if they are valid, mark them off as used and view attendees.
+													<br>
+													<small>*If no pin is available please contact you Mi-id representative to have one allocated to your account.</small>
+												</p>
+
+
+
+											</div>
+										</div>
+										<div>
+											<div class="row">
+												<div class="form-group col-md-12">
+													<label>Set/Update your 4 digit PIN<br><small>Only numbers allowed</small></label>
+													@Html.EditorFor(model => model.HandHeldLoginPassword, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "****", maxlength = "4", type = "number" } })
+													@Html.ValidationMessageFor(model => model.HandHeldLoginPassword, "", new { @class = "red" })
+												</div>
+												<div class="form-group col-md-12">
+													<Button type="submit" value="" class="btn btn-primary">Create</Button>
+													@Html.ActionLink("Cancel", "MyDetails", null, new { @class = "btn btn-default" })
+												</div>
+											</div>
+										</div>
+										<div class="alert alert-success">
+											<div class="row">
+												<div class="form-group col-md-12">
+													<h4>Ticket Scanning App Login Details:</h4>
+												</div>
+												<div class="form-group col-md-6">
+													User Name
+													<strong> @Html.DisplayFor(model => model.Email, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "User Name" } })</strong>
+												</div>
+												<div class="form-group col-md-6">
+													Ticketing App Pin:<strong> @Html.DisplayFor(model => model.HandHeldLoginPassword, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "PIN" } })</strong>
+												</div>
+
+
+
+											</div>
+										</div>
+										
+										<div class="alert alert-secondary">
+											<div class="row">
+												<div class="form-group col-md-12">
+													<h4>How to download and setup your app</h4>
+												</div>
+												<div class="form-group col-md-12">
+													<strong>Note:</strong> The Mi-id ticketing app runs off Android OS and will need a camera to work. For extra functionality like NFC Wristband features, you will need a compatible device. For optimum performance and functionality, newer devices are recommended.
+													<br><br>
+													<strong>To download and set up the app:</strong>
+
+
+													<ol>
+														<br>
+														<li>Go to the  Google Play Store and search for "Mi-id Online Ticketing" or <a href="https://play.google.com/store/apps/details?id=com.dsouchon.TicketingMiiD&hl=en">click here</a>. </li>
+														<li>Follow the prompts and download the app onto your Android Device.</li>
+														<li>Once it is downloaded open the app, follow the onscreen instructions and enter your user details that are displayed above and sign in.</li>
+														<li>Enter your user details that are displayed above and sign in.</li>
+														<li>Select the event you would like to validate tickets for.</li>
+
+
+													</ol>
+													<strong>Now that you have logged in you have a few options.</strong>
+
+													<ol>
+														<br>
+														<li>To scan QR or Barcoded tickets click "Barcodes"</li>
+														<li>To scan NFC Tags click "Tags"</li>
+														<li>To view, ticket list click "List"</li>
+														<li>To get user info from an NFC tag click "Info"</li>
+
+													</ol>
+												</div>
+
+
+
+
+
+											</div>
+										</div>
+									</div>
+								</div>
+
+								
+
+
+
+
+
+								<div class="form-group col-md-12 hidden">
+									<div><input type="file" id="file" class="custom-file-input"></div>
+								</div>
+								<div class="form-group col-md-6 hidden">
+									<div class="imageBox">
+										<div class="thumbBox"></div>
+										<div class="spinner">Upload Picture</div>
+									</div>
+								</div>
+								<div class="form-group col-md-3 hidden">
+									<div class="cropped">
+										<img id="imageID" src="../../content/images/avatar.png" />
+									</div>
+								</div>
+								<div class="form-group col-md-6 hidden">
+									<input type="hidden" name="imageData" id="imageData" />
+									<div class="action_crop">
+										<div class="crop_button_container"><input style="" type="button" id="btnCrop" value="Crop" class="btn btn-primary btn-block "></div>
+										<div class="crop_button_container"><input type="button" id="btnZoomIn" value="+" class="btn btn-primary btn-block"></div>
+										<div class="crop_button_container"> <input type="button" id="btnZoomOut" value="-" class="btn btn-primary btn-block"></div>
+									</div>
+								</div>
+
+
+
+
+
+
+
+
+
+
+
+							}
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+@section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
+
+}
+

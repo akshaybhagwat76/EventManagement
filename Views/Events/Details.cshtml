@@ -1,0 +1,226 @@
+﻿@model MiidWeb.Models.EventViewModel
+@{
+    ViewBag.Title = "Details";
+    string start = ((DateTime)(Model.Event.StartDateTime)).ToString("yyyy-MM-dd");
+    string end = ((DateTime)(Model.Event.EndDateTime)).ToString("yyyy-MM-dd");
+    string startTime = ((DateTime)(Model.Event.StartDateTime)).ToString("HH:mm");
+    string endTime = ((DateTime)(Model.Event.EndDateTime)).ToString("HH:mm");
+    string ticketsonhold = "";
+    int active = MiidWeb.Helpers.StatusHelper.StatusID("TicketClass", "Active");
+    string ticketcut = ((DateTime)(Model.Event.TicketCutoffDate)).ToString("yyyy-MM-dd");
+    string ticketcutTime = ((DateTime)(Model.Event.TicketCutoffDate)).ToString("HH:mm");
+
+
+    bool TicketPurchasingClosed = false;
+
+    if (Model.MinutesRemaining <= 1 && Model.DaysRemaining == 0 && Model.HoursRemaining == 0)
+    {
+        TicketPurchasingClosed = true;
+
+    }
+}
+
+@if (!String.IsNullOrEmpty(ViewBag.TicketsOnHoldMessage))
+{
+    ticketsonhold = @ViewBag.TicketsOnHoldMessage;
+    ticketsonhold = "Your purchasing facility is on hold for 3 minutes. This is to ensure everyone a fair opportunity to purchase a ticket";
+
+
+}
+
+    <div class="event-banner-wrapper" style="width:100%">
+        <img src="~/Uploads/@Model.EventBannerURL" class="event-banner" style="width:100%">
+
+
+    </div>
+
+
+<div class="container">
+    <div class="row ">
+        <div class="col-md-5 col-md-offset-1">
+            <h3 style="border-left:4px solid #258eb2; padding-left: 20px;">
+                @Model.Event.EventName
+            </h3>
+            <p>
+                @Model.Event.ShortDescription
+            </p>
+            <hr>
+            <p>Start @start  @startTime</p>
+            <p>End Date @end  @endTime</p>
+            <p>
+                Entry Age:
+                @{ string ageLimit = "NONE"; if (Model.Event.AgeLimit != null) { ageLimit = Model.Event.AgeLimit.ToString(); } }
+                @ageLimit
+            </p>
+            <p>@Html.DisplayFor(model => model.Event.StreetAddress)</p>
+            <p>@Html.DisplayFor(model => model.Event.Suburb)</p>
+            <p>@Html.DisplayFor(model => model.Event.City)</p>
+            <p>@Model.Event.GPSCoordinates</p>
+            <!--<div class="product-desc">
+             <a href="@Model.Event.GoogleMapsLink">Click for Google Map</a>
+             </div>-->
+            <p><div class="fb-like" data-layout="box_count" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>  </p>
+
+        </div>
+
+
+        <div class="col-md-5">
+            <div class="event-info-wrapper ">
+                <h4>Ticket Types:</h4>
+                <hr>
+                @if (!String.IsNullOrEmpty(ViewBag.TicketsOnHoldMessage))
+                {
+
+                    <h2>@ticketsonhold</h2>
+                }
+                else
+                {
+                    if (Model.TicketClasses.Count > 0)
+                    {
+
+
+
+                        <div>
+
+                            @foreach (var tc in Model.TicketClasses.Where(x => x.TicketClass.StatusID == @active))
+                    {
+
+                                <div class="event-info row">
+                                    <a href="@Url.Action("PurchaseTickets", "Events", new { EventID = @Model.Event.ID } )">
+                                        <div class="col-md-5 col-sm-5 col-xs-5 text-overflow">
+                                            @tc.TicketClass.Description
+                                        </div>
+                                        <div class="col-md-5 col-sm-5 col-xs-5 text-overflow">
+                                            R @tc.TicketClass.Price
+                                        </div>
+                                        <div class="col-md-5 col-sm-5 col-xs-5 text-overflow">
+                                            @{ var startTime1 = (DateTime)tc.TicketClass.StartDate;} @startTime1.ToString("MMM dd - HH:mm")
+                                        </div>
+                                        <div class="col-md-5 col-sm-5 col-xs-5 text-overflow">
+                                            @{ var endTime1 = (DateTime)tc.TicketClass.EndDate;} @endTime1.ToString("MMM dd - HH:mm")
+                                        </div>
+
+                                    </a>
+                                </div>
+                                                }
+
+                            @if (!TicketPurchasingClosed)
+                            {
+                                @Html.ActionLink("Purchase Ticket", "PurchaseTickets", "Events", new { EventID = @Model.Event.ID }, new { @class = "btn btn-lg btn-default btn-block" })
+
+                            }
+                            else
+                            {
+                                <div class="">
+                                    <h2 class="plain_grey">Ticket purchasing now closed</h2>
+                                </div>
+                            }
+                        </div>
+                                                }
+
+                                                else
+                                                {
+                                                    <div class="">
+                                                        <h3>Tickets are not yet available for this event.</h3>
+                                                    </div>
+                                                    }
+                                                }
+                <div class="row hidden">
+                    @if (@Model.LoggedInUserTickets != null && @Model.LoggedInUserTickets.Count > 0)
+                    {
+                        <div class="col-md-12">
+                            <br>
+                            Previous Purchases:
+                        </div>                                                        }
+
+                    @foreach (var ticket in Model.LoggedInUserTickets)
+                    {
+                        <div class="col-md-4 text-left" style="white-space: nowrap; overflow: hidden; margin-bottom:10px; ">
+                            <button class="btn btn-info btn-block">
+                                <i class="fa fa-ticket"></i> @Html.ActionLink(@ticket.TicketClass.Code, "Details", "Events", new { id = Model.Event.ID }, new { @class = "", Style = "color:#000000;" })
+                            </button>
+
+                        </div>
+
+
+                    }
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container">
+    <div class="row ">
+        <div class="col-md-10 col-md-offset-1 ">
+
+          
+                <h3>Extra information</h3>
+                <hr>
+                <p style="white-space: pre-line"> @Model.Event.LongDescription </p>
+          
+
+            @if (!String.IsNullOrEmpty(ViewBag.TicketsOnHoldMessage))
+            {
+                <div class="col-md-12 product-text" style="font-weight:bold;font-size:20px">
+                    @ticketsonhold
+                </div>
+            }
+            else
+            {
+                if (Model.TicketClasses.Where(x => x.TicketClass.StatusID == active) != null && Model.TicketClasses.Where(x => x.TicketClass.StatusID == active).Count() > 0)
+                {
+                    <div>
+                        @{
+                            if (TicketPurchasingClosed)
+                            {   <div class="col-md-12">
+                <h4 class="plain_grey">Closed</h4>
+            </div>
+                            }
+                            else
+                            {
+                                <div class="col-md-12">
+                                    Get your tickets now before they sell out
+                                    <hr>
+                                </div>
+                            }
+                        }
+                    </div>if (!TicketPurchasingClosed)
+                            {
+                                <div>
+                                    @if (@Model.LoggedInUserTickets.Count == 0)
+                                    {
+                                        <div class="col-md-4">@Html.ActionLink("Purchase Ticket", "PurchaseTickets", "Events", new { EventID = @Model.Event.ID }, new { @class = "btn btn-primary btn-block" })</div>
+                                    }
+                                    else
+
+                                    {
+                                        <div class="col-md-4">@Html.ActionLink("Ticket Purchased: " + @Model.LoggedInUserTickets.First().TicketClass.Code + "", "MiiEvents", "Events", null, new { @class = "" })</div>
+                                    }
+                                </div>
+                                    }
+                                }
+                            }
+
+
+        </div>
+
+    </div>
+</div>
+
+        

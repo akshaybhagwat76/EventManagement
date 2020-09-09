@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "SelectTopupMethod";
+}
+
+<h2>Select Topup Method</h2>
+
+@Html.ActionLink("EFT", "ManualEFT", "MyMoneys",  new  {id=0, pps  = "MiiD Funds Topup" }, null)
+
+
+@Html.ActionLink("Card Payment", "CardPayment", "MyMoneys",  new  {id=0, pps  = "MiiD Funds Topup" }, null)
+
+
+@Html.ActionLink("Instant EFT", "InstantEFT", "MyMoneys", new  {id=0, pps  = "MiiD Funds Topup" }, null)
+
+
+

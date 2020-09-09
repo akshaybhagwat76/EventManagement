@@ -1,0 +1,132 @@
+﻿@model MiidWeb.Ticket
+
+@{
+	ViewBag.Title = "Details";
+
+
+	Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+	//Layout = null;
+}
+
+<style>
+	<!--
+
+	.glyphicon {
+		cursor: pointer;
+	}
+
+	input,
+	select {
+		width: 100%;
+	}
+	-->
+</style>
+<div class="col-md-9">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="content-box-header">
+				<div class="panel-title"> Tickets Details</div>
+				<div class="panel-title pull-right" style="margin-top:-8px;"> @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, htmlAttributes: new { @class = "btn btn-primary" })</div>
+
+				<div class="panel-options">
+
+				</div>
+			</div>
+				<div class="content-box-large box-with-header">
+					
+					<dl class="dl-horizontal">
+						<dt>
+							@Html.DisplayNameFor(model => model.TicketNumber)
+
+
+						</dt>
+
+						<dd>
+							@Html.DisplayFor(model => model.TicketNumber)
+						</dd>
+
+						<dt>
+							@Html.DisplayNameFor(model => model.StatusID)
+						</dt>
+
+						<dd>
+							@Html.DisplayFor(model => model.StatusID)
+						</dd>
+
+						<dt>
+							@Html.DisplayNameFor(model => model.TicketPurchasePrice)
+
+						</dt>
+
+						<dd>
+							@Html.DisplayFor(model => model.TicketPurchasePrice)
+						</dd>
+
+						<dt>
+							@Html.DisplayNameFor(model => model.DatetimePurchased)
+						</dt>
+
+						<dd>
+							@Html.DisplayFor(model => model.DatetimePurchased)
+						</dd>
+
+						<dt>
+							@Html.DisplayNameFor(model => model.DatetimeReserved)
+						</dt>
+
+						<dd>
+							@Html.DisplayFor(model => model.DatetimeReserved)
+						</dd>
+
+						<dt>
+							@Html.DisplayNameFor(model => model.DatetimeRedeemed)
+						</dt>
+
+						<dd>
+							@Html.DisplayFor(model => model.DatetimeRedeemed)
+						</dd>
+
+						<dt>
+							@Html.DisplayNameFor(model => model.Hash)
+						</dt>
+
+						<dd>
+
+						</dd>
+
+						<dt>
+							@Html.DisplayNameFor(model => model.TicketClass.Code)
+						</dt>
+
+						<dd>
+							@Html.DisplayFor(model => model.TicketClass.Code)
+						</dd>
+
+						
+						<dt>
+							@Html.LabelFor(model => model.EndUserID, "EndUserID", htmlAttributes: new { @class = "" })
+						</dt>
+						<dd>
+
+
+
+							@Html.DisplayFor(model => model.EndUserID)
+						</dd>
+						
+						<dt>
+
+						</dt>
+						
+
+					</dl>
+				</div>
+				<p>
+					
+					@Html.ActionLink("Back to List", "Index" , null,  htmlAttributes: new { @class = "btn btn-default" })
+				</p>
+			</div>
+		</div>
+			</div>
+
+
+	

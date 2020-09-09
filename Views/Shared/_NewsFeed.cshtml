@@ -1,0 +1,140 @@
+﻿@model MiidWeb.Models.NewsFeedViewModel
+
+
+<div class=" post_strip">
+
+    <div class=" post_strip_text">Updates</div>
+
+
+    <div class="inner_middle_container">
+        @if (Model.UserID == Model.LoggedInUserID)//only have update if the user is on his own profile
+        {
+
+            using (Html.BeginForm("AddNewsItem", "EndUsers", FormMethod.Post, new { id = "AddNewsItem" }))
+            {
+                <input type="hidden" name="UserID" id="UserID" value="@Model.LoggedInUserID" />
+                
+
+        <div class="container">
+            <div class="examples">
+                <textarea class='mention' placeholder='Add update. Use &#64 to mention friends or events. ' name="NewsFeedHeadline" id="NewsFeedHeadline" ></textarea>
+            @*<a class="button get-syntax-text">Get marked-up value</a>
+                <a class="button get-mentions">Get mentions collection</a>*@
+            </div>
+
+        </div>
+
+                <button type="submit" name="seller_top_icon_1" class="submit_post"><img src="~/images/drop_menu_small.png" /></button>
+               
+
+
+            }
+        }
+
+
+        <!--------------------------------------SUBMIT POST  ---------------------->
+
+        <div class="add_buttons">
+            <button type="button" class="add_friend_button">+F</button><!--------------------------------------insert friends  name into news feed  ---------------------->
+            <button type="button" class="add_event_button">+E</button>   <!--------------------------------------insert event  name into news feed  ---------------------->
+            <button type="button" class="add_pic_button">+P</button>    <!--------------------------------------insert picture  name into news feed  ---------------------->
+        </div>
+
+
+        <div class="newsfeed_container">
+
+            <!--start of updates container-->
+            @foreach (var item in Model.NewsFeedList)
+            {
+
+                <div class="update_post_container">
+
+                    <div class="update_profile_image_container"><img src="../../images/@item.EndUser.ProfilePicURL" class="update_profile_image" /></div>
+
+                    <div class="update_post_feed">
+
+                        <div class="update_pictures_coments">
+
+                            <div class="update_post_name">@item.EndUser.Firstname @item.EndUser.Surname</div>  <div class="update_post_time">
+                                @(((DateTime)(item.DateCreated)).ToString("dddd, dd MMMM yyyy hh:mm tt")) <!--------------------------------------insert user name and time stamp ---------------------->
+                            </div>
+                            <div class="comment_text">
+                                <div class="update_post_wrote">Updated:&nbsp;</div>@item.Headline
+                            </div>
+
+
+                            <div class="updates_comments_strip">
+
+                                <div class="update_coments"><div class="updates_comments_text">Comments</div></div>
+
+                                <div class="update_buttons">
+
+                                    <button type="button" class="update_button_one">+F</button><button type="button" class="update_button_one">+P</button>
+
+                                </div>
+
+                            </div>
+
+                            @foreach (var comment in @item.NewsFeedComments)
+                            {
+
+                                <div class="update_profile_image_container">
+                                    <img src="../../images/@comment.EndUser.ProfilePicURL" class="update_profile_image" />
+                                </div>
+
+
+                                <div class="update_post_sub_container">
+                                    <div class="update_post_name">@MiidWeb.Helpers.UserHelper.UserName(@comment.CommenterUserID)</div>
+
+                                    @if (comment.DateCreated != null)
+                                    {
+                                        <div class="update_post_time">
+                                            @(((DateTime)(comment.DateCreated)).ToString("dddd, dd MMMM yyyy hh:mm tt"))
+                                        </div>
+                                    }
+
+
+
+                                    <div class="update_post_feed_two">
+                                        @if (@comment.Comment.Length == 0)
+                                        { <label>No Comment</label>}
+                                        else
+                                        {@comment.Comment}
+                                    </div>
+                                </div>
+                                <br />
+
+                            }
+
+                            @using (Html.BeginForm("AddNewsFeedComment", "EndUsers", FormMethod.Post, new { id = "form" + item.ID.ToString() }))
+                            {
+
+                                <input type="text" id="NewsFeedComment" name="NewsFeedComment" class="update_form" placeholder="comment" />
+
+                                <input type="hidden" name="NewsFeedID" id="NewsFeedID" value="@item.ID" />
+                                <input type="hidden" name="CommenterUserID" id="UserID" value="@Model.LoggedInUserID" />
+                                <input type="hidden" name="UserID" id="UserID" value="@Model.UserID" />
+                                <button type="submit" name="seller_top_icon_1" class="submit_post"><img src="~/images/drop_menu_small.png" /></button>
+
+
+
+                            }
+                            <br />
+
+
+
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+                <br />
+            <!--end of updates container-->
+            }
+
+        </div>
+    </div>
+</div>

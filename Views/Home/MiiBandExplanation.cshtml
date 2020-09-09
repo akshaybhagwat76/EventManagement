@@ -1,0 +1,128 @@
+﻿@using Microsoft.AspNet.Identity
+
+@model MiidWeb.Models.LoginViewModel
+@{
+    ViewBag.Title = "MiiD Event Organiser Landing Page";
+    ViewBag.Title = "Contact";
+
+    bool IAmEventOrganiser = false;
+    if (Request.IsAuthenticated)
+    {
+        IAmEventOrganiser = MiidWeb.Repositories.EndUserRepository.AmIAnEventOrganiser(User.Identity.GetUserName());
+    }
+
+}
+
+@if (IAmEventOrganiser)
+{
+    Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("LayoutEventOrganiser");
+}
+else
+{
+    Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("Layout");
+}
+
+
+
+
+<meta property="og:image" content="https://www.miid.co.za/Uploads/genric.png" />
+
+
+<!-- Page Features -->
+<div class="row text-center bg-grey" style="padding:30px 30px 60px;">
+    <br><br>
+    <div class="col-md-offset-4 col-md-4"><img src="~/Content/images/newimages/rfid.svg" alt="online tickets" style="width:20%" /></div>
+
+    <div class="col-lg-12 col-md-12 mb-12 text-center ">
+        <div class="">
+
+            <h2>Supercharge your festival's wristband</h2>
+            <p class="lead" style="margin-left:20px; margin-right:20px;">
+				Mi-id's festival wristbands allow you to do so much more
+
+            
+            </p>
+            <p class="card-text" style="margin-left:20px; margin-right:20px;">
+                The MiiBand Tag is an RFID / NFC wristband tag that serves as the link between your customers and the Mi-id platform. This RFID / NFC tag links to the user’s online profile and can be used for cashless events, NFC ticketing or to retrieve users medical details.
+                <br><br>
+            </p>
+
+            <div class="smallhr"></div>
+            <br><br>
+
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12 mb-12 text-center ">
+        <div class="">
+
+           
+            
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-4 mb-4">
+        <div class="card" style="min-height:290px;">
+            <div class="card-img-top"><i class="fas fas fa-check-circle fa-3x" aria-hidden="true"></i></div>
+            <div class="card-body">
+                <h4 class="card-title">Convenience</h4>
+                <p class="card-text" ">
+					User's tickets & cashless wallet are integrated into the MiiBand Tag. Everything they need is strapped to their wrist, this leads to a more enjoyable, carefree event for your patrons.
+                
+                
+                </p>
+            </div>
+            <div class="card-footer">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-4 mb-4">
+        <div class="card" style="min-height:290px;">
+            <div class="card-img-top"><i class="fas fas fa-check-circle fa-3x" aria-hidden="true"></i></div>
+            <div class="card-body">
+                <h4 class="card-title">Customer Identification</h4>
+                <p class="card-text"> The Mi-id platform allows event organisers to Identify patrons at the entrance of event or  in an emergency  situation where patrons cannot communicate to security or medical staff. <br><br></p>
+            </div>
+            <div class="card-footer">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-4 mb-4">
+        <div class="card" style="min-height:290px;">
+            <div class="card-img-top"><i class="fa fas fa-check-circle fa-3x" aria-hidden="true"></i></div>
+            <div class="card-body">
+                <h4 class="card-title">Reduce theft & loss</h4>
+                <p class="card-text">Stolen and lost property at events can put a damper on your customers' vibe. One of the spin-offs of not having to bring cash, wallets or phones into the event or on the dance floor is things cannot be lost or stolen.</p>
+            </div>
+            <div class="card-footer">
+
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+
+
+
+</div>
+
+
+
+<div class="row text-center bg-grey">
+	<div class="col-md-12">
+
+		<br>
+		<a href="~/Account/Register" class="btn btn-default  btn-lg" style="margin-top:10px">Create an Event</a>
+
+		<a href="~/Eventorganisers/Register2" class="btn btn-info  btn-lg" style="margin-top:10px">Request a callback</a>
+		<br><br>
+
+	</div>
+</div>
+
+
+

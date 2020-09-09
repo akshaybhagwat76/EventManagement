@@ -1,0 +1,150 @@
+﻿@using Microsoft.AspNet.Identity
+@model MiidWeb.Models.CardPaymentViewModel
+@{
+    ViewBag.Title = "Mii-Funds";
+
+    var notification = ViewBag.Notification;
+   // MiidWeb.Controllers.UserModel u1 = MiidWeb.Helpers.SessionManager.EndUser;
+
+
+    string purpose = Model.Purpose;
+
+    string disabled = "";
+
+    switch (purpose)
+    {
+        case "Ticket Purchase": disabled = "disabled"; break;
+        case "Mii-funds Topup": break;
+        default: break;
+
+    }
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "red" })
+
+    @Html.HiddenFor(model => model.PurchaseSessionID)
+    @Html.HiddenFor(model => model.Purpose)
+    @Html.HiddenFor(model => model.EndUserID)
+    @Html.HiddenFor(model => model.ItemName)
+
+
+    @Html.HiddenFor(model => model.ItemQuantity)
+
+    @Html.HiddenFor(model => model.ItemPrice)
+
+
+    @Html.HiddenFor(model => model.CardNumber)
+
+
+    @Html.HiddenFor(model => model.ExpiryDate)
+    @Html.HiddenFor(model => model.SecurityCode)
+
+    @Html.HiddenFor(model => model.NameOnCard)
+
+    @Html.HiddenFor(model => model.UniquePaymentID)
+
+    if (purpose == "Ticket Purchase")
+    {
+
+        decimal totalPlus = (decimal)@Model.AdminFee + (decimal)@Model.TotalAmountInRands;
+
+
+        <section>
+
+
+            <div class="container">
+                <div class="underline_div">
+                    <div class="payment_div"><img src="../../content/images/securepay.svg" class="payment_icons" /><img src="../../content/images/geotrust.svg" class="payment_icons" /><img src="../../content/images/iveri.svg" class="payment_icons" /><img src="../../content/images/visa.svg" class="payment_icons" /><img src="../../content/images/mastercard.svg" class="payment_icons" /></div>
+                    <div class="two_columb">Confirmation - Purchase tickets</div>
+                </div>
+
+                <div class="p">
+                    Amount is made up of total ticket cost (R @Model.TotalAmountInRands) and transaction fee ( R @Model.AdminFee)
+                </div>
+
+                <div class="black_container">
+                    <div class="row uniform">
+                        <div class="12u 12u(xsmall)">
+                            @Html.HiddenFor(model=>model.TotalAmountInRands)
+                            @Html.HiddenFor(model => model.AdminFee)
+                            <input type="text" value="@totalPlus" class="noborder" disabled="disabled" />
+                            
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="container">
+            <section>
+
+                <ul class="actions">
+                    <li><input type="submit" class="button special" value="Confirm" /></li>
+                </ul>
+                <ul class="actions">
+                    <li>
+                        
+                    @Html.ActionLink("Back", "PurchaseTickets", "Events", new { EventID = @Model.PurchaseTicketViewModel.Event.ID}, new { @class = "cancel_button" })
+                    </li>
+                </ul>
+
+            </section>
+        </div>
+
+
+    }
+    else //Miifunds topup by card payment
+    {
+
+      
+
+        <section>
+
+
+            <div class="container">
+                <div class="underline_div">
+                     <div class="payment_div"><img src="../../content/images/securepay.svg" class="payment_icons" /><img src="../../content/images/geotrust.svg" class="payment_icons" /><img src="../../content/images/iveri.svg" class="payment_icons" /><img src="../../content/images/visa.svg" class="payment_icons" /><img src="../../content/images/mastercard.svg" class="payment_icons" /></div>
+
+                    <div class="two_columb">Card Payment Miifunds Topup</div><div class="two_columb">Confirm Amount</div>
+                </div>
+
+                <div class="p">
+                    Please enter amount you would like to top up in Rand value
+                </div>
+
+                <div class="black_container">
+                    <div class="row uniform">
+                        <div class="12u 12u(xsmall)">
+
+                            @Html.TextBoxFor(model => model.TotalAmountInRands, new { @class = "noborder", placeholder = "Amount eg. 120" })
+                            @Html.ValidationMessageFor(model => model.TotalAmountInRands, "", new { @class = "red" })
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="container">
+            <section>
+
+                <ul class="actions">
+                    <li><input type="submit" class="button special" value="Confirm" /></li>
+                </ul>
+                <ul class="actions">
+                    <li>
+                        @Html.ActionLink("Back", "IndexByUserID", null, new { @class = "cancel_button" })
+                    </li>
+                </ul>
+
+            </section>
+        </div>
+    }
+
+
+
+
+}

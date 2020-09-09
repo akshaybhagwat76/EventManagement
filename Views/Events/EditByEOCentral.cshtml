@@ -1,0 +1,618 @@
+﻿@model MiidWeb.Models.EventViewModel
+@{
+	ViewBag.Title = "EditByEOCentral";
+	Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("LayoutEventOrganiser");
+}
+
+<!-- One -->
+<!--main content start-->
+
+<!-- //market-->
+<div class="row">
+	<div class="panel-body">
+		<div class="col-md-12 w3ls-graph">
+			<!--agileinfo-grap-->
+			<div class="agileinfo-grap">
+				<div class="agileits-box">
+					<header class="agileits-box-header clearfix">
+
+						<h3 class="hidden">
+							<br>
+							Time left till event:
+							@{
+								var ticketCut = (DateTime)Model.Event.TicketCutoffDate;
+								TimeSpan timespan = (ticketCut - DateTime.Now);
+								double hoursLeft = timespan.TotalHours % 24;
+								double minutesLeft = timespan.TotalMinutes % 60;
+							}
+							@decimal.Floor((decimal)timespan.TotalDays).ToString("0") days
+							@decimal.Floor((decimal)hoursLeft).ToString("0") hours
+							@decimal.Floor((decimal)minutesLeft).ToString("0") minutes
+						</h3>
+						<div class="col-md-6">
+							<h4> @Model.Event.EventName</h4>
+						</div>
+						<div class="col-md-3">
+							<a href="~/Events/EditByEO/@Model.Event.ID"> <h4 class=""> <i class="fas fa-pencil-alt blue-font"></i> Edit event details </h4></a>
+                            @*Daniel was here*@
+						</div>
+
+						<div class="col-sm-12">
+							<div id="imaginary_container">
+								<div class="input-group stylish-input-group">
+									<input type="text" class="form-control input-lg myInput" readonly="readonly" id="myInput" value="">
+									<span class="input-group-addon">
+										<button type="submit" class="blue-font" onclick="myFunction()" value="COPY">
+											<span class="glyphicon glyphicon-link "></span> Copy link
+										</button>
+									</span>
+								</div>
+							</div>
+						</div>
+						<!--pulls url-->
+						<script>
+                                            var url = window.location.href;
+
+
+                                            var full = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '');
+
+                                        var a = document.getElementById("myInput");
+                                        a.value = ("@Model.Event.ID").innerHTML = full + "/Events/PurchaseTickets?EventID=@Model.Event.ID";
+
+						</script>
+
+
+						<!-- //buttons-->
+						<div class="market-updates">
+							<div class="col-md-12">
+
+
+								<div class="col-md-4 smallpadding market-update-gd nopadding" onclick="myFunction()" value="COPY">
+									<div class="market-update-block-small clr-block-fb">
+										<div class="col-md-12 market-update-right">
+
+
+											<p>Get Facebook link&nbsp;&nbsp;&nbsp;<i class="fab fa-facebook-f"></i></p>
+
+                                            <p>
+										</div>
+										<div class="clearfix"> </div>
+									</div>
+								</div>
+
+
+								<div class="col-md-4 market-update-gd nopadding" onclick="myFunction()" value="COPY">
+									<div class="market-update-block-small clr-block-twitter ">
+                                        <div class="col-md-12 market-update-right">
+
+
+                                            <p>Get  Twitter link&nbsp;&nbsp;&nbsp;<i class="fab fa-twitter"></i></p>
+
+
+                                          
+
+                                        </div>
+										<div class="clearfix"> </div>
+									</div>
+								</div>
+
+
+								<div class="col-md-4 market-update-gd nopadding" onclick="myFunction()" value="COPY">
+									<div class="market-update-block-small clr-block-insta">
+										<div class="col-md-12 market-update-right">
+
+
+											<p>Get Instagram link&nbsp;&nbsp;&nbsp;<i class="fab fa-instagram"></i></p>
+
+
+										</div>
+										<div class="clearfix"> </div>
+									</div>
+								</div>
+								<script>
+									function myFunction() {
+										var copyText = document.getElementById("myInput");
+										copyText.select();
+										document.execCommand("copy");
+										alert("Copied the text: " + copyText.value);
+									}
+								</script>
+
+
+							</div>
+						</div>
+
+
+					</header>
+
+
+
+
+				</div>
+			</div>
+			<!--//agileinfo-grap-->
+
+		</div>
+	</div>
+</div>
+
+
+<div class="row">
+    <div class="panel-body">
+        <div class="col-md-12 ">
+
+           
+
+
+          
+
+
+
+        </div>
+        </div>
+    </div>
+        <div class="row">
+            <div class="panel-body">
+                <div class="col-md-12 w3ls-graph">
+                    <!--agileinfo-grap-->
+                    <div class="agileinfo-grap">
+                        <div class="agileits-box">
+                            <div id="exTab2" class="container" style="width:100%;">
+                                <ul class="nav nav-tabs">
+                                    <li class="active">
+                                        <a href="#1" data-toggle="tab">Ticket summary</a>
+                                    </li>
+                                    <li>
+                                        <a href="#2" data-toggle="tab">Add, edit &amp; refund tickets</a>
+                                    </li>
+                                    <li>
+                                        <a href="#3" data-toggle="tab">Ticket reports</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#4" data-toggle="tab">Marketing Tools</a>
+                                    </li>
+                                    <li>
+                                        <a href="#5" data-toggle="tab">Cashless summary</a>
+                                    </li>
+                                    <li>
+                                        <a href="#6" data-toggle="tab">Vendors</a>
+
+                                    </li>
+
+                                    <li>
+                                        <a href="#7" data-toggle="tab">Custom Report 1</a>
+                                    </li>
+                                    <li>
+                                        <a href="#8" data-toggle="tab">Custom Report 2</a>
+                                    </li>
+
+                                </ul>
+
+                                <div class="tab-content ">
+                                    <div class="tab-pane active" id="1">
+                                        <h4>Tickets Sales:</h4>
+
+                                        <p style="margin-top:10px;">View revenue and tickets sold</p>
+
+
+                                        <div class="table-responsive mobile-20-top-bottom">
+
+                                            <table class="table table-striped b-t b-light">
+                                                <thead>
+                                                    <tr>
+
+                                                        <th>Ticket Code</th>
+                                                        <th>Display Name</th>
+                                                        <th>Status</th>
+
+
+                                                        <th>Price</th>
+                                                        <th>Sold</th>
+                                                        <th style="display:none">Qty Avail </th>
+                                                        <th>Revenue</th>
+
+
+                                                        @if (User.IsInRole("Admin"))
+                                                        {
+                                                            <th>Action</th>
+                                                        }
+                                                    </tr>
+
+                                                </thead>
+                                                <tbody>
+                                                    @{var totalRevenue = 0.00M; }
+
+                                                    @foreach (var tc in Model.TicketClasses)
+                                                    {
+
+                                                        if (tc.TicketClass.StatusID == 3008)
+                                                        {
+
+
+                                                            <tr>
+
+                                                                <td>@tc.TicketClass.Code</td>
+                                                                <td>@tc.TicketClass.Description</td>
+                                                                <td>@tc.TicketClass.Status.Code</td>
+
+
+                                                                <td>R @tc.TicketClass.Price</td>
+                                                                <td>@tc.TicketsSold / @tc.TicketClass.Quantity</td>
+                                                                <td style="display:none">@tc.TicketClass.RunningQuantity </td>
+                                                                <td>R @tc.TotalCost</td>
+
+                                                            </tr>
+
+                                                            totalRevenue += @tc.TotalCost;
+
+                                                        }
+                                                    }
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <td>Total Revenue</td>
+                                                        <td colspan="7" class="text-right">R @totalRevenue</td>
+
+                                                    </tr>
+                                                </tfoot>
+
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane" id="2">
+                                        <h4>Add, remove and edit tickets:</h4>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p style="margin-top:10px;">Add tickets to event, edit existing ticekts and hide tickets from website</p>
+                                            </div>
+                                            <div class="col-md-4 pull-right">
+                                                <a href=" @Url.Action( "CreateTicketIndex", "Events",  new { ID = Model.Event.ID })">
+                                                    <div class="btn-block btn btn-info"><i class="fas fa-plus small"></i> Add Ticket</div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <hr>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p style="margin-top:10px;">View refund requests</p>
+                                            </div>
+                                            <div class="col-md-4 pull-right">
+                                                @Html.ActionLink("Ticket Refunds", "RefundApprovals", "Events", new { id = Model.Event.ID }, new { @class = "btn-block btn btn-info" })
+
+
+
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="table-responsive mobile-20-top-bottom">
+                                            <br>
+                                            <hr>
+
+                                            <table class="table table-striped b-t b-light">
+                                                <thead>
+                                                    <tr>
+                                                        @if (User.IsInRole("Admin"))
+                                                        {
+                                                            <th>Action</th>
+                                                        }
+
+                                                        <th>Action</th>
+                                                        <th>Ticket Code</th>
+                                                        <th>Display Name</th>
+
+
+                                                        <th>Status</th>
+                                                        <th>Display on Box Office software</th>
+                                                        <th>Display online on website</th>
+
+                                                    </tr>
+
+                                                </thead>
+                                                <tbody>
+
+
+                                                    @foreach (var tc in Model.TicketClasses)
+                                                    {
+                                                        if (tc.TicketClass.StatusID == 3008)
+                                                        {
+
+                                                            <tr>
+                                                                <td> @Html.ActionLink("Edit/Remove", "Edit", "TicketClasses", new { id = tc.TicketClass.ID }, null) </td>
+                                                                <td>@tc.TicketClass.Code</td>
+                                                                <td>@tc.TicketClass.Description</td>
+                                                                <td>@tc.TicketClass.Status.Code</td>
+
+                                                                <td>@tc.BoxOffice</td>
+                                                                <td>@tc.IsOnline</td>
+
+
+
+                                                            </tr>
+
+                                                        }
+
+
+                                                    }
+                                                </tbody>
+
+
+                                            </table>
+
+
+                                        </div>
+                                        <div class="table-responsive mobile-20-top-bottom">
+                                            <h3>Inactive Tickets:</h3>
+                                            <br>
+
+                                            <table class="table table-striped b-t b-light">
+                                                <thead>
+                                                    <tr>
+                                                        @if (User.IsInRole("Admin"))
+                                                        {
+                                                            <th>Action</th>
+                                                        }
+
+                                                        <th>Action</th>
+                                                        <th>Ticket Code</th>
+                                                        <th>Display Name</th>
+
+
+                                                        <th>Status</th>
+
+
+                                                    </tr>
+
+                                                </thead>
+                                                <tbody>
+
+
+                                                    @foreach (var tc in Model.TicketClasses)
+                                                    {
+                                                        if (tc.TicketClass.StatusID == 3009)
+                                                        {
+
+                                                            <tr>
+                                                                <td><i class="fas fa-edit"></i> @Html.ActionLink("Edit/Restore", "Edit", "TicketClasses", new { id = tc.TicketClass.ID }, null) </td>
+                                                                <td>@tc.TicketClass.Code</td>
+                                                                <td>@tc.TicketClass.Description</td>
+                                                                <td>@tc.TicketClass.Status.Code</td>
+
+
+
+
+
+                                                            </tr>
+
+                                                        }
+
+
+                                                    }
+                                                </tbody>
+
+
+                                            </table>
+
+
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="3">
+                                        <h3>Sales reports</h3>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h4>View sold tickets</h4>
+                                                <p style="margin-top:10px;">View a list of sold tickets as well as customer details</p>
+                                            </div>
+                                            <div class="col-md-4 pull-right">
+                                                <a href="~/EventOrganisers/EOTicketReport?EventID=@Model.Event.ID">
+                                                    <div class="btn-block btn btn-info"><i class="fas fa-ticket-alt"></i> &nbsp;View ticket sales</div>
+                                                </a>
+                                            </div>
+
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h4>Promotional Codes</h4>
+                                                <p style="margin-top:10px;">View which promocodes and how many have been by your customrs </p>
+                                            </div>
+                                            <div class="col-md-4 pull-right">
+                                                <a href="~/Report/ReportPromoCodes/@Model.Event.ID">
+                                                    <div class="btn-block btn btn-info"><i class="fas fa-gift small"></i> &nbsp; View promo codes</div>
+                                                </a>
+                                            </div>
+
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h4>Box office sales</h4>
+                                                <p style="margin-top:10px;">View how many tickets and ticket types sold through the desktop box office software </p>
+                                            </div>
+                                            <div class="col-md-4 pull-right">
+                                                <a href="~/Report/Index/@Model.Event.ID">
+                                                    <div class="btn-block btn btn-info"><i class="fas fa-receipt small"></i> &nbsp; View box office sales</div>
+                                                </a>
+                                            </div>
+
+                                        </div>
+                                        <hr>
+                                    </div>
+                                    <div class="tab-pane" id="4">
+                                        <h3>Marketing Tools</h3>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h4>Marketing</h4>
+                                                <p style="margin-top:10px;">View reports and lists to assist in marketing efforts</p>
+                                            </div>
+                                            <div class="col-md-4 pull-right">
+                                                <a href="~/EventOrganisers/EORemarketingReport?EventID=@Model.Event.ID">
+                                                    <div class="btn-block btn btn-info"><i class="fas fa-ticket-alt"></i> &nbsp;View remarketing list</div>
+                                                </a>
+                                            </div>
+
+                                        </div>
+
+
+                                        <hr>
+                                    </div>
+                                    <div class="tab-pane" id="5">
+                                        <h3>Cashless sales summary</h3>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="table-responsive mobile-20-top-bottom">
+                                                <div class="col-md-12">
+                                                    <br>
+                                                    <h4>Vendors</h4>
+                                                    <table class="table table-striped b-t b-light">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Vendor Name</th>
+                                                                <th>Vendor Code</th>
+                                                                <th>Revenue</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @{var totalVendorRevenue = 0.00M; }
+                                                            @foreach (var ven in Model.Vendors.OrderByDescending(x => x.RevenueForEvent))
+                                                            {
+                                                                <tr>
+                                                                    <td>@ven.VendorName</td>
+                                                                    <td>@ven.VendorCode</td>
+                                                                    <td>R @ven.RevenueForEvent</td>
+
+                                                                </tr>
+                                                                totalVendorRevenue += @ven.RevenueForEvent;
+                                                            }
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr>
+                                                                <td colspan="2"><h3>Total Vendor Revenue</h3></td>
+                                                                <td><h3>R @totalVendorRevenue</h3></td>
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                        <hr>
+                                    </div>
+                                    <div class="tab-pane" id="6">
+                                        <h3>Vendors</h3>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h4>Add Vendor to event</h4>
+                                                <p style="margin-top:10px;">Add vendor to event using their vendor code. This will allow them to access your event through the Vendor App. All sales will display on your reports.</p>
+                                            </div>
+                                            <div class="col-md-4 pull-right">
+                                                <a href=" @Url.Action( "AddVendorToEvent", "Vendors", new { @eventID = Model.Event.ID })">
+                                                    <div class="btn-block btn btn-info"><i class="fa fa-shopping-cart small"></i> &nbsp;Add Vendor</div>
+                                                </a>
+                                            </div>
+
+                                        </div>
+
+
+                                        <hr>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h4>Vendor Reports</h4>
+                                                <p style="margin-top:10px;">View summaries and detailed reports on the revenue vendors make at your event</p>
+                                            </div>
+                                            <div class="col-md-4 pull-right">
+
+                                                <a href=" @Url.Action( "VendorManagement", "Vendors", new { @eventID = Model.Event.ID })">
+                                                    <div class="btn-block btn btn-info">	<i class="fas fa-list-ol small"> </i> &nbsp;Vendor Reports</div>
+                                                </a>
+                                            </div>
+
+                                        </div>
+
+
+                                        <hr>
+                                    </div>
+
+
+                                    <div class="tab-pane" id="7">
+                                        <h3>Custom Report 1</h3>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="alert alert-success" role="alert">
+                                                <div class="row">
+                                                    <div class="col-md-1"><i class="fas fa-exclamation-circle fa-5x"></i></div>
+                                                    <div class="col-md-11">
+                                                        <h3>Custom Report</h3>
+                                                        Contact your Mi-id rep to help set up your custom report. Custom reports can display anything from your customer profiles to sales data
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            
+                                                <div class="col-md-12">
+                                                    <iframe width="100%" height="850" src="@Model.Event.Report1" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+                                                </div>
+                                          
+
+
+
+
+
+                                        </div>
+
+                                        <hr>
+                                    </div>
+
+
+                                    <div class="tab-pane" id="8">
+                                        <h3>Custom Report 2</h3>
+                                        <hr>
+                                        <div class="row">
+
+                                            <div class="alert alert-success" role="alert">
+                                                <div class="row">
+                                                    <div class="col-md-1"><i class="fas fa-exclamation-circle fa-5x"></i></div>
+                                                    <div class="col-md-11">
+                                                        <h3>Custom Report</h3>
+                                                        Contact your Mi-id rep to help set up your custom report. Custom reports can display anything from your customer profiles to sales data
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br>
+
+                                            <div class="col-md-12">
+                                                <iframe width="100%" height="850" src="@Model.Event.Report2" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+                                            </div>
+
+
+
+                                        </div>
+
+                                        <hr>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+

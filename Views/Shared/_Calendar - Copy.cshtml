@@ -1,0 +1,107 @@
+﻿@model MiidWeb.Models.CalendarViewModel
+<style>
+    .rTable {
+        display: block;
+        width: 100%;
+    }
+
+    .rTableHeading, .rTableBody, .rTableFoot, .rTableRow {
+        clear: both;
+    }
+
+    .rTableHead, .rTableFoot {
+        background-color: #DDD;
+        font-weight: bold;
+    }
+
+    .rTableCell, .rTableHead {
+        border: 1px solid #999999;
+        float: left;
+        height: 60px;
+        overflow: hidden;
+        padding: 3px 1.8%;
+        width: 7%;
+    }
+
+    .rTable:after {
+        visibility: hidden;
+        display: block;
+        font-size: 0;
+        content: " ";
+        clear: both;
+        height: 0;
+    }
+</style>
+
+<h2>Mii Calendar</h2>
+<h1>@Model.Calendar[7].CalendarDate.ToString("MMMM")  @Model.Calendar[7].CalendarDate.ToString("yyyy")</h1>
+<div class="rTable">
+    <div class="rTableRow">
+        <div class="rTableHead"><strong>Monday</strong></div>
+        <div class="rTableHead"><strong>Tuesday</strong></div>
+        <div class="rTableHead"><strong>Wednesday</strong></div>
+        <div class="rTableHead"><strong>Thursday</strong></div>
+        <div class="rTableHead"><strong>Friday</strong></div>
+        <div class="rTableHead"><strong>Saturday</strong></div>
+        <div class="rTableHead"><strong>Sunday</strong></div>
+
+    </div>
+    <div class="rTableRow">
+        @for (int x = 0; x <= 6; x++)
+        {
+            <div class="rTableCell">
+                @Model.Calendar[@x].DayNo @if (@Model.Calendar[@x].EventID > 0)
+                { <img width="80%" src="~/Content/images/@Model.Calendar[@x].ImageURL" title="@Model.Calendar[@x].ImageAltText" /> }
+            </div>
+
+        }
+    </div>
+
+    <div class="rTableRow">
+        @for (int x = 7; x <= 13; x++)
+        {
+            <div class="rTableCell">
+                @Model.Calendar[@x].DayNo @if (@Model.Calendar[@x].EventID > 0)
+                { <img width="80%" src="~/Content/images/@Model.Calendar[@x].ImageURL" title="@Model.Calendar[@x].ImageAltText" /> }
+            </div>
+
+        }
+    </div>
+
+    <div class="rTableRow">
+        @for (int x = 14; x <= 20; x++)
+        {
+            <div class="rTableCell">
+                @Model.Calendar[@x].DayNo @if (@Model.Calendar[@x].EventID > 0)
+                { <img width="80%" src="~/Content/images/@Model.Calendar[@x].ImageURL" title="@Model.Calendar[@x].ImageAltText" /> }
+            </div>
+
+        }
+    </div>
+
+
+    <div class="rTableRow">
+        @for (int x = 21; x <= 27; x++)
+        {
+            <div class="rTableCell">
+                @Model.Calendar[@x].DayNo @if (@Model.Calendar[@x].EventID > 0)
+                { <img width="80%" src="~/Content/images/@Model.Calendar[@x].ImageURL" title="@Model.Calendar[@x].ImageAltText" /> }
+            </div>
+
+        }
+    </div>
+
+
+    <div class="rTableRow">
+        @for (int x = 28; x <= 34; x++)
+        {
+            <div class="rTableCell">
+                @Model.Calendar[@x].DayNo @if (@Model.Calendar[@x].EventID > 0)
+                { <img width="80%" src="~/Content/images/@Model.Calendar[@x].ImageURL" title="@Model.Calendar[@x].ImageAltText" /> }
+            </div>
+
+        }
+    </div>
+
+
+</div>

@@ -1,0 +1,99 @@
+/* Growl
+----------------------------------------------------------*/
+#growl-mask
+{    
+ 	background-color: #000000;
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: none;
+    opacity: 0; 
+    
+    
+}
+
+
+#growl-wrap
+{  
+    background-color: #ffffff;
+    color: #000000;
+     border: 1px solid #c6c6c6;
+    -moz-box-shadow:    0px 0px 6px 0px #ccc;
+  -webkit-box-shadow: 0px 0px 6px 0px #ccc;
+  box-shadow:         0px 0px 6px 0px #ccc;
+    min-width: 300px;
+    margin: 0;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size:20px;
+    border:1px solid #efefef;
+    max-width:50%;
+    padding:10px;
+     
+  background-repeat: no-repeat;
+  background-position: 280px 10px;
+}
+
+#car-name {background-color:#fbaa19; 
+           padding-top:5px; 
+           padding-bottom:5px; 
+           color:#ffffff; 
+           width:80%; 
+           text-align:center;
+           margin-bottom:10px;
+           margin:auto;
+           
+           
+}
+
+#car-name:hover {background-color:#b0760f; 
+           padding-top:5px; 
+           padding-bottom:5px; 
+           color:#ffffff; 
+           width:80%; 
+           text-align:center;
+           margin-bottom:10px;
+           margin:auto;
+           
+           
+}
+#growl-title
+{
+    /*text-align: center;
+    color: #000;*/
+    font-weight:bold;
+    font-size:25px;
+    text-align: center;
+    color: #000000;
+    padding:10px;
+   
+
+}
+#growl-content
+{
+    /*margin: 10px;
+    border: 1px solid #333;
+    padding: 30px;*/
+
+    margin: 10px;
+    font-size:18px;
+    padding: 30px;
+    background-color:#ffffff;
+    border-radius: 5px;
+    text-align:center;
+
+
+}
+#growl-content p
+{
+    
+
+    margin:auto;
+    text-align:center;
+    margin-bottom: 10px;
+}

@@ -1,0 +1,111 @@
+﻿@model MiidWeb.Models.LoginViewModel
+@{
+    ViewBag.Title = "Home Page";
+   
+}
+
+
+
+
+
+
+
+
+
+
+<!--  first section picture & form -->
+
+<div class="firstsection">
+
+    <!-- opaque wrapper -->
+    <div class="logging_wrapper_user">
+
+
+        <!-- starat banner -->
+        <div class="logging_banner">
+            <img src="images/banner1_3.jpg" name="slide" border="0" width="850px" height="230px">
+            <script>
+
+												    //configure the paths of the images, plus corresponding target links
+												    slideshowimages("images/banner1_1.jpg","images/banner1_3.jpg","images/banner1_5.jpg")
+												    //configure the speed of the slideshow, in miliseconds
+												    var slideshowspeed=4000
+												    var whichlink=0
+												    var whichimage=0
+													function slideit(){
+													if (!document.images)
+													return
+													document.images.slide.src=slideimages[whichimage].src
+													whichlink=whichimage
+													if (whichimage<slideimages.length-1)
+													whichimage++
+													else
+													whichimage=0
+													setTimeout("slideit()",slideshowspeed)
+													}
+													slideit()
+
+
+            </script>
+
+        </div>
+
+        <!-- close banner -->
+
+
+
+
+        <div class="imagecolumbleft_user " />
+        <a href="/"><img src="images/landing2.png" alt="miid.co.za" /></a>
+    </div>
+
+
+    <!-- icons and text -->
+    <div class="columbright_user">
+
+
+
+        <h1>Mi-id for users</h1>
+        <div class="smallicons_user ">
+            <img src="images/icon1.png" alt=" miiImage" />
+            <div class="textlanding_user">
+                Gain access Electronic ticketing that doesnt require you to carry your phone.
+                </br>
+            </div>
+        </div>
+
+        <div class="smallicons_user ">
+            <img src="images/icon1.png" alt=" miiImage" />
+            <div class="textlanding_user">
+                Who needs cash? Make payments using your Mii-Band
+                </br>
+            </div>
+        </div>
+
+        <div class="smallicons_user ">
+            <img src="images/icon1.png" alt=" miiImage" />
+            <div class="textlanding_user">
+                The latest news & best events.
+                </br>
+            </div>
+        </div>
+
+        <div class="smallicons_user ">
+            <img src="images/icon1.png" alt=" miiImage" />
+            <div class="textlanding_user">
+                Connect with friends & share events.
+                </br>
+            </div>
+
+            <a href="~/Account/Register"> <div class="registerbutton">REGISTER NOW!!!</div></a>
+            <br><span style="font-size:12px; ">Are you an event organiser?<a href="~/Home/IndexEO"> Click here</a></span>
+        </div>
+    </div>
+    <!--  close opaque wrapper -->
+
+
+
+
+
+</div> <!--  second section -->
+<!--  open second  section -->

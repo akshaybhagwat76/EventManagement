@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>MiiD | Home</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="description" content="MiiD">
+	<meta name="keywords" content="">
+	@*<link rel="stylesheet" href="css/main.css" type="text/css">*@
+	<link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
+	<meta name="robots" content="noindex,nofollow">
+	<meta name="googlebot" content="noindex,nofollow">
+	@*<link rel="stylesheet" type="text/css" href="demo.css" />*@
+
+
+	@Styles.Render("~/Content/css")
+	@Scripts.Render("~/bundles/modernizr")
+
+	<link rel="stylesheet" href="~/Content/css/main.css" type="text/css">
+	<link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
+
+
+	<script language="JavaScript1.1">
+
+
+
+		var slideimages = new Array()
+		var slidelinks = new Array()
+		function slideshowimages() {
+			for (i = 0; i < slideshowimages.arguments.length; i++) {
+				slideimages[i] = new Image()
+				slideimages[i].src = slideshowimages.arguments[i]
+			}
+		}
+
+		function slideshowlinks() {
+			for (i = 0; i < slideshowlinks.arguments.length; i++)
+				slidelinks[i] = slideshowlinks.arguments[i]
+		}
+
+		function gotoshow() {
+			if (!window.winslide || winslide.closed)
+				winslide = window.open(slidelinks[whichlink])
+			else
+				winslide.location = slidelinks[whichlink]
+			winslide.focus()
+		}
+
+			//-->
+	</script>
+</head>
+<body>
+
+    <div class="header">
+
+        <div class="header_wrapper">
+
+            <div class="header_container_left">
+
+
+                <ul class="drop_menu">
+                    <li>
+                        <img src="~/images/drop_menu.png" alt=" miiImage" class="logo" />
+                        <ul>
+                            <li><a href='#'>About</a></li>
+                            <li><a href='#'>Services</a></li>
+                            <li><a href='#'>FAQ's</a></li>
+                            <li><a href='#'>Help</a></li>
+
+                        </ul>
+                    </li>
+
+
+                </ul>
+
+
+                <img src="~/images/logo.png" alt=" miiImage" class="logo" />
+            </div>
+
+            
+            @Html.Partial("_LoginPartial")
+
+           
+
+
+        </div>
+
+
+    </div>
+
+    @RenderBody()
+
+    <!--  open second  section -->
+    <div class="footer">
+
+
+        <div class="footer_wrapper">
+
+            <div class="footer_container_border_none">
+                <div class="footer_heading">Information</div>
+                <div class="footer_copy">About</div>
+                <div class="footer_copy">Services</div>
+
+
+
+
+            </div>
+            <div class="footer_container_border_left">
+
+                <div class="footer_heading">Need Help?</div>
+                <div class="footer_copy">FAQ's</div>
+                <div class="footer_copy">T&C's</div>
+                <div class="footer_copy">Help Desk</div>
+                <div class="footer_copy">Contact</div>
+
+            </div>
+            <div class="footer_container_border_left">
+
+                <div class="footer_heading">Other</div>
+                <div class="footer_copy">Careers</div>
+                <div class="footer_copy">Marketing</div>
+                <div class="footer_copy">Partnerships</div>
+
+            </div>
+            <div class="footer_container_border_left">
+
+                <div class="footer_heading">Social</div>
+                <div class="footer_copy">Facebook</div>
+                <div class="footer_copy">Twitter</div>
+                <div class="footer_copy">Google+</div>
+                <div class="footer_copy">Linkedin</div>
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/jquery.tokeninput.js")
+    
+    @RenderSection("scripts", required: false)
+</body>
+</html>

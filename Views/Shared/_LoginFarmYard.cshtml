@@ -1,0 +1,81 @@
+﻿@using Microsoft.AspNet.Identity
+@using MiidWeb.Helpers
+@if (Request.IsAuthenticated)
+{
+    var endUser = MiidWeb.Repositories.EndUserRepository.GetUser(User.Identity.GetUserName(), true);
+
+    bool IAmEventOrganiser = false;
+
+    IAmEventOrganiser = MiidWeb.Repositories.EndUserRepository.AmIAnEventOrganiser(User.Identity.GetUserName());
+
+
+
+    if (endUser == null && !IAmEventOrganiser) { Response.Redirect("~/Account/Logoff"); }
+
+
+
+    @* @Html.ActionLink("Forgot your password?", "ForgotPassword", "Account")*@
+
+
+    <div class="collapse navbar-collapse">
+
+        <ul class="nav navbar-nav">
+
+
+
+            @if (endUser != null)
+            {
+
+                <li class="">@Html.ActionLink("Home", "EndUserProfile", "EndUsers", new { id = @MiidWeb.Helpers.UserHelper.UserID(User.Identity.GetUserName()), loggedInUserID = @MiidWeb.Helpers.UserHelper.UserID(User.Identity.GetUserName()) }, new { @class = "links" })</li>
+                <li class="">@Html.ActionLink("All Events", "Search", "Events", null, new { @class = "links" })</li>
+                <li class="">@Html.ActionLink("Your Tickets", "MiiEvents", "Events", null, new { @class = "links" })</li>
+                <li class=""> @Html.ActionLink("Pre-Paid Funds", "IndexByUserID", "MyMoneys", null, new { @class = "links" })</li>
+                <li class="">@Html.ActionLink("Wristband/Tags", "IndexByUserID", "NFCTags", null, new { @class = "links" })</li>
+                <li class=""><a class="links" href="~/EventOrganisers/Create">Create Event</a></li>
+                <li class=""> @Html.ActionLink("Sign Out", "Logoff", "Account", null, new { @class = "links" }) </li>
+
+            }
+
+
+
+
+
+        </ul>
+    </div>
+
+
+    @* @Html.ActionLink("Forgot your password?", "ForgotPassword", "Account")*@
+
+
+
+
+
+}
+else
+{
+
+    <header style="display:none;">
+        <!--IMPORTANT...this is part of the url redirect when user logs on and taken back to events-->
+        <div class="p">
+            @{ var model = new MiidWeb.Models.LoginViewModel(ReturnUrl: Request.RawUrl);}
+            @Html.Partial("_Login", @model)
+        </div>
+    </header>
+
+    <div class="collapse navbar-collapse">
+
+        <ul class="nav navbar-nav">
+            <li class=""><a href="../LoginAlternative/LoginAlternative" class="links"> Sign In </a></li>
+            <li class=""><a href="~/Events/Search" class="links">All Events &amp; Festivals</a></li>
+            <li class=""><a href="~/Home/Index" class="links"> Home</a></li>
+            <li class=""><a href="~/Account/Register" class="links">Register</a></li>
+        
+
+
+
+
+
+        </ul>
+    </div>
+
+}

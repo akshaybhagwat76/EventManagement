@@ -1,0 +1,124 @@
+﻿@model MiidWeb.Models.QuickAddTicketViewModel
+
+@{
+	ViewBag.Title = "Create";
+	Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$(document).ready(function () {
+
+		$("#TicketClassID").empty();
+		$("#TicketClassID").append('<option value="0"> -- All --</option>');
+
+		//Dropdownlist Selectedchange event
+		$("#EventID").change(function () {
+			$("#TicketClassID").empty();
+			$("#TicketClassID").append('<option value="0"> -- All --</option>');
+
+			$.ajax({
+				type: 'POST',
+				url: '@Url.Action("GetTicketClasses")', // we are calling json method
+				dataType: 'json',
+				data: { id: $("#EventID").val() },
+				success: function (subdistricts) {
+					// subdistricts contains the JSON formatted list
+					// of subdistricts passed from the controller
+					$.each(subdistricts, function (i, subdistrict) {
+						$("#TicketClassID").append('<option value="' + subdistrict.Value + '">' + subdistrict.Text + '</option>');
+					}); // here we are adding option for subdistricts
+				},
+				error: function (ex) {
+					alert('Failed to retrieve areas.' + ex);
+				}
+			});
+			return false;
+		})
+	});
+</script>
+
+
+<div class="col-md-9">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="content-box-header">
+				<div class="panel-title">Assign tickets</div>
+
+				<!--<div class="panel-options">
+					<a href="#" data-rel="collapse"><i class="glyphicon glyphicon-refresh" onClick="refreshPage()"></i></a>
+
+
+					  <a href=" @Url.Action( "Create", "EventOrganisers", null)" data-rel="reload"><i class="glyphicon glyphicon-cog"></i></a>
+				<   /div>
+		         -->
+			</div>
+
+
+
+
+
+			@using (Html.BeginForm())
+			{
+				@Html.AntiForgeryToken()
+
+
+			<div class="content-box-large box-with-header">
+
+				<div class="row">
+					<div class="col-md-12 form-group">
+						<label>@Html.ValidationSummary(true, "", new { @class = "red" })</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12 form-group">
+						<label>Choose event</label>
+						@Html.DropDownListFor(model => model.EventID, (SelectList)Model.EventList, "--All--", new { @class = "form-control" })
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12 form-group">
+						<label>Choose ticket type</label>
+						@Html.DropDownListFor(model => model.TicketClassID, (SelectList)Model.TicketClassList, "--All--", new { @class = "form-control" })
+					</div>
+				</div>
+				<div class="row">
+
+
+					<div class="col-md-6 form-group">
+						<label>UserEmail</label>
+						@Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+						@Html.ValidationMessageFor(model => model.UserName, "", new { @class = "red" })
+					</div>
+					<div class="col-md-6 form-group">
+						<label>Choose Qty</label>
+						@Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control", type = "number" } })
+						@Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "red" })
+					</div>
+				</div>
+
+				<div class="row">
+
+
+					<div class="col-md-6 form-group">
+						<input type="submit" value="Create" class="btn btn-primary" />
+
+					
+					
+                     </div>
+
+					</div>
+				</div>
+
+					}
+
+
+
+					@section Scripts {
+						@Scripts.Render("~/bundles/jqueryval")
+					}
+
+				</div>
+			</div>
+</div>

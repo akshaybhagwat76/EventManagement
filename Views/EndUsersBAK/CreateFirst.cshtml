@@ -1,0 +1,510 @@
+﻿@model MiidWeb.EndUser
+
+@{
+    ViewBag.Title = "Create";
+    string email = ViewBag.Email;
+    Layout = "~/Views/Shared/_LayoutEndUserProfile.cshtml";
+}
+
+
+<div class="header">
+
+    <div class="header_wrapper">
+
+        <div class="header_container_left">
+
+
+            <ul class="drop_menu">
+                <li>
+                    <img src="../../images/drop_menu.png" alt=" miiImage" class="logo" />
+                    <ul>
+                        <li><a href='#'>About</a></li>
+                        <li><a href='#'>Services</a></li>
+                        <li><a href='#'>FAQ's</a></li>
+                        <li><a href='#'>Help</a></li>
+
+                    </ul>
+                </li>
+
+
+            </ul>
+
+
+            <img src="../../images/logo.png" alt=" miiImage" class="logo" />
+        </div>
+
+        <div class="header_container_right">
+            <form class="login_form">
+                <input type="text" class="login_user_name" placeholder="Email">
+                <input type="text" class="login_password" placeholder="Password">
+                <input type="submit" class="login_submit" value="GO">
+            </form>
+            <div class="logging_text">
+                <a href="#" style="text-decoration:none; color: #fff;">New user? Register here.</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;  <a href="#" style="text-decoration:none; color: #fff;">Forgot password?</a>
+            </div>
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+
+<!--  first section picture & form -->
+
+<div class="firstsection">
+
+    <!-- opaque wrapper -->
+    <div class="wrapper">
+
+
+
+
+        <div class="form_wrapper">
+            <!-- starat banner -->
+            <div class="logging_banner">
+                <img src="../../images/registration_banner.jpg" name="slide" border="0" width="850px" height="230px">
+
+            </div>
+
+            <!-- close banner -->
+
+
+            <div class="form_container">
+                <span class="register_heading"> You're almost there!!! </span>
+                <span class="register_text">
+                    Get your passport to a quick & easy way to set up, buy event tickets,
+                    share events with friends and gain access to the hottest news in the music festival and concert world.
+
+                </span>
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="right_container_form">
+
+
+
+                        <br>Fill in the following information to start setting up you account. Once we have recieved this infomation
+                        we will drop you a email with your log-in details<br>
+
+
+
+                        <br><span class="form_heading">Details:</span><br><br>
+                        First Name:<br>
+                        <input type="text" id="Firstname" class="input_oraniser_contact_firstname "><br>
+
+                        Last Name:
+                        @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "input_oraniser_contact_surname" } })
+                        @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "red" })
+                        <br>
+
+                        Telephone Number <br>
+                        @Html.EditorFor(model => model.Telephone, new { htmlAttributes = new { @class = "input_oraniser_contact_surname" } })
+                        @Html.ValidationMessageFor(model => model.Telephone, "", new { @class = "red" })
+                        <br>
+
+                        Cellphone Number <br>
+                        @Html.EditorFor(model => model.Cell, new { htmlAttributes = new { @class = "input_oraniser_contact_surname" } })
+                        @Html.ValidationMessageFor(model => model.Cell, "", new { @class = "red" })
+                        <br>
+
+
+                        Email<br> @Html.DisplayFor(model => model.Email, new { htmlAttributes = new { @class = "input_oraniser_contact_surname" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "red" })<br>
+                        @Html.Hidden("Email", @email)
+
+
+                        Sex
+
+                        @Html.EditorFor(model => model.Sex, new { htmlAttributes = new { @class = "input_oraniser_contact_surname" } })
+                        @Html.ValidationMessageFor(model => model.Sex, "", new { @class = "red" })
+
+                        <br><br>Race<br> <span style=" font-size:12px; ">This is purely for statistical information. If you do not feel comfortable stating your  race please click "not specified"</span><br>
+                        @Html.EditorFor(model => model.RaceID, new { htmlAttributes = new { @class = "input_oraniser_contact_surname" } })
+                        @Html.ValidationMessageFor(model => model.RaceID, "", new { @class = "red" })
+
+
+                        <br><br>Date of Birth<br>
+                        @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "input_oraniser_contact_surname" } })
+                        @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "red" })
+
+
+                    </div>
+
+                    <div class="right_container_form">
+
+
+
+
+
+                        <br>
+                        ID Number<br>@Html.EditorFor(model => model.IDNumber, new { htmlAttributes = new { @class = "input_oraniser_id" } })
+                        @Html.ValidationMessageFor(model => model.IDNumber, "", new { @class = "red" })
+                        <br>
+
+                        Age<br>
+                        @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "input_oraniser_id" } })
+                        @Html.ValidationMessageFor(model => model.Age, "", new { @class = "red" })
+                        <br>
+
+
+
+
+                        <br>  <br>  Address
+
+
+                        <br><br>     @Html.EditorFor(model => model.StreetAddress, new { htmlAttributes = new { @class = "input_oraniser_id", placeholder = "Number/ Street address/ complex name ect" } })
+                        @Html.ValidationMessageFor(model => model.StreetAddress, "", new { @class = "red" })
+
+                        <br><br>   @Html.EditorFor(model => model.Suburb, new { htmlAttributes = new { @class = "input_oraniser_id", placeholder = "Suburb" } })
+                        @Html.ValidationMessageFor(model => model.Suburb, "", new { @class = "red" })
+
+                        <br><br>    @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "input_oraniser_id", placeholder = "City/ Town" } })
+                        @Html.ValidationMessageFor(model => model.City, "", new { @class = "red" })
+
+                        <br><br>   @Html.EditorFor(model => model.PostalCode, new { htmlAttributes = new { @class = "input_oraniser_id", placeholder = "Postal Code" } })
+                        @Html.ValidationMessageFor(model => model.PostalCode, "", new { @class = "red" })
+
+
+
+                        <br>Province<br>
+                        <select name="Province" id="province" class="input_oraniser_province">
+                            <option value="0">Province:</option>
+                            <option value="1">Western Cape</option>
+                            <option value="2">Eastern Cape</option>
+                            <option value="3">Northern Cape</option>
+                            <option value="4">Gauteng</option>
+                            <option value="5">Limpopo</option>
+                            <option value="6">Mpumalanga</option>
+                            <option value="7">KwaZulu-Natal</option>
+                            <option value="7">North-West</option>
+                            <option value="7">Freestate</option>
+                        </select>
+
+
+
+
+
+                        <br>&nbsp;<br>
+                        <span class="register_newsletter_text">
+                            Would you like to <strong>win monthly tickets</strong> & stay updated about the latest gigs, concerts and festivals by signing up to our newsletter<br>
+                            Yes
+                            <input type="checkbox" id="Sex" value="male" class="input_oraniser_sex">No<input type="checkbox" id="Sex" value="female" class="input_oraniser_sex"><br>
+                        </span>
+
+                        <input type="submit" value="Submit" class="input_organiser_submit">
+
+                        
+
+
+                    </div>
+                }
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+
+
+</div>
+<div class="footer">
+
+
+    <div class="footer_wrapper">
+
+        <div class="footer_container">
+
+
+
+            <div class="footer_columb">
+                <div class="footer_columb_text">Information</div>
+                <div class="footer_content">
+                    About
+                </div>
+                <div class="footer_content">
+                    Services
+                </div>
+                <div class="footer_content">
+                    Careers
+                </div>
+
+            </div>
+            <div class="footer_columb">
+                <div class="footer_columb_text">Need Help?</div>
+                <div class="footer_content">
+                    FAQS
+                </div>
+                <div class="footer_content">
+                    T&C's
+                </div>
+                <div class="footer_content">
+                    Help
+                </div>
+                <div class="footer_content">
+                    Contact
+                </div>
+            </div>
+            <div class="footer_columb">
+                <div class="footer_columb_text">Other</div>
+                <div class="footer_content">
+                    Careers
+                </div>
+                <div class="footer_content">
+                    Marketing
+                </div>
+                <div class="footer_content">
+                    Partnerships
+                </div>
+
+            </div>
+
+            <div class="footer_columb_last">
+                <div class="footer_columb_text">Social</div>
+                <div class="footer_content">
+                    Facebook
+                </div>
+                <div class="footer_content">
+                    Twitter
+                </div>
+                <div class="footer_content">
+                    Google+
+                </div>
+                <div class="footer_content">
+                    Linkedin
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Firstname, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Firstname, new { htmlAttributes = new { @class = "input_oraniser_id" } })
+        @Html.ValidationMessageFor(model => model.Firstname, "", new { @class = "red" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "input_oraniser_id" } })
+        @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "red" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.AccountTypeID, "AccountTypeID", htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.DropDownList("AccountTypeID", null, htmlAttributes: new { @class = "input_oraniser_id" })
+        @Html.ValidationMessageFor(model => model.AccountTypeID, "", new { @class = "red" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.IDNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.IDNumber, new { htmlAttributes = new { @class = "input_oraniser_id" } })
+        @Html.ValidationMessageFor(model => model.IDNumber, "", new { @class = "red" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Age, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "input_oraniser_id" } })
+        @Html.ValidationMessageFor(model => model.Age, "", new { @class = "red" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Sex, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Sex, new { htmlAttributes = new { @class = "input_oraniser_id" } })
+        @Html.ValidationMessageFor(model => model.Sex, "", new { @class = "red" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.RaceID, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.RaceID, new { htmlAttributes = new { @class = "input_oraniser_id" } })
+        @Html.ValidationMessageFor(model => model.RaceID, "", new { @class = "red" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.StreetAddress, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.StreetAddress, new { htmlAttributes = new { @class = "input_oraniser_id" } })
+        @Html.ValidationMessageFor(model => model.StreetAddress, "", new { @class = "red" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Suburb, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Suburb, new { htmlAttributes = new { @class = "input_oraniser_id" } })
+        @Html.ValidationMessageFor(model => model.Suburb, "", new { @class = "red" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "input_oraniser_id" } })
+        @Html.ValidationMessageFor(model => model.City, "", new { @class = "red" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.PostalCode, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.PostalCode, new { htmlAttributes = new { @class = "input_oraniser_id" } })
+        @Html.ValidationMessageFor(model => model.PostalCode, "", new { @class = "red" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Telephone, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Telephone, new { htmlAttributes = new { @class = "input_oraniser_id" } })
+        @Html.ValidationMessageFor(model => model.Telephone, "", new { @class = "red" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Cell, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Cell, new { htmlAttributes = new { @class = "input_oraniser_id" } })
+        @Html.ValidationMessageFor(model => model.Cell, "", new { @class = "red" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @ViewBag.Email
+        @Html.Hidden("Email", @email)
+        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "red" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.StatusID, "StatusID", htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.DropDownList("StatusID", null, htmlAttributes: new { @class = "input_oraniser_id" })
+        @Html.ValidationMessageFor(model => model.StatusID, "", new { @class = "red" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "input_oraniser_id" } })
+        @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "red" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.AccountBalance, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.AccountBalance, new { htmlAttributes = new { @class = "input_oraniser_id" } })
+        @Html.ValidationMessageFor(model => model.AccountBalance, "", new { @class = "red" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.IsChildUser, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        <div class="checkbox">
+            @Html.EditorFor(model => model.IsChildUser)
+            @Html.ValidationMessageFor(model => model.IsChildUser, "", new { @class = "red" })
+        </div>
+    </div>
+</div>
+
+
+
+<div class="form-group">
+    @Html.LabelFor(model => model.NextOfKin, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.NextOfKin, new { htmlAttributes = new { @class = "input_oraniser_id" } })
+        @Html.ValidationMessageFor(model => model.NextOfKin, "", new { @class = "red" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.NextOfKinTelephone, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.NextOfKinTelephone, new { htmlAttributes = new { @class = "input_oraniser_id" } })
+        @Html.ValidationMessageFor(model => model.NextOfKinTelephone, "", new { @class = "red" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Medication, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Medication, new { htmlAttributes = new { @class = "input_oraniser_id" } })
+        @Html.ValidationMessageFor(model => model.Medication, "", new { @class = "red" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.MedicalAidCompany, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.MedicalAidCompany, new { htmlAttributes = new { @class = "input_oraniser_id" } })
+        @Html.ValidationMessageFor(model => model.MedicalAidCompany, "", new { @class = "red" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.MedicalAidNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.MedicalAidNumber, new { htmlAttributes = new { @class = "input_oraniser_id" } })
+        @Html.ValidationMessageFor(model => model.MedicalAidNumber, "", new { @class = "red" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Allergies, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Allergies, new { htmlAttributes = new { @class = "input_oraniser_id" } })
+        @Html.ValidationMessageFor(model => model.Allergies, "", new { @class = "red" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.KnownConditions, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.KnownConditions, new { htmlAttributes = new { @class = "input_oraniser_id" } })
+        @Html.ValidationMessageFor(model => model.KnownConditions, "", new { @class = "red" })
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Create" class="btn btn-default" />
+    </div>
+</div>
+</div>
+
+
+

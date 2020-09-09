@@ -1,0 +1,414 @@
+﻿@model IEnumerable<MiidWeb.Subdomain>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="col-md-9">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="content-box-header">
+                <div class="panel-title">All Subdomains</div>
+      
+
+                <p>
+                    @Html.ActionLink("Create New", "Create")
+                </p>
+                <div class="panel-options">
+
+                </div>
+            </div>
+            <div class="content-box-large box-with-header">
+                <div class="row">
+
+                    <table class="table">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ID)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.SubdomainName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CompanyName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Active)
+                            </th>
+
+                            <th></th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SubdomainName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CompanyName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Active)
+                                </td>
+
+                                @Html.HiddenFor(modelItem => item.Text1)
+
+
+                                @Html.HiddenFor(modelItem => item.Text2)
+
+
+                                @Html.HiddenFor(modelItem => item.Text3)
+
+
+                                @Html.HiddenFor(modelItem => item.Text4)
+
+
+                                @Html.HiddenFor(modelItem => item.Text5)
+
+
+                                @Html.HiddenFor(modelItem => item.Text6)
+
+
+                                @Html.HiddenFor(modelItem => item.EmailFile)
+
+
+                                @Html.HiddenFor(modelItem => item.EmailTicketPurchase)
+
+
+                                @Html.HiddenFor(modelItem => item.EmailTicketPurchaseEFT)
+
+
+                                @Html.HiddenFor(modelItem => item.EmailTicketPurchaseMiiFunds)
+
+
+                                @Html.HiddenFor(modelItem => item.EmailRegistration)
+
+
+                                @Html.HiddenFor(modelItem => item.EmailUserUpdate)
+
+
+                                @Html.HiddenFor(modelItem => item.EmailAccountActive)
+
+
+                                @Html.HiddenFor(modelItem => item.EmailMiifundsTopup)
+
+
+                                @Html.HiddenFor(modelItem => item.EmailMiifundsTopupEFT)
+
+
+                                @Html.HiddenFor(modelItem => item.EmailTicketPurchaseEFTExpired)
+
+
+                                @Html.HiddenFor(modelItem => item.LoginParaOne)
+
+
+                                @Html.HiddenFor(modelItem => item.LoginParatwo)
+
+
+                                @Html.HiddenFor(modelItem => item.HomeParaOne)
+
+
+                                @Html.HiddenFor(modelItem => item.HomeParatwo)
+
+
+                                @Html.HiddenFor(modelItem => item.HomeImageOne)
+
+
+                                @Html.HiddenFor(modelItem => item.HomeImagetwo)
+
+
+                                @Html.HiddenFor(modelItem => item.HomeImagethree)
+
+
+                                @Html.HiddenFor(modelItem => item.HomeImageFour)
+
+
+                                @Html.HiddenFor(modelItem => item.HomeImageOneLink)
+
+
+                                @Html.HiddenFor(modelItem => item.HomeImageTwoLink)
+
+
+                                @Html.HiddenFor(modelItem => item.HomeImageThreeLink)
+
+
+                                @Html.HiddenFor(modelItem => item.HomeImageFourLink)
+
+
+                                @Html.HiddenFor(modelItem => item.HomeImageOneText)
+
+
+                                @Html.HiddenFor(modelItem => item.HomeImageTwoText)
+
+
+                                @Html.HiddenFor(modelItem => item.HomeImageThreeText)
+
+
+                                @Html.HiddenFor(modelItem => item.HomeImageFourText)
+
+
+                                @Html.HiddenFor(modelItem => item.HomeCardOneHeading)
+
+
+                                @Html.HiddenFor(modelItem => item.HomeCardTwoHeading)
+
+
+                                @Html.HiddenFor(modelItem => item.HomeCardThreeHeading)
+
+
+                                @Html.HiddenFor(modelItem => item.HomeCardOnePara)
+
+
+                                @Html.HiddenFor(modelItem => item.HomeCardTwoPara)
+
+
+                                @Html.HiddenFor(modelItem => item.HomeCardThreePara)
+
+
+                                @Html.HiddenFor(modelItem => item.CallToActionOne)
+
+
+                                @Html.HiddenFor(modelItem => item.CallToActionTwo)
+
+
+                                @Html.HiddenFor(modelItem => item.CallToActionThree)
+
+
+                                @Html.HiddenFor(modelItem => item.CallToActionAll)
+
+
+                                @Html.HiddenFor(modelItem => item.PurchaseContainerHeading)
+
+
+                                @Html.HiddenFor(modelItem => item.PurchaseInfo)
+
+
+                                @Html.HiddenFor(modelItem => item.PurchaseDetails)
+
+
+                                @Html.HiddenFor(modelItem => item.PurchaseExtra)
+
+
+                                @Html.HiddenFor(modelItem => item.CallToActionPurchase)
+
+
+                                @Html.HiddenFor(modelItem => item.PurchaseTermsOne)
+
+
+                                @Html.HiddenFor(modelItem => item.PurchaseTermsTwo)
+
+
+                                @Html.HiddenFor(modelItem => item.PurchaseSoldOut)
+
+
+                                @Html.HiddenFor(modelItem => item.Currency)
+
+
+                                @Html.HiddenFor(modelItem => item.PurchaseNoAvailiblity)
+
+
+                                @Html.HiddenFor(modelItem => item.PurchaseFilter)
+
+
+                                @Html.HiddenFor(modelItem => item.PurchaseFindTickets)
+
+
+                                @Html.HiddenFor(modelItem => item.PurchaseRowNumber)
+
+
+                                @Html.HiddenFor(modelItem => item.PurchaseSeatNumber)
+
+
+                                @Html.HiddenFor(modelItem => item.PurchaseTotalQunatity)
+
+
+                                @Html.HiddenFor(modelItem => item.PurchaseSubTotal)
+
+
+                                @Html.HiddenFor(modelItem => item.PurchaseTotal)
+
+
+                                @Html.HiddenFor(modelItem => item.MyEventsHeading)
+
+
+                                @Html.HiddenFor(modelItem => item.MyEventsParaOne)
+
+
+                                @Html.HiddenFor(modelItem => item.MyEventsParaTwo)
+
+
+                                @Html.HiddenFor(modelItem => item.MyEventsParaHelpHeading)
+
+
+                                @Html.HiddenFor(modelItem => item.MyEventsHelpOne)
+
+
+                                @Html.HiddenFor(modelItem => item.MyEventsHelpTwo)
+
+
+                                @Html.HiddenFor(modelItem => item.MyEventsHelpThree)
+
+
+                                @Html.HiddenFor(modelItem => item.MyEventsDownLoadHeading)
+
+
+                                @Html.HiddenFor(modelItem => item.ButtonDownload)
+
+
+                                @Html.HiddenFor(modelItem => item.ButtonPending)
+
+
+                                @Html.HiddenFor(modelItem => item.MyEventsHelpHeadingOne)
+
+
+                                @Html.HiddenFor(modelItem => item.MyEventsHelpHeadingTwo)
+
+
+                                @Html.HiddenFor(modelItem => item.MyEventsHelpHeadingThree)
+
+
+                                @Html.HiddenFor(modelItem => item.CreateFirstHeading)
+
+
+                                @Html.HiddenFor(modelItem => item.CreateFirstParaOne)
+
+
+                                @Html.HiddenFor(modelItem => item.CreateFirstFirstName)
+
+
+                                @Html.HiddenFor(modelItem => item.CreateFirstFirstNameSub)
+
+
+                                @Html.HiddenFor(modelItem => item.CreateFirstLastName)
+
+
+                                @Html.HiddenFor(modelItem => item.CreateFirstLastNameSub)
+
+
+                                @Html.HiddenFor(modelItem => item.CreateFirstCell)
+
+
+                                @Html.HiddenFor(modelItem => item.CreateFirstCellSub)
+
+
+                                @Html.HiddenFor(modelItem => item.CreateFirstID)
+
+
+                                @Html.HiddenFor(modelItem => item.CreateFirstIDSub)
+
+
+                                @Html.HiddenFor(modelItem => item.CreateFirstEmail)
+
+
+                                @Html.HiddenFor(modelItem => item.CreateFirstSeucrePurchase)
+
+
+                                @Html.HiddenFor(modelItem => item.Terms)
+
+
+                                @Html.HiddenFor(modelItem => item.ChooseTenderHeadingOne)
+
+
+                                @Html.HiddenFor(modelItem => item.ChooseTenderHeadingTwo)
+
+
+                                @Html.HiddenFor(modelItem => item.ChooseTenderParaOne)
+
+
+                                @Html.HiddenFor(modelItem => item.ChooseTenderParaTwo)
+
+
+                                @Html.HiddenFor(modelItem => item.ChooseTenderButtonOne)
+
+
+                                @Html.HiddenFor(modelItem => item.ChooseTenderButtonTwo)
+
+
+                                @Html.HiddenFor(modelItem => item.ChooseTenderParaSubOne)
+
+
+                                @Html.HiddenFor(modelItem => item.ChooseTenderParaSubTwo)
+
+
+                                @Html.HiddenFor(modelItem => item.PurchaseArea)
+
+
+                                @Html.HiddenFor(modelItem => item.SeatingPlanImage)
+
+
+                                @Html.HiddenFor(modelItem => item.ButtonAllEvents)
+
+
+                                @Html.HiddenFor(modelItem => item.ShowPassword)
+
+
+                                @Html.HiddenFor(modelItem => item.ForgotpasswordText)
+
+
+                                @Html.HiddenFor(modelItem => item.RegisterParaOne)
+
+
+                                @Html.HiddenFor(modelItem => item.VoucherHeading)
+
+
+                                @Html.HiddenFor(modelItem => item.CardPaymentHeading)
+
+
+                                @Html.HiddenFor(modelItem => item.CardPaymentPara)
+
+
+                                @Html.HiddenFor(modelItem => item.ButtonBack)
+
+
+                                @Html.HiddenFor(modelItem => item.ButtonConfirm)
+
+
+                                @Html.HiddenFor(modelItem => item.VoucherPara)
+
+
+                                @Html.HiddenFor(modelItem => item.RegisterPasswordLength)
+
+
+                                @Html.HiddenFor(modelItem => item.KeyWordSearchText)
+
+
+                                @Html.HiddenFor(modelItem => item.ManualEftProRata)
+
+
+                                @Html.HiddenFor(modelItem => item.CustomTerms)
+
+
+                                @Html.HiddenFor(modelItem => item.PurchaseTermsThree)
+
+
+                                @Html.HiddenFor(modelItem => item.ManauEFTtopUpRequest)
+
+
+                                @Html.HiddenFor(modelItem => item.ManauEFTtopUpConfirmed)
+
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    </div>
+
+
+

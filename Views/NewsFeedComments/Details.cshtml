@@ -1,0 +1,50 @@
+﻿@model MiidWeb.NewsFeedComment
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>NewsFeedComment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Comment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NewsFeed.ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NewsFeed.ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status.Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status.Code)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

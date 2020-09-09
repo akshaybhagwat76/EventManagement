@@ -1,0 +1,117 @@
+﻿@model MiidWeb.EventOrganiser
+
+@{
+    ViewBag.Title = "Create EO";
+}
+
+<head>
+	<script> function createFcn(nm){(window.freshsales)[nm]=function(){(window.freshsales).push([nm].concat(Array.prototype.slice.call(arguments,0)))}; } (function(url,appToken,formCapture){window.freshsales=window.freshsales||[];if(window.freshsales.length==0){list='init identify trackPageView trackEvent set'.split(' ');for(var i=0;i<list.length;i++){var nm=list[i];createFcn(nm);}var t=document.createElement('script');t.async=1;t.src='//d952cmcgwqsjf.cloudfront.net/assets/analytics.js';var ft=document.getElementsByTagName('script')[0];ft.parentNode.insertBefore(t,ft);freshsales.init('//mi-id.freshsales.io','5b524b53fcbbc0d91aee4d51ceba943bace10fe7fb0b30083948e755acebaf64',true);}})();</script>
+</head>
+
+
+
+<style>
+	.red {
+		color: #ff0000;
+	}
+</style>
+
+
+
+<div class="container bg-grey">
+    <div class="row vertical-offset-40px">
+
+
+        <div class="col-md-8 col-md-offset-2">
+
+            <div class="panel panel-default ">
+
+                <div class="panel-body text-center">
+               
+
+
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                          
+                                <span style="color:palevioletred">@Html.ValidationSummary()</span>
+
+
+                                @Html.HiddenFor(model => model.StartDate)
+                                @Html.HiddenFor(model => model.DateCreated)
+                                @Html.HiddenFor(model => model.DateUpdated)
+
+
+						
+								<!--<img src="~/Content/images2018/login.svg" class="img-xs ">-->
+								<br>
+								<div class="col-md-12">
+									<h4> Create an Free Event Organiser account</h4>
+									<p>	Please complete the form below to convert your current Mi-id account to an event organiser account. Once you complete the form you will be able to set up your event. A M-id consultant will also be in touch to answer any questions you might have.  </p>
+								</div>
+
+								 
+								<div class="right_container_form">
+									<div class="form-group col-md-12 ">
+
+										@Html.EditorFor(model => model.CompanyName, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Company Name" } })
+										@Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "red" })
+									</div>
+
+									<div class="form-group col-md-6 ">
+										@Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Confirm the email you signed up with" } })
+										@Html.ValidationMessageFor(model => model.Email, "", new { @class = "red" })
+									</div>
+									<div class="form-group col-md-6 hidden">
+										@Html.DropDownList("StatusID", null, htmlAttributes: new { @class = "form-control input-lg", placeholder = "" })
+										@Html.ValidationMessageFor(model => model.StatusID, "", new { @class = "red" })
+									</div>
+									
+									<div class="form-group col-md-6 ">
+										@Html.EditorFor(model => model.ContactName, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Contact Name" } })
+										@Html.ValidationMessageFor(model => model.ContactName, "", new { @class = "red" })
+									</div>
+
+									<div class="form-group col-md-6 ">
+
+										@Html.EditorFor(model => model.Telephone, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Telephone" } })
+										@Html.ValidationMessageFor(model => model.Telephone, "", new { @class = "red" })
+									</div>
+
+									<div class="form-group col-md-6 ">
+										@Html.EditorFor(model => model.SecondaryContactName, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Secondary Contact Name" } })
+										@Html.ValidationMessageFor(model => model.SecondaryContactName, "", new { @class = "red" })
+									</div>
+									<div class="form-group col-md-6 ">
+										@Html.EditorFor(model => model.SecondaryContactTelephone, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Secondary Contact Telephone" } })
+										@Html.ValidationMessageFor(model => model.SecondaryContactTelephone, "", new { @class = "red" })
+									</div>
+									<div class="form-group col-md-6 ">
+
+										@Html.EditorFor(model => model.SecondaryContactEmail, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Secondary Contact Email" } })
+										@Html.ValidationMessageFor(model => model.SecondaryContactEmail, "", new { @class = "red" })
+									</div>
+									
+								
+									<br />
+									<div class="form-group col-md-12 ">
+										<p><input type="checkbox" name="terms"> I accept the <a href="~/Home/TermsConditions"> Terms and Conditions</a></p>
+									</div>
+									<div class="form-group col-md-12 ">
+										<input type="submit" value="Continue" class="btn btn-default  btn-lg btn-block" id="EOCreateFromProfile" />
+
+									</div>
+
+								</div>
+								
+                                   
+
+						}
+
+</div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>

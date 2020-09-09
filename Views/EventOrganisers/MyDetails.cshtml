@@ -1,0 +1,339 @@
+﻿@model MiidWeb.Models.EventOrganiserViewModel
+
+@{
+    /**/
+
+    ViewBag.Title = "MiiD Profile";
+    Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("LayoutEventOrganiser");
+
+}
+
+
+
+
+<div class="row">
+    <div class="panel-body">
+        <div class="col-md-12 w3ls-graph">
+            <!--agileinfo-grap-->
+            <div class="agileinfo-grap">
+                <div class="agileits-box">
+                    <header class="agileits-box-header clearfix">
+                        <div class="col-md-9">
+                            <h4>@Model.EventOrganiser.CompanyName</h4><h4><small><a href="@Url.Action("EditMyDetails", "EventOrganisers")">Edit</a></small></h4>
+                        </div>
+                        <div class="col-md-3">
+                            <h4 class="pull-right">Active Events: @Model.MyEvents.Count()</h4>
+                        </div>
+
+                    </header>
+                    <div class="agileits-box-body clearfix">
+
+                    </div>
+                </div>
+            </div>
+            <!--//agileinfo-grap-->
+
+        </div>
+    </div>
+</div>
+@foreach (var ev in Model.MyEvents)
+
+
+{
+
+    if (ev.DaysTilEvent > 0)
+
+    {
+
+
+
+
+        <div class="row">
+            <div class="panel-body">
+                <div class="col-md-12 w3ls-graph">
+                    <!--agileinfo-grap-->
+                    <div class="agileinfo-grap">
+                        <div class="agileits-box">
+                            <header class="agileits-box-header clearfix">
+                                <div class="col-md-1 col-sm-3  col-xs-3 ">
+                                    @{
+                                        if (ev.EventImages.Where(x => x.ImageAltText == "logo").Count() > 0)
+                                        {
+                                            <img src="../../Uploads/@ev.EventLogoURL" class="img-responsive img-circle" />
+                                        }
+                                    }
+
+
+                                </div>
+
+
+                                <div class="col-md-5">
+                                    <h4>@ev.Event.EventName</h4><h4><small><a href="@Url.Action("EditByEO", "Events", new { id = @ev.Event.ID })">Click here to edit event details </a></small></h4>
+                                </div>
+                                <div class="col-md-6 col-sm-12  col-xs-12 mobile-20-top-bottom">
+                                    <lable>Event Link:</lable>
+                                    <input type="text" class="form-control input-lg myInput" readonly="readonly" id="@ev.Event.ID">
+                                </div>
+                                <!--pulls url-->
+                                <script>
+                                            var url = window.location.href;
+
+
+                                            var full = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '');
+
+                                        var a = document.getElementById("@ev.Event.ID");
+                                        a.value = ("@ev.Event.ID").innerHTML = full + "/Events/PurchaseTickets?EventID=@ev.Event.ID";
+
+                                </script>
+
+                                <!-- //buttons-->
+
+
+
+
+                            </header>
+                            <hr>
+                            <div class="agileits-box-body clearfix">
+                                <!-- //market-->
+                                <div class="market-updates">
+                                    <div class="col-md-3 smallpadding market-update-gd ">
+                                        <div class="market-update-block clr-block-2">
+
+                                            <div class="col-md-12 market-update-left">
+                                                <h5>Ticket Sold</h5>
+                                                <h4><strong>@ev.TicketsSold</strong></h4>
+
+                                            </div>
+                                            <div class="clearfix"> </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 smallpadding market-update-gd">
+                                        <div class="market-update-block clr-block-2">
+
+                                            <div class="col-md-12 market-update-left">
+                                                <h5>Ticket Revenue</h5>
+                                                <h4><strong>R @ev.RevenueGenerated</strong></h4>
+
+                                            </div>
+                                            <div class="clearfix"> </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 smallpadding market-update-gd">
+                                        <div class="market-update-block clr-block-2">
+
+                                            <div class="col-md-12 market-update-left">
+                                                <!--@ev.Vendors.Count()-->
+                                                <h5> Revenue</h5>
+                                                <H4><strong>R @ev.Vendors.Sum(x => x.RevenueForEvent)</strong></H4>
+
+                                            </div>
+                                            <div class="clearfix"> </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 smallpadding market-update-gd">
+                                        <div class="market-update-block clr-block-2">
+
+                                            <div class="col-md-12 market-update-left">
+                                                <h5>Days till event</h5>
+                                                <H4><strong>@ev.DaysTilEvent</strong></H4>
+
+                                            </div>
+                                            <div class="clearfix"> </div>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"> </div>
+                                </div>
+                                <!-- //market-->
+                                <!--open table -->
+
+                                <div class="table-responsive mobile-20-top-bottom" style="display:none">
+                                    <div class="col-md-12">
+                                        <br>
+                                        <h4>Sales summary</h4>
+                                        <table class="table table-striped b-t b-light">
+                                            <thead>
+                                                <tr>
+
+                                                    <th>Ticket Class</th>
+                                                    <th>Total Sold</th>
+                                                    <th>Revenue</th>
+
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                @foreach (var tc in ev.TicketClasses)
+                                                {
+                                                    <tr>
+
+                                                        <td>@tc.TicketClass.Description </td>
+                                                        <td>@tc.TicketsSold</td>
+                                                        <td>R @tc.TotalCost </td>
+                                                    </tr>
+
+                                                }
+
+
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <!--close table -->
+                                <!-- //buttons-->
+                                <div class="market-updates">
+                                    <h3>Quick Links:</h3>
+                                    <hr>
+
+                                    <a href="@Url.Action("EditByEOCentral", "Events", new { id = @ev.Event.ID })
+">
+                                        <div class="col-md-3 market-update-gd nopadding">
+                                            <div class="market-update-block clr-block-1">
+                                                <div class="col-md-12 market-update-right">
+                                                    <i class="fas fa-calendar-alt"></i>
+
+                                                    <h4>Manage Event</h4>
+                                                    <p>View sales, add or edit tickets and download reports   </p>
+                                                    <h3><i class="fas fa-chevron-circle-right"></i></h3>
+
+
+                                                </div>
+                                                <div class="clearfix"> </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="@Url.Action("CreateTicketIndex", "Events", new { id = @ev.Event.ID })">
+
+                                        <div class="col-md-3 market-update-gd nopadding">
+                                            <div class="market-update-block clr-block-1 ">
+                                                <div class="col-md-12 market-update-right">
+                                                    <i class="fas fa-ticket-alt "></i>
+
+                                                    <h4>Add Tickets</h4>
+                                                    <p>Add a ticket to your event<br>&nbsp; </p>
+                                                    <h3><i class="fas fa-chevron-circle-right"></i></h3>
+
+
+
+                                                </div>
+                                                <div class="clearfix"> </div>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <a href=" @Url.Action("EOTicketReport", "EventOrganisers")?eventID=@ev.Event.ID">
+                                        <div class="col-md-3 market-update-gd nopadding">
+                                            <div class="market-update-block clr-block-1">
+                                                <div class="col-md-12 market-update-right">
+                                                    <i class="fas fa-check-circle" aria-hidden="true"></i>
+
+                                                    <h4>Validate Tickets</h4>
+                                                    <p>Mark off tickets as used<br>&nbsp; </p>
+                                                    <h3><i class="fas fa-chevron-circle-right"></i></h3>
+
+                                                </div>
+                                                <div class="clearfix"> </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="@Url.Action("PurchaseTickets", "Events")?eventID=@ev.Event.ID">
+                                        <div class="col-md-3 market-update-gd nopadding">
+                                            <div class="market-update-block clr-block-1 ">
+                                                <div class="col-md-12 market-update-right">
+                                                    <i class="fa fa-eye"> </i>
+
+                                                    <h4>View Event</h4>
+                                                    <p>View how your event will look on the Mi-id website </p>
+                                                    <h3><i class="fas fa-chevron-circle-right"></i></h3>
+
+
+                                                </div>
+                                                <div class="clearfix"> </div>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"> </div>
+                                    </a>
+
+
+
+                                </div>
+
+
+                                <!-- //buttons-->
+
+                                <div class="alert alert-success">
+                                    <div class="row">
+                                        <div class="col-md-12 w3ls-graph ">
+                                            <div class="col-md-12">
+                                                <h3>App Login Details</h3>
+                                            </div>
+                                            @if (Model.EventOrganiser.HandHeldLoginPassword == null || Model.EventOrganiser.HandHeldLoginPassword == "")
+                                            {
+                                                <div class="form-group col-md-6">
+                                                    To scan or sell tickets please set up your app password here
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    @Html.ActionLink("Create PIN", "PinDetails", "EventOrganisers", new { @class = "btn btn-primary" })
+
+                                                </div>
+                                            }
+
+                                            else
+                                            {
+                                                <div class="form-group col-md-12">
+                                                    <br><h4>Ticket Scanning App:</h4>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    User Name:
+                                                    <strong>@Model.EventOrganiser.Email</strong>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    Pin:<strong>@Model.EventOrganiser.HandHeldLoginPassword</strong>
+                                                </div>
+                                                <div class="form-group col-md-12">
+                                                    <hr>
+                                                </div>
+
+                                                <div class="form-group col-md-12">
+                                                    <br><h4>Box Office App:</h4>
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    User Name:
+                                                    <strong>@Model.EventOrganiser.Email</strong>
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    Pin:<strong>@Model.EventOrganiser.HandHeldLoginPassword</strong>
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    Event ID:<strong>@ev.Event.ID</strong>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--//agileinfo-grap-->
+
+
+                </div>
+            </div>
+        </div>
+
+    }
+    else
+    {
+        <div></div>
+    }
+
+
+}
+
+
+

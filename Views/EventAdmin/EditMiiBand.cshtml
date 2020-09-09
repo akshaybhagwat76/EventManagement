@@ -1,0 +1,96 @@
+﻿@model MiidWeb.Models.EndUserViewModel
+@{
+	Layout = "~/Views/Shared/_LayoutBackend.cshtml";
+}
+
+
+
+   
+
+  
+@using (Html.BeginForm("EditMiiBand", "EventAdmin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    @Html.Hidden("UserName", (object)ViewBag.UserName)
+
+<div class="col-md-9">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="content-box-header">
+				<div class="panel-title">Cancel Tag</div>
+
+				<div class="panel-options">
+
+				</div>
+			</div>
+			<div class="content-box-large box-with-header">
+				<div class="panel panel-danger">
+					<div class="panel-heading"><strong>Warning: You are about to cancel a active tag</strong></div>
+					<div class="panel-body">
+						<p>	Once the tag is canceled the user will need to ativate a new one to make cashless purchases</p>
+
+						<div class="table-wrapper">
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>Name</th>
+										<th>ID No.</th>
+										<th>Current Band No.</th>
+										<th>Band Status</th>
+
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>@Model.EndUser.Firstname &nbsp; @Model.EndUser.Surname</td>
+										<td>@Model.EndUser.IDNumber</td>
+										<td>@Model.TagNumber</td>
+										<td>@Model.TagStatus</td>
+
+
+									</tr>
+
+
+
+
+
+								</tbody>
+
+							</table>
+						</div>
+						<input type="submit" value="Cancel Tag" class="btn btn-primary">
+					</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+								
+							
+
+
+
+
+
+
+
+
+								}
+
+								@{
+									string[] parts = new string[10];
+
+									if (TempData.ContainsKey("Growl") && !String.IsNullOrEmpty((string)TempData["Growl"]))
+									{
+										string growl = (string)TempData["Growl"];
+										parts = growl.Split(':');
+
+
+
+										<script type="text/javascript">
+        growl('@parts[0]', '@parts[1]');
+										</script>
+									}
+
+								}

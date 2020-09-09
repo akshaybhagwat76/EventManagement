@@ -1,0 +1,86 @@
+
+* {
+    -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  outline: none;
+}
+
+    .form-control {
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    @include box-sizing(border-box);
+
+    &:focus {
+      z-index: 2;
+    }
+  }
+
+
+
+
+.login-form {
+  margin-top: 20px;
+  margin-left:20px;
+  margin-right:20px;
+}
+
+
+
+.form {
+  color: #5d5d5d;
+  background: #ffffff;
+  padding: 26px;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border: 1px solid #cccccc ;
+  margin-bottom: 80px;
+}
+  .form img {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 35px;
+  }
+  .form  input,
+  .form button {
+    font-size: 18px;
+    margin: 16px 0;
+  }
+  .form  > div {
+    text-align: center;
+  }
+
+form[role=login] {
+  color: #5d5d5d;
+  background: #ffffff;
+  padding: 26px;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border: 1px solid #cccccc 
+}
+  form[role=login] img {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 35px;
+  }
+  form[role=login] input,
+  form[role=login] button {
+    font-size: 18px;
+    margin: 16px 0;
+  }
+  form[role=login] > div {
+    text-align: center;
+  }
+  
+.form-links {
+  text-align: center;
+  margin-top: 1em;
+  margin-bottom: 50px;
+}
+  .form-links a {
+    color: #fff;
+  }

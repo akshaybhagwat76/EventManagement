@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Admin Index";
+}
+
+<div class="firstsection">
+
+    <!-- opaque wrapper -->
+    <div class="wrapper">
+
+
+
+        <div class="form_wrapper">
+
+
+            <div class="form_container">
+
+                <div class="register_heading"> MiiD Administrator Menu</div>
+                <div class="register_text">
+                    Select admin function below...
+
+                </div>
+
+                <div class="right_container_form_second_reg">
+
+                  
+                            @Html.ActionLink("Manage Event Organisers", "IndexList", "EventOrganisers", null, new { @class = "input_organiser_submit" })
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+
+

@@ -1,0 +1,119 @@
+﻿@model MiidWeb.NFCTag
+
+@{
+	Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+	//Layout = null;
+}
+
+<style>
+	<!--
+
+	.glyphicon {
+		cursor: pointer;
+	}
+
+	input,
+	select {
+		width: 100%;
+	}
+	-->
+</style>
+<div class="col-md-9">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="content-box-header">
+				<div class="panel-title">Edit Tag Details</div>
+
+				<div class="panel-options">
+
+				</div>
+			</div>
+			<div class="content-box-large box-with-header">
+
+
+
+				@using (Html.BeginForm())
+				{
+					@Html.AntiForgeryToken()
+
+
+					@Html.ValidationSummary(true, "", new { @class = "red" })
+					@Html.HiddenFor(model => model.ID)
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								@Html.LabelFor(model => model.TagNumber, htmlAttributes: new { @class = "control-label" })
+
+								@Html.EditorFor(model => model.TagNumber, new { htmlAttributes = new { @class = "form-control" } })
+								@Html.ValidationMessageFor(model => model.TagNumber, "", new { @class = "red" })
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								@Html.LabelFor(model => model.EndUserID, "EndUserID", htmlAttributes: new { @class = "control-label" })
+
+								@Html.DropDownList("EndUserID", null, htmlAttributes: new { @class = "form-control" })
+								@Html.ValidationMessageFor(model => model.EndUserID, "", new { @class = "red" })
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								@Html.LabelFor(model => model.ActivationDate, htmlAttributes: new { @class = "control-label" })
+
+								@Html.EditorFor(model => model.ActivationDate, new { htmlAttributes = new { @class = "form-control" } })
+								@Html.ValidationMessageFor(model => model.ActivationDate, "", new { @class = "red" })
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group">
+							<div class="col-md-12">
+								@Html.LabelFor(model => model.StatusID, "StatusID", htmlAttributes: new { @class = "control-label" })
+
+								@Html.DropDownList("StatusID", null, htmlAttributes: new { @class = "form-control" })
+								@Html.ValidationMessageFor(model => model.StatusID, "", new { @class = "red" })
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+
+
+								@Html.LabelFor(model => model.ActivationCode, htmlAttributes: new { @class = "control-label" })
+								@Html.EditorFor(model => model.ActivationCode, new { htmlAttributes = new { @class = "form-control" } })
+								@Html.ValidationMessageFor(model => model.ActivationCode, "", new { @class = "red" })
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+
+
+								@Html.LabelFor(model => model.TagPin, htmlAttributes: new { @class = "control-label " })
+								@Html.EditorFor(model => model.TagPin, new { htmlAttributes = new { @class = "form-control" } })
+								@Html.ValidationMessageFor(model => model.TagPin, "", new { @class = "red" })
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<button type="submit" value="Update" class="btn btn-primary">Submit</button>
+					</div>
+
+				}
+
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+@section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
+}

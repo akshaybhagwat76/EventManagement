@@ -1,0 +1,1413 @@
+--- EventsController.cs
++++ EventsController.cs
+@@ -17,5 +17,19 @@
+ 
+ namespace MiidWeb.Controllers
+ {
+-    public class EventImageModel
++  public class EventImageModel
++  {
++    public int ID { get; set; }
++    public int EventID { get; set; }
++
++  }
++
++  [Authorize]
++  public class EventsController : BaseController
++  {
++    private MiidEntities db = new MiidEntities();
++
++    #region Admin Functions
++    [Authorize(Roles = "Admin")]
++    public ActionResult Index()
+     {
+@@ -21,6 +35,13 @@
+     {
+-        public int ID { get; set; }
+-        public int EventID { get; set; }
++      var LoggedInUserID = Helpers.UserHelper.UserID(User.Identity.Name);
++
++
++
++      var events = new Models.EventListViewModel(DateTime.Now, DateTime.Now.AddYears(10), LoggedInUserID);
++
++      return View(events);
++
++
+ 
+     }
+ 
+@@ -24,6 +45,11 @@
+ 
+     }
+ 
+-    [Authorize]
+-    public class EventsController : BaseController
++    #endregion
++
++
++    #region End User Functions
++    // GET: Events
++
++    public ActionResult MiiEvents()
+     {
+@@ -29,3 +55,3 @@
+     {
+-        private MiidEntities db = new MiidEntities();
++      var LoggedInUserID = Helpers.UserHelper.UserID(User.Identity.Name);
+ 
+@@ -31,5 +57,155 @@
+ 
+-        #region Admin Functions
+-        [Authorize(Roles = "Admin")]
+-        public ActionResult Index()
++      var events = new Models.EventListViewModel(LoggedInUserID: LoggedInUserID, ShowCurrentEvents: true);
++
++      return View(events);
++
++
++
++    }
++
++
++
++    public ActionResult Search(int? EventCategoryID = null, int? EventOrganiserID = null, int? regionid = null, DateTime? eventmonth = null, string KeyWordSearchText = "")
++    {
++
++      var searchmodel = new EventSearchModel()
++      {
++
++
++        EventCategoryID = EventCategoryID,
++        EventOrganiserID = EventOrganiserID,
++        RegionID = regionid,
++        EventMonth = eventmonth,
++        KeyWordSearchText = KeyWordSearchText,
++        EventCategoryList = new SelectList(db.EventCategories.OrderBy(c => c.Description), "ID", "Description"),
++        EventOrganiserList = new SelectList(db.EventOrganisers.OrderBy(c => c.CompanyName), "ID", "CompanyName"),
++        RegionList = new SelectList(db.Regions.OrderBy(c => c.RegionName), "ID", "RegionName"),
++        EventMonthList = DateHelper.MonthList(DateTime.Parse(DateTime.Now.Year.ToString() + "-" + DateTime.Now.Month.ToString() + "-01"), 16),
++
++      };
++
++      var events = new EventListViewModel(searchmodel);
++      searchmodel.Events = events.Events;
++      //var events = new Models.EventListViewModel(DateTime.Now, DateTime.Now.AddYears(10), LoggedInUserID, Descr);
++
++      return View("Search", searchmodel);
++
++
++
++    }
++
++
++
++
++    // GET: Events/Details/5
++    public ActionResult Details(int? id)
++    {
++      if (id == null)
++      {
++        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
++      }
++      var LoggedInUserID = Helpers.UserHelper.UserID(User.Identity.Name);
++
++      EventViewModel @event = new EventViewModel((int)id, LoggedInUserID);
++      @event.CalendarViewModel = new CalendarViewModel(LoggedInUserID, DateTime.Now, 1);
++
++      if (@event == null)
++      {
++        return HttpNotFound();
++      }
++      return View(@event);
++    }
++
++    #endregion
++
++
++    #region Purchase Tickets
++
++    public ActionResult PurchaseTickets(int EventID = 0, string ConfirmationMessage = null)
++    {
++
++      var LoggedInUserID = Helpers.UserHelper.UserID(User.Identity.Name);
++
++      PurchaseTicketViewModel model = new PurchaseTicketViewModel(EventID, LoggedInUserID);
++
++      string NFCTagResult = "No tag.";
++
++      //Check: Is Band Active?
++
++      var ActiveBandStatusIDs = db.Status.Where(x => x.Context == "NFCTag" && x.Description == "Active");
++      int ActiveBandStatusID = 0;
++      if (ActiveBandStatusIDs.Count() > 0) ActiveBandStatusID = ActiveBandStatusIDs.First().ID;
++      var ActiveNFCTags = db.NFCTags.Where(x => x.EndUserID == LoggedInUserID && x.StatusID == ActiveBandStatusID);
++
++      /* var NFCTags = db.NFCTags.Where(x => x.EndUserID == LoggedInUserID && x.StatusID != ActiveBandStatusID);
++
++       if (ActiveNFCTags.Count() > 0)
++       {
++           NFCTagResult = "Tag active.";
++           Session.Add("ErrorMessage", NFCTagResult);
++       }
++       else
++       {
++           if (NFCTags.Count() > 0) NFCTagResult = "Tag not active.";
++           Session.Add("ErrorMessage", NFCTagResult);
++       }
++
++       if (NFCTagResult == "No tag.")
++       {
++           Session.Add("ErrorMessage", NFCTagResult);
++          return RedirectToAction("CreateByUser", "NFCTags");
++       }
++
++       if (NFCTagResult == "Tag not active.")
++       {
++           Session.Add("ErrorMessage", NFCTagResult);
++           return RedirectToAction("IndexByUserID", "NFCTags");
++       }
++       */
++      //Check Is User Info Updated?
++      //Daniel relaxed this rule 24 03 2016
++      //if (!EndUserRepository.IsUserUpToDate(LoggedInUserID))
++      //{
++      //    Growl("Message", "Please complete all your profile fields before purchasing event tickets.");
++      //    return RedirectToAction("MiiDetails", "EndUsers", new { id = LoggedInUserID });
++
++      //}
++
++      var List = new SelectList(
++new List<SelectListItem>
++{
++        new SelectListItem { Text = "EFT", Value = "1"},
++        new SelectListItem { Text = "Credit Card", Value = "2"},
++        new SelectListItem { Text = "Instant EFT", Value = "3"},
++}, "Value", "Text");
++
++
++      ViewBag.TenderType = List;
++      ViewBag.ConfirmationMessage = ConfirmationMessage;
++
++      return View(model);
++    }
++
++    [HttpPost]
++
++    public ActionResult PurchaseTickets(FormCollection form)
++    {
++
++      var f = form;
++
++      int EventID = int.Parse(form["EventID"]);
++
++      var Event = db.Events.Include(x => x.TicketClasses).Where(x => x.ID == EventID).First();
++      var LoggedInUserID = Helpers.UserHelper.UserID(User.Identity.Name);
++      var purchaseTicketViewModel = new PurchaseTicketViewModel(EventID, LoggedInUserID);
++
++      purchaseTicketViewModel.TicketClasses = new List<TicketClassViewModel>();
++
++
++
++      foreach (var tc in Event.TicketClasses)
++      {
++        var qty = form["TicketClassQty_" + tc.ID.ToString()];
++
++        if (form["TicketClassQty_" + tc.ID.ToString()] != null && form["TicketClassQty_" + tc.ID.ToString()] != "")
+         {
+@@ -35,3 +211,12 @@
+         {
+-            var LoggedInUserID = Helpers.UserHelper.UserID(User.Identity.Name);
++          var tcvm = new TicketClassViewModel() { TicketClass = tc };
++          tcvm.TicketCount = int.Parse(form["TicketClassQty_" + tc.ID.ToString()].ToString());
++          tcvm.TotalCost = (int)tc.Price * tcvm.TicketCount;
++          purchaseTicketViewModel.TicketClasses.Add(tcvm);
++        }
++      }
++      var endUser = db.EndUsers.Find(LoggedInUserID);
++      purchaseTicketViewModel.BuyerEmail = endUser.Email;
++      purchaseTicketViewModel.BuyerFirstName = endUser.Firstname;
++      purchaseTicketViewModel.BuyerLastName = endUser.Surname;
+ 
+@@ -39,3 +226,3 @@
+ 
+-            var events = new Models.EventListViewModel(DateTime.Now, DateTime.Now.AddYears(10), LoggedInUserID);
++      return RedirectToAction("ChooseTender", "MyMoneys", new { @sessionid = PurchaseSessionID });
+ 
+@@ -41,5 +228,5 @@
+ 
+-            return View(events);
++    }
+ 
+ 
+ 
+@@ -46,4 +965,5 @@
+         }
+ 
+-        #endregion
++        //var ProjectStep = db.ProjectSteps.Where(p => p.ID == projectphaseid).SingleOrDefault();
++        var eventImage = new EventImage();
+ 
+@@ -50,4 +973,3 @@
+ 
+-        #region End User Functions
+-        // GET: Events
++          var fileName = Path.GetFileName(file.FileName);
+ 
+@@ -53,5 +975,3 @@
+ 
+-        public ActionResult MiiEvents()
+-        {
+-            var LoggedInUserID = Helpers.UserHelper.UserID(User.Identity.Name);
++          fileName = fileName.Replace(" ", String.Empty);//remove  blank spaces
+ 
+@@ -57,3 +977,3 @@
+ 
+-            var events = new Models.EventListViewModel(LoggedInUserID: LoggedInUserID, ShowCurrentEvents: true);
++          fileName = "Bnr_" + DateTime.Now.ToString("yyMMdd_hhmmss_") + fileName;
+ 
+@@ -59,4 +979,5 @@
+ 
+-            return View(events);
++          var path = Path.Combine(Server.MapPath("~/Uploads"), fileName);
++          file.SaveAs(path);
+ 
+ 
+@@ -67,4 +1000,2 @@
+ 
+-        public ActionResult Search(int? EventCategoryID = null, int? EventOrganiserID = null, int? regionid = null, DateTime? eventmonth = null, string KeyWordSearchText = "")
+-        {
+ 
+@@ -70,5 +1001,4 @@
+ 
+-            var searchmodel = new EventSearchModel()
+-            {
++    #endregion
+ 
+ 
+@@ -73,12 +1003,4 @@
+ 
+ 
+-                EventCategoryID = EventCategoryID,
+-                EventOrganiserID = EventOrganiserID,
+-                RegionID = regionid,
+-                EventMonth = eventmonth,
+-                KeyWordSearchText = KeyWordSearchText,
+-                EventCategoryList = new SelectList(db.EventCategories.OrderBy(c => c.Description), "ID", "Description"),
+-                EventOrganiserList = new SelectList(db.EventOrganisers.OrderBy(c => c.CompanyName), "ID", "CompanyName"),
+-                RegionList = new SelectList(db.Regions.OrderBy(c => c.RegionName), "ID", "RegionName"),
+-                EventMonthList = DateHelper.MonthList(DateTime.Parse(DateTime.Now.Year.ToString() + "-" + DateTime.Now.Month.ToString() + "-01"), 16),
++    #region CRUD
+ 
+@@ -84,3 +1006,2 @@
+ 
+-            };
+ 
+@@ -86,5 +1007,11 @@
+ 
+-            var events = new EventListViewModel(searchmodel);
+-            searchmodel.Events = events.Events;
+-            //var events = new Models.EventListViewModel(DateTime.Now, DateTime.Now.AddYears(10), LoggedInUserID, Descr);
++    // GET: Events/Create
++    [Authorize(Roles = "Admin")]
++    public ActionResult Create()
++    {
++      ViewBag.EventCategoryID = new SelectList(db.EventCategories, "ID", "Code");
++      ViewBag.EventOrganiserID = new SelectList(db.EventOrganisers, "ID", "CompanyName");
++      ViewBag.StatusID = new SelectList(db.Status, "ID", "Code");
++      return View();
++    }
+ 
+@@ -90,3 +1017,16 @@
+ 
+-            return View("Search", searchmodel);
++    // POST: Events/Create
++    // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
++    // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
++    [HttpPost]
++    [ValidateAntiForgeryToken]
++    [Authorize(Roles = "Admin")]
++    public ActionResult Create([Bind(Include = "ID,EventName,ShortDescription,LongDescription,StatusID,EventOrganiserID,StartDateTime,EndDateTime,StreetAddress,Suburb,City,PostalCode,GoogleMapsLink,GPSCoordinates,AgeLimit,TicketCutoffDate,EventCategoryID")] Event @event)
++    {
++      if (ModelState.IsValid)
++      {
++        db.Events.Add(@event);
++        db.SaveChanges();
++        return RedirectToAction("Index");
++      }
+ 
+@@ -99,10 +1095,13 @@
+ 
+-        // GET: Events/Details/5
+-        public ActionResult Details(int? id)
+-        {
+-            if (id == null)
+-            {
+-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+-            }
+-            var LoggedInUserID = Helpers.UserHelper.UserID(User.Identity.Name);
++    // POST: Events/Delete/5
++    [HttpPost, ActionName("Delete")]
++    [ValidateAntiForgeryToken]
++    [Authorize(Roles = "Admin")]
++    public ActionResult DeleteConfirmed(int id)
++    {
++      Event @event = db.Events.Find(id);
++      db.Events.Remove(@event);
++      db.SaveChanges();
++      return RedirectToAction("Index");
++    }
+ 
+@@ -108,4 +1107,2 @@
+ 
+-            EventViewModel @event = new EventViewModel((int)id, LoggedInUserID);
+-            @event.CalendarViewModel = new CalendarViewModel(LoggedInUserID, DateTime.Now, 1);
+ 
+@@ -111,66 +1108,4 @@
+ 
+-            if (@event == null)
+-            {
+-                return HttpNotFound();
+-            }
+-            return View(@event);
+-        }
+-
+-        #endregion
+-
+-
+-        #region Purchase Tickets
+-
+-        public ActionResult PurchaseTickets(int EventID = 0, string ConfirmationMessage = null)
+-        {
+-
+-            var LoggedInUserID = Helpers.UserHelper.UserID(User.Identity.Name);
+-
+-            PurchaseTicketViewModel model = new PurchaseTicketViewModel(EventID, LoggedInUserID);
+-
+-            string NFCTagResult = "No tag.";
+-
+-            //Check: Is Band Active?
+-
+-            var ActiveBandStatusIDs = db.Status.Where(x => x.Context == "NFCTag" && x.Description == "Active");
+-            int ActiveBandStatusID = 0;
+-            if (ActiveBandStatusIDs.Count() > 0) ActiveBandStatusID = ActiveBandStatusIDs.First().ID;
+-            var ActiveNFCTags = db.NFCTags.Where(x => x.EndUserID == LoggedInUserID && x.StatusID == ActiveBandStatusID);
+-
+-            /* var NFCTags = db.NFCTags.Where(x => x.EndUserID == LoggedInUserID && x.StatusID != ActiveBandStatusID);
+-
+-             if (ActiveNFCTags.Count() > 0)
+-             {
+-                 NFCTagResult = "Tag active.";
+-                 Session.Add("ErrorMessage", NFCTagResult);
+-             }
+-             else
+-             {
+-                 if (NFCTags.Count() > 0) NFCTagResult = "Tag not active.";
+-                 Session.Add("ErrorMessage", NFCTagResult);
+-             }
+-
+-             if (NFCTagResult == "No tag.")
+-             {
+-                 Session.Add("ErrorMessage", NFCTagResult);
+-                return RedirectToAction("CreateByUser", "NFCTags");
+-             }
+-            
+-             if (NFCTagResult == "Tag not active.")
+-             {
+-                 Session.Add("ErrorMessage", NFCTagResult);
+-                 return RedirectToAction("IndexByUserID", "NFCTags");
+-             }
+-             */
+-            //Check Is User Info Updated?
+-            //Daniel relaxed this rule 24 03 2016
+-            //if (!EndUserRepository.IsUserUpToDate(LoggedInUserID))
+-            //{
+-            //    Growl("Message", "Please complete all your profile fields before purchasing event tickets.");
+-            //    return RedirectToAction("MiiDetails", "EndUsers", new { id = LoggedInUserID });
+-
+-            //}
+-
+-            var List = new SelectList(
+-    new List<SelectListItem>
++    #endregion
++    protected override void Dispose(bool disposing)
+     {
+@@ -176,973 +1111,7 @@
+     {
+-        new SelectListItem { Text = "EFT", Value = "1"},
+-        new SelectListItem { Text = "Credit Card", Value = "2"},
+-        new SelectListItem { Text = "Instant EFT", Value = "3"},
+-    }, "Value", "Text");
+-
+-
+-            ViewBag.TenderType = List;
+-            ViewBag.ConfirmationMessage = ConfirmationMessage;
+-
+-            return View(model);
+-        }
+-
+-        [HttpPost]
+-
+-        public ActionResult PurchaseTickets(FormCollection form)
+-        {
+-
+-            var f = form;
+-
+-            int EventID = int.Parse(form["EventID"]);
+-
+-            var Event = db.Events.Include(x => x.TicketClasses).Where(x => x.ID == EventID).First();
+-            var LoggedInUserID = Helpers.UserHelper.UserID(User.Identity.Name);
+-            var purchaseTicketViewModel = new PurchaseTicketViewModel(EventID, LoggedInUserID);
+-
+-            purchaseTicketViewModel.TicketClasses = new List<TicketClassViewModel>();
+-
+-
+-
+-            foreach (var tc in Event.TicketClasses)
+-            {
+-                var qty = form["TicketClassQty_" + tc.ID.ToString()];
+-
+-                if (form["TicketClassQty_" + tc.ID.ToString()] != null && form["TicketClassQty_" + tc.ID.ToString()] != "")
+-                {
+-                    var tcvm = new TicketClassViewModel() { TicketClass = tc };
+-                    tcvm.TicketCount = int.Parse(form["TicketClassQty_" + tc.ID.ToString()].ToString());
+-                    tcvm.TotalCost = (int)tc.Price * tcvm.TicketCount;
+-                    purchaseTicketViewModel.TicketClasses.Add(tcvm);
+-                }
+-            }
+-            var endUser = db.EndUsers.Find(LoggedInUserID);
+-            purchaseTicketViewModel.BuyerEmail = endUser.Email;
+-            purchaseTicketViewModel.BuyerFirstName = endUser.Firstname;
+-            purchaseTicketViewModel.BuyerLastName = endUser.Surname;
+-
+-            string PurchaseSessionID = System.Guid.NewGuid().ToString();
+-
+-            Session.Add(PurchaseSessionID, purchaseTicketViewModel);
+-
+-            return RedirectToAction("ChooseTender", "MyMoneys", new { @sessionid = PurchaseSessionID });
+-
+-        }
+-
+-
+-
+-        #endregion
+-
+-
+-        #region News Feed
+-
+-        [HttpPost]
+-        public ActionResult AddNewsFeedComment(FormCollection form)
+-        {
+-            var f = form;
+-            string NewsFeedComment = form["NewsFeedComment"];
+-            int NewsFeedID = int.Parse(form["NewsFeedID"]);
+-            int CommenterUserID = int.Parse(form["CommenterUserID"]);
+-            int UserID = int.Parse(form["UserID"]);
+-
+-            var newsFeedComment = new NewsFeedComment
+-            {
+-                CommenterUserID = CommenterUserID,
+-                Comment = NewsFeedComment,
+-                NewsFeedID = NewsFeedID,
+-                DateCreated = DateTime.Now,
+-                StatusID = 1
+-            };
+-
+-            db.NewsFeedComments.Add(newsFeedComment);
+-            db.SaveChanges();
+-
+-            return RedirectToAction("EndUserProfile", new { id = UserID, loggedInUserID = CommenterUserID });
+-        }
+-
+-        #endregion
+-
+-
+-        #region Event Organiser Functions
+-
+-        public ActionResult IndexForEO()
+-        {
+-
+-            var eventOrganiser = EventOrganiserRepository.GetEventOrganiserByEmail(User.Identity.Name);
+-
+-            if (eventOrganiser == null)
+-            {
+-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+-            }
+-
+-
+-            var events = new Models.EventListViewModel(eventOrganiser.ID);
+-
+-            return View(events);
+-
+-
+-
+-        }
+-
+-
+-
+-        public ActionResult CreateByEO()
+-        {
+-
+-            ViewBag.EventCategoryID = new SelectList(db.EventCategories, "ID", "Code");
+-            var eo = EventOrganiserRepository.GetEventOrganiserByEmail(User.Identity.Name);
+-            if (eo != null)
+-            {
+-                ViewBag.EventOrganiserID = eo.ID;
+-                ViewBag.CompanyName = eo.CompanyName;
+-            }
+-            ViewBag.StatusID = 1;
+-
+-            EventViewModel evm = new EventViewModel(true);
+-            evm.DateToCompareAgainst = DateTime.Now;
+-            evm.EventOrganiser = eo;
+-
+-            return View(evm);
+-
+-
+-        }
+-
+-        // POST: Events/Create
+-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+-        [HttpPost]
+-        [ValidateAntiForgeryToken]
+-        public ActionResult CreateByEO(EventViewModel e, string imageData, string EventLogoURL, int EventOrganiserID, string bannerImageData, string EventBannerURL)
+-        {
+-
+-            if (ModelState.IsValid)
+-            {
+-
+-                int failcount = 0;
+-
+-                string[] TimeStr = e.StartDateTimeTime.Split(':');
+-
+-                DateTime? startdateNull = DateHelper.CreateDate(e.StartDateYear, e.StartDateMonth, e.StartDateDay, int.Parse(TimeStr[0]), int.Parse(TimeStr[1]), 0);
+-                DateTime? enddateNull = DateHelper.CreateDate(e.EndDateYear, e.EndDateMonth, e.EndDateDay, int.Parse(TimeStr[0]), int.Parse(TimeStr[1]), 0);
+-                DateTime? tickcutdateNull = DateHelper.CreateDate(e.TicketCutoffYear, e.TicketCutoffMonth, e.TicketCutoffDay, 0, 0, 0);
+-
+-                if (startdateNull != null && enddateNull != null && tickcutdateNull != null)
+-                {
+-                    e.Event.StartDateTime = (DateTime)startdateNull;
+-
+-
+-                    if (DateHelper.DateSequenceViolation(e.DateToCompareAgainst, (DateTime)startdateNull))
+-                    {
+-                        //Invalid start date
+-                        ModelState.AddModelError("StartDateTime", "StartDateTime invalid.");
+-                        failcount++;
+-                    }
+-
+-                    TimeStr = e.EndDateTimeTime.Split(':');
+-
+-                    e.Event.EndDateTime = enddateNull;
+-
+-                    if (DateHelper.DateSequenceViolation(e.DateToCompareAgainst, (DateTime)enddateNull) || DateHelper.DateSequenceViolation((DateTime)e.Event.StartDateTime, (DateTime)enddateNull))
+-                    {
+-                        //Invalid start date
+-                        ModelState.AddModelError("EndDateTime", "EndDateTime invalid.");
+-                        failcount++;
+-                    }
+-
+-
+-
+-                    e.Event.TicketCutoffDate = (DateTime)tickcutdateNull;
+-
+-                    if (DateHelper.DateSequenceViolation(e.DateToCompareAgainst, (DateTime)tickcutdateNull) || DateHelper.DateSequenceViolation((DateTime)tickcutdateNull, (DateTime)e.Event.EndDateTime))
+-                    {
+-                        //Invalid start date
+-                        ModelState.AddModelError("TicketCutOffDate", "Ticket CutOff Date invalid.");
+-                        failcount++;
+-                    }
+-
+-                    if (failcount > 0)
+-                        goto fail;
+-
+-                    e.Event.EventOrganiserID = EventOrganiserID;
+-
+-                    var Event = new Event();
+-                    Event = e.Event;
+-
+-                    db.Events.Add(Event);
+-                    db.SaveChanges();
+-
+-                    int EventID = Event.ID;
+-
+-
+-                    EventImage ei = new EventImage();
+-
+-
+-
+-                    if (!String.IsNullOrEmpty(imageData))
+-                    {
+-                        var bytes = Convert.FromBase64String(imageData);
+-                        var fileName = String.Format("Logo_{0}_{1}.png", EventID.ToString(), e.Event.EventName.Trim());
+-                        var filePath = Path.Combine(Server.MapPath("~/Uploads"), fileName);
+-                        using (var imageFile = new FileStream(filePath, FileMode.Create))
+-                        {
+-                            imageFile.Write(bytes, 0, bytes.Length);
+-                            imageFile.Flush();
+-                        }
+-
+-                        //delete all other logos for this event
+-                        foreach (var eiDel in db.EventImages.Where(x => x.ImageAltText == "logo" && x.EventID == EventID).ToList())
+-                        {
+-                            db.EventImages.Remove(eiDel);
+-                        }
+-
+-                        ei.EventID = EventID;
+-                        ei.ImageURL = fileName;
+-                        ei.ImageAltText = "logo";
+-                        db.EventImages.Add(ei);
+-                        db.SaveChanges();
+-                    }
+-                    else
+-                    {
+-                        //ei.ImageURL = EventLogoURL;
+-                    }
+-
+-
+-                    //Banner
+-                    if (!String.IsNullOrEmpty(bannerImageData))
+-                    {
+-
+-
+-                        var bytes = Convert.FromBase64String(bannerImageData.Substring("data:image/jpeg;base64,".Length));
+-
+-                        string eventName = "Blank";
+-
+-                        if (e.Event.EventName != null)
+-                        {
+-                            eventName = e.Event.EventName.Replace(" ", String.Empty);//remove  blank spaces
+-                        }
+-
+-                        var fileName = String.Format("Banner_{0}_{1}.png", e.Event.ID.ToString(), eventName);
+-                        var filePath = Path.Combine(Server.MapPath("~/Uploads"), fileName);
+-                        using (var imageFile = new FileStream(filePath, FileMode.Create))
+-                        {
+-                            imageFile.Write(bytes, 0, bytes.Length);
+-                            imageFile.Flush();
+-                        }
+-                        Image croppedImage = ImageHelper.resizeImg(filePath, 1000);
+-
+-                        fileName = String.Format("Banner_crp_{0}_{1}.png", e.Event.ID.ToString(), eventName);
+-                        filePath = Path.Combine(Server.MapPath("~/Uploads"), fileName);
+-
+-                        croppedImage.Save(filePath, System.Drawing.Imaging.ImageFormat.Png);
+-
+-                        //delete all other logos for this event
+-                        foreach (var eiDel in db.EventImages.Where(x => x.ImageAltText == "banner" && x.EventID == e.Event.ID).ToList())
+-                        {
+-                            db.EventImages.Remove(eiDel);
+-                        }
+-                        EventImage eiB = new EventImage();
+-                        eiB.EventID = e.Event.ID;
+-                        eiB.ImageURL = fileName;
+-                        eiB.ImageAltText = "banner";
+-                        db.EventImages.Add(eiB);
+-                        db.SaveChanges();
+-                    }
+-                    else
+-                    {
+-                        //ei.ImageURL = EventBannerURL;
+-                    }
+-                }
+-                else
+-                {
+-                    string errordates = "";
+-                    if (startdateNull == null)
+-                    {
+-                        errordates += " Start Date, ";
+-                        ModelState.AddModelError("StartDateTime", "StartDateTime invalid.");
+-                    }
+-                    if (enddateNull == null)
+-                    {
+-                        errordates += " End Date, ";
+-                        ModelState.AddModelError("EndDateTime", "EndDateTime invalid.");
+-                    }
+-                    if (tickcutdateNull == null)
+-                    {
+-                        errordates += " Ticket Cut off Date ";
+-                        ModelState.AddModelError("TicketCutOffDate", "Ticket CutOff Date invalid.");
+-                    }
+-
+-
+-                    //Growl("MiiD", String.Format("Invalid dates: {0}", errordates));
+-                    goto fail;
+-
+-                    
+-                    
+-
+-                }
+-
+-
+-
+-                return RedirectToAction("MyDetails", "EventOrganisers");
+-            }
+-
+-        fail:
+-
+-
+-            ViewBag.EventCategoryID = new SelectList(db.EventCategories, "ID", "Code");
+-            var eo = EventOrganiserRepository.GetEventOrganiserByEmail(User.Identity.Name);
+-            if (eo != null)
+-            {
+-                ViewBag.EventOrganiserID = eo.ID;
+-                ViewBag.CompanyName = eo.CompanyName;
+-            }
+-            ViewBag.StatusID = 1;
+-
+-            EventViewModel evm = new EventViewModel(true);
+-            evm.DateToCompareAgainst = DateTime.Now;
+-            evm.EventOrganiser = eo;
+-
+-            return View(evm);
+-
+-
+-        }
+-
+-
+-        public ActionResult CreateByEONoTickets()
+-        {
+-
+-            ViewBag.EventCategoryID = new SelectList(db.EventCategories, "ID", "Code");
+-            var eo = EventOrganiserRepository.GetEventOrganiserByEmail(User.Identity.Name);
+-            if (eo != null)
+-            {
+-                ViewBag.EventOrganiserID = eo.ID;
+-                ViewBag.CompanyName = eo.CompanyName;
+-            }
+-            ViewBag.StatusID = 1;
+-
+-            EventViewModel evm = new EventViewModel(true);
+-            evm.DateToCompareAgainst = DateTime.Now;
+-            evm.EventOrganiser = eo;
+-
+-            return View(evm);
+-
+-
+-        }
+-
+-        // POST: Events/Create
+-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+-        [HttpPost]
+-        [ValidateAntiForgeryToken]
+-        public ActionResult CreateByEONoTickets(EventViewModel e, string imageData, string EventLogoURL, int EventOrganiserID)
+-        {
+-
+-            if (ModelState.IsValid)
+-            {
+-
+-                int failcount = 0;
+-
+-                string[] TimeStr = e.StartDateTimeTime.Split(':');
+-                DateTime date1 = new DateTime(e.StartDateYear, e.StartDateMonth, e.StartDateDay, int.Parse(TimeStr[0]), int.Parse(TimeStr[1]), 0);
+-                e.Event.StartDateTime = date1;
+-
+-
+-                if (DateHelper.DateSequenceViolation(e.DateToCompareAgainst, date1))
+-                {
+-                    //Invalid start date
+-                    ModelState.AddModelError("StartDateTime", "StartDateTime invalid.");
+-                    failcount++;
+-                }
+-
+-                TimeStr = e.EndDateTimeTime.Split(':');
+-                date1 = new DateTime(e.EndDateYear, e.EndDateMonth, e.EndDateDay, int.Parse(TimeStr[0]), int.Parse(TimeStr[1]), 0);
+-                e.Event.EndDateTime = date1;
+-
+-                if (DateHelper.DateSequenceViolation(e.DateToCompareAgainst, date1) || DateHelper.DateSequenceViolation((DateTime)e.Event.StartDateTime, date1))
+-                {
+-                    //Invalid start date
+-                    ModelState.AddModelError("EndDateTime", "EndDateTime invalid.");
+-                    failcount++;
+-                }
+-
+-
+-
+-
+-
+-                e.Event.EventOrganiserID = EventOrganiserID;
+-
+-                var Event = new Event();
+-                Event = e.Event;
+-
+-                db.Events.Add(Event);
+-                db.SaveChanges();
+-
+-                int EventID = Event.ID;
+-
+-
+-                EventImage ei = new EventImage();
+-
+-
+-
+-                return RedirectToAction("MyDetails", "EventOrganisers");
+-            }
+-
+-        fail:
+-
+-
+-            ViewBag.EventCategoryID = new SelectList(db.EventCategories, "ID", "Code");
+-            var eo = EventOrganiserRepository.GetEventOrganiserByEmail(User.Identity.Name);
+-            if (eo != null)
+-            {
+-                ViewBag.EventOrganiserID = eo.ID;
+-                ViewBag.CompanyName = eo.CompanyName;
+-            }
+-            ViewBag.StatusID = 1;
+-
+-            EventViewModel evm = new EventViewModel(true);
+-            evm.DateToCompareAgainst = DateTime.Now;
+-            evm.EventOrganiser = eo;
+-
+-            return View(evm);
+-
+-
+-        }
+-
+-
+-
+-
+-        public ActionResult EditByEOCentral(int? id)
+-        {
+-            if (id == null)
+-            {
+-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+-            }
+-            Event @event = db.Events.Find(id);
+-            if (@event == null)
+-            {
+-                return HttpNotFound();
+-            }
+-            ViewBag.EventCategoryID = new SelectList(db.EventCategories, "ID", "Code", @event.EventCategoryID);
+-            var eo = EventOrganiserRepository.GetEventOrganiserByEmail(User.Identity.Name);
+-            if (eo != null)
+-            {
+-                ViewBag.EventOrganiserID = eo.ID;
+-                ViewBag.CompanyName = eo.CompanyName;
+-            }
+-            ViewBag.StatusID = 1;
+-
+-            EventViewModel evm = new EventViewModel(@event.ID, (int)@event.EventOrganiserID, true);
+-            evm.DateToCompareAgainst = DateTime.Now;
+-            evm.EventOrganiser = eo;
+-
+-            return View(evm);
+-        }
+-
+-
+-
+-
+-        public ActionResult EditByEO(int? id)
+-        {
+-            if (id == null)
+-            {
+-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+-            }
+-            Event @event = db.Events.Find(id);
+-            if (@event == null)
+-            {
+-                return HttpNotFound();
+-            }
+-            ViewBag.EventCategoryID = new SelectList(db.EventCategories, "ID", "Code", @event.EventCategoryID);
+-            var eo = EventOrganiserRepository.GetEventOrganiserByEmail(User.Identity.Name);
+-            if (eo != null)
+-            {
+-                ViewBag.EventOrganiserID = eo.ID;
+-                ViewBag.CompanyName = eo.CompanyName;
+-            }
+-            ViewBag.StatusID = 1;
+-
+-            EventViewModel evm = new EventViewModel(@event.ID, (int)@event.EventOrganiserID, true);
+-            evm.DateToCompareAgainst = DateTime.Now;
+-            evm.EventOrganiser = eo;
+-
+-            return View(evm);
+-        }
+-
+-        // POST: Events/Edit/5
+-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+-        [HttpPost]
+-        [ValidateAntiForgeryToken]
+-        public ActionResult EditByEO(EventViewModel e, string imageData, string EventLogoURL, int EventOrganiserID, string bannerImageData, string EventBannerURL)
+-        {
+-            if (ModelState.IsValid)
+-            {
+-
+-
+-
+-
+-
+-                if (!String.IsNullOrEmpty(imageData))
+-                {
+-                    var bytes = Convert.FromBase64String(imageData);
+-
+-                    string eventName = "Blank";
+-
+-                    if (e.Event.EventName != null)
+-                    {
+-                        eventName = e.Event.EventName.Replace(" ", String.Empty);//remove  blank spaces
+-                    }
+-
+-                    var fileName = String.Format("Logo_{0}_{1}.png", e.Event.ID.ToString(), eventName);
+-                    var filePath = Path.Combine(Server.MapPath("~/Uploads"), fileName);
+-                    using (var imageFile = new FileStream(filePath, FileMode.Create))
+-                    {
+-                        imageFile.Write(bytes, 0, bytes.Length);
+-                        imageFile.Flush();
+-                    }
+-
+-                    //delete all other logos for this event
+-                    foreach (var eiDel in db.EventImages.Where(x => x.ImageAltText == "logo" && x.EventID == e.Event.ID).ToList())
+-                    {
+-                        db.EventImages.Remove(eiDel);
+-                    }
+-                    EventImage ei = new EventImage();
+-                    ei.EventID = e.Event.ID;
+-                    ei.ImageURL = fileName;
+-                    ei.ImageAltText = "logo";
+-                    db.EventImages.Add(ei);
+-                    db.SaveChanges();
+-                }
+-                else
+-                {
+-                    //ei.ImageURL = EventLogoURL;
+-                }
+-
+-                //Banner
+-                if (!String.IsNullOrEmpty(bannerImageData))
+-                {
+-
+-
+-                    var bytes = Convert.FromBase64String(bannerImageData.Substring("data:image/jpeg;base64,".Length));
+-
+-                    string eventName = "Blank";
+-
+-                    if (e.Event.EventName != null)
+-                    {
+-                        eventName = e.Event.EventName.Replace(" ", String.Empty);//remove  blank spaces
+-                    }
+-
+-                    var fileName = String.Format("Banner_{0}_{1}.png", e.Event.ID.ToString(), eventName);
+-                    var filePath = Path.Combine(Server.MapPath("~/Uploads"), fileName);
+-                    using (var imageFile = new FileStream(filePath, FileMode.Create))
+-                    {
+-                        imageFile.Write(bytes, 0, bytes.Length);
+-                        imageFile.Flush();
+-                    }
+-                    Image croppedImage = ImageHelper.resizeImg(filePath, 1000);
+-
+-                    fileName = String.Format("Banner_crp_{0}_{1}.png", e.Event.ID.ToString(), eventName);
+-                    filePath = Path.Combine(Server.MapPath("~/Uploads"), fileName);
+-
+-                    croppedImage.Save(filePath, System.Drawing.Imaging.ImageFormat.Png);
+-                    //delete all other logos for this event
+-                    foreach (var eiDel in db.EventImages.Where(x => x.ImageAltText == "banner" && x.EventID == e.Event.ID).ToList())
+-                    {
+-                        db.EventImages.Remove(eiDel);
+-                    }
+-                    EventImage eiB = new EventImage();
+-                    eiB.EventID = e.Event.ID;
+-                    eiB.ImageURL = fileName;
+-                    eiB.ImageAltText = "banner";
+-                    db.EventImages.Add(eiB);
+-                    db.SaveChanges();
+-                }
+-                else
+-                {
+-                    //ei.ImageURL = EventBannerURL;
+-                }
+-
+-
+-
+-
+-
+-                int failcount = 0;
+-
+-                string[] TimeStr = e.StartDateTimeTime.Split(':');
+-                DateTime date1 = new DateTime(e.StartDateYear, e.StartDateMonth, e.StartDateDay, int.Parse(TimeStr[0]), int.Parse(TimeStr[1]), 0);
+-                e.Event.StartDateTime = date1;
+-
+-
+-                if (DateHelper.DateSequenceViolation(e.DateToCompareAgainst, date1))
+-                {
+-                    //Invalid start date
+-                    ModelState.AddModelError("StartDateTime", "StartDateTime invalid.");
+-                    failcount++;
+-                }
+-
+-                TimeStr = e.EndDateTimeTime.Split(':');
+-                date1 = new DateTime(e.EndDateYear, e.EndDateMonth, e.EndDateDay, int.Parse(TimeStr[0]), int.Parse(TimeStr[1]), 0);
+-                e.Event.EndDateTime = date1;
+-
+-                if (DateHelper.DateSequenceViolation(e.DateToCompareAgainst, date1) || DateHelper.DateSequenceViolation((DateTime)e.Event.StartDateTime, date1))
+-                {
+-                    //Invalid start date
+-                    ModelState.AddModelError("EndDateTime", "EndDateTime invalid.");
+-                    failcount++;
+-                }
+-
+-
+-                date1 = new DateTime(e.TicketCutoffYear, e.TicketCutoffMonth, e.TicketCutoffDay);
+-                e.Event.TicketCutoffDate = date1;
+-
+-                if (DateHelper.DateSequenceViolation(e.DateToCompareAgainst, date1) || DateHelper.DateSequenceViolation(date1, (DateTime)e.Event.EndDateTime))
+-                {
+-                    //Invalid start date
+-                    ModelState.AddModelError("TicketCutOffDate", "Ticket CutOff Date invalid.");
+-                    failcount++;
+-                }
+-
+-                if (failcount > 0)
+-                    goto fail;
+-
+-                e.Event.EventName = e.Event.EventName;
+-                e.Event.LongDescription = e.LongDescription;
+-                e.Event.ShortDescription = e.ShortDescription;
+-                e.Event.EventOrganiserID = EventOrganiserID;
+-
+-                db.Entry(e.Event).State = EntityState.Modified;
+-                db.SaveChanges();
+-                return RedirectToAction("MyDetails", "EventOrganisers");
+-            }
+-
+-        fail:
+-            ViewBag.EventCategoryID = new SelectList(db.EventCategories, "ID", "Code", e.Event.EventCategoryID);
+-            var eo = EventOrganiserRepository.GetEventOrganiserByEmail(User.Identity.Name);
+-            if (eo != null)
+-            {
+-                ViewBag.EventOrganiserID = eo.ID;
+-                ViewBag.CompanyName = eo.CompanyName;
+-            }
+-            ViewBag.StatusID = 1;
+-            EventViewModel evm = new EventViewModel(e.Event.ID, (int)eo.ID, true);
+-
+-            return View(evm);
+-        }
+-
+-
+-        public ActionResult EditByEONoTickets(int? id)
+-        {
+-            if (id == null)
+-            {
+-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+-            }
+-            Event @event = db.Events.Find(id);
+-            if (@event == null)
+-            {
+-                return HttpNotFound();
+-            }
+-            ViewBag.EventCategoryID = new SelectList(db.EventCategories, "ID", "Code", @event.EventCategoryID);
+-            var eo = EventOrganiserRepository.GetEventOrganiserByEmail(User.Identity.Name);
+-            if (eo != null)
+-            {
+-                ViewBag.EventOrganiserID = eo.ID;
+-                ViewBag.CompanyName = eo.CompanyName;
+-            }
+-            ViewBag.StatusID = 1;
+-
+-            EventViewModel evm = new EventViewModel(@event.ID, (int)@event.EventOrganiserID, true);
+-            evm.DateToCompareAgainst = DateTime.Now;
+-            evm.EventOrganiser = eo;
+-
+-            return View(evm);
+-        }
+-
+-        // POST: Events/Edit/5
+-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+-        [HttpPost]
+-        [ValidateAntiForgeryToken]
+-        public ActionResult EditByEONoTickets(EventViewModel e, string imageData, string EventLogoURL, int EventOrganiserID)
+-        {
+-            if (ModelState.IsValid)
+-            {
+-
+-
+-
+-                int failcount = 0;
+-
+-                string[] TimeStr = e.StartDateTimeTime.Split(':');
+-                DateTime date1 = new DateTime(e.StartDateYear, e.StartDateMonth, e.StartDateDay, int.Parse(TimeStr[0]), int.Parse(TimeStr[1]), 0);
+-                e.Event.StartDateTime = date1;
+-
+-
+-                if (DateHelper.DateSequenceViolation(e.DateToCompareAgainst, date1))
+-                {
+-                    //Invalid start date
+-                    ModelState.AddModelError("StartDateTime", "StartDateTime invalid.");
+-                    failcount++;
+-                }
+-
+-                TimeStr = e.EndDateTimeTime.Split(':');
+-                date1 = new DateTime(e.EndDateYear, e.EndDateMonth, e.EndDateDay, int.Parse(TimeStr[0]), int.Parse(TimeStr[1]), 0);
+-                e.Event.EndDateTime = date1;
+-
+-                if (DateHelper.DateSequenceViolation(e.DateToCompareAgainst, date1) || DateHelper.DateSequenceViolation((DateTime)e.Event.StartDateTime, date1))
+-                {
+-                    //Invalid start date
+-                    ModelState.AddModelError("EndDateTime", "EndDateTime invalid.");
+-                    failcount++;
+-                }
+-
+-
+-
+-
+-                if (failcount > 0)
+-                    goto fail;
+-
+-
+-                e.Event.LongDescription = e.LongDescription;
+-                e.Event.ShortDescription = e.ShortDescription;
+-                e.Event.EventOrganiserID = EventOrganiserID;
+-
+-                db.Entry(e.Event).State = EntityState.Modified;
+-                db.SaveChanges();
+-                return RedirectToAction("MyDetails", "EventOrganisers");
+-            }
+-
+-        fail:
+-            ViewBag.EventCategoryID = new SelectList(db.EventCategories, "ID", "Code", e.Event.EventCategoryID);
+-            var eo = EventOrganiserRepository.GetEventOrganiserByEmail(User.Identity.Name);
+-            if (eo != null)
+-            {
+-                ViewBag.EventOrganiserID = eo.ID;
+-                ViewBag.CompanyName = eo.CompanyName;
+-            }
+-            ViewBag.StatusID = 1;
+-            EventViewModel evm = new EventViewModel(e.Event.ID, (int)eo.ID, true);
+-
+-            return View(evm);
+-        }
+-
+-        public ActionResult DetailsByEO(int? id)
+-        {
+-            if (id == null)
+-            {
+-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+-            }
+-
+-            int EventOrganiserID = 0;
+-            var eo = EventOrganiserRepository.GetEventOrganiserByEmail(User.Identity.Name);
+-            if (eo != null)
+-            {
+-                EventOrganiserID = eo.ID;
+-
+-            }
+-
+-
+-            EventViewModel @event = new EventViewModel((int)id, EventOrganiserID, true);
+-
+-
+-            if (@event == null)
+-            {
+-                return HttpNotFound();
+-            }
+-            return View(@event);
+-        }
+-        public ActionResult DetailsByEONoTickets(int? id)
+-        {
+-            if (id == null)
+-            {
+-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+-            }
+-            var LoggedInUserID = Helpers.UserHelper.UserID(User.Identity.Name);
+-
+-            EventViewModel @event = new EventViewModel((int)id, LoggedInUserID, true, true);
+-
+-
+-            if (@event == null)
+-            {
+-                return HttpNotFound();
+-            }
+-            return View(@event);
+-        }
+-
+-
+-
+-        public ActionResult Upload(int id = 0, int eventid = 0)
+-        {
+-            Session["EventImageid"] = id;
+-            Session["EventID"] = eventid;
+-
+-            return View();
+-        }
+-
+-        // This action handles the form POST and the upload
+-        [HttpPost]
+-        public ActionResult Upload(HttpPostedFileBase file, EventImageModel model)
+-        {
+-
+-            int EventImageid = model.ID;
+-            int EventID = model.EventID;
+-
+-            if (file != null && file.ContentLength > 0)
+-            {
+-                //delete existing EventImage if changing
+-                if (EventImageid != 0)
+-                {
+-                    EventImage EventImage = db.EventImages.Find(EventImageid);
+-                    db.EventImages.Remove(EventImage);
+-                    db.SaveChanges();
+-
+-                }
+-
+-                //var ProjectStep = db.ProjectSteps.Where(p => p.ID == projectphaseid).SingleOrDefault();
+-                var eventImage = new EventImage();
+-
+-                // Verify that the user selected a file
+-                if (file != null && file.ContentLength > 0)
+-                {
+-
+-                    var fileName = Path.GetFileName(file.FileName);
+-
+-                    fileName = fileName.Replace(" ", String.Empty);//remove  blank spaces
+-
+-                    fileName = "Bnr_" + DateTime.Now.ToString("yyMMdd_hhmmss_") + fileName;
+-
+-                    var path = Path.Combine(Server.MapPath("~/Uploads"), fileName);
+-                    file.SaveAs(path);
+-
+-
+-                    eventImage.Active = true;
+-                    eventImage.EventID = EventID;
+-                    eventImage.ImageURL = fileName;
+-                    eventImage.ImageAltText = "banner";
+-
+-                    db.EventImages.Add(eventImage);
+-                    db.SaveChanges();
+-
+-
+-                }
+-            }
+-            // redirect back to the index action to show the form once again
+-
+-            return RedirectToAction("EditByEO", "Events", new { id = EventID });
+-
+-        }
+-
+-
+-        #endregion
+-
+-
+-        #region CRUD
+-
+-
+-        // GET: Events/Create
+-        [Authorize(Roles = "Admin")]
+-        public ActionResult Create()
+-        {
+-            ViewBag.EventCategoryID = new SelectList(db.EventCategories, "ID", "Code");
+-            ViewBag.EventOrganiserID = new SelectList(db.EventOrganisers, "ID", "CompanyName");
+-            ViewBag.StatusID = new SelectList(db.Status, "ID", "Code");
+-            return View();
+-        }
+-
+-        // POST: Events/Create
+-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+-        [HttpPost]
+-        [ValidateAntiForgeryToken]
+-        [Authorize(Roles = "Admin")]
+-        public ActionResult Create([Bind(Include = "ID,EventName,ShortDescription,LongDescription,StatusID,EventOrganiserID,StartDateTime,EndDateTime,StreetAddress,Suburb,City,PostalCode,GoogleMapsLink,GPSCoordinates,AgeLimit,TicketCutoffDate,EventCategoryID")] Event @event)
+-        {
+-            if (ModelState.IsValid)
+-            {
+-                db.Events.Add(@event);
+-                db.SaveChanges();
+-                return RedirectToAction("Index");
+-            }
+-
+-            ViewBag.EventCategoryID = new SelectList(db.EventCategories, "ID", "Code", @event.EventCategoryID);
+-            ViewBag.EventOrganiserID = new SelectList(db.EventOrganisers, "ID", "CompanyName", @event.EventOrganiserID);
+-            ViewBag.StatusID = new SelectList(db.Status, "ID", "Code", @event.StatusID);
+-            return View(@event);
+-        }
+-
+-
+-
+-        // GET: Events/Edit/5
+-        [Authorize(Roles = "Admin")]
+-        public ActionResult Edit(int? id)
+-        {
+-            if (id == null)
+-            {
+-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+-            }
+-            Event @event = db.Events.Find(id);
+-            if (@event == null)
+-            {
+-                return HttpNotFound();
+-            }
+-            ViewBag.EventCategoryID = new SelectList(db.EventCategories, "ID", "Code", @event.EventCategoryID);
+-            ViewBag.EventOrganiserID = new SelectList(db.EventOrganisers, "ID", "CompanyName", @event.EventOrganiserID);
+-            ViewBag.StatusID = new SelectList(db.Status, "ID", "Code", @event.StatusID);
+-            return View(@event);
+-        }
+-
+-        // POST: Events/Edit/5
+-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+-        [HttpPost]
+-        [ValidateAntiForgeryToken]
+-        [Authorize(Roles = "Admin")]
+-        public ActionResult Edit([Bind(Include = "ID,EventName,ShortDescription,LongDescription,StatusID,EventOrganiserID,StartDateTime,EndDateTime,StreetAddress,Suburb,City,PostalCode,GoogleMapsLink,GPSCoordinates,AgeLimit,TicketCutoffDate,EventCategoryID")] Event @event)
+-        {
+-            if (ModelState.IsValid)
+-            {
+-                db.Entry(@event).State = EntityState.Modified;
+-                db.SaveChanges();
+-                return RedirectToAction("Index");
+-            }
+-            ViewBag.EventCategoryID = new SelectList(db.EventCategories, "ID", "Code", @event.EventCategoryID);
+-            ViewBag.EventOrganiserID = new SelectList(db.EventOrganisers, "ID", "CompanyName", @event.EventOrganiserID);
+-            ViewBag.StatusID = new SelectList(db.Status, "ID", "Code", @event.StatusID);
+-            return View(@event);
+-        }
+-
+-        // GET: Events/Delete/5
+-        [Authorize(Roles = "Admin")]
+-        public ActionResult Delete(int? id)
+-        {
+-            if (id == null)
+-            {
+-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+-            }
+-            Event @event = db.Events.Find(id);
+-            if (@event == null)
+-            {
+-                return HttpNotFound();
+-            }
+-            return View(@event);
+-        }
+-
+-        // POST: Events/Delete/5
+-        [HttpPost, ActionName("Delete")]
+-        [ValidateAntiForgeryToken]
+-        [Authorize(Roles = "Admin")]
+-        public ActionResult DeleteConfirmed(int id)
+-        {
+-            Event @event = db.Events.Find(id);
+-            db.Events.Remove(@event);
+-            db.SaveChanges();
+-            return RedirectToAction("Index");
+-        }
+-
+-
+-        #endregion
+-        protected override void Dispose(bool disposing)
+-        {
+-            if (disposing)
+-            {
+-                db.Dispose();
+-            }
+-            base.Dispose(disposing);
+-        }
++      if (disposing)
++      {
++        db.Dispose();
++      }
++      base.Dispose(disposing);
+     }

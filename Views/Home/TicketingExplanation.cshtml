@@ -1,0 +1,409 @@
+﻿@using Microsoft.AspNet.Identity
+
+@model MiidWeb.Models.LoginViewModel
+@{
+	ViewBag.Title = "MiiD Event Organiser Landing Page";
+	ViewBag.Title = "Contact";
+
+	Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("LayoutLanding");
+
+	bool IAmEventOrganiser = false;
+	if (Request.IsAuthenticated)
+	{
+		IAmEventOrganiser = MiidWeb.Repositories.EndUserRepository.AmIAnEventOrganiser(User.Identity.GetUserName());
+	}
+
+}
+
+@* @if (IAmEventOrganiser)
+	{
+		Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("LayoutEventOrganiser");
+	}
+	else
+	{
+		Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("Layout");
+	}
+
+*@
+
+<title>Cost effective online ticketing for events & festivals.</title>
+<meta name="description" content="Get quick and easy online ticketing for events & festivals at the fraction of the cost. Start selling tickets for your event today">
+
+<section id="navigation">
+
+	<div class="box7">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					<h1 class="hd1">Easy online ticketing for events & festivals</h1>
+
+					<ul class="list3">
+						<br>
+						<li><i class="fa fa-check"></i><span>Generate online ticket sales for your event now</span></li>
+						<li><i class="fa fa-check"></i><span>Get access to your revenue when you need it</span></li>
+						<li><i class="fa fa-check"></i><span>Track online ticket sales</span></li>
+						<li><i class="fa fa-check"></i><span>Reduce ques at your event</span></li>
+
+						<li><i class="fa fa-check"></i><a href="#">Eliminate the risk of waiting until event day to start selling tickets.</a></li>
+						<br>
+
+					</ul>
+
+					<div class="row mar" id="">
+						<div class="col-md-6">
+							<a href="~/Eventorganisers/Register2" class="click">START SELLING</a>
+						</div>
+
+					</div>
+
+				</div>
+
+				<center class="iconenter">
+					<div class="chevron">
+						<a href="#footer"><i class="fas fa-angle-down"></i></a>
+					</div>
+				</center>
+
+				<div class="col-md-6">
+					<img src="~/content/EO_landing_pages/images/tickets-stacked.png" class="img-fluid margin-top" alt="online tickets">
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section id="platform">
+	<div class="container">
+
+		<div class="row row1">
+			<div class="col-md-6">
+				<div class="box9">
+					<center><img class="cardimg" src="~/content/EO_landing_pages/images/vectors/save-pig.svg" alt="Lowest rates ticketing"></center>
+				</div>
+				<h3>Lowest Industry Rates</h3>
+				<p class="para2">Get the lowest industry rates for online ticketing, guaranteed. We have locally developed our own specialised event software which brings down costs that are passed onto you. </p>
+			</div>
+			<div class="col-md-6">
+				<div class="box9">
+					<center><img class="cardimg" src="~/content/EO_landing_pages/images/vectors/ticketing-sell.svg" alt="quick online tickets"></center>
+				</div>
+				<h3>Setup and sell</h3>
+				<p class="para2">Register an account set up an event and start selling tickets. It's that simple. No waiting periods or lengthy sign-up forms. We will contact you for any extra information.</p>
+			</div>
+		</div>
+		<div class="row row1">
+			<div class="col-md-6">
+				<div class="box9">
+					<center><img class="cardimg" src="~/content/EO_landing_pages/images/vectors/cashout.svg" alt="paout online tickets"></center>
+				</div>
+				<h3>Quick payout</h3>
+				<p class="para2">No cooling off periods to receive the revenue you generated from sales. We do not hold your funds after the event is over and once you request your cash we process it straight away. </p>
+			</div>
+			<div class="col-md-6">
+				<div class="box9">
+					<center><img class="cardimg" src="~/content/EO_landing_pages/images/vectors/tracking.svg" alt="ticket sales tracking"></center>
+				</div>
+				<h3>Full reporting</h3>
+				<p class="para2">Track revenue, ticket types and individual tickets sales live through your Mi-id dashboard. Monitor your sales in real time and generate reports to assist with cash up.</p>
+			</div>
+
+			<div class="row row1">
+				<div class="col-md-6">
+					<div class="box10">
+						<center><img class="cardimg" src="~/content/EO_landing_pages/images/vectors/download-ticket.svg" alt="downloadable event tickets"></center>
+					</div>
+					<h3>Downloadable tickets</h3>
+					<p class="para2">Customers have the option to download their QR-code tickets to their phone or print them at home. You can scan the tickets at your event to ensure they are valid.</p>
+				</div>
+				<div class="col-md-6">
+					<div class="box10">
+						<center><img class="cardimg" src="~/content/EO_landing_pages/images/vectors/save-pig.svg" alt="save on ticketing"></center>
+					</div>
+					<h3>Save on costs</h3>
+					<p class="para2">Our platform is designed to eliminate the need for expensive scanning equipment. To scan ticket, all you need is an Android smartphone, the Mi-id app and an internet connection.</p>
+				</div>
+
+			</div>
+		</div>
+		<div class="row row1">
+
+			<div class="col-md-4 offset-md-4">
+				<a href="~/Eventorganisers/Register2" class="click3">START SELLING</a>
+			</div>
+
+
+		</div>
+	</div>
+</section>
+
+<section id="video">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<h1>
+					Scan tickets with
+					your phone
+				</h1>
+				<p class="para3">
+					Mi-id’s android app allows you to quickly scan tickets your customers have bought online on event day. Our Android app allows you to:
+				</p>
+				<ul class="list3 list4">
+					<li><i class="fa fa-check"></i>  <a href="#">Mark tickets off once used</a></li>
+					<li><i class="fa fa-check"></i>  <a href="#">View previously used tickets tickets</a></li>
+					<li><i class="fa fa-check"></i>  <a href="#">View customer details</a></li>
+					<li><i class="fa fa-check"></i>  <a href="#">View ticket types eg. VIP or general</a></li>
+					<li><i class="fa fa-check"></i>  <a href="#">Reduces ques</a></li>
+				</ul>
+			</div>
+			<div class="col-md-6">
+				<div class="negative-margin-20">
+
+					<img src="~/content/EO_landing_pages/images/scanticket.png" class="img-fluid margin-top" alt="scan event tickets">
+
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section id="cards1">
+	<div class="container">
+		<h2 class="text-center heading">Additional features at no cost</h2>
+		<div class="row">
+
+
+			<div class="col-md-6 col-lg-3">
+				<div class="card">
+
+					<div class="imagein">
+						<center><img class="cardimg" src="~/content/EO_landing_pages/images/vectors/voucher.svg" alt="ticket promo code"></center>
+					</div>
+					<h3 class="card-title text-center card-title3">Voucher & <br>Promo Codes</h3>
+					<div class="card-body">
+
+						<p class="card-text text-center card-text5">Run promotions or loyalty programmes to boost sales for your event<br>&nbsp; </p>
+
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-6 col-lg-3">
+				<div class="card">
+
+					<div class="imagein">
+						<center><img class="cardimg" src="~/content/EO_landing_pages/images/vectors/calendar.svg" alt="ticket calendar"></center>
+					</div>
+					<h3 class="card-title text-center card-title3">Date<br>Selection</h3>
+					<div class="card-body">
+
+						<p class="card-text text-center card-text5">
+							Sell multiple ticket types with various values over an extended time frame <br>&nbsp
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 col-lg-3">
+				<div class="card">
+
+					<div class="imagein">
+						<center><img class="cardimg" src="~/content/EO_landing_pages/images/vectors/seating.svg" alt="seating tickets"></center>
+					</div>
+					<h3 class="card-title text-center card-title3">Arranged<Br>Seating Plans</h3>
+					<div class="card-body">
+
+						<p class="card-text text-center card-text5">Set seating arrangements or designated areas each with their own ticket value<br>&nbsp; </p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 col-lg-3">
+				<div class="card">
+
+					<div class="imagein">
+						<center><img class="cardimg" src="~/content/EO_landing_pages/images/vectors/ticket.svg" alt="complimentary tickets"></center>
+					</div>
+					<h3 class="card-title text-center card-title3">Complimentary Ticket</h3>
+					<div class="card-body">
+
+						<p class="card-text text-center card-text5">
+							Our fees only apply to tickets that you sell and do not add any charge to complimentary tickets.
+
+						</p>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+		<div class="row row1">
+
+			<div class="col-md-4 offset-md-4">
+				<a href="~/Eventorganisers/Register2" class="click3">START SELLING</a>
+			</div>
+
+
+		</div>
+	</div>
+</section>
+
+<div class="box7">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 text-center">
+				<h1 class="hd1">
+					Why sell
+					tickets online
+				</h1>
+				<p class="para3">
+					Selling tickets online for your event online opens up a range of opportunities that you would otherwise miss out on. By selling tickets online you give yourself the opportunity to assess your events progress leading up to the event which allows you to prepare and strategise better for the day. Adjust your budget according to the number of tickets you have sold and eliminate all the risks that would be associated with door only sales like competing events.
+				</p>
+
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<section id="only-text">
+	<div class="container">
+		<h3 class="text-center">“You were available 24/7”</h3>
+		<p class="text-center para4">
+			What I particularly appreciate is the fact that you were available 24/7. It was very good to know that at any given time you were on the other end of the phone. Well done and thank you.
+		</p>
+		<p class="text-center para3">- Erika Kooij , Drug Safety Africa Confernce -</p>
+	</div>
+</section>
+
+<section id="footer">
+	<div class="container">
+		<h2 class="text-center heading1">Used by</h2>
+		<div class="row row2">
+			<div class="col-md-4  col-4 col1">
+				<img src="~/content/EO_landing_pages/images/logo-gardener.png" class="img-fluid" alt="Mi-id existing customer">
+			</div>
+			<div class="col-md-4 col-4 col1">
+				<img src="~/content/EO_landing_pages/images/logo-nwu.png" class="img-fluid" alt="Mi-id existing customer">
+			</div>
+			<div class="col-md-4  col-4 col1">
+				<img src="~/content/EO_landing_pages/images/logo-city.png" class="img-fluid" alt="Mi-id existing customer">
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<section id="cards1">
+	<div class="container">
+
+
+		<h2 class="text-center heading">Other features for your event</h2>
+		<div class="row slidermfk">
+
+			<div class="col-md-12">
+				<div class="card">
+
+					<div class="imagein">
+						<center><img class="cardimg" src="~/content/EO_landing_pages/images/Vectors/qr-code.svg" alt="Qr code ticket"></center>
+					</div>
+					<h3 class="card-title text-center card-title1">Sell ticket<br> online</h3>
+					<div class="card-body">
+
+						<p class="card-text text-center card-text2">
+							Sell tickets online and validate them at your event using an android phone
+						</p>
+						<hr>
+						<ul class="list2">
+							<li><i class="fa fa-check"></i> <span>Lowest Industry Rates</span></li>
+							<li><i class="fa fa-check"></i> <span> Quick Setup & Sell</span></li>
+							<li><i class="fa fa-check"></i> <span>Quick Payout</span></li>
+							<li><i class="fa fa-check"></i> <span>Generate revenue now</span></li>
+							<li><i class="fa fa-check"></i> <span>Ticket Validation</span></li>
+							<li><i class="fa fa-check"></i> <span>Full reporting</span></li>
+						</ul>
+						<a href="~/Home/TicketingExplanation" class="click4">Find out more</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12">
+				<div class="card">
+
+					<div class="imagein">
+						<center><img class="cardimg" src="~/content/EO_landing_pages/images/Vectors/ticket.svg" alt="printed ticket"></center>
+					</div>
+					<h3 class="card-title text-center card-title1">Sell tickets<br> at your venue</h3>
+					<div class="card-body">
+
+						<p class="card-text text-center card-text2">
+							Track your sales, reduce theft and print tickets using your  laptop
+						</p>
+						<hr>
+						<ul class="list2">
+							<li><i class="fa fa-check"></i> <span>Lowest Industry Rates</span></li>
+							<li><i class="fa fa-check"></i> <span>Low-cost ticket printing</span></li>
+							<li><i class="fa fa-check"></i> <span>Quick Setup & Sell</span></li>
+							<li><i class="fa fa-check"></i> <span>Quick Payout</span></li>
+							<li><i class="fa fa-check"></i> <span>Ticket Validation</span></li>
+							<li><i class="fa fa-check"></i> <span>Full reporting</span></li>
+						</ul>
+						<a href="~/Home/BoxOffice" class="click4">Find out more</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-12">
+				<div class="card">
+
+					<div class="imagein">
+						<center><img class="cardimg" src="~/content/EO_landing_pages/images/Vectors/cashless.svg" alt="Cashless events"></center>
+					</div>
+					<h3 class="card-title text-center card-title1">Cashless<br>services</h3>
+					<div class="card-body">
+
+						<p class="card-text text-center card-text2">
+							Make secure cashless transactions with your android phone
+						</p>
+						<hr>
+						<ul class="list2">
+							<li><i class="fa fa-check"></i> <span>Lowest Industry Rates</span></li>
+							<li><i class="fa fa-check"></i> <span>PIN protected wristbands</span></li>
+							<li><i class="fa fa-check"></i> <span>Anytime top-up</span></li>
+							<li><i class="fa fa-check"></i> <span>Anytime Cash-out</span></li>
+							<li><i class="fa fa-check"></i> <span>Bar &amp; vendor reports</span></li>
+							<li><i class="fa fa-check"></i> <span>POS integration</span></li>
+						</ul>
+						<a href="~/Home/MiiFundsExplanation" class="click4">Find out more</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-12">
+				<div class="card">
+
+					<div class="imagein">
+						<center><img class="cardimg" src="~/content/EO_landing_pages/images/Vectors/branded-tickets.svg" alt="Sell branded tickets"></center>
+					</div>
+					<h3 class="card-title text-center card-title1">Branded<br>experience</h3>
+					<div class="card-body">
+
+						<p class="card-text text-center card-text2">
+							Make sales on your own branded subdomain<br>&nbsp;
+						</p>
+						<hr>
+						<ul class="list2">
+							<li><i class="fa fa-check"></i> <span>Lowest Industry Rates</span></li>
+							<li><i class="fa fa-check"></i> <span>Free Setup</span></li>
+							<li><i class="fa fa-check"></i> <span>Custom branded domain</span></li>
+							<li><i class="fa fa-check"></i> <span> Quick Setup & Sell</span></li>
+							<li><i class="fa fa-check"></i> <span>Custom tickets</span></li>
+							<li><i class="fa fa-check"></i> <span>Vanity URL</span></li>
+
+
+						</ul>
+						<a href="~/Home/BrandedExperience" class="click4">Find out more</a>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+</section>

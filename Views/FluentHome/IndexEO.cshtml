@@ -1,0 +1,407 @@
+﻿@model MiidWeb.Models.LoginViewModel
+@{
+    ViewBag.Title = "Home Page";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MiiD | Event organiser Home</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="MiiD">
+    <meta name="keywords" content="">
+    <link rel="stylesheet" href="../../content/css/main.css" type="text/css">
+    <link rel="shortcut icon" href="images/icon.png?v=2" type="image/x-icon" />
+
+    <link rel="stylesheet" type="text/css" href="demo.css" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../../scripts/smooth_scroll/smoothscroll.js"></script>
+
+
+
+    <script language="JavaScript1.1">
+
+
+
+        var slideimages = new Array()
+        var slidelinks = new Array()
+        function slideshowimages() {
+            for (i = 0; i < slideshowimages.arguments.length; i++) {
+                slideimages[i] = new Image()
+                slideimages[i].src = slideshowimages.arguments[i]
+            }
+        }
+
+        function slideshowlinks() {
+            for (i = 0; i < slideshowlinks.arguments.length; i++)
+                slidelinks[i] = slideshowlinks.arguments[i]
+        }
+
+        function gotoshow() {
+            if (!window.winslide || winslide.closed)
+                winslide = window.open(slidelinks[whichlink])
+            else
+                winslide.location = slidelinks[whichlink]
+            winslide.focus()
+        }
+
+        //-->
+    </script>
+
+
+
+
+
+</head>
+
+
+
+<body>
+
+
+
+
+
+
+
+
+
+
+
+    <div class="header">
+
+        <div class="header_wrapper">
+
+            <div class="header_container_left">
+
+                <a href="http://www.miid.co.za/"><img src="../../content/images/logo.png" alt=" miiImage" class="logo" /></a>
+                <ul class="drop_menu">
+                    <li>
+                        <img src="../../content/images/drop_menu.png" alt=" miiImage" class="logo" />
+                        <ul>
+                            <li><a href='#'>About</a></li>
+                            <li><a href='#'>Services</a></li>
+                            <li><a href='#'>FAQ's</a></li>
+                            <li><a href='#'>Help</a></li>
+
+
+                        </ul>
+                    </li>
+
+
+                </ul>
+
+
+
+            </div>
+
+            <div class="header_container_right">
+                @Html.Partial("_LoginPartialEO")
+                
+            </div>
+        </div>
+
+
+    </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <!--  first section picture & form -->
+
+    <div class="firstsection">
+
+        <!-- opaque wrapper -->
+        <div class="logging_wrapper_user">
+
+
+            <!-- starat banner -->
+            <div class="logging_banner">
+                <img src="banner1_3.jpg" name="slide" border="0" width="850px" height="230px">
+                <script>
+
+                    //configure the paths of the images, plus corresponding target links
+                    slideshowimages("../../content/images/banner1_1.jpg", "../../content/images/banner1_3.jpg", "../../content/images/banner1_5.jpg")
+                    //configure the speed of the slideshow, in miliseconds
+                    var slideshowspeed = 5000
+                    var whichlink = 0
+                    var whichimage = 0
+                    function slideit() {
+                        if (!document.images)
+                            return
+                        document.images.slide.src = slideimages[whichimage].src
+                        whichlink = whichimage
+                        if (whichimage < slideimages.length - 1)
+                            whichimage++
+                        else
+                            whichimage = 0
+                        setTimeout("slideit()", slideshowspeed)
+                    }
+                    slideit()
+
+
+                </script>
+
+            </div>
+
+            <!-- close banner -->
+
+
+
+
+            <div class="imagecolumbleft_user " />
+            <a href="index.php"><img src="../../content/images/landing2.png" alt="miid.co.za" /></a>
+        </div>
+
+
+        <!-- icons and text -->
+        <div class="columbright_user">
+
+            <h3>Online Ticket Sales Solutions for event organisers</h3>
+
+
+            <div class="smallicons_user ">
+                <img src="../../content/images/icon1.png" alt=" miiImage" />
+                <div class="textlanding_user">
+                    Easy Online Electronic ticketing that doesn't require a patron carry a printed ticket.
+                    </br>
+                </div>
+            </div>
+
+            <div class="smallicons_user ">
+                <img src="../../content/images/icon1.png" alt=" miiImage" />
+                <div class="textlanding_user">
+                    Most competitive pricing with a emphasis on customer service
+                    </br>
+                </div>
+            </div>
+
+            <div class="smallicons_user ">
+                <img src="../../content/images/icon1.png" alt=" miiImage" />
+                <div class="textlanding_user">
+                    Sell more tickets with statistics & direct access to your market
+                    </br>
+                </div>
+            </div>
+
+            <div class="smallicons_user ">
+                <img src="../../content/images/icon1.png" alt=" miiImage" />
+                <div class="textlanding_user">
+                    Its free to sign up. Sign up now and build you customer  base & keep them informed with pre-event information
+                    </br>
+                </div>
+
+                <a href="http://www.miid.co.za/EventOrganisers/Register"> <div class="registerbutton">REGISTER NOW!!!</div></a>
+
+            </div>
+        </div>
+        <!--  close opaque wrapper -->
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+    <div class="about_icon_background">
+        <div class="about_icon_container">
+            <div class="col_4_icon">
+                <a href="#ticketing" class="smoothScroll">   <div class="topicons1"><div class="topiconscopy">Online Ticketing</div></div></a>
+            </div>
+            <div class="col_4_icon">
+                <a href="#stats" class="smoothScroll">    <div class="topicons2"><div class="topiconscopy">Stats & Analytics</div></div></a>
+            </div>
+            <div class="col_4_icon">
+                <a href="#marketing" class="smoothScroll">  <div class="topicons3"><div class="topiconscopy">Direct Marketing</div></div></a>
+            </div>
+            <div class="col_4_icon">
+                <a href="#service" class="smoothScroll">  <div class="topicons5"><div class="topiconscopy">Customer Serivice</div></div></a>
+            </div>
+            <div class="col_4_icon">
+                <a href="#nfc" class="smoothScroll"> <div class="topicons4"><div class="topiconscopy">NFC Enabled Ticketing</div></div></a>
+            </div>
+        </div>
+
+    </div>
+    <div class="about_wrapper_blue">
+        <div class="about_text_container">
+            <span class="white_text">
+                <h2 class="white_text">Online & Digital Tickets for Events </h2> Online ticketing and digital tickets are not something new in South Africa. Although companies have brought other technologies such as mobile phone scanning to the market, they have been mostly stagnant in their Innovations.
+                Mii-D  provides  innovative solutions using the latest NFC technology to solve various problems experienced by event organisers.
+            </span>
+        </div>
+
+    </div>
+
+
+    <!-------- info section ------------>
+    <div class="about_wrapper">
+
+        <div class="about_container_right">
+            <div class="about_container_right_image">
+                <img src="../../content/images/about_image_1.png" alt=" miiImage" class="display_image" />
+            </div>
+            <div class="about_container_right_text">
+                <a name="ticketing"></a>
+                <h3>Online Tickets</h3> Mii-D offers Event Organisers a easy-to-use platform to sell tickets online. All you need to do is register as an event organiser and set up an event. Mii-D will handle the rest.
+                We use the latest NFC technology to make sure tickets cannot be counterfeited giving you the piece of mind that your patrons are only receiving  original tickets and making sure your patrons
+                enjoy an unforgettable event from the start. Mii-D also strives to have the most competitive pricing in the online ticketing market.
+                <div><a href="http://www.miid.co.za/EventOrganisers/Register"> <input type="button" class="band_input_purchase" value="Find out More"></a></div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+    <!-------- info section ------------>
+    <div class="about_wrapper">
+
+        <div class="about_container_right">
+            <div class="about_container_left_image">
+                <img src="../../content/images/about_image_2.png" alt=" miiImage" />
+
+            </div>
+            <div class="about_container_right_text">
+                <a name="stats"></a>
+                <h3>Stats & Analytics</h3> Give your event the best chance to succeed with data and statstics that will help you manage and market your event. Mii-D offers Event organisers a wide range of tools
+                from tracking ticket sales within geographical areas to the age groups of patrons who have purchased tickets. With data gathered from current and previous event, you as an event organiser can prepare and
+                manage an event in the most efficient way which in turn saves you money. With Mii-D's analytics and data recording features your event is sure to be a success
+                <div><a href="http://www.miid.co.za/EventOrganisers/Register"> <input type="button" class="band_input_purchase" value="Register Now"></a></div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <!-------- info section ------------>
+    <div class="about_wrapper">
+
+        <div class="about_container_right">
+            <div class="about_container_right_image">
+                <img src="../../content/images/about_image_3.png" alt=" miiImage" />
+            </div>
+            <div class="about_container_right_text">
+                <a name="marketing"></a>
+                <h3>Direct Marketing</h3> Dont spend time and money marketing your event to the wrong audience.  Mii-D has multiple channels that you can advertise through at no cost. Mii-D
+                allows event organisers to advertise directly on our website to patrons who are most likely to purchase tickets to you event, newsletters to users who have opted to receive
+                news and update about events like yours as well as off site advertising to make sure your event is a sell out.
+                <div> <a href="http://www.miid.co.za/EventOrganisers/Register"><input type="button" class="band_input_purchase" value="Find out more"></a></div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <!-------- info section ------------>
+    <div class="about_wrapper">
+
+        <div class="about_container_right">
+            <div class="about_container_left_image">
+                <img src="../../content/images/about_image_4.png" alt=" miiImage" />
+
+            </div>
+            <div class="about_container_right_text">
+                <a name="service"></a>
+                <h3>Customer Service & Suport</h3> One of Mii-D's goals is to build and maintain good relationships with our clients. Because Mii-D is a born and bread South African brand we understand your needs as an Event Organiser.
+                No more phoning call centers in far away countries, waiting hours for a email response or worst off all... not having any suport once you have signed up for a product. Let us know how Mii-D can assist you and we will do our best to deliver
+                <div> <a href="http://www.miid.co.za/EventOrganisers/Register"><input type="button" class="band_input_purchase" value="Register Now"></a></div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-------- info section ------------>
+    <div class="about_wrapper">
+
+        <div class="about_container_right">
+            <div class="about_container_right_image">
+                <img src="../../content/images/about_image_5.png" alt=" miiImage" />
+
+            </div>
+            <div class="about_container_right_text">
+                <a name="nfc"></a>
+                <h3>Mii-Band & NFC Technology</h3> Mii-D uses the latest NFC technology to ensure tickets are not counterfeited or copied. Tickets cannot be stolen or lost as they are linked to a users profile. With the use of
+                the NFC enabled Mii-Band, Event organisers can view if a patron has purchased a ticket along with other information like emergency contact details or if a patron has been removed from an event. All of this ads up to a easier
+                way to manage an event.
+
+                <div><a href="http://www.miid.co.za/EventOrganisers/Register"> <input type="button" class="band_input_purchase" value="Find out more"></a></div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <!--  open second  section -->
+    <div class="footer">
+
+
+        <div class="footer_wrapper">
+
+            <div class="footer_container_border_none">
+                <div class="footer_heading">Information</div>
+                <div class="footer_copy">About</div>
+                <div class="footer_copy">Services</div>
+
+
+
+
+            </div>
+            <div class="footer_container_border_left">
+
+                <div class="footer_heading">Need Help?</div>
+                <div class="footer_copy">FAQ's</div>
+                <div class="footer_copy">T&C's</div>
+                <div class="footer_copy">Help Desk</div>
+                <div class="footer_copy">Contact</div>
+
+            </div>
+            <div class="footer_container_border_left">
+
+                <div class="footer_heading">Other</div>
+                <div class="footer_copy">Careers</div>
+                <div class="footer_copy">Marketing</div>
+                <div class="footer_copy">Partnerships</div>
+
+            </div>
+            <div class="footer_container_border_left">
+
+                <div class="footer_heading">Social</div>
+                <div class="footer_copy">Facebook</div>
+                <div class="footer_copy">Twitter</div>
+                <div class="footer_copy">Google+</div>
+                <div class="footer_copy">Linkedin</div>
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+
+
+
+
+</body>
+</html>

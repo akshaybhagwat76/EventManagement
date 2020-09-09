@@ -1,0 +1,89 @@
+﻿@model IEnumerable<MiidWeb.EventOrganiser>
+
+@{
+	ViewBag.Title = "Event Organisers";
+	// Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("LayoutAdmin");
+	Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="col-md-9">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="content-box-header">
+				<div class="panel-title">Event Organisers</div>
+				<div class="panel-title pull-right" style="margin-top:-7px;">@Html.ActionLink("Create New", "EventOrganiserCreate", null, new { @class = "btn btn-primary btn-sm" })</div>
+
+
+			</div>
+			<div class="content-box-large box-with-header">
+
+				<div class="table-responsive" style="overflow-x:auto;">
+
+					<!-- Initialization
+	* js-dynamitable => dynamitable trigger (table)
+	-->
+			
+					<table class="table table-bordered table-striped">
+						<thead>
+							<!-- table heading -->
+						<thead>
+						<th>   </th>
+						<th>Copmany   </th>
+						<th>Contact    </th>
+						<th>Phone </th>
+						<th>Email  </th>
+						<th>Status </th>
+						<th>ID  </th>
+
+
+						</thead>
+
+						<tbody>
+							@foreach (var item in Model.OrderByDescending(item => item.ID))
+							{
+								<tr>
+									<td>
+
+
+										@Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "input_organiser_submit" })
+
+									</td>
+									<td>
+										@Html.DisplayFor(modelItem => item.CompanyName)
+									</td>
+									<td>
+										@Html.DisplayFor(modelItem => item.ContactName)
+									</td>
+									<td>
+										@Html.DisplayFor(modelItem => item.Telephone)
+									</td>
+									<td>
+										@Html.DisplayFor(modelItem => item.Email)
+									</td>
+
+									<td>
+										@Html.DisplayFor(modelItem => item.Status.Code)
+									</td>
+									<td>
+										@Html.DisplayFor(modelItem => item.ID)
+									</td>
+
+								</tr>
+							}
+
+						</tbody>
+
+					</table>
+					
+
+				</div>
+
+
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+			

@@ -1,0 +1,48 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    
+
+    <div class="header_container_right">
+        <div class="logging_text">
+            @{ 
+                string greeting = "Hello " + User.Identity.GetUserName() + "!";
+                
+            <a href="~/Manage/Index" style="text-decoration:none; color: #fff;">@greeting</a> 
+            }
+            | <a href="~/Account/Logoff" style="text-decoration:none; color: #fff;">Log off</a> 
+
+            | 
+            @Html.ActionLink("My Profile", "EndUserProfile", "EndUsers", new { id = @MiidWeb.Helpers.UserHelper.UserID(User.Identity.GetUserName()), loggedInUserID = @MiidWeb.Helpers.UserHelper.UserID(User.Identity.GetUserName()) }, new { @style = "text-decoration:none; color: #fff;" }) 
+            
+        </div>
+    </div>
+    
+}
+else
+{
+
+    <div class="header_container_right">
+        <div class="logging_text">
+
+          
+
+        </div>
+        <div class="logging_text">
+            @{ var model = new MiidWeb.Models.LoginViewModel();}
+            @Html.Partial("_Login", @model)
+
+            <a href="~/Account/Register" style="text-decoration:none; color: #fff;">New user? Register here.</a> |
+
+            
+
+            <a href="~/Account/ForgotPassword" style="text-decoration:none; color: #fff;">Forgot password?</a> |
+            @Html.ActionLink("Event Organisers Click Here", "IndexEO", "Home", null, new { style = "text-decoration:none; color: #fff;" })
+        </div>
+
+
+
+    </div>
+
+
+}

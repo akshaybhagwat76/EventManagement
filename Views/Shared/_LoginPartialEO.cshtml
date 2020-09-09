@@ -1,0 +1,116 @@
+﻿@using Microsoft.AspNet.Identity
+@using MiidWeb.Helpers
+@using MiidWeb.Repositories
+@if (Request.IsAuthenticated)
+{
+    var eventOrganiser = EventOrganiserRepository.GetEventOrganiserByEmail(User.Identity.Name);
+
+
+
+
+    <!--sidebar start-->
+    <aside>
+        <div id="sidebar" class="nav-collapse">s
+            <!-- sidebar menu start-->
+            <div class="leftside-navigation">
+                <ul class="sidebar-menu" id="nav-accordion">
+                    <li>
+                        <a class="active" href="~/EventOrganisers/MyDetails">
+                            <i class="fa fa-dashboard blue-font"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/Events/IndexForEO">
+                            <i class="fas fa-calendar-alt "></i>
+                            <span>Your Events</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/Events/CreateByEO">
+                            <i class="fas fa-plus-square"></i>
+                            <span>Create Event</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.miid.co.za/eventnews/online-ticketing-cashless-events-support/">
+                            <i class="fas fa-question-circle"></i>
+                            <span>Help Center</span>
+                        </a>
+                    </li>
+
+
+
+                   
+                    <li>
+                        <a href="https://drive.google.com/drive/folders/1vUvPIGXOKAbj6Jb2eL_PsGl_ILCgOfaz?usp=sharing">
+                            <i class="fas fa-file-download"></i>
+                            <span>Download Logos </span>
+                        </a>
+                    </li>
+
+                    <li class="sub-menu">
+                        <a href="javascript:;">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>Download Apps</span>
+                        </a>
+                        <ul class="sub">
+                            <li><a href="https://play.google.com/store/apps/details?id=com.dsouchon.TicketingMiiD">Ticket Validation</a></li>
+                            <li><a href="https://play.google.com/store/apps/details?id=com.dsouchon.TicketingMiiD">Tag Activation</a></li>
+                            <li><a href="https://play.google.com/store/apps/details?id=com.dsouchon.MiiDCashless">Cashless</a></li>
+                        </ul>
+                    </li>
+
+
+
+
+
+
+
+                    <li>
+                        <a href="~/Home/Contact">
+                            <i class="fas fa-envelope"></i>
+                            <span>Get in touch</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+            <!-- sidebar menu end-->
+        </div>
+    </aside>
+
+    
+
+
+
+
+}
+else
+{
+
+
+    <header>
+
+        @{ var model = new MiidWeb.Models.LoginViewModel();}
+        @Html.Partial("_Login", @model)
+    </header>
+    <nav id="nav">
+        <ul>
+            <li><a href="~/EventOrganisers/Register">Register</a></li>
+            <li><a href="~/Home/ProductSummary">Our Services</a></li>
+
+            <li><a href="~/Home/HelpEventOrganiser">Help</a></li>
+            <li><a href="http://blog.miid.co.za/">Blog</a></li>
+
+            <li><a href="~/Home/Contact">Contact</a></li>
+        </ul>
+        @Html.ActionLink("Forgot your password?", "ForgotPassword", "Account")
+
+    </nav>
+
+
+
+
+
+}

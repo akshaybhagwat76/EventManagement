@@ -1,0 +1,831 @@
+﻿@using MiidWeb.Helpers;
+@model MiidWeb.Models.PurchaseTicketViewModel
+@{
+	ViewBag.Title = "Purchase Tickets";
+	ViewBag.Title = "Details";
+	string start2 = ((DateTime)(Model.Event.StartDateTime)).ToString("yyyy-MM-dd");
+	string end2 = ((DateTime)(Model.Event.EndDateTime)).ToString("yyyy-MM-dd");
+	string startTime = ((DateTime)(Model.Event.StartDateTime)).ToString("HH:mm");
+	string endTime = ((DateTime)(Model.Event.EndDateTime)).ToString("HH:mm");
+	int active = MiidWeb.Helpers.StatusHelper.StatusID("TicketClass", "Active");
+	string ticketcut = ((DateTime)(Model.Event.TicketCutoffDate)).ToString("yyyy-MM-dd");
+	string ticketcutTime = ((DateTime)(Model.Event.TicketCutoffDate)).ToString("HH:mm");
+
+	Boolean IsBandActive = UserHelper.IsBandActive(User.Identity.Name);
+}
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+
+<style>
+	.square {
+		height: 20px;
+		width: 20px;
+		color: #000000;
+		display: inline-block;
+		background-color: #9ccea8;
+		border: 1px solid #77927d;
+		font-size: 12px;
+		text-align: center;
+		-webkit-border-radius: 25%;
+		-moz-border-radius: 25%;
+		border-radius: 50%;
+		margin: 2px;
+	}
+
+	.selected {
+		height: 20px;
+		width: 20px;
+		display: inline-block;
+		background-color: red;
+		color: red;
+		text-align: center;
+		font-size: 20px;
+		text-align: center;
+		font-size: 12px;
+		-webkit-border-radius: 25%;
+		-moz-border-radius: 25%;
+		border-radius: 50%;
+		margin: 2px;
+	}
+</style>
+<!--do not delete- refreshes page -->
+<script type='text/javascript'>
+
+	window.addEventListener("pageshow", function (event) {
+		var historyTraversal = event.persisted ||
+			(typeof window.performance != "undefined" &&
+				window.performance.navigation.type === 2);
+		if (historyTraversal) {
+			// Handle page restore.
+			window.location.reload(1);
+		}
+
+
+	});
+
+</script>
+<!--do not delete- refreshes page -->
+<script>
+	setTimeout(function () {
+		window.location.reload(1);
+	}, 300000);
+</script>
+<!-- close script-->
+<!--loading icon for when seats are being called-->
+<script>
+	$(document).ready(function () {
+		$(".loaderImage").hide();
+
+
+	});
+</script>
+<div class="container">
+	<div class="row row vertical-offset-40px">
+
+		<div class="col-md-10 col-md-offset-1" style="margin-bottom:20px;">
+			@if (Model.EventBannerURL != null)
+			{
+				<img src="~/Uploads/@Model.EventBannerURL" class="" alt="@Model.Event.EventName Banner" style="width:100%" />
+			}
+
+			else
+			{
+				<img class="img-responsive" src="~/Content/images2018/event-banner-holder.jpg" alt="Event image coming soon" />
+
+			}
+		</div>
+		
+
+
+		<div class="col-md-5 col-md-offset-1">
+			<div class="event-info-wrapper" style="margin-top:20px;">
+				@*<img class="img-responsive" src="@GlobalVariables.SeatingPlanImage" alt="Event image coming soon" />*@
+
+				@if (Model.SeatPlanImage != null)
+				{
+					<img src="~/Uploads/@Model.SeatPlanImage" class="" alt="@Model.Event.EventName Seating Plan" style="width:100%" />
+				}
+
+				else
+				{
+					<img class="img-responsive" src="@GlobalVariables.SeatingPlanImage" alt="Event image coming soon" />
+
+				}
+
+
+				<div class="loaderImage text-center">
+
+					<img src="~/Content/images2018/spinner.gif" style="width:80px; " class="loaderImage/ ">
+				</div>
+
+
+				<div class="hide-container">
+					<script>
+						$(document).ready(function () {
+							$(".loaderImage").hide();
+
+
+						});
+					</script>
+
+					<h4>Available Tickets:</h4>
+					<hr>
+					<div class="row product-details form-group">
+
+
+						<div class="form-group col-md-12">
+							<div class="alert alert-success" role="alert">
+								Once your ticket is selected it will be reserved for 15 Minutes unless your remove it from your basket
+							</div>
+						</div>
+					</div>
+					@using (Html.BeginForm("PurchaseTicketsSeatPlan", "Events", FormMethod.Post, new { id = "form" }))
+					{
+
+						@Html.ValidationSummary(true, "", new { @class = "red" })
+
+						<input type="hidden" id="EventID" name="EventID" value="@Model.Event.ID" />
+						@*@Html.Hidden("EventID", Model.Event.ID, null)*@
+						<h3>@ViewBag.ConfirmationMessage</h3>
+						DateTime start = (DateTime)(Model.Event.StartDateTime);
+						DateTime end = (DateTime)(Model.Event.EndDateTime);
+						DateTime TicketCutoffDate = (DateTime)(Model.Event.TicketCutoffDate);
+						string TicketClassQtyID = "";
+						<div class="row product-details" style="display:none;">
+							<div class="col-md-12 product-text">Start: @start.ToString("dd MMM yyyy") End: @end.ToString("dd MMM yyyy")</div>
+							@Html.Hidden("hiddenlinenum", 0)
+						</div>
+
+						<div class="">
+							<div class="form-group col-md-12 col-sm-12 col-xs-12  ">
+								<b>@GlobalVariables.PurchaseArea</b>
+								@Html.DropDownList("TicketClassID", (SelectList)@Model.TicketClassSelectList, new { @class = "form-control input-lg", name = "TicketClassID" })
+
+							</div>
+						</div>
+
+						<div class="">
+							<div class="form-group col-md-12 col-sm-12 col-xs-12 ">
+								<b>@GlobalVariables.PurchaseRowNumber </b>
+								<select name="RowNumberID" id="RowNumberID" class="form-control input-lg"></select>
+
+
+							</div>
+						</div>
+						<div class="form-group col-md-12 col-sm-12 col-xs-12 ">
+							<div id="showresults"></div>
+						</div>
+
+						<div class="">
+							<div class="form-group col-md-12 col-sm-12 col-xs-12 ">
+								<b>@GlobalVariables.PurchaseSeatNumber</b>
+								<select name="SeatNumberID" id="SeatNumberID" class="form-control input-lg"></select>
+
+							</div>
+						</div>
+
+						<div class="">
+							<div id="content">
+							</div>
+
+						</div>
+						<style>
+							.alert .glyphicon {
+								display: table-cell;
+							}
+
+							.alert div,
+							.alert span {
+								padding-left: 5px;
+								display: table-cell;
+							}
+						</style>
+						<div class="form-group col-md-12  col-sm-12 col-xs-12 ">
+							<div class="alert alert-warning" role="alert">
+								<div class="glyphicon glyphicon-exclamation-sign"></div>
+								<div><strong> Repeat Step 1 - 3 to add tickets</strong></div>
+							</div>
+						</div>
+
+
+						<div class="event-info-clear row" style="padding:4px;">
+							<div class="col-md-6 col-sm-5 col-xs-5 pull-left">
+
+								Total Quantity
+
+							</div>
+							<div class="col-md-4 col-sm-6 col-xs-6 pull-right">
+
+								<input type="text" id="ticketTotal" class="form-control input-lg" disabled>
+							</div>
+
+						</div>
+						<div class="event-info-clear row" style="padding:4px;">
+							<div class="col-md-6 col-sm-6 col-xs-6  pull-left">
+
+								Sub Total <span style="small;">excluding admin fee</span>
+
+							</div>
+							<div class="col-md-4 col-sm-6 col-xs-6 pull-right">
+								<input type="text" class="form-control input-lg" id="ticketTotalCost" disabled style="background-color:#ffffff;">
+							</div>
+
+						</div>
+						<br>
+
+
+						<div class="row product-details form-group">
+							<div class="form-group col-md-12">
+
+								@*<li>Select Payment Method</li>*@
+								@*<li>
+
+									@Html.DropDownListFor(x => x.SelectedTenderTypeID, Model.TenderTypeList)
+								</li>*@
+								<input type="submit" value="Purchase Tickets" class="btn btn-lg btn-default btn-block" />
+							</div>
+
+						</div>
+						<div class="row product-details">
+							<div class="form-group col-md-5">
+								Pre-Paid Funds: R @Model.MyMoneyCurrentBalance
+							</div>
+						</div>
+
+
+						<div>
+
+						</div>
+
+
+					}
+
+
+
+					<!-- One -->
+					@section Scripts {
+						@Scripts.Render("~/content/js/jquery-1-12-4-min.js")
+						@Scripts.Render("~/bundles/jqueryval")
+
+						<script>
+
+							$(document).ready(function () {
+								$('select.quantity').change(function () {
+									var total = 0;
+									var totalCost = 0;
+									var selectedIds = $("#selectedTicketTypes").val();
+
+									var slides = document.getElementsByClassName("quantity");
+									for (var i = 0; i < slides.length; i++) {
+										var strUser = slides.item(i).options[slides.item(i).selectedIndex].value;
+
+										var prices = document.getElementsByClassName("price");
+										for (var k = 0; k < prices.length; k++) {
+											var strPrice = prices.item(k).value;
+											if (k == i) {
+												totalCost += (parseInt(strUser) * parseInt(strPrice))
+											}
+										}
+
+
+										total += parseInt(strUser);
+									}
+									$("#ticketTotalCost").val("R" + totalCost);
+									$("#ticketTotal").val(total);
+								});
+							});
+
+						</script>
+					}
+
+				</div>
+
+
+
+			</div>
+		</div>
+
+
+		<div class="col-md-5">
+
+
+			<h1 class="color-subdomain">
+				<strong>  @Model.Event.EventName </strong>
+			</h1>
+			<p class="color-subdomain">
+				@Model.Event.ShortDescription
+			</p>
+			<p class="color-subdomain">
+				Event Organiser: @Model.Event.EventOrganiser.CompanyName
+			</p>
+			<p class="col-sm-6 col-xs-6" style="overflow:hidden">
+				<div class="fb-like" data-href="https://www.miid.co.za/PurchaseTickets?EventID=@Model.Event.ID" data-layout="standard" data-action="like" data-size="large" data-width="300" data-show-faces="true" data-share="true"></div>
+			</p>
+
+
+
+
+			<div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
+				<div class="btn-group" role="group">
+					<button type="button" id="stars" class="btn btn-warning" href="#tab1" data-toggle="tab">
+						<span class="" aria-hidden="true"><i class="fas fa-list-ul"></i></span>
+						<div class="hidden-xs">@GlobalVariables.PurchaseInfo</div>
+					</button>
+				</div>
+				<div class="btn-group" role="group">
+					<button type="button" id="favorites" class="btn btn-warning" href="#tab2" data-toggle="tab">
+						<span class="" aria-hidden="true"><i class="fas fa-info"></i></span>
+						<div class="hidden-xs">@GlobalVariables.PurchaseDetails</div>
+					</button>
+				</div>
+				<div class="btn-group" role="group">
+					<button type="button" id="following" class="btn btn-warning" href="#tab3" data-toggle="tab">
+						<span class="" aria-hidden="true"><i class="fas fa-plus"></i></span>
+						<div class="hidden-xs">@GlobalVariables.PurchaseExtra</div>
+					</button>
+				</div>
+			</div>
+
+			<div class="well">
+				<div class="tab-content">
+					<div class="tab-pane fade in active" id="tab1">
+						<h3>@GlobalVariables.PurchaseInfo</h3>
+						<p class="word-break" style="white-space: -moz-pre-wrap;  white-space: -pre-wrap;  white-space: -o-pre-wrap;  word-wrap: break-word;">
+							@Model.Event.LongDescription
+						</p>
+					</div>
+					<div class="tab-pane fade in" id="tab2">
+						<h3>@GlobalVariables.PurchaseDetails</h3>
+						<p>Start @start2  @startTime</p>
+						<p>End Date @end2  @endTime</p>
+
+						<p>@Model.Event.StreetAddress</p>
+						<p>@Model.Event.Suburb </p>
+						<p>@Model.Event.City </p>
+						<p>@Model.Event.GPSCoordinates </p>
+
+					</div>
+					<div class="tab-pane fade in" id="tab3">
+						<h3>@GlobalVariables.PurchaseExtra</h3>
+						<p>
+
+							<strong>Event Organiser Details:</strong><br>
+							@Model.Event.EventOrganiser.CompanyName<br>
+							@Model.Event.EventOrganiser.Email<br>
+
+
+						</p>
+						<p>
+							<strong>Event Type:</strong><br>
+							@Model.Event.EventCategory.Description
+
+						</p>
+						<hr>
+						<p>
+							<strong>Entry Age:</strong>
+
+						</p>
+						<hr>
+						<p style="word-wrap:break-word;">
+							<strong>Location:</strong><br>
+							GPS Coordinates: @Model.Event.GPSCoordinates<br>
+							<a href="@Model.Event.GoogleMapsLink">Google Map Link</a> <br>
+
+						</p>
+						<p>
+
+							@if (Model.Event != null && Model.Event.ImageURL != null && Model.Event.ImageURL.Contains(".svg"))
+							{
+								<iframe src="~/Content/SeatingPlan/@Model.Event.ImageURL" width="500" height="320"> </iframe>}
+							else
+							{
+								if (Model.Event != null && Model.Event.ImageURL != null)
+								{
+									<img src="~/Content/SeatingPlan/@Model.Event.ImageURL" width="500" height="320" />
+								}
+							}
+
+
+						</p>
+
+
+
+
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+
+
+
+
+	</div>
+
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#TicketClassID").val("0");
+        //Dropdownlist Selectedchange event
+        $("#btnPromo").click(function () {
+            $(".hide-container").hide();
+            $(".loaderImage").show();
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("ValidatePromoCode")', // we are calling json method
+                dataType: 'json',
+                data: { id: $("#selectedTicketTypes").val(), promocode: $("#txtPromoCode").val() },
+                success: function (data) {
+
+                    // subdistricts contains the JSON formatted list
+                    // of subdistricts passed from the controller
+                    if (data)
+
+                        if (data.indexOf("checkout") != -1) {
+                            $("#txtPromoResultSuccess").text(data);
+                            $("#txtPromoResultFail").hide();
+                            $("#txtPromoResultSuccess").show();
+                            $(".loaderImage").hide();
+							$(".hide-container").show();
+                        }
+                        else {
+                            $("#txtPromoResultFail").text(data);
+                            $("#txtPromoResultSuccess").hide();
+                            $("#txtPromoResultFail").show();
+                            $(".loaderImage").hide();
+							$(".hide-container").show();
+                        }
+
+
+
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve subdistricts.' + ex);
+                }
+            });
+            return false;
+        })
+    });
+</script>
+
+
+<script type="text/javascript">
+	function addRow(iLinenum, ticketclass, rownumber, seatnumber, ticketclassid, rownumberid, seatnumberid, price, ticketclassseatid) {
+		var div = document.createElement('div');
+
+		div.className = 'event-info-clear row border';
+
+		div.id = `div_${new Date().getTime().toString()}`;
+		div.style = 'border-bottom:solid 1px #cccccc; margin-bottom:5px; padding:4px;'
+		div.innerHTML =
+			'<div class="col-md-6 col-sm-8 col-xs-8  pull-left" style="padding-top:5px; font-sie:16px;"><span style=""> <label> ' + ticketclass + ' </label>\
+				<label>  ' + rownumber + ' </label>\
+				<label>  ' + seatnumber + ' </label>\
+				<input class="mylines"  type="hidden" name="iLinenum_'+ iLinenum + '" value="' + iLinenum + '" />\
+				<input class="mytickettype" type="hidden" id="ticketclassid_' + iLinenum + '" name="ticketclassid_' + iLinenum + '" value="' + ticketclassid + '" />\
+				<input class="myrownumber" type="hidden" id="rownumberid_' + iLinenum + '" name="rownumberid_' + iLinenum + '" value="' + rownumberid + '" />\
+				<input class="myseatnumber" type="hidden" id="seatnumberid_' + iLinenum + '" name="seatnumberid_' + iLinenum + '" value="' + seatnumberid + '" />\
+				<input class="price" type="hidden" name="price_' + iLinenum + '" value="' + price + '" /> </span></div>\
+				  <div class="col-md-4 col-sm-4 col-xs-4 pull-right" onclick="removeRow(this,' + iLinenum + ')"><input type="button" class="btn btn-lg  btn-warning pull-right" value="X" onclick="removeRow(this,' + iLinenum + ')"></div> ';
+
+		document.getElementById('content').appendChild(div);
+		doTotals();
+	}
+
+	function removeRow(input, iLinenum) {
+		//
+		// alert(iLinenum);
+		// alert($('#ticketclassseatid_' + iLinenum).val());
+
+
+		document.getElementById('content').removeChild(input.parentNode);
+
+		UnreserveSeatTemp($('#ticketclassseatid_' + iLinenum).val());
+		doTotals();
+	}
+
+	function weedOutUsedSeatFromSeatDropdown() {
+		//alert("Weed");
+		$(".loaderImage").hide();
+		var strCurrentTicketID = $("#TicketClassID").val();
+		var strCurrentRowID = $("#RowNumberID").val();
+
+		var mylines = document.getElementsByClassName("mylines");
+
+
+		for (var k = 0; k < mylines.length; k++) {
+			var strLineNum = mylines.item(k).value;
+			//alert(strLineNum);
+			//
+			var strTicketID = $("#ticketclassid_" + strLineNum).val();
+			var strRowID = $("#rownumberid_" + strLineNum).val();
+			var strSeatID = $("#seatnumberid_" + strLineNum).val();
+
+
+
+			if (strTicketID = strCurrentTicketID && strRowID == strCurrentRowID) {
+				$(".loaderImage").show();
+				//remove strSeatID from seatDropDown
+				$("#SeatNumberID option[value='" + strSeatID + "']").remove();
+				$(".loaderImage").hide();
+			}
+		}
+
+
+
+	}
+
+	function doTotals() {
+		var total = 0;
+		var totalCost = 0;
+
+		$("#selectedTicketTypes").empty();
+		var strQty = "1";
+		var strTicketTypes = "";
+
+		var prices = document.getElementsByClassName("price");
+		for (var k = 0; k < prices.length; k++) {
+			var strPrice = prices.item(k).value;
+			totalCost += (parseInt(strQty) * parseInt(strPrice))
+			total += parseInt(strQty);
+		}
+		var mytickettypes = document.getElementsByClassName("mytickettype");
+		for (var k = 0; k < mytickettypes.length; k++) {
+			var strTicketTypeID = mytickettypes.item(k).value;
+			strTicketTypes = strTicketTypes + ';' + strTicketTypeID;
+		}
+
+		$("#selectedTicketTypes").val(strTicketTypes);
+		$("#ticketTotalCost").val("R" + totalCost);
+		$("#ticketTotal").val(total);
+	}
+
+
+</script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        //Dropdownlist Selectedchange event
+        $("#TicketClassID").change(function () {
+            //var myid = $(this).prop('myid');
+            $(".loaderImage").show();
+			$(".hide-container").hide();
+
+            $("#RowNumberID").empty();
+            $("#RowNumberID").append('<option value="0">-- Select Row --</option>');
+            $("#SeatNumberID").empty();
+            $("#SeatNumberID").append('<option value="0">-- Select Row --</option>');
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetRowNumbers")', // we are calling json method
+                dataType: 'json',
+                data: { id: $(this).val() },
+                success: function (subdistricts) {
+                    // subdistricts contains the JSON formatted list
+                    // of subdistricts passed from the controller
+                    $.each(subdistricts, function (i, subdistrict) {
+                        if (subdistrict.Value > 0) {
+                            debugger;
+                            $("#RowNumberID").append('<option value="' + subdistrict.Value + '">' + subdistrict.Text + '</option>');
+
+                        }
+                        $(".loaderImage").hide();
+						$(".hide-container").show();
+                    }); // here we are adding option for subdistricts
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve row numbers.' + ex);
+                    $(".loaderImage").hide();
+					$(".hide-container").show();
+                }
+            });
+            return false;
+        })
+    });
+</script>
+
+<script type="text/javascript">
+
+
+    function multiply(x, y) {
+        return (x * y);
+    }
+
+    function populateRowDiagram(rowID) {
+        //
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("GetSeats2")', // we are calling json method
+            dataType: 'html',
+            data: { id: rowID },
+            success: function (subdistricts) {
+                var result = $('<div />').append(subdistricts);
+                $('#showresults').html(result);
+                weedOutUsedSeatFromSeatDropdown();
+            }
+            ,
+            error: function (ex) {
+                alert('Failed to retrieve seat numbers.' + ex);
+            }
+        });
+
+    }
+
+    function reserveSeatTemp(seatid, iLinenum, ticketclass, rownumber, seatnumber, ticketclassid, rownumberid, seatnumberid, price) {
+
+        var retval = 0;
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("ReserveSeatTemp")', // we are calling json method
+            dataType: 'json',
+            async: false,
+            data: { id: seatid, ticketclassid: ticketclassid, rownumber: rownumber },
+            success: function (subdistricts) {
+
+                // subdistricts contains the JSON formatted list
+                // of subdistricts passed from the controller
+                $.each(subdistricts, function (i, subdistrict) {
+                    //alert(subdistrict.Value + subdistrict.Text);
+
+                    retval = subdistrict.Value;
+                    var div = document.createElement('div');
+                    div.className = 'daniel';
+                    div.id = `div_${new Date().getTime().toString()}`;
+                    div.innerHTML = '<input type="hidden" id ="ticketclassseatid_' + iLinenum + '" name="ticketclassseatid_' + iLinenum + '" value="' + retval + '" />';
+                    document.getElementById('content').appendChild(div);
+
+                }); // here we are adding option for subdistricts
+
+            },
+            error: function (ex) {
+
+                alert('Failed to retrieve seat numbers.' + ex);
+                $(".loaderImage").hide();
+				$(".hide-container").show();
+                retval = 0;
+            }
+        });
+
+
+
+        //call the rest from reserveSeatTemp
+
+        var ticketclassseatID = retval;//$('#ticketclassseatid_' + iLinenum).val();
+        //alert(ticketclassseatID);
+
+        if (ticketclassseatID > 0) {
+            addRow(iLinenum, ticketclass, rownumber, seatnumber, ticketclassid, rownumberid, seatnumberid, price, ticketclassseatID)
+        }
+        else {
+            alert("That seat is now unavailable. Please select another.")
+            //remove hidden field as well;
+        }
+
+
+        $("#RowNumberID").empty();
+        $("#RowNumberID").append('<option value="0">-- Select Row --</option>');
+        $("#SeatNumberID").empty();
+        $("#SeatNumberID").append('<option value="0">-- Select Row --</option>');
+        $("#TicketClassID").val("0");
+        $(".loaderImage").hide();
+		$(".hide-container").show();
+
+        return;
+    }
+    function UnreserveSeatTemp(ticketclassseatid) {
+
+        var retval = 0;
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("UnReserveSeatTemp")', // we are calling json method
+            dataType: 'json',
+            data: { id: ticketclassseatid },
+            success: function (subdistricts) {
+
+                // subdistricts contains the JSON formatted list
+                // of subdistricts passed from the controller
+                $.each(subdistricts, function (i, subdistrict) {
+                    //alert(subdistrict.Value + subdistrict.Text);
+
+                    retval = subdistrict.Value;
+
+
+                }); // here we are adding option for subdistricts
+
+            },
+            error: function (ex) {
+
+                alert('Failed to retrieve seat numbers.' + ex);
+                $(".loaderImage").hide();
+				$(".hide-container").show();
+                retval = 0;
+            }
+        });
+        return retval;
+
+    }
+
+
+
+    $(document).ready(function () {
+
+        //Dropdownlist Selectedchange event
+        $("#RowNumberID").change(function () {
+            //var myid = $(this).prop('myid');
+			$(".hide-container").hide();
+            $(".loaderImage").show();
+            $("#SeatNumberID").empty();
+            $("#SeatNumberID").append('<option value="0">-- Select Seat --</option>');
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetSeats")', // we are calling json method
+                dataType: 'json',
+                data: { id: $(this).val() },
+                success: function (subdistricts) {
+                    // subdistricts contains the JSON formatted list
+                    // of subdistricts passed from the controller
+                    $.each(subdistricts, function (i, subdistrict) {
+                        $("#SeatNumberID").append('<option value="' + subdistrict.Value + '">' + subdistrict.Text + '</option>');
+                        $(".loaderImage").hide();
+						$(".hide-container").show();
+                    }); // here we are adding option for subdistricts
+
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve seat numbers.' + ex);
+                    $(".loaderImage").hide();
+					$(".hide-container").show();
+                }
+            });
+
+
+            populateRowDiagram($(this).val());
+
+
+
+            return false;
+        })
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#SeatNumberID").click(function () {
+            $(".loaderImage").show();
+            weedOutUsedSeatFromSeatDropdown();
+            $(".loaderImage").hide();
+        });
+
+        //Dropdownlist Selectedchange event
+        $("#SeatNumberID").change(function () {
+
+            $(".loaderImage").show();
+			$(".hide-container").hide();
+            var hiddenlinenum = $("#hiddenlinenum").val();
+            var iLinenum = parseInt(hiddenlinenum) + 1;
+            $("#hiddenlinenum").val(iLinenum);//increment hidden value for next time
+            var ticketclass = $('#TicketClassID option:selected').text();
+            var ticketclassid = $('#TicketClassID').val()
+            var rownumberid = $('#RowNumberID').val()
+            var rownumber = $('#RowNumberID option:selected').text();
+            var seatnumberid = $('#SeatNumberID').val()
+            var seatnumber = $('#SeatNumberID option:selected').text();
+
+            var price = ticketclass.split('(')[1];
+            price = price.replace('R', '').replace(')', '');
+
+
+            reserveSeatTemp(seatnumberid, iLinenum, ticketclass, rownumber, seatnumber, ticketclassid, rownumberid, seatnumberid, price);
+            //reserveSeatTemp(seatnumberid, ticketclassid, rownumber, iLinenum, ticketclass, seatnumber, price);
+
+
+
+
+
+            @*$.ajax({
+                type: 'POST',
+                url: '@Url.Action("ReserveSeatTemp")', // we are calling json method
+                dataType: 'json',
+                data: { id: $(this).val() },
+                success: function (subdistricts) {
+
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve seat numbers.' + ex);
+                }
+            });*@
+            return false;
+        })
+    });
+</script>

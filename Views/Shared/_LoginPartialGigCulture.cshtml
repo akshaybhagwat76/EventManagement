@@ -1,0 +1,83 @@
+﻿@using Microsoft.AspNet.Identity
+@using MiidWeb.Helpers
+@if (Request.IsAuthenticated)
+{
+	var endUser = MiidWeb.Repositories.EndUserRepository.GetUser(User.Identity.GetUserName(), true);
+
+	bool IAmEventOrganiser = false;
+
+	IAmEventOrganiser = MiidWeb.Repositories.EndUserRepository.AmIAnEventOrganiser(User.Identity.GetUserName());
+
+
+
+	if (endUser == null && !IAmEventOrganiser) { Response.Redirect("~/Account/Logoff"); }
+
+
+
+	@* @Html.ActionLink("Forgot your password?", "ForgotPassword", "Account")*@
+
+
+<div class="collapse navbar-collapse main-nav">
+    <ul class="nav navbar-nav navbar-right">
+
+
+
+        @if (endUser != null)
+        {
+
+            <li> @Html.ActionLink("Dashboard", "Index", "Home", null, new { @class = "links" })</li>
+            <li> @Html.ActionLink("Your Tickets", "MiiEvents", "Events", null, new { @class = "links" })</li>
+            <li> @Html.ActionLink("Top-up Funds", "IndexByUserID", "MyMoneys", null, new { @class = "links" })</li>
+            <li>   @Html.ActionLink("Manage Wristbands", "IndexByUserID", "NFCTags", null, new { @class = "links" })</li>
+            <li>   @Html.ActionLink("Purchase Tickets", "Search", "Events", null, new { @class = "links" })</li>
+            <li>   @Html.ActionLink("Sign Out", "Logoff", "Account", null, new { @class = "links" })</li>
+
+
+
+
+
+
+        }
+
+
+
+
+
+    </ul>
+</div>
+
+
+	@* @Html.ActionLink("Forgot your password?", "ForgotPassword", "Account")*@
+
+
+
+
+
+}
+else
+{
+
+	<header style="display:none;">
+		<!--IMPORTANT...this is part of the url redirect when user logs on and taken back to events-->
+		<div class="p">
+			@{ var model = new MiidWeb.Models.LoginViewModel(ReturnUrl: Request.RawUrl);}
+			@Html.Partial("_Login", @model)
+		</div>
+	</header>
+
+	<div class="collapse navbar-collapse navbar-right main-nav">
+        <ul class="nav navbar-nav">
+            <li><a href="https://gigculture.co.za/" class="links"> Home</a></li>
+            <li><a href="https://gigculture.co.za/about-us/" class="links"> About Us</a></li>
+            <li>   @Html.ActionLink("Our Events", "Search", "Events", null, new { @class = "links" })</li>
+            <li><a href="https://gigculture.co.za/main-events//" class="links">Gig Creator</a></li>
+            <li><a href="https://gigculture.co.za/blog/" class="links">Gig Content</a></li>
+
+            <li><a href="https://gigculture.co.za/contact-us/h" class="links">Contact us</a></li>
+
+
+
+        </ul>
+	</div>
+
+}

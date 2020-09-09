@@ -1,0 +1,72 @@
+﻿@using Microsoft.AspNet.Identity
+@model MiidWeb.Models.EndUserViewModel
+@{
+	ViewBag.Title = "My Profile";
+	var db = new MiidEntities();
+
+	DateTime twodaysago = DateTime.Now.AddDays(-2);
+    
+	//Daniel added subdomainID to where clause
+	int subDomainID = int.Parse(MiidWeb.Repositories.TicketRepository.GetSubdomainID());
+
+	var events = db.Events.Where(x => x.SubdomainID == subDomainID).OrderByDescending(x => x.EndDateTime).Take(18);
+	List<MiidWeb.Models.EventViewModel> list = new List<MiidWeb.Models.EventViewModel>();
+	foreach (var r in events)
+	{
+		list.Add(new MiidWeb.Models.EventViewModel(r.ID));
+	}
+	Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("Layout");
+	string ViewFile = MiidWeb.Repositories.TicketRepository.GetSubdomainView("EndUserProfile");
+
+}
+
+
+
+
+<div class="container background-image" style="min-height:550px">
+    <div class="row vertical-offset-40px">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-default ">
+
+                <div class="panel-body text-center">
+
+                    <br>
+
+
+                    <h1><strong>Hi @Model.EndUser.Firstname</strong></h1>
+
+                    <h3>Welcome to Gig Culture's cashless service</h3>
+                    <h4>Please select an option below to continue.</h4>
+
+                    <br>
+                    <div class="form-group col-md-12">
+
+                        @Html.ActionLink("Top-up Funds", "IndexByUserID", "MyMoneys", null, new { @class = "btn btn-lg btn-default btn-block" })
+                    </div>
+                    <div class="form-group col-md-12">
+
+                        @Html.ActionLink("Purchase Tickets", "Search", "Events", null, new { @class = "btn btn-lg btn-default btn-block" })
+                    </div>
+
+                    <div class="form-group col-md-12">
+                        @Html.ActionLink("Manage Wristbands", "IndexByUserID", "NFCTags", null, new { @class = "btn btn-lg btn-default btn-block" })
+                    </div>
+                    <div class="form-group col-md-12">
+                        @Html.ActionLink("View Balance", "ViewDetailedBalance", "MyMoneys", null, new { @class = "btn btn-lg btn-default btn-block" })
+
+                    </div>
+
+
+
+
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    </div>
+

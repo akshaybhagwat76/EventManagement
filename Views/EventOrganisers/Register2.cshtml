@@ -1,0 +1,131 @@
+﻿@using Microsoft.AspNet.Identity
+
+@model MiidWeb.EventOrganiser
+
+@{
+	ViewBag.Title = "Register";
+	ViewBag.Title = "Contact";
+	Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("LayoutLanding");
+
+	bool IAmEventOrganiser = false;
+	if (Request.IsAuthenticated)
+	{
+		IAmEventOrganiser = MiidWeb.Repositories.EndUserRepository.AmIAnEventOrganiser(User.Identity.GetUserName());
+	}
+
+}
+
+
+
+<head>
+	<script>function createFcn(nm) { (window.freshsales)[nm] = function () { (window.freshsales).push([nm].concat(Array.prototype.slice.call(arguments, 0))) }; } (function (url, appToken, formCapture) { window.freshsales = window.freshsales || []; if (window.freshsales.length == 0) { list = 'init identify trackPageView trackEvent set'.split(' '); for (var i = 0; i < list.length; i++) { var nm = list[i]; createFcn(nm); } var t = document.createElement('script'); t.async = 1; t.src = '//d952cmcgwqsjf.cloudfront.net/assets/analytics.js'; var ft = document.getElementsByTagName('script')[0]; ft.parentNode.insertBefore(t, ft); freshsales.init('//mi-id.freshsales.io', '5b524b53fcbbc0d91aee4d51ceba943bace10fe7fb0b30083948e755acebaf64', true); } })();</script>
+	<title>Register as an event organiser to sell tickets online or host cashless events</title>
+	<meta name="description" content="Sell tickets online now by registering an account with Mi-id online ticketing">
+
+</head>
+
+
+
+<section id="cards">
+	<div class="container">
+		<div class="row" id="product">
+
+
+			
+			<div class="col-md-8 offset-md-2">
+				<div class="card card1" style="background-color:#e3e3e3; border:1px solid #cccccc">
+					<h3 class="card-title text-center">Take the first step to making your event a success</h3>
+					
+					<div class="card-body">
+
+						<p class="card-text text-center">
+							Once you have completed your details, one of our event specialists will make contact with you and guide you through each of our services so you can choose one that best suites your event's needs.
+
+						</p>
+
+						<form action="" method="post" id="fileForm" role="form">
+
+
+
+							@using (Html.BeginForm())
+							{
+								@Html.AntiForgeryToken()
+
+								<span style="color:palevioletred">@Html.ValidationSummary()</span>
+
+								@Html.HiddenFor(model => model.DateCreated)
+								@Html.HiddenFor(model => model.DateUpdated)
+
+
+
+
+								<div class="form-row">
+									<div class="form-group col-md-6">
+										<label for=""><span class="req">*</span>Company Name</label>
+										@Html.EditorFor(model => model.CompanyName, new { htmlAttributes = new { @class = "form-control", placeholder = "Company Name" } })
+										@Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "red" })
+									</div>
+									<div class="form-group col-md-6">
+										<label for="inputPassword4"><span class="req">*</span>Contact Name</label>
+										@Html.EditorFor(model => model.ContactName, new { htmlAttributes = new { @class = "form-control", placeholder = "Name" } })
+										@Html.ValidationMessageFor(model => model.ContactName, "", new { @class = "red" })
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="form-group col-md-6">
+										<label for="inputEmail4"><span class="req">*</span>Phone Number</label>
+										@Html.EditorFor(model => model.Telephone, new { htmlAttributes = new { @class = "form-control", placeholder = "Contact Number" } })
+										@Html.ValidationMessageFor(model => model.Telephone, "", new { @class = "red" })
+									</div>
+									<div class="form-group col-md-6">
+										<label for="inputPassword4"><span class="req">*</span>Email</label>
+										@Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Email" } })
+										@Html.ValidationMessageFor(model => model.Email, "", new { @class = "red" })
+									</div>
+								</div>
+
+
+								<div class="form-row">
+									<div class="form-group col-md-12">
+
+
+										<input type="submit" value="Continue" class="btn btn-default btn-block btn-lg">
+									</div>
+									</div>
+
+
+									}
+</form>
+
+
+					</div>
+				</div>
+			</div>
+			
+
+
+		</div>
+	</div>
+
+	</section>
+
+
+	<div class="container bg-grey">
+		<div class="row vertical-offset-40px">
+			<!--
+			<script src='https://mi-id.freshsales.io/web_forms/6016b2260375c88b45d73f13d9406920aff67b4ba89c6bbb088df95bdd40f5e7/form.js' crossorigin='anonymous' id='fs_6016b2260375c88b45d73f13d9406920aff67b4ba89c6bbb088df95bdd40f5e7'></script>
+				-->
+			<div class="col-md-8 col-md-offset-2">
+
+				<div class="panel panel-default ">
+
+					<div class="panel-body text-center">
+
+						<br>
+						
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>

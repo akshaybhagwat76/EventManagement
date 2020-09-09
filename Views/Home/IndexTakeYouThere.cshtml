@@ -1,0 +1,167 @@
+﻿@model MiidWeb.Models.LoginViewModel
+@{
+    ViewBag.Title = "Home Page";
+
+    var db = new MiidEntities();
+
+    DateTime twodaysago = DateTime.Now.AddDays(-2);
+
+    //Daniel added subdomainID to where clause
+    int subDomainID = int.Parse(MiidWeb.Repositories.TicketRepository.GetSubdomainID());
+    var events = db.Events.Where(x => x.SubdomainID == subDomainID).OrderByDescending(x => x.EndDateTime).Take(6);
+
+    List<MiidWeb.Models.EventViewModel> list = new List<MiidWeb.Models.EventViewModel>();
+    foreach (var r in events)
+    {
+        list.Add(new MiidWeb.Models.EventViewModel(r.ID));
+
+    }
+
+    Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("Layout");
+}
+
+
+
+<title>TakeYouTher</title>
+<meta name="description" content="Get the most affordable rates in South Africa for online ticekting &amp; cashless events" />
+
+<meta property="og:image" content="https://www.miid.co.za/Uploads/genric.png" />
+
+<span style="display:none" itemscope="" itemtype="http://schema.org/Organization">
+    <link itemprop="url" href="https://www.miid.co.za/">
+    <a itemprop="sameAs" href="https://www.facebook.com/miidevents/">FB</a>
+    <a itemprop="sameAs" href="https://twitter.com/MiiDEvents">Twitter</a>
+</span>
+
+<div class="container background-image ">
+
+    <div class="text-center">
+        <br>
+        <h1 class="white">START THE JOURNEY</h1>
+        <p class="lead">
+            ENJOY THE RIDE
+        </p>
+    </div>
+
+</div>
+
+
+
+
+
+
+<div class="container  hi">
+    <!--open product row -->
+    <div class="row">
+
+        <div class="carousel-inner" role="listbox">
+            <!--========= 1st slide =========-->
+            <div class="item active">
+                <div class="col-xs-12 col-sm-6 col-md-3 team_columns_item_image">
+                    <a href="@GlobalVariables.HomeImageOneLink">
+
+                        <img class="img-responsive" src="@GlobalVariables.HomeImageOne" alt="@GlobalVariables.HomeImageOneText">
+                    </a>
+                    <div class="team_columns_item_caption">
+                        <h5>@GlobalVariables.HomeImageOneText  </h5>
+
+
+                        <a href="@GlobalVariables.HomeImageOneLink" class="btn btn-info btn-sm">@GlobalVariables.CallToActionOne</a>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3 team_columns_item_image">
+                    <a href="@GlobalVariables.HomeImageTwoLink">
+
+                        <img class="img-responsive" src="@GlobalVariables.HomeImagetwo" alt="@GlobalVariables.HomeImageTwoText">
+                    </a>
+                    <div class="team_columns_item_caption">
+                        <h5>@GlobalVariables.HomeImageTwoText</h5>
+
+
+                        <a href="@GlobalVariables.HomeImageTwoLink" class="btn btn-info btn-sm">@GlobalVariables.CallToActionOne</a>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3 team_columns_item_image">
+                    <a href="@GlobalVariables.HomeImageThreeLink">
+
+                        <img class="img-responsive" src="@GlobalVariables.HomeImagethree" alt="@GlobalVariables.HomeImageThreeText">
+                    </a>
+                    <div class="team_columns_item_caption">
+                        <h5> @GlobalVariables.HomeImageThreeText</h5>
+
+
+                        <a href="@GlobalVariables.HomeImageThreeLink" class="btn btn-info btn-sm">@GlobalVariables.CallToActionOne</a>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3 team_columns_item_image">
+                    <a href="@GlobalVariables.HomeImageFourLink">
+
+                        <img class="img-responsive" src="@GlobalVariables.HomeImageFour" alt="@GlobalVariables.HomeImageFourText">
+                    </a>
+                    <div class="team_columns_item_caption">
+                        <h5>@GlobalVariables.HomeImageFourText </h5>
+
+
+                        <a href="@GlobalVariables.HomeImageFourLink" class="btn btn-info btn-sm">@GlobalVariables.CallToActionOne</a>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+<!--close only displayous on Miid-->
+
+
+
+
+<div class="container bg-yellow ">
+
+    <!--open button-->
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1">
+            <br>
+            <h1 class="text-center">Welcome to Take You There </h1>
+            <br>
+            <h4 class="text-center">
+                We specialise in a preimium fleet of Limo and Double Decker Party Buses as well as Mobile Stage Trucks
+                Our Limo and Open Top Party Buses are equipped with amongst others draught taps,
+                on board toilets, bar counters, L.E.D disco lighting, 240v power sockets, Roadshow PA systems (on request)
+                and powerful music systems and are equipped to travel Nationwide
+            </h4>
+            <br>
+
+            <br><br>
+
+        </div>
+    </div>
+
+
+</div>
+
+@{
+    string[] parts = new string[10];
+
+    if (TempData.ContainsKey("Growl") && !String.IsNullOrEmpty((string)TempData["Growl"]))
+    {
+        string growl = (string)TempData["Growl"];
+        parts = growl.Split(':');
+
+
+
+        <script type="text/javascript">
+          growl('@parts[0]', '@parts[1]');
+        </script>
+    }
+
+}
+
+
+
+
+
+
+

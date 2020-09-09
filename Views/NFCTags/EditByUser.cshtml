@@ -1,0 +1,107 @@
+﻿@model MiidWeb.Models.NFCTagViewModel
+
+@{
+    ViewBag.Title = "Edit";
+    //Layout = null;
+    //Does not match new pin
+    var notification_pinmismatch = ViewBag.NotificationPinMismatch;
+    var notification_incorrectemail = ViewBag.NotificationIncorrectEmail;
+    var notification_incorrectid = ViewBag.NotificationIncorrectIDNumber;
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+    @Html.ValidationSummary(true, "", new { @class = "red" })
+    @Html.HiddenFor(model => model.ID)
+    @Html.HiddenFor(model => model.ActivationDate)
+    @Html.Hidden("EndUserID", (object)@ViewBag.EndUserID)
+    @Html.HiddenFor(model => model.StatusID)
+    @Html.HiddenFor(model => model.TagNumber)
+    @Html.HiddenFor(model => model.TagPin)
+    @Html.HiddenFor(model => model.IDNumber)
+    @Html.HiddenFor(model => model.Email)
+
+    @Html.HiddenFor(model => model.ActivationCode)
+
+            <!-- One -->
+<div class="container bg-grey">
+	<div class="row vertical-offset-40px">
+
+
+		<div class="col-md-6 col-md-offset-3">
+
+			<div class="panel panel-default ">
+
+                <div class="panel-body text-center">
+
+                    <br>
+
+                    <h4 class="text-center"><strong>Change PIN</strong></h4>
+
+
+                    <p class="text-center">Complete the form below to change your PIN. Once you have changed your PIN your old one will not be valid. </p>
+
+                    <div class="form-group">
+                        @*<input type="text" name="demo-name" id="demo-name" value="" placeholder="Enter Email" />*@
+                        @Html.TextBoxFor(model => model.NewEmail, new { @class = "form-control input-lg", placeholder = "Enter Email" })
+                        <div class="red">@notification_incorrectemail</div>
+                    </div>
+                    <!--<div class="form-group">
+                          @Html.TextBoxFor(model => model.NewIDNumber, new { @class = "form-control input-lg", placeholder = "Enter your ID Number" })
+                           <div class="red">@notification_incorrectid</div>
+                      </div>-->
+                    <div class="form-group">
+                        @Html.TextBoxFor(model => model.NewTagPin, new { @class = "form-control input-lg", placeholder = "Enter new code for your MiiBand" })
+                    </div>
+                    <div class="form-group">
+                        @Html.TextBoxFor(model => model.ConfirmTagPin, new { @class = "form-control input-lg", placeholder = "Repeat new code for your MiiBand" })
+                        <div class="red">@notification_pinmismatch</div>
+                    </div>
+                    <div class="form-group">
+                        <input type="checkbox" id="demo-copy" name="demo-copy">
+                        <label for="demo-copy">I have read  the <a href="~/Home/TermsConditions">Terms & Conditions</a></label>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <input type="submit" class="btn  btn-default btn-block btn-lg" value="Change Pin" />
+                    </div>
+                    <div class="form-group">
+
+
+                        <a href="~/NFCTags/IndexByUserID" class="cancel_button">Back</a>
+                        <br>
+                    </div>
+
+
+
+                </div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+					
+					
+
+					
+								
+
+
+					
+
+
+
+
+
+		}
+
+
+		<!-- Scripts -->

@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>MiiD | Home</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="MiiD">
+    <meta name="keywords" content="">
+    @*<link rel="stylesheet" href="css/main.css" type="text/css">*@
+
+    @*<link rel="stylesheet" type="text/css" href="demo.css" />*@
+   
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link rel="stylesheet" href="~/Content/css/main.css" type="text/css">
+    <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
+
+
+
+    <script language="JavaScript1.1">
+
+
+
+        var slideimages = new Array()
+        var slidelinks = new Array()
+        function slideshowimages() {
+            for (i = 0; i < slideshowimages.arguments.length; i++) {
+                slideimages[i] = new Image()
+                slideimages[i].src = slideshowimages.arguments[i]
+            }
+        }
+
+        function slideshowlinks() {
+            for (i = 0; i < slideshowlinks.arguments.length; i++)
+                slidelinks[i] = slideshowlinks.arguments[i]
+        }
+
+        function gotoshow() {
+            if (!window.winslide || winslide.closed)
+                winslide = window.open(slidelinks[whichlink])
+            else
+                winslide.location = slidelinks[whichlink]
+            winslide.focus()
+        }
+
+        //-->
+    </script>
+</head>
+
+
+    @RenderBody()
+
+
+   
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

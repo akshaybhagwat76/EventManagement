@@ -1,0 +1,61 @@
+﻿
+@{
+	ViewBag.Title = "PaygeniusResponse";
+
+	
+	bool success = ViewBag.Details;
+	Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("Layout");
+}
+
+
+<div class="container bg-grey">
+    <div class="row vertical-offset-40px">
+
+        @if (success)
+        {
+            <div class="col-md-6 col-md-offset-3">
+
+                <div class="panel  panel-default text-left">
+                    <div class="panel-body text-center">
+
+
+                        <br><br>
+                        <i class="fas fa-times-circle fa-5x" aria-hidden="true" style="color:#139242" aria-hidden="true" style="color:#139242"></i>
+                        <br><br>
+                        <p>Ticket(s) purchased successfully. You will also receive an email confirming the transaction.</p>
+
+                        <a href="../Events/MiiEvents" class="btn btn-lg btn-default btn-block">View your tickets</a>
+
+
+
+                    </div>
+
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="col-md-6 col-md-offset-3">
+
+                <div class="panel  panel-default text-left">
+                    <div class="panel-body text-center">
+
+
+                        <br><br>
+                        <i class="fas fa-times-circle fa-5x" aria-hidden="true" style="color:#139242"></i>
+                        <br><br>
+                        <p>Ticket purchase failed. Please see email regarding the transaction.</p>
+
+                        <a href="../Home/Index" class="btn btn-lg btn-default btn-block">Continue</a>
+
+
+
+                    </div>
+
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+

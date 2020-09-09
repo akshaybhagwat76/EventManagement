@@ -1,0 +1,262 @@
+﻿
+@{ Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("LayoutEventOrganiser");
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<title>Box Office Report</title>
+	<script src=" http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+		.ui-timepicker-div .ui-widget-header {
+			margin-bottom: 8px;
+		}
+
+		.ui-timepicker-div dl {
+			text-align: left;
+		}
+
+			.ui-timepicker-div dl dt {
+				float: left;
+				clear: left;
+				padding: 0 0 0 5px;
+			}
+
+			.ui-timepicker-div dl dd {
+				margin: 0 10px 10px 40%;
+			}
+
+		.ui-timepicker-div td {
+			font-size: 90%;
+		}
+
+		.ui-tpicker-grid-label {
+			background: none;
+			border: none;
+			margin: 0;
+			padding: 0;
+		}
+
+		.ui-timepicker-div .ui_tpicker_unit_hide {
+			display: none;
+		}
+
+		.ui-timepicker-div .ui_tpicker_time .ui_tpicker_time_input {
+			background: none;
+			color: inherit;
+			border: none;
+			outline: none;
+			border-bottom: solid 1px #555;
+			width: 95%;
+		}
+
+			.ui-timepicker-div .ui_tpicker_time .ui_tpicker_time_input:focus {
+				border-bottom-color: #aaa;
+			}
+
+		.ui-timepicker-rtl {
+			direction: rtl;
+		}
+
+			.ui-timepicker-rtl dl {
+				text-align: right;
+				padding: 0 5px 0 0;
+			}
+
+				.ui-timepicker-rtl dl dt {
+					float: right;
+					clear: right;
+				}
+
+				.ui-timepicker-rtl dl dd {
+					margin: 0 40% 10px 10px;
+				}
+
+		/* Shortened version style */
+		.ui-timepicker-div.ui-timepicker-oneLine {
+			padding-right: 2px;
+		}
+
+			.ui-timepicker-div.ui-timepicker-oneLine .ui_tpicker_time,
+			.ui-timepicker-div.ui-timepicker-oneLine dt {
+				display: none;
+			}
+
+			.ui-timepicker-div.ui-timepicker-oneLine .ui_tpicker_time_label {
+				display: block;
+				padding-top: 2px;
+			}
+
+			.ui-timepicker-div.ui-timepicker-oneLine dl {
+				text-align: right;
+			}
+
+				.ui-timepicker-div.ui-timepicker-oneLine dl dd,
+				.ui-timepicker-div.ui-timepicker-oneLine dl dd > div {
+					display: inline-block;
+					margin: 0;
+				}
+
+					.ui-timepicker-div.ui-timepicker-oneLine dl dd.ui_tpicker_minute:before,
+					.ui-timepicker-div.ui-timepicker-oneLine dl dd.ui_tpicker_second:before {
+						content: ':';
+						display: inline-block;
+					}
+
+					.ui-timepicker-div.ui-timepicker-oneLine dl dd.ui_tpicker_millisec:before,
+					.ui-timepicker-div.ui-timepicker-oneLine dl dd.ui_tpicker_microsec:before {
+						content: '.';
+						display: inline-block;
+					}
+
+			.ui-timepicker-div.ui-timepicker-oneLine .ui_tpicker_unit_hide,
+			.ui-timepicker-div.ui-timepicker-oneLine .ui_tpicker_unit_hide:before {
+				display: none;
+			}
+	</style>
+	<title>jQuery UI Datepicker - Default functionality</title>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="/resources/demos/style.css">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<link rel="stylesheet"  media="all" type="text/css" src="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
+	<link rel="stylesheet"  media="all" type="text/css" src="~/Scripts/timepicker/jquery-ui-timepicker-addon.min.css">
+	<script>
+		$(function () {
+			$("#FromDate").datepicker();
+		});
+	</script>
+	<script>
+		$(function () {
+			$("#ToDate").datepicker();
+		});
+	</script>
+	<script>
+		$(function () {
+			$('#ToTime').timepicker();
+
+		});
+	</script>
+</head>
+
+
+
+
+
+
+
+
+<div class="row">
+	<div class="panel-body">
+		<div class="col-md-12 w3ls-graph">
+			<!--agileinfo-grap-->
+			<div class="agileinfo-grap">
+				<div class="agileits-box">
+					<div class="agileits-box-body clearfix">
+						<div class="form-group col-md-12">
+
+							@using (Html.BeginForm())
+							{
+
+							<div>
+								@Html.Hidden("EventID", (object)ViewBag.EventID)
+								<div class="row">
+									<div class="form-group form-group col-md-12">
+										<h3>Box office report</h3>
+										<p>Generate a report for a specific sales point you have set in the box-office desktop applicaiton</p>
+										<hr>
+									</div>
+									</div>
+									<div class="row">
+										<div class="form-group col-md-6">
+											<p><strong>Select sales point</strong></p>
+											<p>Choose from the summary for an overview of all POS points or individual points.</p>
+
+
+										</div>
+
+										<div class="form-group col-md-6">
+
+											<div class="col-md-12">
+												@Html.DropDownList("PosID", null, htmlAttributes: new { @class = "form-control" })
+											</div>
+
+
+										</div>
+									</div>
+									<div class="row">
+										<div class="form-group col-md-6">
+											
+											<p><strong>Run report from:</strong></p>
+											<p>Choose a start date from when the report will pull data from.</p>
+
+										</div>
+										<div class="form-group col-md-6">
+
+											<div class="col-md-6">
+												<input type="" id="FromDate" name="FromDate" class="form-control" />
+											</div>
+											<div class="col-md-6">
+												<input type="" id="FromTime" name="FromTime" class="form-control" />
+											</div>
+
+										</div>
+									</div>
+									<div class="row">
+										<div class="form-group col-md-6">
+											
+											<p><strong>Till the:</strong></p>
+											<p>Choose an end date from when the report will pull data from.</p>
+
+										</div>
+										<div class="form-group col-md-6">
+											<div class="col-md-6">
+
+												<input type="" id="ToDate" name="ToDate" class="form-control" />
+											</div>
+											<div class="col-md-6">
+												<input type="" id="ToTime" name="ToTime" class="form-control" />
+											</div>
+										</div>
+									</div>
+									<div class="form-group col-md-12">
+										<hr>
+
+										<input type="submit" value="RUN REPORT" class="btn btn-info" />
+
+
+
+									</div>
+								</div>
+								}
+
+
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script src="~/Scripts/timepicker/jquery-ui-timepicker-addon.js"></script>
+<script type="text/javascript">
+
+
+	$('#FromTime').timepicker();
+
+
+</script>
+<script type="text/javascript">
+
+
+	$('#ToTime').timepicker();
+
+
+</script>

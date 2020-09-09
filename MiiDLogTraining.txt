@@ -1,0 +1,362 @@
+System.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at System.Web.HttpResponse.Redirect(String url)
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in C:\Users\donav\Documents\Miid-repo\MiidWebResponsive\PayfastOrder.aspx.cs:line 116:  Payfast Order: 11/10/2018 5:22:58 PMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in C:\Users\donav\Documents\Miid-repo\MiidWebResponsive\PayfastOrder.aspx.cs:line 125
+   at MiidWeb.PayfastOrder.Page_Load(Object sender, EventArgs e) in C:\Users\donav\Documents\Miid-repo\MiidWebResponsive\PayfastOrder.aspx.cs:line 25:  Payfast Order: 11/10/2018 5:22:59 PMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at System.Web.HttpResponse.Redirect(String url)
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 116:  Payfast Order: 1/30/2019 7:45:37 AMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 125
+   at MiidWeb.PayfastOrder.Page_Load(Object sender, EventArgs e) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 25:  Payfast Order: 1/30/2019 7:45:37 AMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at System.Web.HttpResponse.Redirect(String url)
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 116:  Payfast Order: 1/30/2019 8:08:04 AMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 125
+   at MiidWeb.PayfastOrder.Page_Load(Object sender, EventArgs e) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 25:  Payfast Order: 1/30/2019 8:08:04 AMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at System.Web.HttpResponse.Redirect(String url)
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 116:  Payfast Order: 1/30/2019 9:08:37 AMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 125
+   at MiidWeb.PayfastOrder.Page_Load(Object sender, EventArgs e) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 25:  Payfast Order: 1/30/2019 9:08:37 AMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at System.Web.HttpResponse.Redirect(String url)
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 116:  Payfast Order: 1/30/2019 9:13:05 AMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 125
+   at MiidWeb.PayfastOrder.Page_Load(Object sender, EventArgs e) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 25:  Payfast Order: 1/30/2019 9:13:05 AMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at System.Web.HttpResponse.Redirect(String url)
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 116:  Payfast Order: 1/30/2019 9:13:40 AMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 125
+   at MiidWeb.PayfastOrder.Page_Load(Object sender, EventArgs e) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 25:  Payfast Order: 1/30/2019 9:13:40 AMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at System.Web.HttpResponse.Redirect(String url)
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 116:  Payfast Order: 1/30/2019 9:18:17 AMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 125
+   at MiidWeb.PayfastOrder.Page_Load(Object sender, EventArgs e) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 25:  Payfast Order: 1/30/2019 9:18:17 AMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at System.Web.HttpResponse.Redirect(String url)
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 116:  Payfast Order: 1/30/2019 9:26:57 AMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 125
+   at MiidWeb.PayfastOrder.Page_Load(Object sender, EventArgs e) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 25:  Payfast Order: 1/30/2019 9:26:57 AMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at System.Web.HttpResponse.Redirect(String url)
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 116:  Payfast Order: 1/30/2019 9:33:00 AMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 125
+   at MiidWeb.PayfastOrder.Page_Load(Object sender, EventArgs e) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 25:  Payfast Order: 1/30/2019 9:33:00 AMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at System.Web.HttpResponse.Redirect(String url)
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 116:  Payfast Order: 1/30/2019 1:15:56 PMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 125
+   at MiidWeb.PayfastOrder.Page_Load(Object sender, EventArgs e) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 25:  Payfast Order: 1/30/2019 1:15:56 PMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at System.Web.HttpResponse.Redirect(String url)
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 116:  Payfast Order: 1/30/2019 1:22:20 PMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 125
+   at MiidWeb.PayfastOrder.Page_Load(Object sender, EventArgs e) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 25:  Payfast Order: 1/30/2019 1:22:20 PMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at System.Web.HttpResponse.Redirect(String url)
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 116:  Payfast Order: 1/30/2019 1:25:54 PMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 125
+   at MiidWeb.PayfastOrder.Page_Load(Object sender, EventArgs e) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 25:  Payfast Order: 1/30/2019 1:25:54 PMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at System.Web.HttpResponse.Redirect(String url)
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 116:  Payfast Order: 1/30/2019 1:28:40 PMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 125
+   at MiidWeb.PayfastOrder.Page_Load(Object sender, EventArgs e) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 25:  Payfast Order: 1/30/2019 1:28:40 PMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at System.Web.HttpResponse.Redirect(String url)
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 116:  Payfast Order: 1/30/2019 1:39:38 PMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 125
+   at MiidWeb.PayfastOrder.Page_Load(Object sender, EventArgs e) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 25:  Payfast Order: 1/30/2019 1:39:38 PMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at System.Web.HttpResponse.Redirect(String url)
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 116:  Payfast Order: 1/30/2019 1:48:54 PMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 125
+   at MiidWeb.PayfastOrder.Page_Load(Object sender, EventArgs e) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 25:  Payfast Order: 1/30/2019 1:48:54 PMTransaction failed:  Paygenius Notify: 4/10/2019 1:24:11 PMTransaction failed:  Paygenius Notify: 4/15/2019 9:00:43 AMTransaction failed:  Paygenius Notify: 4/15/2019 9:07:58 AMTransaction failed:  Paygenius Notify: 4/15/2019 9:47:58 AMTransaction failed:  Paygenius Notify: 4/15/2019 9:50:31 AM
+:  
+TRY Paygenius Notify: ProcessOrder paymentStatus == COMPLETE: 4/15/2019 11:18:26 AM:  Paygenius Notify: 4/15/2019 11:18:26 AMTRY 
+You got to ticket transaction:  Paygenius Notify: 4/15/2019 11:18:26 AM
+:  
+TRY Paygenius Notify: ProcessOrder paymentStatus == COMPLETE: 4/15/2019 12:10:05 PM:  Paygenius Notify: 4/15/2019 12:10:05 PMTRY 
+You got to ticket transaction:  Paygenius Notify: 4/15/2019 12:10:05 PM
+:  
+TRY Paygenius Notify: ProcessOrder paymentStatus == COMPLETE: 4/15/2019 12:13:01 PM:  Paygenius Notify: 4/15/2019 12:13:01 PMTRY 
+You got to ticket transaction:  Paygenius Notify: 4/15/2019 12:13:01 PM
+:  
+TRY Paygenius Notify: ProcessOrder paymentStatus == COMPLETE: 4/21/2019 4:12:04 PM:  Paygenius Notify: 4/21/2019 4:12:09 PMTRY 
+You got to ticket transaction:  Paygenius Notify: 4/21/2019 4:12:09 PM
+:  
+TRY Paygenius Notify: ProcessOrder paymentStatus == COMPLETE: 4/21/2019 9:31:40 PM:  Paygenius Notify: 4/21/2019 9:31:43 PMTRY 
+You got to ticket transaction:  Paygenius Notify: 4/21/2019 9:31:44 PMTransaction failed:  Paygenius Notify: 4/22/2019 3:06:13 PM
+:  
+TRY Paygenius Notify: ProcessOrder paymentStatus == COMPLETE: 4/26/2019 12:49:10 PM:  Paygenius Notify: 4/26/2019 12:49:13 PMTRY 
+You got to ticket transaction:  Paygenius Notify: 4/26/2019 12:49:14 PM
+:  
+TRY Paygenius Notify: ProcessOrder paymentStatus == COMPLETE: 4/26/2019 12:55:14 PM:  Paygenius Notify: 4/26/2019 12:55:16 PMTRY 
+You got to ticket transaction:  Paygenius Notify: 4/26/2019 12:55:16 PM
+:  
+TRY Paygenius Notify: ProcessOrder paymentStatus == COMPLETE: 4/26/2019 1:11:41 PM:  Paygenius Notify: 4/26/2019 1:11:41 PMTRY 
+You got to ticket transaction:  Paygenius Notify: 4/26/2019 1:11:41 PM
+:  
+TRY Paygenius Notify: ProcessOrder paymentStatus == COMPLETE: 4/26/2019 1:12:18 PM:  Paygenius Notify: 4/26/2019 1:12:21 PMTRY 
+You got to ticket transaction:  Paygenius Notify: 4/26/2019 1:12:21 PM
+:  
+TRY Paygenius Notify: ProcessOrder paymentStatus == COMPLETE: 4/27/2019 7:35:55 AM:  Paygenius Notify: 4/27/2019 7:35:55 AMTRY 
+You got to ticket transaction:  Paygenius Notify: 4/27/2019 7:35:55 AMAn error occurred during local report processing.:  Payfast Notify: 4/27/2019 7:36:01 AM
+:  
+TRY Paygenius Notify: ProcessOrder paymentStatus == COMPLETE: 4/27/2019 7:39:17 AM:  Paygenius Notify: 4/27/2019 7:39:17 AMTRY 
+You got to ticket transaction:  Paygenius Notify: 4/27/2019 7:39:17 AM
+:  
+TRY Paygenius Notify: ProcessOrder paymentStatus == COMPLETE: 4/27/2019 8:06:34 AM:  Paygenius Notify: 4/27/2019 8:06:35 AMTRY 
+You got to ticket transaction:  Paygenius Notify: 4/27/2019 8:06:35 AMNotify Page Loaded 5/7/2019 8:45:32 PM
+            :  /nTRY/nPayfast Notify: 5/7/2019 8:45:32 PM// Get the posted variables. Exclude the signature (it must be excluded when we hash and also when we validate).:  /nTRY/nPayfast Notify: 5/7/2019 8:45:32 PMthrow new Exception("Signature parameter cannot be null"):  /nCATCH/nPayfast Notify 106: 5/7/2019 8:45:32 PMPerformSecurityChecks:  /TRY/nPayfast Notify - PerformSecurityChecks: 5/7/2019 8:45:32 PMthrow new Exception("Mechant ID mismatch");:  /nCATCH/nPayfast Notify: 5/7/2019 8:45:32 PM:  /TRY/nPayfast Notify - IsIpAddressInList: 5/7/2019 8:45:32 PMwww.payfast.co.za:  Valid Sites: : 5/7/2019 8:45:32 PMsandbox.payfast.co.za:  Valid Sites: : 5/7/2019 8:45:33 PMw1w.payfast.co.za:  Valid Sites: : 5/7/2019 8:45:33 PMw2w.payfast.co.za:  Valid Sites: : 5/7/2019 8:45:33 PMthrow new Exception("IP address invalid"); :  /nCATCH/nPayfast Notify: 5/7/2019 8:45:33 PMSystem.Net.WebException: The underlying connection was closed: An unexpected error occurred on a send. ---> System.IO.IOException: Unable to read data from the transport connection: An existing connection was forcibly closed by the remote host. ---> System.Net.Sockets.SocketException: An existing connection was forcibly closed by the remote host
+   at System.Net.Sockets.Socket.Receive(Byte[] buffer, Int32 offset, Int32 size, SocketFlags socketFlags)
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at System.Net.FixedSizeReader.ReadPacket(Byte[] buffer, Int32 offset, Int32 count)
+   at System.Net.Security.SslState.StartReceiveBlob(Byte[] buffer, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.CheckCompletionBeforeNextReceive(ProtocolToken message, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartSendBlob(Byte[] incoming, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.ForceAuthentication(Boolean receiveFirst, Byte[] buffer, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.ProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.TlsStream.CallProcessAuthentication(Object state)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Net.TlsStream.ProcessAuthentication(LazyAsyncResult result)
+   at System.Net.TlsStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   at System.Net.PooledStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   at System.Net.ConnectStream.WriteHeaders(Boolean async)
+   --- End of inner exception stack trace ---
+   at System.Net.WebClient.UploadValues(Uri address, String method, NameValueCollection data)
+   at System.Net.WebClient.UploadValues(String address, NameValueCollection data)
+   at MiidWeb.PayfastNotify.ValidateData(String site, NameValueCollection arrPostedVariables) in C:\Users\donav\Documents\Miid-repo\MiidWebResponsive\PayfastNotify.aspx.cs:line 213:  
+catch Payfast Notify: 5/7/2019 8:45:34 PMThe underlying connection was closed: An unexpected error occurred on a send.:  
+catch Payfast Notify - ValidateData: 5/7/2019 8:45:34 PMNotify Page Result:  - 5/7/2019 8:45:34 PM :  
+TRY Payfast Notify: ProcessOrder: 5/7/2019 8:45:34 PMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at System.Web.HttpResponse.Redirect(String url)
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 116:  Payfast Order: 7/27/2019 9:55:31 PMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 125
+   at MiidWeb.PayfastOrder.Page_Load(Object sender, EventArgs e) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 25:  Payfast Order: 7/27/2019 9:55:31 PMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at System.Web.HttpResponse.Redirect(String url)
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 116:  Payfast Order: 7/27/2019 10:09:38 PMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 125
+   at MiidWeb.PayfastOrder.Page_Load(Object sender, EventArgs e) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 25:  Payfast Order: 7/27/2019 10:09:38 PMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at System.Web.HttpResponse.Redirect(String url)
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 116:  Payfast Order: 7/27/2019 10:10:12 PMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 125
+   at MiidWeb.PayfastOrder.Page_Load(Object sender, EventArgs e) in C:\inetpub\ftproot\bitbucket2017RSA\MiidWebResponsive\PayfastOrder.aspx.cs:line 25:  Payfast Order: 7/27/2019 10:10:12 PMSystem.NullReferenceException: Object reference not set to an instance of an object.
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in C:\Users\donav\Documents\miid_repo\MiidWebResponsive\PayfastOrder.aspx.cs:line 44:  Payfast Order: 10/30/2019 11:08:59 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20191206061819.csv' because it is being used by another process.: 12/6/2019 6:18:19 AMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20191206061827.csv' because it is being used by another process.: 12/6/2019 6:18:27 AMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20191206062601.csv' because it is being used by another process.: 12/6/2019 6:26:08 AMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20191206062616.csv' because it is being used by another process.: 12/6/2019 6:26:18 AMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20191206062627.csv' because it is being used by another process.: 12/6/2019 6:26:30 AMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20191206062637.csv' because it is being used by another process.: 12/6/2019 6:26:41 AMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20191206072533.csv' because it is being used by another process.: 12/6/2019 7:25:38 AMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20191206072546.csv' because it is being used by another process.: 12/6/2019 7:25:52 AMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20191229085359.csv' because it is being used by another process.: 12/29/2019 8:54:02 AMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20191229085410.csv' because it is being used by another process.: 12/29/2019 8:54:13 AMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20191229085954.csv' because it is being used by another process.: 12/29/2019 8:59:55 AMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20191229085955.csv' because it is being used by another process.: 12/29/2019 8:59:59 AMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in D:\Source\MiidWebResponsive\PayfastOrder.aspx.cs:line 119:  Payfast Order: 12/29/2019 9:00:10 AMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in D:\Source\MiidWebResponsive\PayfastOrder.aspx.cs:line 134
+   at MiidWeb.PayfastOrder.Page_Load(Object sender, EventArgs e) in D:\Source\MiidWebResponsive\PayfastOrder.aspx.cs:line 25:  Payfast Order: 12/29/2019 9:00:10 AMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20191229212418.csv' because it is being used by another process.: 12/29/2019 9:24:18 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20191229212425.csv' because it is being used by another process.: 12/29/2019 9:24:29 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20191229223221.csv' because it is being used by another process.: 12/29/2019 10:32:21 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20191229223222.csv' because it is being used by another process.: 12/29/2019 10:32:22 PMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in D:\Source\MiidWebResponsive\PayfastOrder.aspx.cs:line 119:  Payfast Order: 12/29/2019 10:32:25 PMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in D:\Source\MiidWebResponsive\PayfastOrder.aspx.cs:line 134
+   at MiidWeb.PayfastOrder.Page_Load(Object sender, EventArgs e) in D:\Source\MiidWebResponsive\PayfastOrder.aspx.cs:line 25:  Payfast Order: 12/29/2019 10:32:25 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20191229230041.csv' because it is being used by another process.: 12/29/2019 11:00:43 PMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in D:\Source\MiidWebResponsive\PayfastOrder.aspx.cs:line 119:  Payfast Order: 12/29/2019 11:00:48 PMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in D:\Source\MiidWebResponsive\PayfastOrder.aspx.cs:line 134
+   at MiidWeb.PayfastOrder.Page_Load(Object sender, EventArgs e) in D:\Source\MiidWebResponsive\PayfastOrder.aspx.cs:line 25:  Payfast Order: 12/29/2019 11:00:48 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20191229230208.csv' because it is being used by another process.: 12/29/2019 11:02:08 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20191229230446.csv' because it is being used by another process.: 12/29/2019 11:04:46 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20191229230453.csv' because it is being used by another process.: 12/29/2019 11:04:53 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20191229235020.csv' because it is being used by another process.: 12/29/2019 11:50:22 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20191229235432.csv' because it is being used by another process.: 12/29/2019 11:54:36 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20191230002958.csv' because it is being used by another process.: 12/30/2019 12:29:58 AMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in D:\Source\MiidWebResponsive\PayfastOrder.aspx.cs:line 119:  Payfast Order: 12/30/2019 12:30:00 AMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in D:\Source\MiidWebResponsive\PayfastOrder.aspx.cs:line 134
+   at MiidWeb.PayfastOrder.Page_Load(Object sender, EventArgs e) in D:\Source\MiidWebResponsive\PayfastOrder.aspx.cs:line 25:  Payfast Order: 12/30/2019 12:30:00 AMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200128195719.csv' because it is being used by another process.: 1/28/2020 7:57:19 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200128195721.csv' because it is being used by another process.: 1/28/2020 7:57:21 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200128195722.csv' because it is being used by another process.: 1/28/2020 7:57:22 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200128195724.csv' because it is being used by another process.: 1/28/2020 7:57:24 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200128195724.csv' because it is being used by another process.: 1/28/2020 7:57:24 PMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in D:\MiidWebResponsive\miid\MiidWebResponsive\PayfastOrder.aspx.cs:line 119:  Payfast Order: 1/28/2020 7:57:25 PMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in D:\MiidWebResponsive\miid\MiidWebResponsive\PayfastOrder.aspx.cs:line 120
+   at MiidWeb.PayfastOrder.Page_Load(Object sender, EventArgs e) in D:\MiidWebResponsive\miid\MiidWebResponsive\PayfastOrder.aspx.cs:line 25:  Payfast Order: 1/28/2020 7:57:25 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200128195941.csv' because it is being used by another process.: 1/28/2020 7:59:41 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200128195943.csv' because it is being used by another process.: 1/28/2020 7:59:43 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200128195945.csv' because it is being used by another process.: 1/28/2020 7:59:45 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200128195946.csv' because it is being used by another process.: 1/28/2020 7:59:46 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200128195947.csv' because it is being used by another process.: 1/28/2020 7:59:48 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200128195948.csv' because it is being used by another process.: 1/28/2020 7:59:48 PMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in D:\MiidWebResponsive\miid\MiidWebResponsive\PayfastOrder.aspx.cs:line 119:  Payfast Order: 1/28/2020 7:59:48 PMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in D:\MiidWebResponsive\miid\MiidWebResponsive\PayfastOrder.aspx.cs:line 120
+   at MiidWeb.PayfastOrder.Page_Load(Object sender, EventArgs e) in D:\MiidWebResponsive\miid\MiidWebResponsive\PayfastOrder.aspx.cs:line 25:  Payfast Order: 1/28/2020 7:59:48 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200128200724.csv' because it is being used by another process.: 1/28/2020 8:07:24 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200128200725.csv' because it is being used by another process.: 1/28/2020 8:07:25 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200128200725.csv' because it is being used by another process.: 1/28/2020 8:07:25 PMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in D:\MiidWebResponsive\miid\MiidWebResponsive\PayfastOrder.aspx.cs:line 119:  Payfast Order: 1/28/2020 8:07:25 PMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in D:\MiidWebResponsive\miid\MiidWebResponsive\PayfastOrder.aspx.cs:line 120
+   at MiidWeb.PayfastOrder.Page_Load(Object sender, EventArgs e) in D:\MiidWebResponsive\miid\MiidWebResponsive\PayfastOrder.aspx.cs:line 25:  Payfast Order: 1/28/2020 8:07:25 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200128204603.csv' because it is being used by another process.: 1/28/2020 8:46:03 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200128204604.csv' because it is being used by another process.: 1/28/2020 8:46:05 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200128204606.csv' because it is being used by another process.: 1/28/2020 8:46:06 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200128204606.csv' because it is being used by another process.: 1/28/2020 8:46:06 PMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in D:\MiidWebResponsive\miid\MiidWebResponsive\PayfastOrder.aspx.cs:line 119:  Payfast Order: 1/28/2020 8:46:07 PMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in D:\MiidWebResponsive\miid\MiidWebResponsive\PayfastOrder.aspx.cs:line 120
+   at MiidWeb.PayfastOrder.Page_Load(Object sender, EventArgs e) in D:\MiidWebResponsive\miid\MiidWebResponsive\PayfastOrder.aspx.cs:line 25:  Payfast Order: 1/28/2020 8:46:07 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200130083748.csv' because it is being used by another process.: 1/30/2020 8:37:48 AMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200130083750.csv' because it is being used by another process.: 1/30/2020 8:37:50 AMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200130083828.csv' because it is being used by another process.: 1/30/2020 8:38:29 AMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in D:\MiidWebResponsive\miid\MiidWebResponsive\PayfastOrder.aspx.cs:line 119:  Payfast Order: 1/30/2020 8:38:30 AMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in D:\MiidWebResponsive\miid\MiidWebResponsive\PayfastOrder.aspx.cs:line 120
+   at MiidWeb.PayfastOrder.Page_Load(Object sender, EventArgs e) in D:\MiidWebResponsive\miid\MiidWebResponsive\PayfastOrder.aspx.cs:line 25:  Payfast Order: 1/30/2020 8:38:30 AMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200130095127.csv' because it is being used by another process.: 1/30/2020 9:51:27 AMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200130095129.csv' because it is being used by another process.: 1/30/2020 9:51:29 AMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200130100029.csv' because it is being used by another process.: 1/30/2020 10:00:29 AMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200130100032.csv' because it is being used by another process.: 1/30/2020 10:00:32 AMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200130100038.csv' because it is being used by another process.: 1/30/2020 10:00:38 AMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in D:\MiidWebResponsive\miid\MiidWebResponsive\PayfastOrder.aspx.cs:line 119:  Payfast Order: 1/30/2020 10:00:39 AMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in D:\MiidWebResponsive\miid\MiidWebResponsive\PayfastOrder.aspx.cs:line 120
+   at MiidWeb.PayfastOrder.Page_Load(Object sender, EventArgs e) in D:\MiidWebResponsive\miid\MiidWebResponsive\PayfastOrder.aspx.cs:line 25:  Payfast Order: 1/30/2020 10:00:39 AMSend Mail:  Failure sending mail.: 2/4/2020 9:05:44 PMSend Mail:  The remote name could not be resolved: 'mail.miid.co.za': 2/4/2020 9:05:44 PMSend Mail:  Failure sending mail.: 2/4/2020 9:05:44 PMSend Mail:  The remote name could not be resolved: 'mail.miid.co.za': 2/4/2020 9:05:44 PMSend Mail:  Failure sending mail.: 2/4/2020 9:14:56 PMSend Mail:  The remote name could not be resolved: 'mail.miid.co.za': 2/4/2020 9:14:56 PMSend Mail:  Failure sending mail.: 2/4/2020 9:14:57 PMSend Mail:  The remote name could not be resolved: 'mail.miid.co.za': 2/4/2020 9:14:57 PMSend Mail:  Failure sending mail.: 2/4/2020 9:28:23 PMSend Mail:  The remote name could not be resolved: 'mail.miid.co.za': 2/4/2020 9:28:23 PMSend Mail:  Failure sending mail.: 2/4/2020 9:28:23 PMSend Mail:  The remote name could not be resolved: 'mail.miid.co.za': 2/4/2020 9:28:23 PMSend Mail:  Failure sending mail.: 2/4/2020 9:32:03 PMSend Mail:  The remote name could not be resolved: 'mail.miid.co.za': 2/4/2020 9:32:03 PMSend Mail:  Failure sending mail.: 2/4/2020 9:32:03 PMSend Mail:  The remote name could not be resolved: 'mail.miid.co.za': 2/4/2020 9:32:03 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200204213246.csv' because it is being used by another process.: 2/4/2020 9:32:46 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200204213247.csv' because it is being used by another process.: 2/4/2020 9:32:47 PMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in D:\MiidWebResponsive\miid\MiidWebResponsive\PayfastOrder.aspx.cs:line 119:  Payfast Order: 2/4/2020 9:32:48 PMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in D:\MiidWebResponsive\miid\MiidWebResponsive\PayfastOrder.aspx.cs:line 120
+   at MiidWeb.PayfastOrder.Page_Load(Object sender, EventArgs e) in D:\MiidWebResponsive\miid\MiidWebResponsive\PayfastOrder.aspx.cs:line 25:  Payfast Order: 2/4/2020 9:32:48 PMSend Mail:  Failure sending mail.: 2/4/2020 9:59:58 PMSend Mail:  The remote name could not be resolved: 'mail.miid.co.za': 2/4/2020 9:59:58 PMValue cannot be null.
+Parameter name: String:  Payfast Notify: 2/4/2020 10:00:08 PMSend Mail:  Failure sending mail.: 2/4/2020 10:00:26 PMSend Mail:  The remote name could not be resolved: 'mail.miid.co.za': 2/4/2020 10:00:26 PMValue cannot be null.
+Parameter name: String:  Payfast Notify: 2/4/2020 10:00:28 PMSend Mail:  Failure sending mail.: 2/4/2020 10:00:43 PMSend Mail:  The remote name could not be resolved: 'mail.miid.co.za': 2/4/2020 10:00:43 PMValue cannot be null.
+Parameter name: String:  Payfast Notify: 2/4/2020 10:00:46 PMSend Mail:  Failure sending mail.: 2/4/2020 10:00:52 PMSend Mail:  The remote name could not be resolved: 'mail.miid.co.za': 2/4/2020 10:00:52 PMValue cannot be null.
+Parameter name: String:  Payfast Notify: 2/4/2020 10:01:08 PMSend Mail:  Failure sending mail.: 2/4/2020 10:01:12 PMSend Mail:  The remote name could not be resolved: 'mail.miid.co.za': 2/4/2020 10:01:12 PMValue cannot be null.
+Parameter name: String:  Payfast Notify: 2/4/2020 10:01:25 PMSend Mail:  Failure sending mail.: 2/4/2020 10:02:16 PMSend Mail:  The remote name could not be resolved: 'mail.miid.co.za': 2/4/2020 10:02:16 PMValue cannot be null.
+Parameter name: String:  Payfast Notify: 2/4/2020 10:02:16 PMSend Mail:  Failure sending mail.: 2/4/2020 10:08:30 PMSend Mail:  The remote name could not be resolved: 'mail.miid.co.za': 2/4/2020 10:08:30 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200205073947.csv' because it is being used by another process.: 2/5/2020 7:39:48 AMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200205073949.csv' because it is being used by another process.: 2/5/2020 7:39:49 AMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in D:\MiidWebResponsive\miid\MiidWebResponsive\PayfastOrder.aspx.cs:line 119:  Payfast Order: 2/5/2020 7:39:50 AMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in D:\MiidWebResponsive\miid\MiidWebResponsive\PayfastOrder.aspx.cs:line 120
+   at MiidWeb.PayfastOrder.Page_Load(Object sender, EventArgs e) in D:\MiidWebResponsive\miid\MiidWebResponsive\PayfastOrder.aspx.cs:line 25:  Payfast Order: 2/5/2020 7:39:50 AMObject reference not set to an instance of an object.:  Payfast Notify: 2/5/2020 7:43:15 AMObject reference not set to an instance of an object.:  Payfast Notify: 2/5/2020 7:44:48 AMObject reference not set to an instance of an object.:  Payfast Notify: 2/5/2020 7:46:31 AMObject reference not set to an instance of an object.:  Payfast Notify: 2/5/2020 7:46:38 AMObject reference not set to an instance of an object.:  Payfast Notify: 2/5/2020 7:47:33 AMCould not find file 'D:\MiidWebResponsive\miid\MiidWebResponsive\Content\EmailTemplates\FriendTicketEmail_gigculture.miid.co.za.html'.:  Payfast Notify: 2/5/2020 7:55:06 AMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200205085210.csv' because it is being used by another process.: 2/5/2020 8:52:10 AMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200205085212.csv' because it is being used by another process.: 2/5/2020 8:52:12 AMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model):  Payfast Order: 2/5/2020 8:52:13 AMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model)
+   at MiidWeb.PayfastOrder.Page_Load(Object sender, EventArgs e):  Payfast Order: 2/5/2020 8:52:13 AMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200205100715.csv' because it is being used by another process.: 2/5/2020 10:07:15 AMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200205100717.csv' because it is being used by another process.: 2/5/2020 10:07:17 AMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in D:\MiidWebResponsive\miid\MiidWebResponsive\PayfastOrder.aspx.cs:line 119:  Payfast Order: 2/5/2020 10:07:18 AMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in D:\MiidWebResponsive\miid\MiidWebResponsive\PayfastOrder.aspx.cs:line 120
+   at MiidWeb.PayfastOrder.Page_Load(Object sender, EventArgs e) in D:\MiidWebResponsive\miid\MiidWebResponsive\PayfastOrder.aspx.cs:line 25:  Payfast Order: 2/5/2020 10:07:18 AMSend Mail:  Failure sending mail.: 2/5/2020 10:10:13 AMSend Mail:  The remote name could not be resolved: 'mail.miid.co.za': 2/5/2020 10:10:13 AMSend Mail:  Failure sending mail.: 2/5/2020 10:11:35 AMSend Mail:  The remote name could not be resolved: 'mail.miid.co.za': 2/5/2020 10:11:35 AMSend Mail:  Failure sending mail.: 2/5/2020 10:14:54 AMSend Mail:  The remote name could not be resolved: 'mail.miid.co.za': 2/5/2020 10:14:54 AMSend Mail:  Failure sending mail.: 2/5/2020 10:18:55 AMSend Mail:  The remote name could not be resolved: 'mail.miid.co.za': 2/5/2020 10:18:55 AMSend Mail:  Failure sending mail.: 2/5/2020 10:19:02 AMSend Mail:  The remote name could not be resolved: 'mail.miid.co.za': 2/5/2020 10:19:02 AMSend Mail:  Failure sending mail.: 2/5/2020 10:19:32 AMSend Mail:  The remote name could not be resolved: 'mail.miid.co.za': 2/5/2020 10:19:32 AMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200205145453.csv' because it is being used by another process.: 2/5/2020 2:54:53 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200205145454.csv' because it is being used by another process.: 2/5/2020 2:54:54 PMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in D:\MiidWebResponsive\miid\MiidWebResponsive\PayfastOrder.aspx.cs:line 119:  Payfast Order: 2/5/2020 2:54:55 PMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in D:\MiidWebResponsive\miid\MiidWebResponsive\PayfastOrder.aspx.cs:line 120
+   at MiidWeb.PayfastOrder.Page_Load(Object sender, EventArgs e) in D:\MiidWebResponsive\miid\MiidWebResponsive\PayfastOrder.aspx.cs:line 25:  Payfast Order: 2/5/2020 2:54:55 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200206093624.csv' because it is being used by another process.: 2/6/2020 9:36:25 AMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200206093626.csv' because it is being used by another process.: 2/6/2020 9:36:26 AMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in D:\MiidWebResponsive\miid\MiidWebResponsive\PayfastOrder.aspx.cs:line 119:  Payfast Order: 2/6/2020 9:36:27 AMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in D:\MiidWebResponsive\miid\MiidWebResponsive\PayfastOrder.aspx.cs:line 120
+   at MiidWeb.PayfastOrder.Page_Load(Object sender, EventArgs e) in D:\MiidWebResponsive\miid\MiidWebResponsive\PayfastOrder.aspx.cs:line 25:  Payfast Order: 2/6/2020 9:36:27 AMThe process cannot access the file 'D:\MiidWebResponsive\miid\MiidWebResponsive\MiiDTicketPDFs\Ticket_16122_1404539542.pdf' because it is being used by another process.:  Payfast Notify: 2/6/2020 9:44:34 AMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200206095421.csv' because it is being used by another process.: 2/6/2020 9:54:21 AMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200206095421.csv' because it is being used by another process.: 2/6/2020 9:54:21 AMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200206095426.csv' because it is being used by another process.: 2/6/2020 9:54:26 AMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in D:\MiidWebResponsive\miid\MiidWebResponsive\PayfastOrder.aspx.cs:line 119:  Payfast Order: 2/6/2020 9:54:27 AMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in D:\MiidWebResponsive\miid\MiidWebResponsive\PayfastOrder.aspx.cs:line 120
+   at MiidWeb.PayfastOrder.Page_Load(Object sender, EventArgs e) in D:\MiidWebResponsive\miid\MiidWebResponsive\PayfastOrder.aspx.cs:line 25:  Payfast Order: 2/6/2020 9:54:27 AMThe process cannot access the file 'D:\MiidWebResponsive\miid\MiidWebResponsive\MiiDTicketPDFs\Ticket_16124_1632292134.pdf' because it is being used by another process.:  Payfast Notify: 2/6/2020 10:37:43 AMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200206111606.csv' because it is being used by another process.: 2/6/2020 11:16:06 AMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200206111606.csv' because it is being used by another process.: 2/6/2020 11:16:06 AMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200206111613.csv' because it is being used by another process.: 2/6/2020 11:16:13 AMNullable object must have a value.:  Payfast Notify: 2/6/2020 11:18:27 AMNullable object must have a value.:  Payfast Notify: 2/6/2020 11:22:59 AMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200206220108.csv' because it is being used by another process.: 2/6/2020 10:01:09 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200206220109.csv' because it is being used by another process.: 2/6/2020 10:01:09 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200206220116.csv' because it is being used by another process.: 2/6/2020 10:01:16 PMSequence contains no elements:  Payfast Notify: 2/6/2020 10:04:27 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200210204002.csv' because it is being used by another process.: 2/10/2020 8:40:02 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200210204002.csv' because it is being used by another process.: 2/10/2020 8:40:03 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200210204011.csv' because it is being used by another process.: 2/10/2020 8:40:11 PMCould not find file 'D:\Source\MiidWebResponsive\Content\EmailTemplates\FriendTicketEmail_miid.co.za.html'.:  Payfast Notify: 2/10/2020 8:42:23 PMSend Mail:  Failure sending mail.: 2/10/2020 9:08:29 PMSend Mail:  Unable to connect to the remote server: 2/10/2020 9:08:29 PMSend Mail:  Failure sending mail.: 2/10/2020 9:08:29 PMSend Mail:  The remote name could not be resolved: 'mail.miid.co.za': 2/10/2020 9:08:29 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200210210904.csv' because it is being used by another process.: 2/10/2020 9:09:04 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200210210904.csv' because it is being used by another process.: 2/10/2020 9:09:04 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200210210914.csv' because it is being used by another process.: 2/10/2020 9:09:14 PMCould not find stored procedure 'AreYouRegisteredBuddy'.:  Payfast Notify: 2/10/2020 9:09:55 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200210212656.csv' because it is being used by another process.: 2/10/2020 9:26:57 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200210212657.csv' because it is being used by another process.: 2/10/2020 9:26:57 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200210212705.csv' because it is being used by another process.: 2/10/2020 9:27:05 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200210213144.csv' because it is being used by another process.: 2/10/2020 9:31:44 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200210213144.csv' because it is being used by another process.: 2/10/2020 9:31:44 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200210213152.csv' because it is being used by another process.: 2/10/2020 9:31:52 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200210220453.csv' because it is being used by another process.: 2/10/2020 10:04:53 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200210220453.csv' because it is being used by another process.: 2/10/2020 10:04:53 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200210220453.csv' because it is being used by another process.: 2/10/2020 10:04:53 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200210220500.csv' because it is being used by another process.: 2/10/2020 10:05:00 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200210221736.csv' because it is being used by another process.: 2/10/2020 10:17:36 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200210222145.csv' because it is being used by another process.: 2/10/2020 10:21:45 PMSend Mail:  Failure sending mail.: 2/10/2020 10:23:35 PMSend Mail:  Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.: 2/10/2020 10:23:35 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200217150517.csv' because it is being used by another process.: 2/17/2020 3:05:17 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200217150518.csv' because it is being used by another process.: 2/17/2020 3:05:18 PMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in D:\MiidWebResponsive\miid\MiidWebResponsive\PayfastOrder.aspx.cs:line 119:  Payfast Order: 2/17/2020 3:05:19 PMSystem.Threading.ThreadAbortException: Thread was being aborted.
+   at MiidWeb.PayfastOrder.SendToPayFast(BankTransaction model) in D:\MiidWebResponsive\miid\MiidWebResponsive\PayfastOrder.aspx.cs:line 120
+   at MiidWeb.PayfastOrder.Page_Load(Object sender, EventArgs e) in D:\MiidWebResponsive\miid\MiidWebResponsive\PayfastOrder.aspx.cs:line 25:  Payfast Order: 2/17/2020 3:05:19 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200217192007.csv' because it is being used by another process.: 2/17/2020 7:20:07 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200217192007.csv' because it is being used by another process.: 2/17/2020 7:20:07 PMSend Mail:  The process cannot access the file 'c:\inetpub\wwwroot\training.miid.co.za\uploads\AreThereMoreTicketsThanBank_20200217192014.csv' because it is being used by another process.: 2/17/2020 7:20:14 PMThe process cannot access the file 'D:\MiidWebResponsive\miid\MiidWebResponsive\MiiDTicketPDFs\MultipleTicket_16130_1884818679.pdf' because it is being used by another process.:  Payfast Notify: 2/17/2020 7:29:17 PM

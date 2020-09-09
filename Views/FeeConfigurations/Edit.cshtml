@@ -1,0 +1,189 @@
+﻿@model MiidWeb.FeeConfiguration
+
+@{
+	ViewBag.Title = "Edit Fee Configuration";
+	Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+	//Layout = null;
+}
+
+<style>
+	<!--
+
+	.glyphicon {
+		cursor: pointer;
+	}
+
+	input,
+	select {
+		width: 100%;
+	}
+	-->
+</style>
+<div class="col-md-9">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="content-box-header">
+				<div class="panel-title">Configure Fees</div>
+
+				<div class="panel-options">
+
+				</div>
+			</div>
+            <div class="content-box-large box-with-header">
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    @Html.HiddenFor(model => model.ID)
+
+
+                    <span style="color:palevioletred">@Html.ValidationSummary()</span>
+
+                    @*<form method="post" action="#">*@
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                Transaction Type
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.TransactionType, new { htmlAttributes = new { @class = "form-control", placeholder = "Transaction Type" } })
+                                @Html.ValidationMessageFor(model => model.TransactionType, "", new { @class = "red" })
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                Payment Type
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.PaymentType, new { htmlAttributes = new { @class = "form-control", placeholder = "Payment Type" } })
+                                @Html.ValidationMessageFor(model => model.PaymentType, "", new { @class = "red" })
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                Minimum Charge
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.MinimumCharge, new { htmlAttributes = new { @class = "form-control", placeholder = "Minimum Charge" } })
+                                @Html.ValidationMessageFor(model => model.MinimumCharge, "", new { @class = "red" })
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                Percent Charge
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.PercentageCharge, new { htmlAttributes = new { @class = "form-control", placeholder = "Percentage Charge" } })
+                                @Html.ValidationMessageFor(model => model.PercentageCharge, "", new { @class = "red" })
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                Fixed Fee
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.FixedFee, new { htmlAttributes = new { @class = "form-control", placeholder = "Fixed Fee" } })
+                                @Html.ValidationMessageFor(model => model.FixedFee, "", new { @class = "red" })
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                Is Active
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.Active, new { htmlAttributes = new { @class = "form-control", placeholder = "Active" } })
+                                @Html.ValidationMessageFor(model => model.Active, "", new { @class = "red" })
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                Subdomain ID
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.subdomainID, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                @Html.ValidationMessageFor(model => model.Active, "", new { @class = "red" })
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <button type="submit" value="Update" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    @*<select name="demo-category" id="demo-category">
+                <option value="">-Set status -</option>
+                <option value="1">True</option>
+
+                <option value="1">False</option>
+            </select>*@
+
+                    @*</form>*@
+
+
+
+
+
+
+                }
+
+
+            </div>
+			</div>
+		</div>
+	</div>
+
+			

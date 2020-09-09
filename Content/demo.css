@@ -1,0 +1,121 @@
+
+
+select{
+	width:auto;
+	padding:2px;
+}
+
+.formline{
+	padding:3px;
+}
+
+label{
+	font-size:11px;
+	display:block;
+	text-align:left;
+}
+
+table{
+	width:300px;
+}
+
+td{
+	font-size:11px;
+}
+a {color:#007ec6;  width: 1px;  float:center;}
+
+.input-container{
+	padding-top:10px;
+	padding-bottom:10px;
+}
+
+
+}
+.content p .button {width:200px; height:43px; margin-left:90px;}
+
+
+.registered{	
+	border:0px solid #eeeeee;
+	padding:15px;
+	
+	font-size:16px;
+	color:#203360;
+	
+	margin:0px auto 40px auto;
+	width:650px;
+}
+.regtitle{
+		
+	font-family:"Lucida Grande",Tahoma,Verdana,Arial,sans-serif;
+	font-size:30px;
+	font-weight:bold;
+}
+
+
+	         
+
+
+
+
+
+.form-title,
+.form-sub-title{
+	font-size:20px;
+	
+	font-family:"Lucida Grande",Tahoma,Verdana,Arial,sans-serif;
+	font-size:20px;
+	font-weight:bold;
+}
+
+.form-sub-title{
+	font-weight:normal;
+	padding:6px 0 15px 0;
+}
+
+
+#loading{
+	left:10px;
+	position:relative;
+	top:3px;
+	visibility:hidden;
+}
+
+#error{
+	background-color:#ffebe8;
+	border:1px solid #dd3c10;
+	padding:7px 3px;
+	text-align:center;
+	margin-top:10px;
+	visibility:hidden;
+}
+
+#fname { width: 350px;}
+
+#lname { width: 350px;}
+
+#idnumber { width: 350px; margin-bottom: 10px;}
+
+#primarynumber { width: 350px;}
+
+#secondarynumber { width: 350px;}
+
+#streetnumber { width: 100px;}
+
+#cityname { width: 350px;}
+
+#province { width: 200px;}
+
+
+#textarea { display: bock;
+ width: 350px;
+ height: 100px;
+ background-color: #ffffff;
+ font-size:12px;
+ color: #cccccc
+ font-weight: normal;
+ font-family: Verdana, Arial, Helvetica, sans-serif;
+ border: 1px solid #cccccc;
+
+
+
+

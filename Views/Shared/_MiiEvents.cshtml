@@ -1,0 +1,49 @@
+﻿@model MiidWeb.Models.MyEventsViewModel
+<div class="sub_heading_bold">    Your upcoming events: </div>
+<div class="middle_container_calender">
+
+
+
+
+
+
+    <div class="inner_middle_container">
+
+        <div class="event_wrapper">
+
+
+            <!-- event information section-->
+            @foreach (var item in Model.Events)
+            {
+                
+                <div class="event_container">
+
+
+                    <div class="search_event_img_container">
+                        <a href="@Url.Action("Details", "Events", new { id = item.EventID })">
+                            <img src="~/Content/images/@item.ImageURL" class=" search_event_img" /></a>
+</div>
+
+                    <div class="search_event_left_bold">@item.EventName</div><div class="search_event_left">@item.StartDateTime.ToString("dd MMM yyyy")</div>
+                    <div class="event_info_text">
+                       @item.ShortDescription ...<span class="blue_text">
+                        @Html.ActionLink("View more...", "Details", "Events", new { id = @item.EventID }, new { @class = "blue_text", style="underline:none"})
+                        </span>
+                    </div>
+                </div>
+
+            }
+
+
+
+        </div>
+
+
+
+    </div>
+
+
+
+</div>
+
+

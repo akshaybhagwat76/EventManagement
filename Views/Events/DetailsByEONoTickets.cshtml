@@ -1,0 +1,291 @@
+﻿@model MiidWeb.Models.EventViewModel
+
+@{
+    ViewBag.Title = "Event Details";
+    Layout = null;
+}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-GB">
+<head>
+    <title>Event Profile</title>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="robots" content="index, follow" />
+    <meta name="viewport" content="initial-scale=0.8">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../../content/css/main.css" type="text/css">
+
+
+
+
+</head>
+<body class="profile_body">
+
+    <div class="header">
+
+        <div class="header_wrapper">
+
+            <div class="header_container_left">
+
+                <img src="../../content/images/logo.png" alt=" miiImage" class="logo" />
+                <ul class="drop_menu">
+                    <li>
+                        <img src="../../content/images/drop_menu.png" alt=" miiImage" class="logo" />
+                        <ul>
+                            <li><a href='#'>About</a></li>
+                            <li><a href='#'>Services</a></li>
+                            <li><a href='#'>FAQ's</a></li>
+                            <li><a href='#'>Help</a></li>
+
+                        </ul>
+                    </li>
+
+
+                </ul>
+
+
+            </div>
+
+
+
+
+        </div>
+
+    </div>
+
+
+    </div>
+
+
+
+    </div>
+
+    <div class="profile_body_container">
+
+
+
+
+
+        <div class="colmask threecol">
+
+            <div class="colmid">
+
+
+                <div class="colleft">
+                    <div class="col1">
+                        <!-- event information  start -->
+
+                        <div class="middle_container_event">
+
+                            <div class="newsfeed_container_event">
+
+                                <div class="heading">@Html.DisplayFor(model => model.Event.EventName) </div>
+
+
+                                <div class="time_date_container">
+                                    <div class="event_page_icon">
+                                        <img src="../../content/images/attending/event_icon_time.png" />
+                                    </div>
+                                    Date:
+                                    <div class="time_date_text">
+                                        @(((DateTime)@Model.Event.StartDateTime).ToString("dd MMM yyyy"))
+                                    </div>
+                                </div>
+                                <div class="time_date_container">
+                                    <div class="event_page_icon">
+                                        <img src="../../content/images/attending/event_icon_cal.png" />
+                                    </div>
+                                    Time:
+                                    <div class="time_date_text">
+                                        @(((DateTime)@Model.Event.StartDateTime).ToString("HH:mm")) -
+                                        @(((DateTime)@Model.Event.EndDateTime).ToString("HH:mm"))
+                                    </div>
+                                </div>
+                                <div class="time_date_container">
+                                    <div class="event_page_icon">
+                                        <img src="../../content/images/attending/event_icon_place.png" />
+                                    </div> Venue:
+                                    <div class="time_date_text">@Html.DisplayFor(model => model.Event.GoogleMapsLink)
+                                     
+                                    </div>
+
+
+                                </div>
+                                <div class="time_date_container">
+                                    <div class="event_page_icon">
+                                        <img src="../../content/images/attending/money_icon_place.png" />
+                                    </div> Total Revenue
+                                    <div class="time_date_text">
+                                       R @Html.DisplayFor(model=>model.TotalVendorRevenueGenerated)
+                                    </div>
+
+
+                                </div>
+
+
+                                <div class="band_text_contaianer">
+
+                                    <div class="time_date_container">
+                                        Top Vendors
+
+                                    </div>
+
+                                    @if(Model.VendorPOSTransactions != null)
+                                    { 
+
+                                    foreach(var vendor in @Model.VendorPOSTransactions.OrderByDescending(x=>x.POSTransactions.Sum(y=>y.Amount)))
+                                    { 
+                                        <div class="ticket_text_contaianer">
+                                            <div class="sub_heading_ticket">@vendor.Vendor.Name </div>
+                                            <div class="sub_heading_ticket">@vendor.Vendor.VendorCode </div>
+                                            <div class="sub_heading_bold_ticket">R @vendor.POSTransactions.Sum(z=>z.Amount)</div>
+
+                                        </div>
+                                    }
+                                    }
+
+                                </div>
+
+                            </div>
+
+                            <div class="time_date_container">
+                                <div class="event_page_icon">
+
+                                </div>
+                                <div class="time_date_text">
+                                    @Html.ActionLink("Manage Vendors", "VendorManagement", "Vendors", new { @eventID = Model.Event.ID }, new { @class = "buy_ticket" })
+                                    
+                                </div>
+
+
+                            </div>
+
+
+
+                        </div>
+
+
+
+
+
+
+
+                        <!-- Column 1 end -->
+                    </div>
+                    <div class="col2">
+                        <!-- Column 2 start -->
+                        <div class="profile_name">@Model.EventOrganiser.CompanyName</div>  <!-- link profile database to user name-->
+                        
+                        <div class="profile_edit">@Html.ActionLink("Company Details...", "EditMyDetails", "EventOrganisers")</div> <!--linke to edit profile page-->
+                        <div class="profile_img">@{ var imagesrc = "../../Uploads/" + Model.EventOrganiser.ProfilePicURL; }	<img src=@imagesrc width="100%" />	</div>
+                                                                    
+                           
+
+                            <div class="option_container">
+
+                                <div class="icon_left"> <a href="@Url.Action("CreateByEO", "Events")"> <img src="~/images/profile_event_icon.png" /> </a> </div>
+                                <a href="@Url.Action("CreateByEO", "Events")"> <input type="button" class="profile_ticket_button" name="userlogging_button" value="Create Event" /></a>
+
+
+                            </div>
+
+                        
+                        <div class="option_container">
+
+                            <div class="icon_left"> <img src="../../content/images/profile_kids_icon.png" /></div>
+                            <input type="button" class="profile_ticket_button" name="userlogging_button" value="Account" /></label>
+
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+                        <!-- Column 2 end -->
+                    </div>
+                    <div class="col3">
+                        <!-- Column 3 start -->
+
+
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="footer_two">
+
+        <div class="footer_wrapper">
+
+            <div class="footer_container_border_none">
+                <div class="footer_heading">Information</div>
+                <div class="footer_copy">About</div>
+                <div class="footer_copy">Services</div>
+
+
+
+
+            </div>
+            <div class="footer_container_border_left">
+
+                <div class="footer_heading">Need Help?</div>
+                <div class="footer_copy">FAQ's</div>
+                <div class="footer_copy">T&C's</div>
+                <div class="footer_copy">Help Desk</div>
+                <div class="footer_copy">Contact</div>
+
+            </div>
+            <div class="footer_container_border_left">
+
+                <div class="footer_heading">Other</div>
+                <div class="footer_copy">Careers</div>
+                <div class="footer_copy">Marketing</div>
+                <div class="footer_copy">Partnerships</div>
+
+            </div>
+            <div class="footer_container_border_left">
+
+                <div class="footer_heading">Social</div>
+                <div class="footer_copy">Facebook</div>
+                <div class="footer_copy">Twitter</div>
+                <div class="footer_copy">Google+</div>
+                <div class="footer_copy">Linkedin</div>
+
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+</body>
+</html>
+        
+    
+                           
+
+                          
+
+                           
+                          
+                           
+
+
+
+
+

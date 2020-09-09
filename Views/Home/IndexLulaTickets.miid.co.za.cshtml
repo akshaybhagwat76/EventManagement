@@ -1,0 +1,159 @@
+﻿@model MiidWeb.Models.LoginViewModel
+@{
+    ViewBag.Title = "Home Page";
+
+    var db = new MiidEntities();
+
+    DateTime twodaysago = DateTime.Now.AddDays(-2);
+
+    //Daniel added subdomainID to where clause
+    int subDomainID = int.Parse(MiidWeb.Repositories.TicketRepository.GetSubdomainID());
+    var events = db.Events.Where(x => x.SubdomainID == subDomainID).OrderByDescending(x => x.EndDateTime).Take(6);
+
+    List<MiidWeb.Models.EventViewModel> list = new List<MiidWeb.Models.EventViewModel>();
+    foreach (var r in events)
+    {
+        list.Add(new MiidWeb.Models.EventViewModel(r.ID));
+
+    }
+
+    Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("Layout");
+}
+
+
+
+<title>Online ticketing &amp; Cashless Events for events.</title>
+<meta name="description" content="Get the most affordable rates in South Africa for online ticketing &amp; cashless events" />
+
+<meta name="robots" content="noindex" />
+<meta name="googlebot" content="noindex" />
+
+
+<span style="display:none" itemscope="" itemtype="http://schema.org/Organization">
+    <link itemprop="url" href="https://www.miid.co.za/">
+    <a itemprop="sameAs" href="https://www.facebook.com/miidevents/">FB</a>
+    <a itemprop="sameAs" href="https://twitter.com/MiiDEvents">Twitter</a>
+</span>
+
+<div class="container background-image-b" style="height:300px;">
+
+    <div class="row">
+        <div class="form-group col-md-7 col-md-offset-1">
+            <br>
+            <br>
+            <br>
+            <br>
+            <h1 style="font-weight:bold;color:#ffffff">Find events</h1>
+
+        </div>
+        <div class="form-group col-md-4 col-md-offset-1">
+            <input type="text" class="input-lg form-control" id="text1" placeholder="Search event name" />
+        </div>
+        <div class="form-group col-md-1">
+
+            <button name="demo-email" class="btn btn-outline btn-warning btn-lg btn-block" id="demo-email" value="Search" onClick="javascript: location.href=('../Events/Search?KeyWordSearchText=' + document.getElementById('text1').value);">
+                <i class="fa fa-search" style="color:#ffffff; "></i>
+            </button>
+        </div>
+        <!--  <div class="form-group col-md-2">
+
+          <button name="demo-email" class="btn btn-outline btn-default btn-lg btn-block" id="demo-email" value="Search" onClick="javascript: location.href=('../Events/Search');">
+              <i class="fas fa-calendar-alt" style="color:#ffffff; "><span style="font-weight:normal; font-family:Arial, Helvetica, sans-serif ;font-size:12px;">&nbsp;All Events</span></i>
+          </button>
+      </div>-->
+
+
+
+    </div>
+
+</div>
+
+
+
+
+
+    <!--Displays on branded subdomains-->
+
+
+
+    <div class="container  bg-grey">
+
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+            <h1>Featured events:</h1>
+            <div class="carousel-inner" role="listbox">
+
+                <div class="item active">
+                    @foreach (var li in list.Take(12))
+                    {
+                        if (@li.EventLogoURL != null)
+                        {
+                            <div class="col-xs-12 col-sm-6 col-md-3 team_columns_item_image">
+                                <a href="~/Events/PurchaseTickets?EventID=@li.Event.ID">
+
+                                    <img class="img-responsive" src="~/Uploads/@li.EventLogoURL" alt="@li.Event.EventName" />
+                                </a>
+                                <div class="team_columns_item_caption">
+                                    <h5>@li.Event.EventName</h5>
+
+
+                                    <a href="~/Events/PurchaseTickets?EventID=@li.Event.ID" class="btn btn-info btn-sm">View More</a>
+                                </div>
+                            </div>
+                        }
+                    }
+
+                </div>
+
+
+
+            </div>
+            </div>
+        </div>
+    </div>
+    <!--close on branded subdomains-->
+
+
+
+<div class="container bg-grey ">
+
+    <!--open button-->
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-4 col-md-offset-4">
+
+            <br>
+            <a href="../Events/Search"><button type="button" class="btn btn-default btn-lg btn-block">View All Events </button></a>
+            <br><br>
+
+        </div>
+    </div>
+
+
+</div><!-- /.container -->
+
+
+
+
+@{
+    string[] parts = new string[10];
+
+    if (TempData.ContainsKey("Growl") && !String.IsNullOrEmpty((string)TempData["Growl"]))
+    {
+        string growl = (string)TempData["Growl"];
+        parts = growl.Split(':');
+
+
+
+        <script type="text/javascript">
+          growl('@parts[0]', '@parts[1]');
+        </script>
+    }
+
+}
+
+
+
+
+
+
+

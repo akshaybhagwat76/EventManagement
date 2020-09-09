@@ -1,0 +1,275 @@
+﻿@using Microsoft.AspNet.Identity
+
+@model MiidWeb.Models.LoginViewModel
+@{
+    ViewBag.Title = "MiiD Event Organiser Landing Page";
+    ViewBag.Title = "Contact";
+
+    bool IAmEventOrganiser = false;
+    if (Request.IsAuthenticated)
+    {
+        IAmEventOrganiser = MiidWeb.Repositories.EndUserRepository.AmIAnEventOrganiser(User.Identity.GetUserName());
+    }
+
+}
+
+@if (IAmEventOrganiser)
+{
+    Layout = "~/Views/Shared/_LayoutEventOrganiser.cshtml";
+}
+else
+{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+@if (IAmEventOrganiser)
+{
+    @Html.Partial("_LoginPartialEO")
+}
+else
+{
+    @Html.Partial("_LoginPartial")
+}
+
+
+<title>Mi-id Online ticketing. Simple, cost effective online ticketing system for events, music festivals and concerts</title>
+<meta name="description" content="Easy and effective cashless sollutions for events and festivals" />
+
+<style>
+    .orange-background {
+        background-color: #fbaa19;
+        padding-top: 20px;
+        padding-bottom: 60px;
+        ;
+        color: #ffffff;
+    }
+
+    .grey-background {
+        background-color: #efefef;
+        padding-top: 40px;
+        padding-bottom: 60px;
+        ;
+    }
+
+    .white-background {
+        background-color: #ffffff;
+        padding-top: 40px;
+        padding-bottom: 80px;
+        ;
+        ;
+    }
+
+    .smallhr {
+        background-color: #fbaa19;
+        height: 4px;
+        border: 4px solid ##fbaa19;
+        width: 15%;
+    }
+</style>
+<header class="jumbotron eo my-4 text-center">
+    <h2 class="display-3" style="font-weight:bold;">Quick and easy online ticketing at the fraction of the cost<br></h2>
+    <hr class="smallhr"><br>
+    <p class="lead" style="margin-left:20px; margin-right:20px;">Get the lowest rates for online ticket sales in South Africa. To get started all you need is a Mi-iD account & an android smartphone.
+ <br></p>
+
+    <a href="~/Eventorganisers/Register2" class="btn btn-primary btn-lg">Request a callback</a>
+
+</header>
+
+<div id="page-content-wrapper" style="background-color: transparent; padding-top: 00px; margin-top: -40px;">
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <div class="container">
+
+                <!-- Jumbotron Header -->
+                <!-- Page Features -->
+                <div class="row text-center white-background">
+
+                    <div class="col-lg-4 col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-img-top"><i class="fa fa-check-circle fa-3x" aria-hidden="true"></i></div>
+                            <div class="card-body">
+                                <h4 class="card-title">Save on costs</h4>
+                                <p class="card-text">Get the lowest industry rates for online ticketing.</p>
+
+                            </div>
+                            <div class="card-footer">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-img-top"><i class="fa fa-check-circle fa-3x" aria-hidden="true"></i></div>
+                            <div class="card-body">
+                                <h4 class="card-title">Start Generating Revenue</h4>
+                                <p class="card-text">By selling tickets online you can start generating revenue immediately. No need to rely on external factors such as the weather or competing events</p>
+                            </div>
+                            <div class="card-footer">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-img-top"><i class="fa fa-check-circle fa-3x" aria-hidden="true"></i></div>
+                            <div class="card-body">
+                                <h4 class="card-title">Instant payout</h4>
+                                <p class="card-text">Your money will be transferred as soon as you request it.</p>
+
+                            </div>
+                            <div class="card-footer">
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                </div>
+
+                <!-- /.row -->
+                <!-- Jumbotron Header -->
+
+              <!-- <div class="row text-center orange-background">
+
+                    <div class="col-lg-12 col-md-12">
+                        <div class="display-3">
+                            <h2 style="font-weight:bold">Transparent & trackable transactions</h2>
+                            <p>The Mii-D cashless system makes use of a pre-paid, online wallet which is linked to a patrons' RFID Tag. Patrons can top up cashless funds online, before & during an event. Making a cashless payment is as simple as scanning the patron’s RFID Tag with the Mi-iD Cashless App. Tags are PIN protected and patrons can view their transactions or request payouts at any time.</p>
+                        </div>
+
+                    </div>
+                </div> --> 
+
+
+
+
+                <!-- Page Features -->
+                <div class="row text-center grey-background">
+                   
+
+                 
+
+
+
+                
+
+
+
+                </div>
+                <div class="row text-center text-center grey-background">
+
+                    <div class="col-lg-4 col-md-4 ">
+                        <div class="card">
+                            <img class="eo_icon" src="~/Content/images/newimages/ticket1.svg" alt="Can be used on all POS systems">
+                            <div class="card-body">
+                                <h4 class="card-title">Barcoded tickets</h4>
+                                <p>
+                                    Set up events and start selling tickets in an instant. Mi-id's online ticketing system  allows you
+                                    quickly set up events and start generating revenue. You can also request your cash-out at any time.
+
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4">
+                        <div class="card">
+                            <img class="eo_icon" src="~/Content/images/newimages/cashless2.svg" alt="View sales live">
+                            <div class="card-body">
+                                <h4 class="card-title">NFC and RFID  ticketing</h4>
+                                <p>
+                                    Mi-id NFC tickets are completely virtual and can only be redeemed on presentation of a valid MiiBand RFID tag which is linked to an individual profile. Because there are no hard copies of tickets available this makes unauthorised reselling of tickets impossible.
+
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4">
+                        <div class="card">
+                            <img class="eo_icon" src="~/Content/images/newimages/stats.svg" alt="Quality customer service">
+                            <div class="card-body">
+                                <h4 class="card-title">Track Sales </h4>
+                                <p>
+                                    User's tickets are linked to an online profile so Mi-id ticketing platform can provide statistics on the type of people attending events. Perfect for focusing your marketing efforts for your next event.
+
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                  
+                    <div class="col-md-12">
+                        <br>&nbsp;<br>
+                        <a href="~/Eventorganisers/Register2" class="btn btn-primary btn-lg">Contact Us Now</a>
+                    </div>
+
+                </div>
+
+
+
+
+
+
+
+                <!-- Page Features -->
+                <div class="row text-center white-background">
+
+
+                    <div class="col-lg-6 col-md-6">
+                        <div class="card">
+                            <div class="card-img-top"><img class="eo_icon" src="../Content/images/newimages/thumbsup.svg" alt="cashless systems"></div>
+                            <div class="card-body">
+                                <h4 class="card-title" style="font-weight:bold;">Online ticketing is quick and easy</h4>
+                                <p>No need to rent expensive scanning equipment or use specialised software. All you need is an Android smartphone and a Mi-id account.</p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6">
+                        <div class="card">
+                            <div class="card-img-top"><img class="eo_icon" src="~/Content/images/newimages/marketing.svg" alt="transactions"></div>
+                            <div class="card-body">
+                                <h4 class="card-title" style="font-weight:bold;">Extra benefits</h4>
+                                <p>A multi-talented team of online-marketers, developers, graphic designers & sales experts are ready to assist you to help make your event a success.
+</p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+               
+
+
+                <div class="row text-center orange-background">
+
+                    <div class="col-lg-12 col-md-12">
+                        <h2 class="display-3" style="font-weight:bold;">White label solutions</h2>
+                        <p class="lead">Host a cashless platform from your own website with our own branded app. No redirecting to 3rd party services</p>
+                        <a href="../Eventorganisers/Register2" class="btn btn-default btn-lg">Contact Us Now</a>
+
+                        <br><br>
+
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+

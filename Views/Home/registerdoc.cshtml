@@ -1,0 +1,506 @@
+﻿@using Microsoft.AspNet.Identity
+
+@model MiidWeb.Models.LoginViewModel
+@{
+	ViewBag.Title = "MiiD Event Organiser Landing Page";
+	ViewBag.Title = "Contact";
+
+	bool IAmEventOrganiser = false;
+	if (Request.IsAuthenticated)
+	{
+		IAmEventOrganiser = MiidWeb.Repositories.EndUserRepository.AmIAnEventOrganiser(User.Identity.GetUserName());
+	}
+
+}
+
+@if (IAmEventOrganiser)
+{
+	Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("LayoutEventOrganiser");
+}
+else
+{
+	Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("Layout");
+}
+
+
+
+<!DOCTYPE HTML>
+
+<title>Mi-id Online Ticketing Service Agreement</title>
+<meta name="description" content="Service agreement for Mi-id and Event Organisers">
+
+<meta property="og:image" content="https://www.miid.co.za/Uploads/genric.png" />
+
+<div id="page-content-wrapper">
+	<div class="container-fluid">
+
+		<div class="item-container">
+			<div class="container padding">
+				<div class="col-md-12">
+
+					<h1>Terms and Conditions of Service Agreement</h1>
+					<br><br>
+					<h2>1. Definitions</h2>
+					<br><br>
+					1.1 “agreement” means the written agreement entered into between MiiD
+					and the Provider as recorded in the agreement signed by
+					the Parties, including all attachments, annexures and
+					schedules hereto and all documents incorporated by
+					reference herein;
+					<br><br>
+					1.2 “business day” means any day other than a Saturday, Sunday or a public
+					holiday under the law of the Republic of South Africa;
+					<br><br>
+					1.3 “client” means the party detailed in the service agreement below;
+					<br><br>
+					1.4 “company” means MiiD (Pty) Ltd, Registration Number:
+					<br><br>
+					2015/335771/07;
+					<br><br>
+					1.5 “commencement date” means the date of signature of this agreement by last
+					party signing as a signatory;
+					<br><br>
+					1.6 “intellectual property” means all intellectual property belonging to the company
+					or developed by the Service Provider during the course of
+					this agreement and which could be applied to the
+					services, including, inter alia, patents and patent
+					applications, trademarks or service mark registrations and
+					applications, trade names, internet domain names, logos,
+					design, slogans and general intangibles of like nature,
+					together with all goodwill related to the foregoing
+					copyrights, copyrights registrations, renewals and
+					applications for copyrights, software, technology, trade
+					secrets and other confidential information, know-how,
+					models and methodologies, whether registered or
+					unregistered and whether in terms of statute or common
+					law;
+					<br><br>
+					1.7 “event” in the context of the Service Agreement shall refer to all
+					events or performances marketed and distributed by the
+					Company or the Company’s platforms;
+					<br><br>
+					1.8 “services” means the provision of web based booking system,
+					acceptance of bookings and the selling and distribution of
+					tickets, including but not limited to cashless transactions
+					and Pre-paid electronic Wallet Account transactions; and
+					all ancillary services to be provided by MiiD as set out in
+					this Agreement;
+					<br><br>
+					1.9 “company Charges” means the charges for the use of services provided by the Company.
+					<br><br>
+
+					1.10 “Venue” means the theatre, cinema, arena, bus or place at which an Event is to take place;
+					<br><br>
+
+					1.11 “Payment Gateway” means PayFast and Nedbank iVeri and other other website site where where the transaction of money takes place or transmits data. data and customers information;
+					<br><br>
+					1.12 "Pre-paid electronic Wallet Account”
+					means a non-interest bearing electronic account
+					maintained for the sole purpose of enabling the Payment
+					Services and Transactions as set out in this agreement;
+					1.13 “Available Balance” means the value of unspent funds held on your Pre-paid
+					electronic Wallet Account and available to use;
+					1.14 "Authorised" means the act of authorising the payment transfer by
+					successfully registering and submitting a payment
+					command;
+					<br><br>
+					1.15 "Security Details" means the personalised security details of your Pre-paid
+					electronic Wallet Account, including your username,
+					passwords, login and other security details relating to your
+					Pre-paid electronic Wallet Account and including any PIN
+					codes or other security features of a device on which your
+					Pre-paid electronic Wallet Account is enabled;
+					<br><br>
+					1.16 “Client’s Standard Terms and Conditions of Sale”
+					means the standard terms published to customers of
+					the Client in the ordinary course of transactions relating
+					the Client’s Events or performances. These Terms and
+					Conditions of Sale are attached hereto as Annexure A of
+					this agreement and may be altered from time to time, in
+					writing, by mutual agreement by the Parties.
+					<br><br>
+					1.17 “Customer” means any persons purchasing tickets or using the Pre-paid electronic wallet account to make purchases at events or festivals.
+
+					<br><br>
+					<h3>2. Recordal and Purpose of Agreement</h3>
+					<br><br>
+					2.1 The Company operates a software company that provides services for the distribution of
+					tickets via an online platform and other distribution channels. Furthermore, MiiD will
+					provide cashless payment solutions and Pre-paid electronic Wallet Accounts as set out in
+					this agreement.
+					<br><br>
+					2.2 The Client agrees, for the duration of the Service Agreement, not to instruct or allow any
+					other third party to accept bookings or sell or distribute tickets to any of the Events
+					which may be subject to the Service Agreement, without prior written consent from MiiD.
+					Miid reserves the right to absolutely limit the Client from instructing or allowing any
+					third party to accept bookings or sell or distribute tickets to any of the Events which may
+					be subject to the Service Agreement and Preferential rates offered;
+					<br><br>
+					2.3 The Company will only act on the Client’s written instructions
+					<br><br>
+					2.4 The Client is fully responsible for ALL the content provided to the Company.
+					<br><br>
+					2.5 The Client requires the services of the Company to accept bookings and to sell and
+					distribute tickets to Events which may from time to time be promoted or managed by the
+					Client. Furthermore, MiiD will provide a platform where the end-user may top up their
+					Pre-paid electronic Wallet Account; Available Balance to be used for services at the
+					Event;
+					<br><br>
+					2.6 In providing the Services, the Company acts as an agent for and on behalf of the Client
+					and as such the Company accepts no responsibility or liability, of whatsoever nature, in
+					respect of any loss, damages and/or injury which may be incurred or suffered by any
+					<br><br>
+					2.7 The company shall hold the
+					person as a result of or arising, whether directly or indirectly, from any Event and the
+					Client hereby irrevocably and unconditionally indemnifies the Company and agrees to
+					hold the Company harmless against any such loss, damage or injury and any claim
+					which may be made against the Company by any third party, arising directly or indirectly
+					out of the provision of the Services by the Company; in terms of these Terms and
+					Conditions.
+					<br><br>
+					<h3>3. Duration of Contract</h3>
+					<br><br>
+
+					3.1 The parties agree that this Agreement shall commence on date of signature and
+					terminate within one month of the client providing written notice of their intention to
+					terminate.
+					<br><br>
+					3.2 In the event of a fix contract period, the Client will be liable for the full contract period and
+					any penalties in terms of the Consumer Protection Act.
+					<br><br>
+					3.3 Miid reserves the right to escalate the annual fixed contract fee.
+					<br><br>
+					<h3>4. Duties and Obligations of the Client</h3>
+					<br><br>
+					4.1 To advertise, market and manage the Event;
+					<br><br>
+					4.2 To control the information and the input into the Company provided web ticketing
+					service;
+					<br><br>
+					4.3 The Client or a representative of the Client will be responsible for the access control and
+					checking the validity of the tickets. In the case where the client requires the Company to
+					be responsible for access control, it must be agreed between the Company and the
+					Client beforehand.
+					<br><br>
+					4.4 The Client will promote the availability of tickets through the Company’s network and
+					platforms in all its advertising, all promotional material and in all media releases. Where
+					applicable and space permits, the Company’s corporate logo must be used. The
+					Company’s brand guideline will be supplied to the Client.
+					<br><br>
+					4.5 It is the Client’s responsibility to ensure the following;
+					<br><br>
+					4.5.1 In terms of clause 2.2. above, with prior written consent from Miid, should the client use
+					approved distribution channels other than that of the Company, it must ensure that it
+					allocates the correct type, number and price of tickets per distribution channel.
+					<br><br>
+					4.5.2 The pricing of the tickets is correctly advertised;
+					<br><br>
+					4.5.3 To have the necessary infrastructure to control access and ensure validity of tickets.
+					<br><br>
+					<h3>5. Cancellation & Postponement of Event(S)</h3>
+					<br><br>
+					5.1 The Client agrees to inform the Company, in writing, immediately once it becomes aware
+					that an Event is to be cancelled or postponed.
+					<br><br>
+					5.2 In the event of a cancellation or postponement of an Event, where the Company
+					accepted a credit card, EFT or Cash as a method of payment, the Company shall
+					undertake ticket refunds and/or ticket exchanges on behalf of the Client in respect of all
+					tickets sold by the Company to that Event on the following basis:
+					<br><br>
+					5.2.1 if an Event has been cancelled, the Company shall offer to refund the purchase price
+					to ticket holders of all tickets purchased by the ticket holder through the Company and its
+					authorised outlets,
+					<br><br>
+					5.2.2 if an Event has been postponed, the Company shall, in its sole discretion, be entitled to
+					EITHER refund the purchase price to the ticket holder of all tickets sold by the Company
+					to the ticket holder to such Event OR issue a ticket at the same purchase price (if still
+					available) for the Event on the date to which it has been postponed.
+					<br><br>
+					5.3 In the event of a cancellation or postponement of an Event, where the Client has
+					accepted an EFT, cash, deposit or any other method of payment;
+					<br><br>
+					5.3.1 the Client has full and sole responsibility to fulfil its obligations in respect of its
+					Standard Terms and Conditions of Sale. The Company has no obligation nor responsibly
+					to refund the ticket or any portion of the ticket for the Event once the client has accepted and EFT, cash, deposit or any other method of payment
+					<br><br>
+
+					5.4 If the Client does not provide the Company with written confirmation of an alternative
+					date for a postponement within 48 (forty-eight) hours of any announcement by the Client
+					that an Event has been postponed or within such further period as may be agreed by the
+					Company, the Company shall be entitled to deem such Event cancelled and will follow
+					the procedure set out in clause 5.2.1 above.
+					<br><br>
+					5.5 If an Event is cancelled, the amount due by the Client to the Company as a cancellation
+					fee, as referred to in clause 6.3.4, shall be:
+					<br><br>
+					5.5.1 Banking fees associated with refunding the customers.
+					<br><br>
+					5.5.2 all other accumulated charges and fees if applicable subject to the provisions of the
+					Consumer Protection Act No 68 of 2008.
+					<br><br>
+					<h3>6. Company Charges</h3>
+					<br><br>
+					6.1 All Company Charges are exclusive of VAT, if registered for VAT.
+					<br><br>
+					6.2 In consideration for the provision of the Services in terms of the Service Agreement, the
+					<br><br>
+					Client shall pay to the Company:
+					6.2.1 Card sales
+					6.2.2 Cash, EFT
+					6.2.3 Staff costs
+					6.2.4 Administration Cost
+					<br><br>
+					6.3 The Company Charges provided for in clause 6.2 shall become due and payable as
+					follows:
+					<br><br>
+					6.3.1 the commission, a fixed fee or percentage scheduled by MiiD, referred to in clause 6.2.1
+					and 6.2.2 upon the sale of a ticket by the Company;
+					<br><br>
+					6.3.2 the cancellation fee referred to in clause 5.5 within 7 (seven) days from the time at
+					which the Company is informed of the cancellation or postponement, as the case may
+					be.
+					<br><br>
+					6.3.3 staff costs referred to in clause 6.2.3 will be incurred on the actual time staff incur at the
+					event.
+					<br><br>
+					6.3.4 the fixed administration cost referred to in clause 6.2.4 will be the cost pertaining to the
+					transfer of funds, including but not limited to cashless transactions and transfers from the
+					end-users’ Pre-paid electronic Wallet Account to the Client’s account.
+					<br><br>
+					6.4 Unless otherwise provided in the Service Agreement, all Company Charges shall be
+					paid to the Company by means of the deduction thereof from any amount due to the
+					Client by the Company from time to time.
+					<br><br>
+					6.5 The Client agrees that, in addition to the Company Charges set out above and the
+					Service Agreement, the Client shall reimburse to the Company all expenses incurred by
+					the Company arising from:
+					<br><br>
+
+
+					6.5.1 any other charges which the parties agree upon in writing from time to time, including
+					Email, SMS correspondence with the customer.
+					<br><br>
+					<h3>7. On-Site Box-Office Service/Machinery/On-Line Reporting System</h3>
+					<br><br>
+					7.1 If the Client requires and the Company agrees to provide an on-site box-office service in
+					respect of an Event, the Company might quote the Client separately to the Service
+					Agreement for each on-site box-office and the cost of such service will be for the Client’s
+					account.
+					<br><br>
+					7.2 In such an event, the Client will, at the Client’s expense, provide the Company with a
+					secure box-office facility, including availability of electricity and the required Internet connection
+					and other infrastructure to operate the Company’s computerized system.
+					<br><br>
+
+
+					7.3 The Company and the Client may agree, either ad hoc (in respect of a particular Event)
+					or generally, to provide to the Client ticket-printing equipment, and computer hardware,
+					for use by the Client in the issuance of tickets for Events. In any such case the Company
+					will provide to the Client, additionally to such machinery;
+					<br><br>
+					7.3.1 so many blank tickets as may be necessary for the purpose of each relevant Event; and
+					<br><br>
+					7.3.2 such advice as it considers appropriate in regard to the security of the systems used in
+					relation to issuance of tickets, the security of the tickets themselves, the verification of the
+					genuineness of tickets presented at access gates at Venues, and any other matter which
+					it deems appropriate.
+					<br><br>
+					7.3.4 The Company will not (and the Client specifically acknowledges that the Company is not
+					obliged to) provide any protection or insurance cover against theft of tickets.
+					<br><br>
+					<h3>8. Payment</h3>
+					8.1 The parties agree that the Company shall effect financial settlement of monies due to
+					the Client by Electronic Fund Transfer (EFT).
+					<br><br>
+					8.2 The Client confirms that the banking details provided in the Service Agreement are
+					correct and that it shall advise the Company of any change in banking details at least
+					thirty (30) days prior to the date on which a settlement to the new banking account is
+					required to be made.
+					<br><br>
+					Banking details where funds will be transferred as follows:
+					Bank: ______________________
+					Account Number : ______________________
+					Branch Code: ______________________
+					Account Holders’ Name: _______________
+					<br><br>
+					8.3 The Company agrees to provide to the Client all relevant documentation and tax invoices
+					to which the Client is entitled, at the time of financial settlement.
+					<br><br>
+					8.4 The Client agrees that the Company shall be entitled to and the Client hereby authorises
+					the Company to deduct all Company Charges and other charges due by the Client to
+					the Company, of whatsoever nature, prior to effecting the financial settlement and
+					payment of monies due by the Company to the Client.
+					<br><br>
+					8.5 The Client agrees that the information provided by the Company at the time the financial
+					settlements are effected are to be regarded as the final record of reconciliation
+					relating to ticket sales done by the Company on behalf of the Client. Should the Client
+					disagree with the final reconciliation, the Client should inform the Company in writing with
+					full details within 7 (seven) days of receipt of the final reconciliation. Any dispute not
+					settled within 30 (thirty) days after the Event has taken place will be considered null-and-
+					void.
+
+					<br><br>
+					8.6 The Company will not accept cession or payment requests to Third Parties and will act in
+					accordance with the agreement entered into with the Client. The Company cannot accept
+					any liability in settling Third Party or creditor payments on the Client’s behalf.
+					<br><br>
+					8.7 Payment of any monies due to the Client by the Company from accepting payments from
+					bookings shall take place within 15 working days after each Event and shall;
+					<br><br>
+					8.7.1 be made only once the Event has actually taken place;
+					<br><br>
+					8.7.2 be accompanied by the relevant tax invoice in respect of Company Charges and any
+					other applicable charges and expenses.
+					<br><br>
+					<h3>9. Limitation Of Liability</h3>
+					<br><br>
+					9.1 The Client shall be solely responsible for any liability arising from or in connection with
+					the Events to which the Services relate and neither the Company nor any of its
+					employees or agents shall have any liability in respect thereof, save as provided for in
+					this Agreement. The Client hereby irrevocably and unconditionally indemnifies the
+					Company, its employees and agents against all claims, of whatsoever nature, arising
+					from or connected with any Event or the provision of any of the Services by the Company
+					pursuant to this Agreement.
+					<br><br>
+					9.2 The Client undertakes to comply with all applicable laws and legal requirements in regard
+					to the staging of Event(s) and in regard to or in connection with the sale of the tickets to
+					such Events, warrants to the Company that no third party's rights in connection with such
+					Event(s) will be infringed, and the Client hereby irrevocably and unconditionally
+					indemnifies the Company against any loss, claim or liability, of whatsoever nature, arising
+					from a breach of this undertaking or warranty.
+					<br><br>
+					9.3 The Company shall not be liable to the Client or anyone else in respect of any claim, loss
+					or damages, of whatsoever nature, arising from or in connection with the Services
+					provided by the Company in terms of or pursuant to this Agreement and the Client
+					hereby irrevocably and unconditionally indemnifies the Company in respect thereof,
+					except where it can be proved that the Company intentionally caused any such loss or
+					damage.
+					<br><br>
+					9.4 The Company shall not be liable to the Client for any interruption or breakdown in any or
+					all of the Services from whatsoever cause arising, including but not limited to:
+					<br><br>
+					9.4.1 any breakdown in a service provided by Telkom, electricity service providers or any
+					other service provider etc.;
+					<br><br>
+					9.4.2 any failure in or unavailability of the connectivity services provided by any Internet
+					Service Provider to the Company's computers;
+					<br><br>
+					9.4.3 a temporary suspension in the operation of the Company’s network, its web-site or Call
+					Centre Services, or any part thereof, for purposes of repair, maintenance or
+					improvement, provided that the Company shall give notice thereof to the Client as soon
+					as it is reasonably practicable in the circumstances to do so and the Company shall
+					restore the operation of the Company’s network as soon as it is reasonable possible to
+					do so;
+					<br><br>
+					9.4.4 any cause whatsoever beyond the control of the Company;
+					<br><br>
+					9.4.5 strike action or
+					any service disruption experienced by the Company’s retail store agents /
+					partners.
+					<br><br>
+					9.5 The Client shall be obliged, unless the Company agrees to the contrary in writing, to
+					bring to the attention of ticket purchasers its conditions relating to refunds, exchanges
+					and reinstatements and the Company will not in any circumstances be liable to any ticket
+					holder for any loss, of whatsoever nature, that the ticket holder may suffer as a result
+					of any postponement or cancellation of an Event, howsoever arising.
+					9.6 Without limiting the generality of the aforegoing, the Company shall not be liable under
+					any circumstances, for any indirect, consequential or special loss or damages suffered by
+					the Client or any other person arising from this Agreement, and the Client hereby
+					irrevocably and unconditionally indemnifies and holds the Company harmless against
+					any claim in connection with, or arising there from.
+					<br><br>
+					<h3>10. No Agency or Partnership</h3>
+					<br><br>
+					The relationship between the Parties in terms of the agreement shall involve a close
+					collaboration between two independent contracting parties and in the circumstances shall
+					not imply any partnership in the legal sense, or shall it constitute either Party the agent or
+					authorized representative of the other Party.
+					<br><br>
+					<h3>11. Confidentiality</h3>
+					<br><br>
+					11.1 For the duration of this Agreement and thereafter, the Client shall keep confidential and
+					shall not disclose to any party the contents of this Agreement or any aspect thereof, the
+					technologies employed by the Company in the fulfilment of its obligations in terms of this
+					Agreement, any the Company Charges payable by the Client to the Company,
+					sponsorship and advertising rates pertaining to the Company and any other information
+					to which the Client has access as a result of its relationship with the Company and which
+					relates to the business operations and affairs of the Company, which the Client
+					acknowledges shall be confidential to the Company. The provisions of this clause shall
+					survive the termination of this Agreement.
+					<br><br>
+					11.2 All information, documents, recommendations, programme, reports and other material of
+					whatever nature and form collected or compiled in terms of this agreement must be
+					regarded as confidential and may not be communicated or made available to any person
+					and may not be published either during the currency of this agreement or after
+					termination thereof, for whatever reason, without the prior written consent of Miid.
+					<br><br>
+					11.3 The Company shall keep confidential and shall not disclose to any third party (other than
+					for the purposes of performing the Services) any of the confidential information of the
+					Client, disclosed to the Company by the Client for the purposes of this Agreement.
+					<br><br>
+					<h3>12 Intellectual Property</h3>
+					<br><br>
+					12.1 The client undertakes to obtain the necessary consent from the proprietors or
+					their licensees should it make use of the intellectual property of any other person or body
+					in order to deliver in terms of this agreement.
+					<br><br>
+					12.2 The client further indemnifies Miid against any claim or action (including costs) caused by
+					or arising from the failure to obtain the consent referred to in clause 12.1 above.
+					<br><br>
+					12.3 The client hereby indemnifies Miid against any action, claim, damages or legal costs that
+					may be instituted against Miid on the grounds of an alleged infringement of any copy
+					right or any other intellectual property right that may have a bearing on any services
+					rendered in terms of this agreement.
+					<br><br>
+					12.4 All rights to and interest in the intellectual property of the Company, whether in existence
+					at the signature date or made or conceived by the Service Provider in the course and
+					scope of its obligations in terms of this agreement, shall vest in Miid.
+					12.5 Nothing in this agreement shall entitle the client to use the Service Provider’s name,
+					logos, trademarks, designs, copyrights or any other intellectual property in any manner
+					whatsoever without the Service Provider prior written consent.
+					<br><br>
+					<h3>13. Breach</h3>
+					<br><br>
+					In the event of either party breaching any of its obligations under this Agreement and
+					failing to remedy such breach within a period of 10 (ten) working days of receipt of a
+					written notice from the other party requiring it to do so, then the other party shall be
+					entitled, without prejudice to any other right which it may have in law, to cancel this
+					Agreement or to claim specific performance and to claim proven damages in respect of
+					such breach. The Company may withhold all monies from the Client until such breach is
+					resolved.
+					<br><br>
+					<h3>14. Disputes</h3>
+					<br><br>
+					14.1 This Agreement shall be governed, interpreted and implemented in accordance with the
+					laws of the Republic of South Africa.
+					<br><br>
+					<h3>15. Privacy</h3>
+
+					The Client agrees that, to the extent that any information is gathered relating to a
+					purchaser of tickets through the Company, including but not limited to the ticket
+					purchaser's identity, telephone numbers, address or any other contact details or banking
+					details, the Client shall not under any circumstances use the information for any purpose
+					other than to promote and advertise the Events through the Company sales channels
+					and shall also not sell, disclose or transfer the said information to any third party for
+					whatever reason.
+					<br><br>
+					<h3>16.Holding of customers funds</h3>
+					<br><br>
+					16.1. The company shall be solely responsible for the customers prepaid funds and will in no circumstances transfer these funds to the client unless a service or product has been exchanged between customer and client
+					<br><br>
+					16.2. Should we suspect any fraudulent activity, we reserve the right to withhold any proceed generated from the sale of tickets for an event and return it to the customer.
+					<br><br>
+					16.3. Should we suspect that an event will not be taking place, we reserve the right to withhold any proceeds generated from the sale of tickets for that event. Funds will be transferred over to you once the event takes place. Should the event not take place we will refund the customers their purchase. With this comes banking fees and other costs which you will be invoiced for.
+
+
+
+
+
+
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+</div>

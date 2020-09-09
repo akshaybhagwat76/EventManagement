@@ -1,0 +1,80 @@
+﻿@using Microsoft.AspNet.Identity
+@model MiidWeb.Models.ChildUserViewModel
+@{
+    ViewBag.Title = "MiiDetails";
+
+}
+
+<div class="container bg-grey">
+    <div class="row vertical-offset-40px">
+
+
+        <div class="col-md-8 col-md-offset-2">
+
+            <div class="panel panel-default ">
+
+                <div class="panel-body ">
+
+
+
+
+
+                    <div class="form-group col-md-12">
+                        <h3>Add a child account</h3>
+                        <hr>
+                        Once you add a child account you will be able to transfer funds to the account<br>
+
+                    </div>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+
+                        <span style="color:palevioletred">@Html.ValidationSummary()</span>
+
+                        @Html.Hidden("ParentUserID", (object)Model.ParentUserID)
+
+
+                        @Html.Hidden("Cell", (object)ViewBag.ParentPhone)
+
+                        <div class="form-group col-md-6">
+                            <label for="phonenumber">Name </label>
+                            @Html.EditorFor(model => model.Firstname, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Edit First Name", required = "required" } })
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="phonenumber">Surname </label>
+                            @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Edit Surname", required = "required" } })
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="NextOfKin">Emergency Contact Name </label>
+                            @Html.EditorFor(model => model.NextOfKin, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Next of Kin", required = "required" } })
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="NextOfKin">Emergency Contact Number </label>
+                            @Html.EditorFor(model => model.NextOfKinTelephone, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Next of Kin", required = "required" , type = "number"  } })
+                        </div>
+
+
+
+
+
+                        <div class="form-group col-md-6">
+                            <input type="submit" value="Add" class="btn btn-default btn-block btn-lg" />
+                            @*<a href="temp_Profile Summary.html" class="button special">Update</a>*@
+                        </div>
+                        <div class="form-group col-md-6">
+                            @Html.ActionLink("Cancel", "IndexByUserID", "MyMoneys", null, new { @class = "btn btn-info btn-block btn-lg" })
+                        </div>
+
+
+
+
+                    } @*Close form*@
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

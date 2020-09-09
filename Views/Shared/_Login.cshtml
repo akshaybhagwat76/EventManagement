@@ -1,0 +1,37 @@
+﻿@using MiidWeb.Models
+@model LoginViewModel
+
+
+
+
+
+@using (Html.BeginForm("Login", "Account", new { ReturnUrl = Model.ReturnUrl }, FormMethod.Post, new { @class = "login_form", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "red" })
+
+    <div class="nav_form">
+        
+
+        @*<input type="text" name="demo-name" id="demo-name" value="" placeholder="User Name" />*@
+        @*<input type="password" name="demo-name" id="demo-name" value="" placeholder="Password" />*@
+
+        @Html.TextBoxFor(m => m.Email, new { @class = "login_user_name", placeholder = "Email" })
+        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "red" })
+
+        @Html.PasswordFor(m => m.Password, new { @class = "login_password", placeholder = "Password" })
+        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "red" })
+        
+
+    </div>
+
+
+ 
+
+
+
+  
+
+    <input type="submit" value="Sign In" class="main_button" style="background-color:#f5ab1c"/>
+}

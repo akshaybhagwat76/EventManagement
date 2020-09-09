@@ -1,0 +1,128 @@
+﻿@model MiidWeb.NFCTag
+@using MiidWeb.Models
+@using MiidWeb.Repositories
+@{
+    ViewBag.Title = "Create";
+    string notification = "";
+    if (HttpContext.Current.Session["ErrorMessage"] != null)
+    {
+        notification = HttpContext.Current.Session["ErrorMessage"].ToString();
+    }
+
+    EndUserViewModel user = new EndUserViewModel(EndUserRepository.GetByUserID(ViewBag.EndUserID));
+    //Layout = null;
+}
+
+
+
+@using (Html.BeginForm())
+
+
+{
+	<div class="main-wrapper">
+
+		<div class="container  bg-grey">
+
+			<div class="row vertical-offset-40px">
+				<div class="col-md-5 col-md-offset-1">
+
+					<h3><b>Activate your tag (@user.EndUser.Firstname @user.EndUser.Surname)</b></h3>
+
+					<p>
+						<br>
+						To activate your MiiBand tag use the codes supplied on the inside of your MiiBand packaging.
+					<p>
+
+					
+
+
+
+						@Html.AntiForgeryToken()
+						<h5> @notification</h5>
+						<h5> @Html.ValidationSummary(true, "", new { @class = "red" })</h5>
+
+
+					<p>
+					</p>
+					<p>
+						1.Insert the band number in the first box.<br>
+						2.Insert the activation code in the second box.<br>
+						3.Choose a 4 digit PIN. Remember this number as you will need to it when making purchases with your MiiBand
+					</p>
+					<p>
+						If you are having trouble activating your MiiBand please contact support at support@miid.co.za
+					</p>
+
+
+
+				</div>
+
+
+				<div class="col-md-5">
+					<div class="event-info-wrapper ">
+						<h4>Enter details on pack</h4>
+
+
+
+						<div class="form-group">
+							@Html.TextBoxFor(model => model.TagNumber, new { @class = "form-control input-lg", placeholder = "Enter Band Number" })
+							@*<div class="red">incorrect band number</div>*@
+						</div>
+						<div class="form-group">
+							@Html.TextBoxFor(model => model.ActivationCode, new { @class = "form-control input-lg", placeholder = "Activation Code " })
+							@*<div class="red">incorrect activation code</div>*@
+
+						</div>
+						<div class="form-group">
+							<label>Choose 4 digit PIN<small> *Cannot start with 0 (zero)</small></label>
+							@Html.TextBoxFor(model => model.TagPin, new { @id = "pin", @class = "form-control input-lg hidden", @Value = "1111", @readonly="readonly" , style="display:one"})
+						</div>
+						<div class="form-group">
+							<input type="submit" class="btn btn-lg btn-default btn-block" value="Activate Band">
+
+						</div>
+
+                        <script>
+                            $('#pin').keypress(function(evt) {
+  if (evt.which == "0".charCodeAt(0) && $(this).val().trim() == "") {
+  return false;
+   }
+});
+                        </script>
+
+					</div>
+					</div>
+					<section class="col-md-6">
+						@Html.Hidden("EndUserID", (object)@ViewBag.EndUserID)
+						@Html.HiddenFor(model => model.ActivationDate)
+						@Html.HiddenFor(model => model.StatusID)
+					</section>
+
+
+
+				</div>
+
+		</div>
+	</div>
+
+}
+
+<script>
+	$(function () {
+		$('input').keyup(function () {
+			this.value = this.value.toUpperCase();
+		});
+	});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+

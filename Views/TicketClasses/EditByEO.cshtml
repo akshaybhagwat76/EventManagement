@@ -1,0 +1,213 @@
+﻿@model MiidWeb.Models.TicketClassViewModel
+
+@{
+    ViewBag.Title = "Edit Ticket Class";
+    Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("LayoutEventOrganiser");
+}
+
+<!-- One -->
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("EventID", (object)@ViewBag.EventID)
+
+
+
+    @Html.HiddenFor(model => model.TicketClass.ID)
+    @Html.HiddenFor(model => model.TicketClass.Code)
+
+
+    @Html.HiddenFor(model => model.TicketClass.EventID)
+
+    @Html.HiddenFor(model => model.TicketClass.Quantity)
+    @Html.HiddenFor(model => model.TicketClass.Price)
+    @Html.HiddenFor(model => model.TicketClass.ImageURL)
+    @Html.HiddenFor(model => model.TicketClass.DateTimeUpdated)
+    @Html.HiddenFor(model => model.TicketClass.StartDate)
+    @Html.HiddenFor(model => model.TicketClass.EndDate)
+
+    @Html.HiddenFor(model => model.TicketClass.MaxOnlineSaleQuantity)
+
+
+
+
+    <div class="row">
+        <div class="panel-body">
+            <div class="col-md-12 w3ls-graph">
+                <!--agileinfo-grap-->
+                <div class="agileinfo-grap">
+                    <div class="agileits-box">
+                        <div class="agileits-box-body clearfix">
+                            <div class="form-group col-md-12">
+                                <h2>Edit ticket</h2>
+                                <hr>
+                                <p><b><br>Tip:</b> From this screen you wil be able to view ticket, hide or display tickets on the website or set the ticket up to be used on our desktop box office software.</p>
+                                <br>
+                                <div>
+                                    <label>Name:</label>
+                                    @Html.TextBoxFor(model => model.TicketClass.Description, new { @class = "form-control input-lg" })
+                                </div>
+
+                                <br>
+
+                                <p>Runing from  @Model.TicketClass.StartDate.Value.ToString("yyyy-MM-dd HH:mm") to  @Model.TicketClass.EndDate.Value.ToString("yyyy-MM-dd HH:mm")</p>
+                                <div class="" style="display:none">
+                                    End: @Model.Event.EndDateTime.Value.ToString("yyyy-MM-dd HH:mm")
+                                    Event Start: @Model.Event.StartDateTime.Value.ToString("yyyy-MM-dd HH:mm")
+
+                                    @Html.DisplayFor(model => model.TicketClassDescription)
+
+                                </div>
+                                <div class="col-md-12"><hr></div>
+                                <!-- //market-->
+                                <div class="market-updates ">
+                                    <div class="col-md-4 smallpadding market-update-gd ">
+                                        <div class="market-update-block clr-block-2">
+
+                                            <div class="col-md-12 market-update-left">
+                                                <h5>Starting QTY</h5>
+                                                <h4><strong> @Html.DisplayFor(model => model.TicketClass.Quantity, new { placeholder = "Starting Quantity" })</strong></h4>
+
+                                            </div>
+                                            <div class="clearfix"> </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 smallpadding market-update-gd">
+                                        <div class="market-update-block clr-block-2">
+
+                                            <div class="col-md-12 market-update-left">
+                                                <h5>Ticket Sold</h5>
+                                                <h4><strong>Tickets Sold: @Html.DisplayFor(model => model.TicketsSold, new { placeholder = "120" })</strong></h4>
+
+                                            </div>
+                                            <div class="clearfix"> </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 smallpadding market-update-gd">
+                                        <div class="market-update-block clr-block-2">
+
+                                            <div class="col-md-12 market-update-left">
+                                                <h5>Price</h5>
+                                                <H4><strong>R @Html.DisplayFor(model => model.TicketClass.Price, new { placeholder = "120" })</strong></H4>
+
+                                            </div>
+                                            <div class="clearfix"> </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="clearfix"> </div>
+                                </div>
+                                <!-- //market-->
+
+                                <div class="col-md-12"><hr></div>
+
+                                @if (Model.TicketsSold > 0)
+                                {
+                            <div>
+                                @Html.HiddenFor(model => model.TicketClass.StatusID)
+
+                            </div>
+
+                                }
+
+                                else
+                                { <div class="form-group col-md-8">
+
+                                        <p>
+                                            Set ticket to be active or inactive. This will remove them from your dashboard.<br>
+                                            <strong style="color:#ff0000">WARNING: </strong>Deactivating tickets will make them unscannable by the app and remove them from your sales reports.
+                                        </p>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        @Html.DropDownListFor(x => x.TicketClass.StatusID, (IEnumerable<SelectListItem>)Model.StatusOptions, new { @class = "form-control input-lg", placeholder = "e.g. General Access or VIP", maxLength = "10" })
+
+                                    </div>
+                                }
+
+
+
+
+
+
+
+                                <div class="form-group col-md-8">
+
+                                    <p>Increase the amount of tickets avaible for the event</p>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    @Html.TextBoxFor(model => model.RunningQuantity, new { @class = "form-control input-lg" })
+                                </div>
+                                <div class="form-group col-md-8">
+
+                                    <p>
+                                        Display this ticket on the box office windows desktop app.<br>
+                                        <small id="emailHelp" class="form-text text-muted">If you are unsure or for more information about selling tickets at your venue contact support or your Mi-id reprisentive</small>
+                                    </p>
+                                </div>
+                                <div class="form-check col-md-4">
+                                    @Html.EditorFor(model => model.BoxOffice, new { @class = "form-check-input" })
+
+                                    <label for="sel1">Is box office.</label>
+                                </div>
+                                <div class="form-group col-md-8">
+
+                                    <p>
+                                        Display this ticket on the website.<br>
+                                        <small id="emailHelp" class="form-text text-muted">Select to display or hide tickets from the webiste</small>
+                                    </p>
+                                </div>
+                                <div class="form-check col-md-4">
+                                    @Html.EditorFor(model => model.IsOnline, new { @class = "form-check-input" })
+
+                                    <label for="sel1">Is online.</label>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <hr>
+                                    <ul class="list-inline pull-right">
+                                        <li>
+                                            <input type="submit" class="btn btn-primary  btn-lg btn-info-full" value="Update" />
+
+                                        </li>
+                                    </ul>
+                                </div>
+
+
+
+                            </div>
+
+
+
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+
+            <!--//agileinfo-grap-->
+
+
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

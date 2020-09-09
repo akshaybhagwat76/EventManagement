@@ -1,0 +1,117 @@
+﻿@model MiidWeb.BankTransaction
+
+@{
+	ViewBag.Title = "Details";
+	Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+	//Layout = null;
+}
+
+<style>
+	<!--
+
+	.glyphicon {
+		cursor: pointer;
+	}
+
+	input,
+	select {
+		width: 100%;
+	}
+	-->
+</style>
+
+<div class="col-md-9">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="content-box-header">
+				<div class="panel-title">Transaction Details</div>
+				<div class="panel-title pull-right" style="margin-top:-8px;"> @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, htmlAttributes: new { @class = "btn btn-primary" })</div>
+
+				<div class="panel-options">
+
+				</div>
+
+			</div>
+			<div class="content-box-large box-with-header">
+
+				<dl class="dl-horizontal">
+					<dt>
+						@Html.DisplayNameFor(model => model.TransactionDate)
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.TransactionDate)
+					</dd>
+
+					<dt>
+						@Html.DisplayNameFor(model => model.ConfirmationDate)
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.ConfirmationDate)
+					</dd>
+
+					<dt>
+						@Html.DisplayNameFor(model => model.EndUserID)
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.EndUserID)
+					</dd>
+
+					<dt>
+						@Html.DisplayNameFor(model => model.Description)
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.Description)
+					</dd>
+
+					<dt>
+						@Html.DisplayNameFor(model => model.TransactionTypeID)
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.TransactionTypeID)
+					</dd>
+
+					<dt>
+						@Html.DisplayNameFor(model => model.StatusID)
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.StatusID)
+					</dd>
+
+					<dt>
+						@Html.DisplayNameFor(model => model.Amount)
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.Amount)
+					</dd>
+
+					<dt>
+						@Html.DisplayNameFor(model => model.UpdatedByUserName)
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.UpdatedByUserName)
+					</dd>
+
+					<dt>
+						@Html.DisplayNameFor(model => model.DepositorName)
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.DepositorName)
+					</dd>
+
+				</dl>
+			</div>
+
+		</div>
+	</div>
+	
+</div>
+

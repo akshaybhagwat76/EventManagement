@@ -1,0 +1,54 @@
+﻿@{
+     Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("Layout");
+}
+
+    <div class="container bg-grey">
+        <div class="row vertical-offset-40px">
+
+
+
+
+            @using (Html.BeginForm("RefundTickets", "Events", FormMethod.Post, new { id = "form1" }))
+            {
+
+   
+                <div class="col-md-5 col-md-offset-1">
+                    
+                    <div> <h4> Refund Policy</h4>
+                          <p>
+
+                              The event organiser hosting the event for which you have purchased tickets have sole discretion over refunds
+                              <br><br>
+                              Should you want a refund on your tickets more than 30 days before the event a 15% cancellation fee will be charged or a minimum of R20 whichever is greater 
+                              <br><br>
+                              Should you want a refund on your tickets less than 30 days before the event a 50% cancellation fee will apply. 
+                              <br><br>
+                              Refunds can take up to 7 working days.
+                              <br><br>
+                              Tickets cannot be refunded less than 7 days before the event or after the event has taken place unless communication has been received from the event organiser that refunds are open
+                              <br><br>
+                              Should the person who has purchased the ticket be unable to attend the event due to hospitalization or death the necessary documentation needs to be supplied. In this case, the tickets will be refunded in full. 
+                              <br><br>
+                              Should hospitalization be the reason medical documentation needs to be supplied before or on the event date.
+                          </p>
+                    </div>
+                    <div>
+                        <hr>
+                        <h4>Select tickets for refund request</h4>
+                        @Html.Partial("_MyRefundableTickets", (object)ViewBag.RefundableTickets)
+                    </div>
+                    </div>
+                <div class="col-md-5">
+                    <div>
+
+
+                        @Html.Partial("_RefundTicketsBankDetails")
+                    </div>
+                    
+                </div>
+
+                    
+                    }
+
+                </div>
+            </div>

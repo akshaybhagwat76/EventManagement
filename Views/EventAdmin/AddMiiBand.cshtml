@@ -1,0 +1,115 @@
+﻿@model MiidWeb.NFCTag
+@{
+	Layout = "~/Views/Shared/_LayoutBackEnd.cshtml";
+}
+
+
+<div class="col-md-9">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="content-box-header">
+				@if (ViewBag.UserTagStatusActive)
+				{
+					<div class="panel-title">Tag Active</div>
+				}
+				else
+				{
+					<div class="panel-title">Tag Inactive</div>
+				}
+
+
+
+			</div>
+
+
+
+
+			<div class="content-box-large box-with-header">
+
+				@using (Html.BeginForm("AddMiiBand", "EventAdmin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+				{
+					@Html.ValidationSummary()
+					@Html.Hidden("UserName", (object)ViewBag.UserName)
+					@Html.Hidden("EndUserID", (object)ViewBag.EndUserID)
+
+
+
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								<label>Tag Number: Activate Tag</label>
+								@*<input type="text" name="demo-name" id="demo-name" value="" placeholder="Enter Band Number" />*@
+								@Html.TextBoxFor(model => model.TagNumber, new { @class = "form-control" })
+								@Html.ValidationMessageFor(model => model.TagNumber)
+								@*<div class="red">incorrect band number</div>*@
+
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								<label>Activation Code</label>
+								@*<input type="email" name="demo-email" id="demo-email" value="" placeholder="Activation Code " />*@
+								@Html.TextBoxFor(model => model.ActivationCode, new { @class = "form-control" })
+								@Html.ValidationMessageFor(model => model.ActivationCode)
+								@*<div class="red">incorrect activation code</div>*@
+
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								<label>Choose PIN</label>
+								@*<input type="email" name="demo-email" id="demo-email" value="" placeholder="eg. 2345" />*@
+								@Html.TextBoxFor(model => model.TagPin, new { @class = "form-control", @Value = "1111", @readonly="readonly"})
+
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+
+								<input type="submit" class="btn btn-primary" value="Activate" />
+
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+
+								@Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default" })
+
+							</div>
+						</div>
+					</div>
+
+
+
+
+				}
+
+			</div>
+		</div>
+	</div>
+</div>
+
+@{
+	string[] parts = new string[10];
+
+	if (TempData.ContainsKey("Growl") && !String.IsNullOrEmpty((string)TempData["Growl"]))
+	{
+		string growl = (string)TempData["Growl"];
+		parts = growl.Split(':');
+
+
+
+		<script type="text/javascript">
+        growl('@parts[0]', '@parts[1]');
+		</script>
+	}
+
+}

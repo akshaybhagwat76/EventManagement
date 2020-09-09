@@ -1,0 +1,202 @@
+﻿@model MiidWeb.Models.LoginViewModel
+@{
+    ViewBag.Title = "Home Page";
+
+    var db = new MiidEntities();
+
+    DateTime twodaysago = DateTime.Now.AddDays(-2);
+
+    //Daniel added subdomainID to where clause
+    int subDomainID = int.Parse(MiidWeb.Repositories.TicketRepository.GetSubdomainID());
+    var events = db.Events.Where(x => x.SubdomainID == subDomainID).OrderByDescending(x => x.EndDateTime).Take(6);
+
+    List<MiidWeb.Models.EventViewModel> list = new List<MiidWeb.Models.EventViewModel>();
+    foreach (var r in events)
+    {
+        list.Add(new MiidWeb.Models.EventViewModel(r.ID));
+
+    }
+
+    Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("Layout");
+}
+
+
+
+<title>Online ticketing &amp; Cashless Events for events.</title>
+<meta name="description" content="Get the most affordable rates in South Africa for online ticketing &amp; cashless events" />
+
+
+
+<span style="display:none" itemscope="" itemtype="http://schema.org/Organization">
+    <link itemprop="url" href="https://www.miid.co.za/">
+    <a itemprop="sameAs" href="https://www.facebook.com/miidevents/">FB</a>
+    <a itemprop="sameAs" href="https://twitter.com/MiiDEvents">Twitter</a>
+</span>
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="jumbotron">
+                <h1 class="display-4">@GlobalVariables.HomeParaOne</h1>
+                <p class="lead">  @GlobalVariables.HomeParaTwo</p>
+                <hr class="my-4">
+                <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+                <p class="lead">
+                    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="container">
+
+    <div class="row">
+        <br>
+        <div class="form-group col-md-7">
+            <input type="text" class="input-lg form-control" id="text1" placeholder="Search event name" />
+        </div>
+        <div class="form-group col-md-1">
+
+            <button name="demo-email" class="btn btn-primary" id="demo-email" value="Search" onClick="javascript: location.href=('../Events/Search?KeyWordSearchText=' + document.getElementById('text1').value);">
+                <i class="fa fa-search""></i>
+            </button>
+        </div>
+        <div class="form-group col-md-4">
+
+            <button name="demo-email" class="btn-primary" id="demo-email" value="Search" onClick="javascript: location.href=('../Events/Search');">
+                <i class="fas fa-calendar-alt">All Events</i>
+            </button>
+        </div>
+
+
+
+    </div>
+
+
+</div>
+
+
+@* @if (@GlobalVariables.SubdomainID == "1") *@
+
+
+
+
+<div class="container">
+    <div class="row">
+                @foreach (var li in list.Take(6))
+                {
+                    if (@li.EventLogoURL != null)
+                    {
+                <div class="col-md-3">
+                    <div class="card">
+
+                        <a href="~/Events/PurchaseTickets?EventID=@li.Event.ID">
+                            <img class="card-img-top" src="~/Uploads/@li.EventLogoURL" alt="@li.Event.EventName" alt="Card image cap">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title">@li.Event.EventName</h5>
+                            <p class="card-text">
+
+                            </p>
+                            <a href="~/Events/PurchaseTickets?EventID=@li.Event.ID" class="btn btn-primary"> @GlobalVariables.CallToActionOne </a>
+                        </div>
+                    </div>
+                </div>
+                    }
+                }
+    </div>
+</div>
+}
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-4">
+            <a href="../Events/Search"><button type="button" class="btn btn-primary">View All Events </button></a>
+
+        </div>
+    </div>
+</div>
+<!--only displays on miid-->
+@if (@GlobalVariables.SubdomainID == "1")
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card">
+                    <img class="card-img-top" src="~/Content/images/newimages/ticket_plain.svg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Easy Online Ticketing & Cashless Events</h5>
+                        <p class="card-text">
+                            Purchase tickets online for your favourite event quickly and easily.
+                            For cashless events, simply add funds to your digital wallet once your
+                            tickets are purchased.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card">
+                    <img class="card-img-top" src="~/Content/images/newimages/lock_plain.svg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Your funds and tickets are safe & secure</h5>
+                        <p class="card-text">
+                            Your prepaid funds and ticket information is stored in our secure database.
+                            Only you can access your information via your profile.
+                            Your MiiBand festival wristband is also PIN protected and can be managed via your online profile.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card">
+                    <img class="card-img-top" src="~/Content/images/newimages/wristband_plain.svg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Top-Up funds quickly and easily</h5>
+                        <p class="card-text">
+                            You can choose to top-up your digital
+                            wallet before or during events. You can also top-up at the venue at
+                            our top-up station
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+
+
+
+
+@{
+    string[] parts = new string[10];
+
+    if (TempData.ContainsKey("Growl") && !String.IsNullOrEmpty((string)TempData["Growl"]))
+    {
+        string growl = (string)TempData["Growl"];
+        parts = growl.Split(':');
+
+
+
+        <script type="text/javascript">
+          growl('@parts[0]', '@parts[1]');
+        </script>
+    }
+
+}
+
+
+
+
+
+
+

@@ -1,0 +1,133 @@
+﻿@model MiidWeb.Ticket
+
+@{
+	ViewBag.Title = "Edit";
+	Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+	//Layout = null;
+}
+
+<style>
+	<!--
+
+	.glyphicon {
+		cursor: pointer;
+	}
+
+	input,
+	select {
+		width: 100%;
+	}
+	-->
+</style>
+<div class="col-md-9">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="content-box-header">
+				<div class="panel-title">Edit Tickets Details</div>
+
+				<div class="panel-options">
+
+				</div>
+			</div>
+			<div class="content-box-large box-with-header">
+				@using (Html.BeginForm())
+				{
+					@Html.AntiForgeryToken()
+					<div class="row">
+                        <div class="col-md-12">
+
+                            @Html.ValidationSummary(true, "", new { @class = "red" })
+                            @Html.HiddenFor(model => model.ID)
+                            @Html.HiddenFor(model => model.TicketNumber)
+                            @Html.HiddenFor(model => model.TicketPurchasePrice)
+                            @Html.HiddenFor(model => model.EndUserID)
+                            @Html.HiddenFor(model => model.TicketClassID)
+                            @Html.HiddenFor(model => model.DatetimePurchased)
+                            @Html.HiddenFor(model => model.DatetimeReserved)
+                            @Html.HiddenFor(model => model.DatetimeRedeemed)
+                            @Html.HiddenFor(model => model.Hash)
+                            @Html.HiddenFor(model => model.EndUserID)
+                            @Html.HiddenFor(model => model.UniquePaymentID)
+
+
+
+                            <div class="form-group col-md-4">
+                                Ticket Number: @Html.EditorFor(model => model.TicketNumber, new { htmlAttributes = new { @class = "form-control input-lg", @disabled = "disabled" } })
+                            </div>
+                            <div class="form-group col-md-4">
+                                End User ID: @Html.EditorFor(model => model.EndUserID, new { htmlAttributes = new { @class = "form-control input-lg", @disabled = "disabled" } })
+                            </div>
+                            <div class="form-group col-md-4 ">
+                                Surname:  @Html.DropDownList("EndUserID", null, htmlAttributes: new { @class = "form-control input-lg", @disabled = "disabled" })
+                                @Html.ValidationMessageFor(model => model.EndUserID, "", new { @class = "red" })
+                            </div>
+                            <div class="form-group col-md-4">
+                                Ticket Class Name
+                                @Html.DropDownList("TicketClassID", null, htmlAttributes: new { @class = "form-control input-lg", @disabled = "disabled" })
+
+                                @Html.ValidationMessageFor(model => model.StatusID, "", new { @class = "red" })
+
+                            </div>
+                            <div class="form-group col-md-4">
+                                Ticket Class ID : @Html.EditorFor(model => model.TicketClassID, new { htmlAttributes = new { @class = "form-control input-lg", @disabled = "disabled" } })
+
+                            </div>
+                            <div class="form-group col-md-4">
+                                Purchase Price: @Html.EditorFor(model => model.TicketPurchasePrice, new { htmlAttributes = new { @class = "form-control input-lg", @disabled = "disabled" } })
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                Reserved Date: @Html.EditorFor(model => model.DatetimeReserved, new { htmlAttributes = new { @class = "form-control input-lg", @disabled = "disabled" } })
+                            </div>
+                            <div class="form-group col-md-4">
+                                Purchase Date: @Html.EditorFor(model => model.DatetimePurchased, new { htmlAttributes = new { @class = "form-control input-lg", @disabled = "disabled" } })
+                            </div>
+                            <div class="form-group col-md-4">
+                                Redeemed Date: @Html.EditorFor(model => model.DatetimeRedeemed, new { htmlAttributes = new { @class = "form-control input-lg", @disabled = "disabled" } })
+                            </div>
+                            <div class="form-group col-md-4">
+                               Unique Payment ID: @Html.EditorFor(model => model.UniquePaymentID, new { htmlAttributes = new { @class = "form-control input-lg", @disabled = "disabled" } })
+                            </div>
+
+                            <div class="form-group  col-md-12">
+                                Status:
+                                @Html.DropDownList("StatusID", null, htmlAttributes: new { @class = "form-control input-lg" })
+
+                                @Html.ValidationMessageFor(model => model.StatusID, "", new { @class = "red" })
+
+                            </div>
+
+
+                            <div class="form-group">
+
+
+
+                            </div>
+
+
+
+
+                            <div class="form-group col-md-4">
+
+                                <button type="submit" value="Save" class="btn btn-primary btn-block btn-lg ">Submit</button>
+
+                            </div>
+                        </div>
+					</div>
+				}
+
+
+
+				@section Scripts {
+					@Scripts.Render("~/bundles/jqueryval")
+				}
+			</div>
+			<p>
+
+				@Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "btn btn-default" })
+			</p>
+		</div>
+		
+	</div>
+
+		</div>	

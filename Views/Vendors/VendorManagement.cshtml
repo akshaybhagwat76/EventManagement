@@ -1,0 +1,54 @@
+﻿@model MiidWeb.Models.VendorListViewModel
+
+@{
+    ViewBag.Title = "Vendor Management";
+   // Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("LayoutEventOrganiser");
+    Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("LayoutEventOrganiser");
+}
+@using (Html.BeginForm())
+{
+
+    @Html.AntiForgeryToken()
+
+<div class="row">
+    <div class="panel-body">
+        <div class="col-md-12 w3ls-graph">
+            <!--agileinfo-grap-->
+            <div class="agileinfo-grap">
+                <div class="agileits-box">
+                    <div class="agileits-box-body clearfix">
+                        <div class="form-group col-md-12">
+                            <div class="form-group col-md-12">
+                                @Html.HiddenFor(x => x.EventID)
+
+                                <h3>View Vendor Reports</h3>
+                                <hr>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label><span class="req">* </span>Select Vendor<span class="small"></span></label>
+                                @Html.DropDownListFor(x => x.SelectedVendorID, (IEnumerable<SelectListItem>)Model.VendorDropDownList, htmlAttributes: new { @class = "form-control input-lg" })
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label><span class="req">* </span>Select Report Type<span class="small"></span></label>
+                                @Html.DropDownListFor(x => x.SelectedReportType, (IEnumerable<SelectListItem>)Model.ReportTypes, htmlAttributes: new { @class = "form-control input-lg" })
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label>&nbsp;</label>
+                                <input type="submit" class="btn btn-primary btn-block btn-lg" value="View Report" />
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+ 
+
+}
+
+
+

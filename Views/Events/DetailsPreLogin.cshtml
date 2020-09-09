@@ -1,0 +1,223 @@
+﻿@model MiidWeb.Models.EventViewModel
+
+@{
+    ViewBag.Title = "Choose Tender";
+   
+
+}
+@{
+    ViewBag.Title = "Details";
+    string start = ((DateTime)(Model.Event.StartDateTime)).ToString("yyyy-MM-dd");
+    string end = ((DateTime)(Model.Event.EndDateTime)).ToString("yyyy-MM-dd");
+    string startTime = ((DateTime)(Model.Event.StartDateTime)).ToString("HH:mm");
+    string endTime = ((DateTime)(Model.Event.EndDateTime)).ToString("HH:mm");
+    string ticketsonhold = "";
+    int active = MiidWeb.Helpers.StatusHelper.StatusID("TicketClass", "Active");
+    string ticketcut = ((DateTime)(Model.Event.TicketCutoffDate)).ToString("yyyy-MM-dd");
+    string ticketcutTime = ((DateTime)(Model.Event.TicketCutoffDate)).ToString("HH:mm");
+
+
+    var ticketCut = (DateTime)Model.Event.TicketCutoffDate;
+    TimeSpan timespan = (ticketCut - DateTime.Now);
+    double hoursLeft = timespan.TotalHours % 24;
+    double minutesLeft = timespan.TotalMinutes % 60;
+    bool TicketPurchasingClosed = false;
+    //if (minutesLeft < 10 )
+    //{
+    //    TicketPurchasingClosed = true;
+
+    //}
+
+
+}
+<title>@Model.Event.ShortDescription</title>
+
+
+
+
+@if (!String.IsNullOrEmpty(ViewBag.TicketsOnHoldMessage))
+{
+    ticketsonhold = @ViewBag.TicketsOnHoldMessage;
+    ticketsonhold = "Please wait 3 minutes to purchase a ticket again. Your purchasing facility is on hold for 3 minutes due to a previous purchase of the same ticket which is still in progress.";
+
+    <h3>@ticketsonhold</h3>
+
+}
+
+
+
+    <div class="event-banner-wrapper" style="width:100%">
+        <img src="~/Uploads/@Model.EventBannerURL" class="event-banner" style="width:100%">
+
+
+    </div>
+
+<div class="container">
+    <div class="row ">
+        <div class="col-md-5 col-md-offset-1">
+            <h3 style="border-left:4px solid #258eb2; padding-left: 20px;">
+                @Model.Event.EventName
+            </h3>
+            <p>
+                @Model.Event.ShortDescription
+            </p>
+            <hr>
+            <p>Start @start  @startTime</p>
+            <p>End Date @end  @endTime</p>
+            <p>
+                Entry Age:
+                @{ string ageLimit = "NONE"; if (Model.Event.AgeLimit != null) { ageLimit = Model.Event.AgeLimit.ToString(); } }
+                @ageLimit
+            </p>
+            <p>@Html.DisplayFor(model => model.Event.StreetAddress)</p>
+            <p>@Html.DisplayFor(model => model.Event.Suburb)</p>
+            <p>@Html.DisplayFor(model => model.Event.City)</p>
+            <p>@Model.Event.GPSCoordinates</p>
+            <!--<div class="product-desc">
+             <a href="@Model.Event.GoogleMapsLink">Click for Google Map</a>
+             </div>-->
+
+        </div>
+
+
+<div class="col-md-5">
+    <div class="event-info-wrapper ">
+        <h4>Ticket Types:</h4>
+        <hr>
+        @if (!String.IsNullOrEmpty(ViewBag.TicketsOnHoldMessage))
+        {
+
+            <h2>@ticketsonhold</h2>
+        }
+        else
+        {
+            if (Model.TicketClasses.Count > 0)
+            {
+
+           
+
+                <div>
+
+                    @foreach (var tc in Model.TicketClasses.Where(x => x.TicketClass.StatusID == @active))
+                    {
+
+                        <div class="event-info row">
+                            <a href="@Url.Action("PurchaseTickets", "Events", new { EventID = @Model.Event.ID } )">
+                                <div class="col-md-5 col-sm-5 col-xs-5 text-overflow">
+                                    @tc.TicketClass.Description
+                                </div>
+                                <div class="col-md-5 col-sm-5 col-xs-5 text-overflow">
+                                    R @tc.TicketClass.Price
+                                </div>
+                                <div class="col-md-5 col-sm-5 col-xs-5 text-overflow">
+                                    @{ var startTime1 = (DateTime)tc.TicketClass.StartDate;} @startTime1.ToString("MMM dd - HH:mm")
+                                </div>
+                                <div class="col-md-5 col-sm-5 col-xs-5 text-overflow">
+                                    @{ var endTime1 = (DateTime)tc.TicketClass.EndDate;} @endTime1.ToString("MMM dd - HH:mm")
+                                </div>
+
+                            </a>
+                        </div>
+                                        }
+
+                    @if (!TicketPurchasingClosed)
+                    {  
+                                @Html.ActionLink("Purchase Ticket", "PurchaseTickets", "Events", new { EventID = @Model.Event.ID }, new { @class = "btn btn-lg btn-default btn-block" })
+                          
+                    }
+                    else
+                    {
+                        <div class="event-info row">
+                            <h2 class="plain_grey">Ticket purchasing now closed</h2>
+                        </div>
+                    }
+                </div>
+
+
+                                        }
+
+                                        else
+                                        {
+                                            <div class="event-info row">
+                                                <h3>Tickets are not yet available for this event.</h3>
+                                            </div>
+                                            }
+                                        }
+
+
+    </div>
+</div>
+        </div>
+    </div>
+<div class="container">
+    <div class="row ">
+        <div class="col-md-10 col-md-offset-1 ">
+           <h3>Extra information</h3>
+            <h4 style="display:none;">Time left to purchase tickets @{var ticketdate = (DateTime)Model.Event.TicketCutoffDate;}</h4>
+            <div class="container">
+                <!-------------------Long Description---------------------->
+                @if (!String.IsNullOrEmpty(ViewBag.TicketsOnHoldMessage))
+                {
+                    <h2>@ticketsonhold</h2>
+                }
+                else
+                {
+                    if (Model.TicketClasses.Count > 0)
+                    {
+                        <div>
+                            @{
+                                if (TicketPurchasingClosed)
+                                {
+                                    <h2 class="plain_grey">Ticket purchasing now closed</h2>
+                                }
+                                else
+                                {
+
+                                    <h4>
+                                        Time left to purchase:
+
+
+                                        <span>@decimal.Floor((decimal)timespan.TotalDays).ToString("0") days</span>
+                                        <span> @decimal.Floor((decimal)hoursLeft).ToString("0") hours</span>
+                                        <span>@decimal.Floor((decimal)minutesLeft).ToString("0") minutes </span>
+                                    </h4>
+                                }
+                            }
+                        </div>
+                                        if (!TicketPurchasingClosed)
+                                        {
+
+                                        }
+                                    }
+                                }
+
+            </div>
+
+            <div>
+                <p style="white-space: pre-line"> @Model.Event.LongDescription</p>
+
+
+                <div>Sales end @ticketdate.ToString("yyyy-MM-dd")<!--Cut off date--> </div>
+                <div class="fa-exclamation-triangle" style="display:none; background-color:#000000">Ticket Cutoff Time @ticketdate.ToString("HH:mm")</div> <!--Cut off date-->
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+            

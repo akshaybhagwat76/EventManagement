@@ -1,0 +1,129 @@
+﻿@using Microsoft.AspNet.Identity
+@model MiidWeb.Models.MiiFundsRequestWithdrawalViewModel
+
+@{
+	ViewBag.Title = "Mii-Funds Request Withdrawal";
+
+
+	string NotificationInvalidCredentials = "";
+
+	if (ViewBag.NotificationInvalidCredentials != null)
+	{
+		NotificationInvalidCredentials = ViewBag.NotificationInvalidCredentials;
+	}
+
+	string NotificationMinAmount = "";
+	if (ViewBag.NotificationMinAmount != null)
+	{
+		NotificationMinAmount = ViewBag.NotificationMinAmount;
+	}
+
+	string NotificationInsufficientFunds = "";
+
+	if (ViewBag.NotificationInsufficientFunds != null)
+	{
+		NotificationInsufficientFunds = ViewBag.NotificationInsufficientFunds;
+	}
+
+
+}
+
+
+<!-- One -->
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+	@Html.HiddenFor(model => model.EndUserID)
+
+
+	@Html.HiddenFor(model => model.FirstName)
+
+	@Html.HiddenFor(model => model.Surname)
+
+
+	@Html.HiddenFor(model => model.TotalFunds)
+
+
+	@Html.HiddenFor(model => model.AvailableFunds)
+
+
+	@Html.HiddenFor(model => model.AdminFee)
+
+	@Html.ValidationMessageFor(model => model.RequestedAmount, "", new { @class = "red" })
+
+
+	<div class="container bg-grey">
+		<div class="row vertical-offset-40px">
+			<div class="col-md-6 col-md-offset-3">
+
+				<div class="panel panel-default ">
+
+                    <div class="panel-body text-center">
+
+
+                        <h3>Confirm Amount</h3>
+
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="text-left">Description</th>
+                                    <th class="text-right">Amount</th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    @{decimal totalPlusFee = (decimal)Model.RequestedAmount + (decimal)Model.AdminFee;
+                                        decimal reqAmount = (decimal)Model.RequestedAmount;
+                                        decimal adminFee = (decimal)Model.AdminFee;
+                                    }
+
+
+                                    <td class="text-left">Admin Fee</td>
+                                    <td class="text-right">R @adminFee.ToString("0.00")</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-left">Refund Requested</td>
+                                    <td class="text-right">R @reqAmount.ToString("0.00")</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-left"><h3>Total deducted</h3></td>
+                                    <td class="text-right"><h3>R @totalPlusFee.ToString("0.00") </h3></td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+                        @Html.HiddenFor(model => model.RequestedAmount)
+                        @Html.HiddenFor(model => model.AdminFee)
+
+
+
+                        <input type="submit" id="load" class="btn btn-primary btn-block btn-lg " value="Confirm" style="background-color:#13a048; border:0;" onclick="var e=this;setTimeout(function(){e.disabled=true;},0);return true;" />
+
+
+
+                        @Html.ActionLink("Edit", "RequestWithdrawal", new { id = @Model.ID }, new { @id = "load", @class = "btn" })
+
+
+                    </div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+             
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- One -->
+										}

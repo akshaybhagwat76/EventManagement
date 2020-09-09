@@ -1,0 +1,79 @@
+﻿@model MiidWeb.Models.EndUserGridViewModel
+@{
+	Layout = "~/Views/Shared/_LayoutBackEnd.cshtml";
+	 
+}
+
+        
+
+
+@using (Html.BeginForm("FindUserFilterable", "EventAdmin", FormMethod.Post, new { id = "form1" }))
+{
+<div class="col-md-9">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="content-box-header">
+				<div class="panel-title">Search User</div>
+
+				<div class="panel-options">
+
+				</div>
+			</div>
+			<div class="content-box-large box-with-header">
+
+
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<label>Search by ID/Passport Number</label>
+							@*<input type="text" name="demo-name" required id="demo-name" value="" placeholder="Keyword" />*@
+							@Html.TextBoxFor(model => model.IdNumberSearch, new { @class = "form-control" })
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+
+						<div class="form-group">
+							<label>Search by Name</label>
+							@*<input type="text" name="demo-name" required id="demo-name" value="" placeholder="Keyword" />*@
+							@Html.TextBoxFor(model => model.FirstNameSearch, new { @class = "form-control" })
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<label>Search by Last Name</label>
+							@Html.TextBoxFor(model => model.SurnameSearch, new { @class = "form-control" })
+						</div>
+						@*<input type="text" name="demo-name" required id="demo-name" value="" placeholder="Keyword" />*@
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+
+
+							<input type="submit" class="btn btn-primary" value="search" />
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+		
+
+
+		</div>
+	</div>
+		
+
+
+		}
+
+
+
+

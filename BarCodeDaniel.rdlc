@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
+  <AutoRefresh>0</AutoRefresh>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Image Name="Barcode">
+            <Source>Database</Source>
+            <Value>=Code.Convert("Test1234")</Value>
+            <MIMEType>image/bmp</MIMEType>
+            <Sizing>FitProportional</Sizing>
+            <Top>1.48767cm</Top>
+            <Left>4.29957cm</Left>
+            <Height>0.57748cm</Height>
+            <Width>9.5cm</Width>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Image>
+        </ReportItems>
+        <Height>3.55282cm</Height>
+        <Style />
+      </Body>
+      <Width>18.09913cm</Width>
+      <Page>
+        <PageHeight>29.7cm</PageHeight>
+        <PageWidth>21cm</PageWidth>
+        <InteractiveHeight>29.7cm</InteractiveHeight>
+        <InteractiveWidth>21cm</InteractiveWidth>
+        <LeftMargin>2cm</LeftMargin>
+        <RightMargin>0cm</RightMargin>
+        <TopMargin>2cm</TopMargin>
+        <BottomMargin>1cm</BottomMargin>
+        <ColumnSpacing>0cm</ColumnSpacing>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <Code>  Public Function Convert(Text As String) As Byte()
+            Dim b As System.Drawing.Bitmap
+         '   Dim bar As New BarcodeLib.Barcode
+            bar.Alignment = BarcodeLib.AlignmentPositions.LEFT
+            bar.IncludeLabel = False
+            bar.RotateFlipType = Drawing.RotateFlipType.RotateNoneFlipNone
+            b = bar.Encode(BarcodeLib.TYPE.CODE39Extended, Text, 400, 30)
+            Dim bitmapData As Byte() = Nothing
+            Using ms As New System.IO.MemoryStream()
+                b.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp)
+                bitmapData = ms.ToArray()
+            End Using
+            Return bitmapData
+        End Function</Code>
+  <CodeModules>
+    <CodeModule>System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</CodeModule>
+    <CodeModule>BarcodeLib, Version=1.0.0.22, Culture=neutral, PublicKeyToken=null</CodeModule>
+  </CodeModules>
+  <Classes>
+    <Class>
+      <ClassName>BarcodeLib.Barcode</ClassName>
+      <InstanceName>bar</InstanceName>
+    </Class>
+  </Classes>
+  <rd:ReportUnitType>Cm</rd:ReportUnitType>
+  <rd:ReportID>fb8230f4-132a-4f9d-b547-8df3390639f5</rd:ReportID>
+</Report>

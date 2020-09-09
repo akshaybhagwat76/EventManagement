@@ -1,0 +1,123 @@
+﻿@using MiidWeb.Models
+@model LoginViewModel
+@{
+	ViewBag.Title = "Log in";
+	Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("Layout");
+
+
+}
+
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Sign in to buy or download tickets</h5>
+
+                        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "login_form", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "red" })
+                            <form>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Email address</label>
+                                    @Html.TextBoxFor(m => m.Email, new { @id = "ValidEmail", @class = "form-control input-lg", placeholder = "Enter Email" })
+                                    @Html.ValidationMessageFor(m => m.Email, "", new { @id = "email", @class = "red" })
+                                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Password</label>
+                                    @Html.PasswordFor(m => m.Password, new { @id = "password", @class = "form-control input-lg", placeholder = "Password" })
+                                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "red" })
+                                </div>
+                                <div class="form-check">
+
+                                    <input type="checkbox" class="form-check-input" onclick="ShowPassword2()" />
+                                    <label class="form-check-label">@GlobalVariables.ShowPassword</label>
+
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+                                </div>
+                                <div class="form-group">
+                                    @Html.ActionLink("Register Now", "Register", "Account", new { RequestUrl = Request.RawUrl }, new { @class = "btn btn-primary btn-block" })
+                                </div>
+                                <div class="form-group">
+                                    <a href="~/Account/ForgotPassword" class="btn btn-primary btn-block">@GlobalVariables.ForgotpasswordText</a>
+                                </div>
+
+
+
+                            </form>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--igonre spces that where copied and pasted-->
+<script>
+    $('#ValidEmail').on("input", function () {
+        $(this).val($(this).val().replace(/ /g, ""));
+    });
+</script>
+<script>
+    $('#password').on("input", function () {
+        $(this).val($(this).val().replace(/ /g, ""));
+    });
+</script>
+
+
+
+
+
+<!--shows / hides password-->
+<!-- show hide password-->
+
+<script>
+	function ShowPassword2() {
+		var x = document.getElementById("password");
+		if (x.type === "password") {
+			x.type = "text";
+		} else {
+			x.type = "password";
+		}
+	}
+</script>
+
+<!--disables spacebar-->
+<script>
+
+
+	function doIt(e) {
+		var e = e || event;
+
+		if (e.keyCode == 32) return false;
+
+	}
+	window.onload = function () {
+		var inp = document.getElementById("ValidEmail");
+		var inpa = document.getElementById("password");
+
+
+		inp.onkeydown = doIt;
+		inpa.onkeydown = doIt;
+
+	};
+
+</script>
+
+
+<script>
+$(document).ready(function(){
+    $("#password").keydown(function (event) {
+    if (event.keyCode == 32) {
+        event.preventDefault();
+    }
+});
+});
+</script>

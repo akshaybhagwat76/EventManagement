@@ -1,0 +1,166 @@
+﻿@model IEnumerable<MiidWeb.Models.RefundTicketViewModelLite>
+
+@{
+    ViewBag.Title = "Pending transactions";
+    int rowcount = 1;
+    Layout = "~/Views/Shared/_LayoutEventOrganiser.cshtml";
+
+}
+
+<head>
+
+
+
+</head>
+
+
+
+
+@using (Html.BeginForm("RefundApprovals", "Events", FormMethod.Post, new { id = "form1" }))
+{
+
+
+
+
+    <div class="col-md-12">
+        <div class="content-box-header">
+
+
+            <div class="panel-title">
+                <div>Approve Ticket Refunds</div>
+            </div>
+
+
+
+            <div class="panel-options">
+
+            </div>
+        </div>
+        <div class="content-box-large box-with-header">
+            @Html.Hidden("hdnContext", (object)@ViewBag.Context)
+            @Html.Hidden("hdnRowCount", @Model.Count())
+
+            <div class="table-responsive" style="overflow-x:auto;">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Approve</th>
+                           
+                            <th width="15%">Reason</th>
+                            <th>Ticket Type  </th>
+                           
+                            <th>Customer Name</th>
+                            <th>Date Purchased </th>
+                            <th>Date Redeemed </th>
+                            <th>Status </th>
+                            <th>Bank Details</th>
+
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{  string userids = ""; }
+
+                        @foreach (var item in Model)
+                        {
+
+                        <tr>
+                            <td>
+
+
+                                @{
+                                    userids += item.EndUserID.ToString();
+
+                                    var chkid = "chk_" + item.ID.ToString();}
+
+
+
+                                <input type="checkbox" id=@chkid name=@chkid />
+                                <label for=@chkid></label>
+
+                            </td>
+                         
+
+                            <td>   @Html.DisplayFor(modelItem => item.Notes)   </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TicketClassName)
+                            </td>
+                            
+
+
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FirstName)&nbsp;
+                                @Html.DisplayFor(modelItem => item.Surname)
+                            </td>
+                            <td>
+
+                                @item.DatetimePurchased.Value.ToString("yyyy-MM-dd HH:mm")
+                            </td>
+                            <td>
+
+                                @Html.DisplayFor(modelItem => item.DatetimeRedeemed)
+                            </td>
+
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TicketStatus)
+                            </td>
+
+
+
+
+
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Country)   <br>
+                                @Html.DisplayFor(modelItem => item.Bank)      <br>
+                                @Html.DisplayFor(modelItem => item.BranchCode)    <br>
+                                @Html.DisplayFor(modelItem => item.AccountNumber)     <br>
+                                @Html.DisplayFor(modelItem => item.AccountType)         <br>
+                                @Html.DisplayFor(modelItem => item.AccountHolderName)   <br>
+                            </td>
+
+
+
+
+                        </tr>
+                                        }
+
+                       
+
+                    </tbody>
+
+                </table>
+                <input type="hidden" id="userids" name="userids" value="@userids" />
+            </div>
+            <div class="panel-footer panel-primary">
+                <div class="row">
+                    <div class="col-md-12">
+                        <input type="submit" class="btn btn-primary" value="Approved Selected Transactions" />
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        }

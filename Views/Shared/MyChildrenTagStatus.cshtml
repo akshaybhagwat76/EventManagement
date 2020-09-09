@@ -1,0 +1,75 @@
+﻿@using MiidWeb.Models
+@using MiidWeb.Repositories
+@model int
+@{
+    EndUserViewModel emv = new EndUserViewModel();
+
+    if (Model > 0)
+    {
+        emv = new EndUserViewModel(EndUserRepository.GetByUserID(Model));
+    }
+}
+@if (Model > 0)
+{
+ 
+    <div class="col-md-3">
+        <div class="card">
+
+            <div class="card-body">
+                <h5 class="card-title">@emv.EndUser.Firstname</h5>
+
+                <h5 class="card-title">User ID: @emv.EndUser.ID</h5>
+                <h5 class="card-title">Tag No: @emv.TagNumber</h5>
+                <p class="card-text">@MyMoneyRepository.MyAvailableFunds(@emv.EndUser.ID).ToString("0.00")</p>
+                <p class="card-text"> @emv.TagStatus </p>
+                @if (@emv.TagStatus == "No Tags" || @emv.TagStatus == "Cancelled")
+                {
+                    @Html.ActionLink("Activate", "CreateByUser", new { id = @ViewBag.EndUserID }, new { @class = "btn btn-primary btn-block" })
+
+                }
+                else
+                {
+                   
+                    @Html.ActionLink("Cancel Tag", "CancelByUser", "NFCTags", new { id = @emv.TagID }, new { @class = "btn btn-primary btn-block" })
+                }
+
+            </div>
+        </div>
+        </div>
+
+
+
+        if (Model > 0 && emv.MyChildren != null && emv.MyChildren.Count() > 0)
+        {
+        foreach (var child in emv.MyChildren)
+        {
+        <div class="col-md-3">
+            <div class="card">
+               
+                <div class="card-body">
+                    <h5 class="card-title">Name: @child.EndUser.Firstname</h5>
+                    <h5 class="card-title">User ID: @child.EndUser.ID</h5>
+                    <h5 class="card-title">Tag No: @child.TagNumber</h5>
+                    <p class="card-text">@MyMoneyRepository.MyAvailableFunds(@child.EndUser.ID).ToString("0.00")</p>
+                    <p class="card-text"> @child.TagStatus </p>
+
+                    @if (child.TagStatus == "No Tags" || child.TagStatus == "Cancelled")
+                    {
+                        @*  @Html.ActionLink("Add tag", "IndexByUserID", new { id = @child.EndUser.ID }, new { @class = "btn btn-primary btn-lg btn-block" })*@
+                        @Html.ActionLink("Activate", "CreateByUser", new { id = @child.EndUser.ID }, new { @class = "btn btn-primary btn-block" })
+                    }
+                    else
+                    {
+
+                        @Html.ActionLink("Cancel Tag", "CancelByUser", "NFCTags", new { id = @child.TagID }, new { @class = "btn btn-primary btn-block" })
+                    }
+
+
+                </div>
+            </div>
+        </div>
+
+        }
+        }
+        }
+

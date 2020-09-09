@@ -1,0 +1,138 @@
+﻿@using Microsoft.AspNet.Identity
+
+@model MiidWeb.Models.LoginViewModel
+@{
+	ViewBag.Title = "MiiD Event Organiser Landing Page";
+	ViewBag.Title = "Contact";
+
+	bool IAmEventOrganiser = false;
+	if (Request.IsAuthenticated)
+	{
+		IAmEventOrganiser = MiidWeb.Repositories.EndUserRepository.AmIAnEventOrganiser(User.Identity.GetUserName());
+	}
+
+}
+
+@if (IAmEventOrganiser)
+{
+	Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("LayoutEventOrganiser");
+}
+else
+{
+	Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("Layout");
+}
+
+<!--comment-->
+<meta property="og:image" content="https://www.miid.co.za/Uploads/genric.png" />
+<title>How it works: Online ticekting and cashless services</title>
+<meta name="description" content="Find out how Mi-id online ticketing and cashless services can work for your event.">
+
+<div id="page-content-wrapper">
+	<div class="container-fluid">
+
+		<div class="item-container ">
+			<div class="container padding">
+				<div class="col-md-12">
+
+					<div class="col-md-12">
+						<br><br>
+						<h1>How it works: Funds, Payout  & Pricing Guide</h1>
+						<hr>
+					</div>
+					<div class="col-md-12">
+						<p>
+							In essence, the mi-id platform allows you to sell tickets or use pre-paid cashless funds at your event and allows your customers to purchase tickets or top-up their pre-paid wallet.
+						</p>
+					</div>
+					<div class="col-md-12">
+						<br><br>
+						<h2>What happens once a customer makes payment?</h2>
+
+					</div>
+					<div class="col-md-12">
+						<p>
+							<h3>Online ticketing</h3>
+							Once a customer has purchased a ticket for your event the funds are transferred from their account through our secure online payment gateway into a holding account.  This is where the money generated for your event will stay until you request a payout of your funds.  The Sale of these tickets will show up on your Event organiser Dashboard where you can monitor how many tickets you have sold for your event and how much revenue you have generated.
+						</p>
+					</div>
+					<div class="col-md-12">
+						<p>
+							<h3>Cashless Events</h3>
+							Once a customer tops up funds via our secure payment gateway their money is transferred into a holding account. This is where their money stays until they make any transaction at your event using their funds.
+
+							Once they have made a transaction this will reflect on your Event Organiser dashboard. You event organiser dashboard will show how much money your event has generated as well as other various reports.
+
+							You can request the payout of these funds anytime after the transaction has taken place.
+						</p>
+					</div>
+
+
+					<div class="col-md-12">
+						<br><br>
+						<h2>Payouts</h2>
+
+					</div>
+					<div class="col-md-12">
+						<p>
+							<h3>How it works &Aacute; what to expect</h3>
+							You can request a payout of your funds at any time once they are in a positive balance. To request a  payout send us an email or contact your Mi-id representative.  Payouts will take around 3 working days to reflect in your account depending on which bank you bank with.
+						</p>
+					</div>
+
+
+					<div class="col-md-12">
+						<br><br>
+						<h2>Pricing</h2>
+						<p>The flowing prices are a guideline for the Mi-id services. If you have any questions relating to the prices or would like them explained in a bit more detail please contact your Mi-id representative or email info@miid.co.za</p>
+
+					</div>
+					<div class="col-md-12">
+						<p>
+							<h3>Online ticket</h3>
+							We charge a 2.5% commision rate on our online ticketing service. This will be deducted from your payout request.
+						</p>
+					</div>
+
+					<div class="col-md-12">
+						<p>
+							<h3>Box office</h3>
+							Box office
+							We charge a 2.5% commision rate on our box office tickets. Mi-id will bill you after the event or deduct it from your online ticket sales once you request a payout. The box office software needs a specialised POS printer that will be supplied by Mi-id for a small rental fee. Box office services agreements and rentals are done on an individual event basis according to the events needs.
+
+						</p>
+					</div>
+
+					<div class="col-md-12">
+						<p>
+							<h3>NFC Ticket</h3>
+							Box office
+							NFC ticketing is charged at a  2.5% commision rate. Services agreements and rentals are done on an individual event basis according to the events needs.
+
+
+						</p>
+					</div>
+
+					<div class="col-md-12">
+						<p>
+							<h3>Cashless Events</h3>
+							We charge a 2.5% commision rate on our online ticketing service. This will be deducted from your payout request.
+							<hr />
+						</p>
+					</div>
+					<div class="col-md-12">
+						For more information please contact your Mi-id representative, email us at info@miid.co.z or contact us through our online form
+					</div>
+
+				</div>
+				<div class="col-md-4 col-md-offset-4">
+					<br><br><br>
+					<a href="~/Eventorganisers/Register2" class="btn btn-default  btn-block btn-lg" style="margin-top:10px">Get in touch</a>
+				</div>
+
+			</div>
+
+
+		</div>
+	</div>
+</div>
+</div>

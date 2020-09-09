@@ -1,0 +1,73 @@
+.popup_logo { text-align: center; margin:auto; padding: 20px; display:block; }
+
+.popup_heading {font-family: Arial, Myriad ;  padding-bottom: 10px;width:100%; font-weight:bold; font-size:39px; text-align: center; display:block; color: #585858; border-bottom: 1px solid #ccc;}
+
+.popup_image_left {display: inline-block; margin-left: 60px;  margin-top: 20px; float:left;} 
+
+.popup_image_right {display: inline-block; margin-right: 50px;   float:right; clear:left;}
+
+.popup_container { font-family: Arial, Myriad ; display:table; width:100%; margin-top: 20px; height:100%; border-bottom: 1px solid #ccc; padding-bottom: 25px;}
+
+	#mask {
+  position:absolute;
+  left:0;
+  top:0;
+  z-index:9000;
+  background-color:rgba(0, 0, 0, 0.5);
+  display:none;
+}  
+#boxes .window { 
+  position:absolute;
+  left:0;
+  top:0;
+  width:740px;
+  height:200px;
+  display:none;
+  z-index:9999;
+  padding:20px;
+  border-radius:9px;
+  text-align: center;
+  border: 3px solid #f6ac1d ;
+}
+#boxes #dialog { margin-top: 200px;
+  width:750px; 
+  height:auto;
+  padding:10px;
+  background-color:rgba(255, 255, 255, 0.95);
+  font-family: 'Segoe UI Light', sans-serif;
+  font-size: 15pt;
+}
+.maintext{
+	text-align: center;
+  font-family: "Segoe UI", sans-serif;
+  text-decoration: none;
+}
+body{
+  background: url('bg.jpg');
+}
+#lorem{ margin-top:20px; width:500px;color: #585858; margin-left:70px; 
+display: inline-block;
+	font-family: "Segoe UI", sans-serif; 
+	font-size: 12pt;
+  text-align: left;
+  vertical-align: top;
+}
+#popupfoot{
+	font-family: "Segoe UI", sans-serif;
+	font-size: 26pt;
+  padding: 10px 20px;
+}
+#popupfoot a{
+	text-decoration: none;
+}
+.agree:hover{
+
+}
+.popupoption:hover{
+	background-color:#D1D1D1;
+	color: green;
+}
+.popupoption2:hover{
+	
+	color: red;
+}

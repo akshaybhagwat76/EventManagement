@@ -1,0 +1,211 @@
+﻿<html lang="en" xml:lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+    <link rel="stylesheet" href="~/Scripts/growl.css" type="text/css">
+
+
+    @Styles.Render("~/content/css/newcss/bootstrap.min.css")
+    @Styles.Render("~/content/css/newcss/sidebar.css")
+    @Styles.Render("~/content/css/newcss/footer.css")
+    @Styles.Render("~/content/css/newcss/carousel.css")
+    @Styles.Render("~/content/css/newcss/portfolio-item.css")
+    @Styles.Render("~/content/css/newcss/help.css")
+    @Styles.Render("~/content/css/newcss/login.css")
+    @Styles.Render("~/content/css/newcss/search.css")
+    @Styles.Render("~/content/css/newcss/product.css")
+    @Styles.Render("~/content/css/newcss/font-awesome.css")
+    @Styles.Render("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css")
+
+
+    @Scripts.Render("~/content/js/jquery-1-12-4-min.js")
+    @Scripts.Render("~/content/js/jquery-touchswipe-min.js")
+
+    <!-- Google Tag Manager -->
+    <script>
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TKCDRPP');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Custom CSS -->
+    <!-- splash screen loaded -->
+    <script type="text/javascript">
+		jQuery(document).ready(function () {
+			$("#loader").delay(800).fadeOut(400, function () {
+				$("#your-page").fadeIn(400);
+			});
+		});
+    </script>
+
+
+
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+
+
+    <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
+
+
+
+</head>
+<body>
+
+    
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+
+
+            <div class="navbar-header">
+
+
+                <div class="navbar-brand">
+                    <i id="menu-toggle">   <a href="https://www.miid.co.za/"> <img src="~/Content/images/newimages/logo_dark.svg" class="logo"></a></i>
+                </div>
+
+
+            </div>
+
+
+
+        </div>
+    </nav>
+    <!--  first section picture & form -->
+
+
+
+
+@RenderBody()
+
+
+
+
+
+
+
+<footer>
+
+    <div class="footer" id="footer">
+
+        <div class="container">
+            <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
+                    <h3> General </h3>
+                    <ul>
+                       
+                        <li>@Html.ActionLink("Help", "Help", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    </ul>
+                </div>
+                <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
+                    <h3> Event Organisers</h3>
+                    <ul>
+
+                        <li> <a href="~/Home/ProductSummary">Services &amp; Products </a> </li>
+                        <li> <a href="~/Home/HelpEventOrganiser">Event Organiser's FAQ's </a> </li>
+
+                    </ul>
+                </div>
+                <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
+                    <h3> Extra info</h3>
+                    <ul>
+                        <li> <a href="~/Home/RegisterDoc">  Terms & Conditions </a> </li>
+                        <li> <a href="~/Home/TermsConditions">  Privacy Policy </a> </li>
+
+                    </ul>
+                </div>
+                <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
+                    <h3> Contact us </h3>
+                    <ul>
+                        <li> <p>MiiD (PTY) ltd</p> </li>
+                        <li> <p>Cape Town</p> </li>
+                        <li> <p>South Africa</p> </li>
+                        <li> <p>info@Miid.co.za</p> </li>
+
+                    </ul>
+                </div>
+                <div class="col-lg-3  col-md-3 col-sm-6 col-xs-12 ">
+                    <h3>Keep in touch</h3>
+                    <!-- <ul>
+                         <li>
+                             <div class="input-append newsletter-box text-center">
+                                 <input type="text" class="full text-center" placeholder="Email ">
+                                 <br><br>
+                                 <button class="btn" type="button"> Sign up to our newsletter </button>
+                             </div>
+                         </li>
+                     </ul>-->
+                    <ul class="social">
+                        <li> <a href="https://www.facebook.com/miidevents/"> <i class="fa fa-facebook"></i> </a> </li>
+
+                        <li><a href="https://api.whatsapp.com/send?phone=27614512633"> <i class="fa fa-whatsapp"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <!--/.row-->
+        </div>
+        <!--/.container-->
+    </div>
+    <!--/.footer-->
+    <!--/.footer-bottom-->
+</footer>
+        </div>
+<!-- /.container -->
+
+
+
+<script src="~/Scripts/jsnew/jquery.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="~/Scripts/jsnew/bootstrap.min.js"></script>
+<script type="text/javascript">
+  /*Menu-toggle*/
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("active");
+    });</script>
+@Scripts.Render("~/content/js/jquery1.1.2/jquery.min.js")
+@Scripts.Render("~/content/js/jquery2.1.3/jquery.min.js")
+<!-- Latest compiled and minified JavaScript -->
+@Scripts.Render("~/content/js/bootstrap.min.js")
+  
+
+
+
+
+
+@Scripts.Render("~/bundles/jquery")
+
+@Scripts.Render("~/Scripts/jquery.tokeninput.js")
+
+
+
+
+@{
+    string[] parts = new string[10];
+
+    if (TempData.ContainsKey("Growl") && !String.IsNullOrEmpty((string)TempData["Growl"]))
+    {
+        string growl = (string)TempData["Growl"];
+        parts = growl.Split(':');
+
+
+
+        <script type="text/javascript">
+        growl('@parts[0]', '@parts[1]');
+        </script>
+    }
+
+}
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TKCDRPP"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+</body>
+</html>

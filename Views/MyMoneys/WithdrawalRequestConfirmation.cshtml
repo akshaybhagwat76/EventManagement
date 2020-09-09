@@ -1,0 +1,111 @@
+﻿@model MiidWeb.Models.MiiFundsRequestWithdrawalViewModel
+
+@{
+	ViewBag.Title = "Withdrawal Request Confirmation";
+}
+
+@Html.HiddenFor(model => model.EndUserID)
+@Html.HiddenFor(model => model.TotalFunds)
+@Html.HiddenFor(model => model.AvailableFunds)
+@Html.HiddenFor(model => model.AdminFee)
+
+<div class="container bg-grey">
+	<div class="row vertical-offset-40px">
+		<div class="col-md-6 col-md-offset-3">
+
+			<div class="panel panel-default ">
+
+				<div class="panel-body text-center">
+
+
+					<h3> Transaction Successful</h3>
+					<br><br>
+					<i class="fa fa-check fa-5x" aria-hidden="true" style="color:#139242"></i>
+					<br><br>
+					<p>
+						We have received your Mii Funds Withdrawal request<br>
+						We will notify you by email once we have made the refund to your registered bank account.
+					</p>
+
+					@Html.ActionLink("Continue", "IndexByUserID", null, new { @class = "btn btn-default btn-block btn-lg" })
+
+
+				</div>
+			</div>
+		
+		</div>
+	</div>
+</div>
+   
+
+<section>
+
+	<div class="container">
+		<div class="underline_div">
+			<div class="three_columb">
+			</div>
+		</div>
+		<div class="p">
+		</div>
+	</div>
+
+</section>
+<div class="container">
+	<section>
+
+		<ul class="actions">
+			<li></li>
+		</ul>
+
+
+	</section>
+
+</div>
+
+
+
+
+
+
+@*<div class="purchase_container_form">
+
+
+		<div class="left_ticket_container">
+
+
+
+
+			@Html.HiddenFor(model => model.EndUserID)
+			@Html.HiddenFor(model => model.TotalFunds)
+			@Html.HiddenFor(model => model.AvailableFunds)
+			@Html.HiddenFor(model => model.AdminFee)
+
+			<div class="ticket_total">
+				<div class="ticket_total_text_two">First Name: @Html.DisplayFor(model => model.FirstName) </div>
+			</div>
+
+			<div class="ticket_total">
+				<div class="ticket_total_text_two">Surname: @Html.DisplayFor(model => model.Surname) </div>
+			</div>
+
+			<div class="ticket_total">
+				<div class="ticket_total_text_two">Fee: @Html.DisplayFor(model => model.AdminFee) </div>
+			</div>
+
+			<div class="ticket_total">
+				<div class="ticket_total_text_two">Amount: R @Html.DisplayFor(model => model.RequestedAmount)</div>
+			</div>
+
+			<div class="tender_ticket_small_two">
+				We will notify you by email once we have made the refund to your registered bank account
+
+			</div>
+		</div>
+
+		@Html.ActionLink("Continue", "IndexByUserID", null, new { @class = "buy_ticket" })
+
+
+	</div>*@
+
+
+

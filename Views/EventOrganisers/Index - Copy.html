@@ -1,0 +1,119 @@
+﻿@model IEnumerable<MiidWeb.EventOrganiser>
+
+@{
+    ViewBag.Title = "Event Organisers";
+}
+
+<h2>Event Organisers</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.CompanyName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContactName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telephone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SecondaryContactName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SecondaryContactTelephone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SecondaryContactEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bank)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BankAccountNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BranchCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BankType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateCreated)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateUpdated)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status.Code)
+        </th>
+        
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompanyName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telephone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SecondaryContactName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SecondaryContactTelephone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SecondaryContactEmail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bank)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BankAccountNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BranchCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BankType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateCreated)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateUpdated)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status.Code)
+        </td>
+      
+    </tr>
+}
+
+</table>

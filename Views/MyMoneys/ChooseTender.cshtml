@@ -1,0 +1,88 @@
+﻿@model MiidWeb.Models.PurchaseTicketViewModel
+@{
+    /**/
+
+    ViewBag.Title = "Choose Tender";
+
+    Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("Layout");
+
+    bool UsePayGenius = MiidWeb.Repositories.TicketRepository.UsePayGenius();
+    var Today = DateTime.Now;
+    var EventDate = ((DateTime)(Model.Event.StartDateTime));
+    TimeSpan differnce = EventDate - Today;
+    var DaysToEvent = differnce.TotalDays;
+}
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Pre-paid Funds</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                The funds avaiable on your MiiD account represent the amount that you can spend at events where the Mi-id Cashless Payments Service is being offered. Use this menu to top-up MiiFunds or request a withdrawal of your remaining funds.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Close  Modal -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+
+                <div class="card-body">
+                    <h5 class="card-title">Choose your payment option</h5>
+                    <p class="card-text"><i class="fas fa-info-circle" data-toggle="modal" data-target="#exampleModalCenter"></i>Payment option information</p>
+                    @if (ViewBag.costOfTotalPurchase > Model.DiscountAmount)
+                    {
+                        if (UsePayGenius)
+                        {
+                            @Html.ActionLink("Pay Genius", "ConfirmTender", new { id = 7, sid = @ViewBag.ID }, new { @class = "btn btn-info btn-block" })
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Instant-EFT or Card", "ConfirmTender", new { id = 2, sid = @ViewBag.ID }, new { @class = "btn btn-info btn-block " })
+                        }
+                        if (Model.Event.HasSeatingPlan == true)
+                        {
+
+                            <input type="button" class="btn btn-primary btn-block" disabled value="Bank Transfer" />
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Standard EFT", "ConfirmTender", new { id = 1, sid = @ViewBag.ID }, new { @class = "btn btn-info btn-block" })
+                        }
+                        if (@Model.MyMoneyCurrentBalance > 0)
+                        {
+                            if (ViewBag.costOfTotalPurchase > Model.DiscountAmount)
+                            {
+                                @Html.ActionLink("Pre-Paid Funds", "ConfirmTender", new { id = 0, sid = @ViewBag.ID }, new { @class = "btn btn-info btn-block", })
+                            }
+                            <div>@Model.MyMoneyCurrentBalance</div>
+                        }
+                    }
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+

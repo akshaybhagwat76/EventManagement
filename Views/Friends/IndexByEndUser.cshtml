@@ -1,0 +1,56 @@
+﻿@using Microsoft.AspNet.Identity
+@model IEnumerable<MiidWeb.Models.FriendViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>My Friends</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+
+        </th>
+        <th> FirstName
+          
+        </th>
+        <th>Surname
+
+        </th>
+        <th>City
+           
+        </th>
+        
+        <th>
+           
+        </th>
+        <th>
+           
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <a href="@Url.Action("EndUserProfile", "EndUsers", new { id = item.Friend.ID, loggedInUserID = @MiidWeb.Helpers.UserHelper.UserID(User.Identity.GetUserName()) }, null)">
+                
+                <img src="~/images/@item.Friend.ProfilePicURL" width="20%" />
+            </a>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Friend.Firstname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Friend.Surname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Friend.City)
+        </td>
+       
+       
+    </tr>
+}
+
+</table>

@@ -1,0 +1,240 @@
+﻿@model MiidWeb.EndUser
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>EndUser</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Surname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Surname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Firstname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Firstname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOfBirth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateOfBirth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IDNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Age)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Age)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sex)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sex)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RaceID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RaceID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StreetAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StreetAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Suburb)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Suburb)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PostalCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PostalCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telephone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telephone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cell)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cell)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AccountBalance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccountBalance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsChildUser)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsChildUser)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NextOfKin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NextOfKin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NextOfKinTelephone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NextOfKinTelephone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Medication)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Medication)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MedicalAidCompany)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MedicalAidCompany)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MedicalAidNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MedicalAidNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Allergies)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Allergies)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KnownConditions)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KnownConditions)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AccountType.Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccountType.Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndUser2.Surname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndUser2.Surname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status.Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status.Code)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,63 @@
+﻿@model IEnumerable<MiidWeb.CM>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PagePath)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Paral)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Para2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Para3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Para4)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateTimeCreated)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PagePath)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Paral)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Para2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Para3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Para4)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateTimeCreated)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

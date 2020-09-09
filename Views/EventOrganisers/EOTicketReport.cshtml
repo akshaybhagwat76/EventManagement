@@ -1,0 +1,254 @@
+﻿@model IEnumerable<MiidWeb.Models.EOTicketReport>
+@{
+    ViewBag.Title = "Ticket Report";
+    Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("LayoutEventOrganiser");
+    int rowNumber = 1;
+}
+
+<!-- //market-->
+<div class="row">
+    <div class="panel-body">
+        <div class="col-md-12 w3ls-graph">
+            <!--agileinfo-grap-->
+            <div class="agileinfo-grap">
+                <div class="agileits-box">
+                    @using (Html.BeginForm("ExportSearchResults", "EventOrganisers", FormMethod.Post))
+                    {
+                        <div class="row">
+
+                            @Html.Hidden("TicketIDList", (object)ViewBag.TicketIDList)
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h3>Ticket Report</h3>
+                            </div>
+                            <div class="col-md-6">
+
+
+                                <input type="submit" value="Export Search Results" class="btn btn-default pull-right" />
+                            </div>
+                        </div>
+
+
+                    }
+                    
+                    <hr>
+
+
+                    @using (Html.BeginForm("EOTicketReport", "EventOrganisers", FormMethod.Get))
+                    {
+                        @Html.Hidden("EventID", (object)ViewBag.EventID)
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>From Date</label>
+                                    <input type="date" id="fromdate" name="fromdate" class="form-control" placeholder="From Date" />
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>To Date</label>
+                                    <input type="date" id="todate" name="todate" class="form-control" placeholder="To Date" />
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Ticket Start Date</label>
+                                    <input type="date" class="form-control" name="ticketstartdate" id="ticketstartdate" placeholder="ticketstartdate" />
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>ID number</label>
+                                    <input type="text" class="form-control" name="idnumber" id="idnumber" placeholder="ID number" />
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group focus">
+                                    <label>Ticket number</label>
+                                    <input type="text" class="form-control" name="ticketnumber" id="ticketnumber" placeholder="Ticket Number" />
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Firstname</label>
+                                    <input type="text" class="form-control" name="firstname" id="firstname" placeholder="FirstName" />
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Surname</label>
+                                    <input type="text" class="form-control" name="surname" id="surname" placeholder="Surname" />
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <hr />
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group">
+
+
+                                <input type="submit" value="Search Tickets" class="btn btn-primary" />
+
+                            </div>
+                        </div>
+
+
+                    }
+
+
+
+
+                    <div class="row">
+                        <hr />
+                    </div>
+                    <div class="row">
+
+                        @using (Html.BeginForm("EOTicketReport", "EventOrganisers", FormMethod.Post))
+                        {
+                            @Html.Hidden("hdnRowCount", @Model.Count())
+                            @Html.Hidden("EventID", (object)ViewBag.EventID)
+
+                            if (@Model.Count() == 0)
+                            {
+                               
+                                        <h5>No tickets sold for this event and the selected criteria</h5>
+                                  
+                                        <p></p>
+
+                            }
+                            else
+                            {
+
+
+                            <div class="table-responsive" style="overflow-x:auto;">
+                                <table class="table table-striped table-bordered">
+                                    <thead>
+										<tr>
+											@*Name
+		Surname
+		ID Number
+		Ticket Type (TicketClass)
+		Ticket Number
+		Button stating “Mark of a used”
+		Ticket Start Date & Time
+		Ticket End Date  & Time*@
+											<th>Mark off as used</th>
+                                            <th>Download</th>
+											<th>FirstName</th>
+											<th>Surname</th>
+											<th>Email</th>
+											<th>Phone</th>
+											<th>IDNumber</th>
+											@*<th>Email</th>
+		<th>Cell</th>*@
+											<th>Ticket Type</th>
+											<th>Ticket Number</th>
+
+											@*<th>DatetimePurchased</th>*@
+											<th>Status</th>
+											<th>Ticket Start Date</th>
+											<th>Ticket End Date</th>
+											<th>Purchase Date</th>
+
+										</tr>
+                                    </thead>
+                                    <tbody>
+
+
+                                     
+
+                                           @foreach (var item in @Model)
+                                           {
+                                            @Html.Hidden("TicketID_" + rowNumber, item.TicketID)
+										<tr>
+											@if (@item.TicketStatus == "Used")
+											{
+												<td>  <input type="checkbox" disabled="disabled" checked="checked" /></td>
+											}
+											else
+											{
+												<td> @Html.CheckBox(String.Format("chk_{0}", @rowNumber), @item.TicketStatus == "Used") </td>
+											}
+
+                                        <td>
+                                            <a href="~/MiiDTicketPDFsForDownload/Ticket_@item.TicketID&period;PDF">Download</a>
+                                        </td>
+											<td> @item.FirstName </td>
+
+
+											<td> @item.Surname </td>
+
+
+											<td> @item.Email </td>
+
+
+											<td> @item.Cell </td>
+
+
+											<td> @item.IDNumber </td>
+
+
+
+
+											<td> @item.TicketClassName </td>
+
+
+											<td> @item.TicketNumber </td>
+
+
+
+
+
+											<td> @item.TicketStatus </td>
+
+
+											<td> @item.TicketStartDate.ToString("yyyy-MM-dd HH:mm")  </td>
+
+
+											<td> @item.TicketEndDate.ToString("yyyy-MM-dd HH:mm")  </td>
+
+											<td> @item.DatetimePurchased.ToString("yyyy-MM-dd HH:mm")  </td>
+
+										</tr>  rowNumber++;
+
+
+
+                                           }
+                                      
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-md-12">
+
+
+                                    <input type="submit" value="MARK AS USED" class="btn btn-danger" />
+                                </div>
+                            </div>
+
+                            }
+
+
+                        }
+                    </div>
+
+                </div>
+</div>
+</div>
+</div>
+</div>
+<script type="text/javascript">
+
+    $(function () {
+        $('.focus :input').focus();
+    });
+</script>

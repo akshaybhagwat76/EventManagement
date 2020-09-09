@@ -1,0 +1,285 @@
+﻿@model MiidWeb.Models.EventOrganiserViewModel
+@{
+    ViewBag.Title = "Event Organiser Profile";
+    Layout = null;
+}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-GB">
+<head>
+    <title>Event Organiser Profile</title>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="robots" content="index, follow" />
+    <meta name="viewport" content="initial-scale=0.8" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../../content/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="../../content/css/popup.css" type="text/css" />
+
+
+
+    <script src="../../scripts/carousel/jquery-1.8.2.min.js" type="text/javascript"></script>
+    <script src="../../scripts/carousel/jquery.carouFredSel-6.0.4-packed.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('.carousel').carouFredSel({
+                width: '100%',
+                items: {
+                    visible: 3,
+                    start: -1
+                },
+                scroll: {
+                    items: 1,
+                    duration: 1000,
+                    timeoutDuration: 5000
+                },
+                prev: '.prev',
+                next: '.next',
+                pagination: {
+                    container: '.pager',
+                    deviation: 1
+                }
+            });
+        });
+    </script>
+
+</head>
+<body class="profile_body">
+
+
+
+
+    <div class="header">
+
+        <div class="header_wrapper">
+
+            <div class="header_container_left">
+                <img src="../../content/images/logo.png" alt=" miiImage" class="logo" />
+
+                <ul class="drop_menu">
+                    <li>
+                        <img src="../../content/images/drop_menu.png" alt=" miiImage" class="logo" />
+                        <ul>
+                            <li><a href='#'>About</a></li>
+                            <li><a href='#'>Services</a></li>
+                            <li><a href='#'>FAQ's</a></li>
+                            <li><a href='#'>Help</a></li>
+                            <li><a href='#'>Log Out</a></li>
+
+                        </ul>
+                    </li>
+
+
+                </ul>
+
+
+
+            </div>
+
+
+
+
+        </div>
+
+    </div>
+
+
+    <div class="profile_body_container">
+       
+
+
+
+        <div class="colmask threecol">
+
+            <div class="colmid">
+
+
+                <div class="colleft">
+                    <div class="col1">
+                        <!-- Column 1 start -->
+                        <div class="events_user_heading">Event Organiser Dashboard</div>
+                        <div class="middle_container_eventorganiser">
+                            <div class="event_heading_top_container">
+                                <img src="../../content/images/event_dash_info.png" class="event_dash_img" />
+                                <div class="events_user_heading_sub">Current Events</div>
+
+                            </div>
+                            <div class="inner_middle_container">
+
+
+                                <div class="newsfeed_container_eventorganiser">
+
+                                    @foreach (var ev in Model.MyEvents)
+                                    {
+                                        <div class="event_container">
+
+                                            <div class="search_event_img_container">
+                                              
+                                            </div>
+
+                                            <div class="search_event_left_bold">Event Name: @ev.Event.EventName</div>
+                                            <div class="search_event_left">@{ var dt = (DateTime)ev.Event.StartDateTime; } @dt.ToString("dd MMM yyyy HH:mm") </div>
+
+                                            <div class="event_info_text">
+
+
+                                             
+                                                <div class="dashboard_info_container">
+                                                    <div class="dashboard_info_name">Total Vendors</div>
+                                                    <div class="dashboard_info">@ev.Vendors.Count()</div>
+                                                </div>
+
+                                                <div class="dashboard_info_container">
+                                                    <div class="dashboard_info_name">Revenue Generated</div>
+                                                    <div class="dashboard_info">R  @(ev.TotalVendorRevenueGenerated + ev.TotalTicketSaleRevenueGenerated)</div>
+                                                </div>
+                                                <div class="dashboard_info_container">
+                                                    <div class="dashboard_info_name">Event Starts in </div>
+                                                    <div class="dashboard_info">@ev.DaysTilEvent days	</div>
+                                                    <div class="dashboard_info">@ev.HoursTilEvent hours	</div>
+                                                    <div class="dashboard_info">@ev.MinutesTilEvent minutes </div>
+                                                </div>
+
+                                                @Html.ActionLink("View Event Page...", "DetailsByEONoTickets", "Events", new { id = @ev.Event.ID }, new { @class = "blue_text_clear" })
+                                                @Html.ActionLink("Edit Event Page...", "EditByEONoTickets", "Events", new { id = @ev.Event.ID }, new { @class = "blue_text_clear" })
+
+
+                                            </div>
+                                        </div>
+
+                                    }
+
+
+
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+
+                        <div class="middle_container_eventorganiser">
+                            <div class="event_heading_top_container">
+                                <img src="../../content/images/event_dash_info.png" class="event_dash_img" />
+                                <div class="events_user_heading_sub">Previous Events</div>
+
+                            </div>
+                            <div class="inner_middle_container">
+
+
+                                <div class="newsfeed_container_eventorganiser">
+
+
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+
+
+
+
+
+                        <!-- Column 1 end -->
+                    </div>
+                    <div class="col2">
+                        <!-- Column 2 start -->
+                        <div class="profile_name">@Model.EventOrganiser.CompanyName</div>  <!-- link profile database to user name-->
+                        <div class="profile_edit">@Html.ActionLink("Company Details...", "EditMyDetails")</div> <!--linke to edit profile page-->
+                        <div class="profile_img">@{ var imagesrc = "../../Uploads/" + Model.EventOrganiser.ProfilePicURL; }	<img src=@imagesrc width="100%" />	</div>
+
+
+                        <div class="option_container">
+
+                            <div class="icon_left"> <img src="../../content/images/profile_event_icon.png" /></div>
+                            <a href="../Events/CreateByEONoTickets"><input type="button" class="profile_ticket_button" name="userlogging_button" value="Create Event" /></a>
+
+                        </div>
+                        <div class="option_container">
+
+                            <div class="icon_left"> <img src="../../content/images/profile_kids_icon.png" /></div>
+                            <input type="button" class="profile_ticket_button" name="userlogging_button" value="Account" /></label>
+
+                        </div>
+
+
+
+
+
+
+
+
+
+                        <!-- Column 2 end -->
+                    </div>
+                    <div class="col3">
+                        <!-- Column 3 start -->
+                        <div class="ads">
+
+
+                        </div>
+                        <div id="ads">
+
+
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer_two">
+
+            <div class="footer_wrapper">
+
+                <div class="footer_container_border_none">
+                    <div class="footer_heading">Information</div>
+                    <div class="footer_copy">About</div>
+                    <div class="footer_copy">Services</div>
+
+
+
+
+                </div>
+                <div class="footer_container_border_left">
+
+                    <div class="footer_heading">Need Help?</div>
+                    <div class="footer_copy">FAQ's</div>
+                    <div class="footer_copy">T&C's</div>
+                    <div class="footer_copy">Help Desk</div>
+                    <div class="footer_copy">Contact</div>
+
+                </div>
+                <div class="footer_container_border_left">
+
+                    <div class="footer_heading">Other</div>
+                    <div class="footer_copy">Careers</div>
+                    <div class="footer_copy">Marketing</div>
+                    <div class="footer_copy">Partnerships</div>
+
+                </div>
+                <div class="footer_container_border_left">
+
+                    <div class="footer_heading">Social</div>
+                    <div class="footer_copy">Facebook</div>
+                    <div class="footer_copy">Twitter</div>
+                    <div class="footer_copy">Google+</div>
+                    <div class="footer_copy">Linkedin</div>
+
+                </div>
+
+
+
+            </div>
+        </div>
+ 
+    </div>
+ 
+</body>
+</html>

@@ -1,0 +1,68 @@
+﻿@using MiidWeb.Models
+@using MiidWeb.Repositories
+@model int
+@{
+    EndUserViewModel emv = new EndUserViewModel();
+
+    if (Model > 0)
+    {
+        emv = new EndUserViewModel(EndUserRepository.GetByUserID(Model));
+    }
+}
+@if (Model > 0 && Model > 0 && emv.MyChildren != null && emv.MyChildren.Count() > 0)
+{
+
+    foreach (var child in emv.MyChildren)
+    {
+
+        <div class="col-md-3">
+            <div class="card">
+                <img class="card-img-top" src="..." alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">@child.EndUser.Firstname @child.EndUser.Surname</h5>
+                    <p class="card-text">@MyMoneyRepository.MyAvailableFunds(@child.EndUser.ID).ToString("0.00")</p>
+                    @Html.ActionLink("Transactions", "ViewDetailedBalance", "MyMoneys", new { id = @child.EndUser.ID }, new { @class = "btn btn-raised btn-primary btn-block" })
+                </div>
+            </div>
+        </div>
+
+
+    }
+}
+
+else
+{
+
+    <div class="col-md-3">
+        <div class="card">
+            <img class="card-img-top" src="..." alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Add a child account</h5>
+                <p class="card-text">Lorem Ipsum</p>
+                <a href="~/EndUsers/RegisterChildAccount" class="btn btn-primary btn-block">Add</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card">
+            <img class="card-img-top" src="..." alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Add a child account</h5>
+                <p class="card-text">Lorem Ipsum</p>
+                <a href="~/EndUsers/RegisterChildAccount" class="btn btn-primary btn-block">Add</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card">
+            <img class="card-img-top" src="..." alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Add a child account</h5>
+                <p class="card-text">Lorem Ipsum</p>
+                <a href="~/EndUsers/RegisterChildAccount" class="btn btn-primary btn-block">Add</a>
+            </div>
+        </div>
+    </div>
+
+}
+

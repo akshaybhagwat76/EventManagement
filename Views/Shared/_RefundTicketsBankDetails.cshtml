@@ -1,0 +1,117 @@
+﻿@using Microsoft.AspNet.Identity
+@model MiidWeb.Models.RefundTicketViewModel
+
+@{
+    ViewBag.Title = "Ticket Refund Bank Details";
+
+
+    var u1 = MiidWeb.Repositories.EndUserRepository.GetByUserName(User.Identity.GetUserName());
+
+
+
+}
+
+
+
+    @Html.Hidden("EndUserID", (object)u1.ID)
+
+
+    @Html.HiddenFor(model => model.FirstName)
+
+    @Html.HiddenFor(model => model.Surname)
+
+    
+
+    @Html.HiddenFor(model => model.AvailableTicketValue)
+
+
+    @Html.HiddenFor(model => model.AdminFee)
+
+    @Html.ValidationMessageFor(model => model.RequestedAmount, "", new { @class = "red" })
+
+
+
+
+	
+
+			<div class="panel panel-default ">
+				
+                <div class="panel-body">
+
+                    <br>
+
+                    <h4 class="text-center"><strong>Refund Ticket Request</strong></h4>
+
+                    <h5 class="text-center">Please note, completing this form does not gaurentee a refund. Refunds are at sole descrestion of the event organiser</h5>
+                    <p class="text-center">Please note: We only use your banking details until we have transferred the funds. You will need to enter your details each time you request a refund. </p>
+
+
+
+
+                    <div class="form-group">
+                        <br>
+                        <label><span class="req">* </span>Country</label>
+
+                        @Html.TextBoxFor(model => model.Country, new { @class = "form-control input-lg", placeholder = "eg. South Africa" , required="required" })
+
+                    </div>
+
+                    <div class="form-group">
+                        <label><span class="req">* </span>Bank</label>
+                        @Html.TextBoxFor(model => model.Bank, new { @class = "form-control input-lg", placeholder = "eg. FNB" , required="required"})
+
+                    </div>
+
+                    <div class="form-group">
+                        <label><span class="req">* </span>Branch Code</label>
+                        @Html.TextBoxFor(model => model.BranchCode, new { @class = "form-control input-lg", placeholder = "eg. 250650" , required="required"  })
+
+                    </div>
+
+                    <div class="form-group">
+                        <label><span class="req">* </span>Account Number</label>
+                        @Html.TextBoxFor(model => model.AccountNumber, new { @class = "form-control input-lg", placeholder = "eg. 4575010000", required="required" })
+
+                    </div>
+
+                    <div class="form-group">
+                        <label><span class="req">* </span>Account Type</label>
+                        @Html.TextBoxFor(model => model.AccountType, new { @class = "form-control input-lg", placeholder = "eg. Savings", required="required" })
+
+                    </div>
+
+                    <div class="form-group">
+                        <label><span class="req">* </span>Account Holder Name</label>
+                        @Html.TextBoxFor(model => model.AccountHolderName, new { @class = "form-control input-lg", placeholder = "eg. Your name", required="required" })
+
+                    </div>
+                    <div class="form-group">
+                        <label>Reason</label>
+                        @Html.TextAreaFor(model => model.Notes, new { @class = "form-control input-lg", placeholder = "eg. Any special instructions" })
+
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Request Refund" class="btn btn-primary btn-block btn-lg" />
+                        </div>
+
+                    </div>
+                </div>
+			
+
+				
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                    

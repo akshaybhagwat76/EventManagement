@@ -1,0 +1,181 @@
+﻿@model MiidWeb.Vendor
+
+@{
+	ViewBag.Title = "Delete";
+
+	Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+	//Layout = null;
+}
+
+<style>
+	<!--
+
+	.glyphicon {
+		cursor: pointer;
+	}
+
+	input,
+	select {
+		width: 100%;
+	}
+	-->
+</style>
+<div class="col-md-9">
+	<div class="row">
+		<div class="col-md-12">
+
+			<div class="panel-title panel-warning">
+				<div class="panel panel-danger">
+					<div class="panel-heading">Warning: Are you sure you would like to delete Ticket:<strong> @Model.VendorCode</strong></div>
+					<div class="panel-body">
+						<dl class="dl-horizontal">
+							<dt>
+								@Html.DisplayNameFor(model => model.IDNumber)
+							</dt>
+
+							<dd>
+								@Html.DisplayFor(model => model.IDNumber)
+							</dd>
+
+							<dt>
+								@Html.DisplayNameFor(model => model.Name)
+							</dt>
+
+							<dd>
+								@Html.DisplayFor(model => model.Name)
+							</dd>
+
+							<dt>
+								@Html.DisplayNameFor(model => model.Telephone)
+							</dt>
+
+							<dd>
+								@Html.DisplayFor(model => model.Telephone)
+							</dd>
+
+							<dt>
+								@Html.DisplayNameFor(model => model.Email)
+							</dt>
+
+							<dd>
+								@Html.DisplayFor(model => model.Email)
+							</dd>
+
+							<dt>
+								@Html.DisplayNameFor(model => model.ContactName)
+							</dt>
+
+							<dd>
+								@Html.DisplayFor(model => model.ContactName)
+							</dd>
+
+							<dt>
+								@Html.DisplayNameFor(model => model.ContactTelephone)
+							</dt>
+
+							<dd>
+								@Html.DisplayFor(model => model.ContactTelephone)
+							</dd>
+
+							<dt>
+								@Html.DisplayNameFor(model => model.ContactEmail)
+							</dt>
+
+							<dd>
+								@Html.DisplayFor(model => model.ContactEmail)
+							</dd>
+
+							<dt>
+								@Html.DisplayNameFor(model => model.SecondaryContactName)
+							</dt>
+
+							<dd>
+								@Html.DisplayFor(model => model.SecondaryContactName)
+							</dd>
+
+							<dt>
+								@Html.DisplayNameFor(model => model.SecondaryContactTelephone)
+							</dt>
+
+							<dd>
+								@Html.DisplayFor(model => model.SecondaryContactTelephone)
+							</dd>
+
+							<dt>
+								@Html.DisplayNameFor(model => model.SecondaryContactEmail)
+							</dt>
+
+							<dd>
+								@Html.DisplayFor(model => model.SecondaryContactEmail)
+							</dd>
+
+							<dt>
+								@Html.DisplayNameFor(model => model.StartDate)
+							</dt>
+
+							<dd>
+								@Html.DisplayFor(model => model.StartDate)
+							</dd>
+
+							<dt>
+								@Html.DisplayNameFor(model => model.Description)
+							</dt>
+
+							<dd>
+								@Html.DisplayFor(model => model.Description)
+							</dd>
+
+							<dt>
+								@Html.DisplayNameFor(model => model.Bank)
+							</dt>
+
+							<dd>
+								@Html.DisplayFor(model => model.Bank)
+							</dd>
+
+							<dt>
+								@Html.DisplayNameFor(model => model.BranchCode)
+							</dt>
+
+							<dd>
+								@Html.DisplayFor(model => model.BranchCode)
+							</dd>
+
+							<dt>
+								@Html.DisplayNameFor(model => model.AccountNumber)
+							</dt>
+
+							<dd>
+								@Html.DisplayFor(model => model.AccountNumber)
+							</dd>
+
+							<dt>
+								@Html.DisplayNameFor(model => model.BankType)
+							</dt>
+
+							<dd>
+								@Html.DisplayFor(model => model.BankType)
+							</dd>
+							<button type="submit" value="Delete" class="btn btn-primary btn-danger pull-right">Delete</button>
+
+						</dl>
+
+
+					</div>
+
+
+				</div>
+				@using (Html.BeginForm())
+				{
+					@Html.AntiForgeryToken()
+
+
+
+					@Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "btn btn-primary" })
+
+				}
+			</div>
+		</div>
+		</div>
+	</div>
+

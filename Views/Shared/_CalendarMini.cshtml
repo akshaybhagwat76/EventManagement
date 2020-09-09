@@ -1,0 +1,184 @@
+﻿@using Microsoft.AspNet.Identity
+@model MiidWeb.Models.CalendarViewModel
+
+
+<div class="profile_calander">
+    <div class="month_strip">
+        <div class="month_arrow_left">
+            <a href="@Url.Action("PrevNextMonthMini", "EndUsers", new { id = Model.EndUserID, PrevNext = "Prev", CurrentMonth = Model.FirstOfMonth, loggedInUserID = @MiidWeb.Helpers.UserHelper.UserID(User.Identity.GetUserName()) }, null)">
+                <img src="~/images/small_calader_arrow_left.png" />
+            </a>
+        </div>
+        <div class="month_name">@Model.Calendar[7].CalendarDate.ToString("MMMM")  @Model.Calendar[7].CalendarDate.ToString("yyyy")</div>
+
+        <div class="month_arrow_left">
+            <a href="@Url.Action("PrevNextMonthMini", "EndUsers", new { id = Model.EndUserID, PrevNext = "Next", CurrentMonth = Model.FirstOfMonth, loggedInUserID = @MiidWeb.Helpers.UserHelper.UserID(User.Identity.GetUserName()) }, null)">
+                <img src="~/images/small_calader_arrow_right.png" />
+            </a>
+        </div>
+    </div>
+
+    <div class="calander_width">
+        <div class="calander_block"><div class="calander_font">Mo</div></div>
+        <div class="calander_block"><div class="calander_font">Tu</div></div>
+        <div class="calander_block"><div class="calander_font">We</div></div>
+        <div class="calander_block"><div class="calander_font">Th</div></div>
+        <div class="calander_block"><div class="calander_font">Fr</div></div>
+        <div class="calander_block"><div class="calander_font">Sa</div></div>
+        <div class="calander_block"><div class="calander_font">Su</div></div>
+    </div>
+    <div class="calander_width">
+
+
+        @for (int x = 0; x <= 6; x++)
+        {
+            <div class="calander_block">
+
+                @if (@Model.Calendar[@x].EventID > 0)
+                {
+                    <a href="@Url.Action("Details", "Events", new { id = Model.Calendar[@x].EventID })">
+                        <img class="small_calander_img" src="~/Content/images/@Model.Calendar[@x].ImageURL" title="@Model.Calendar[@x].ImageAltText" />
+                    </a>
+                }
+                <div class="calander_font">
+                    @if (Model.Calendar[@x].DayNo.IsEmpty())
+                    {
+                        <label>&nbsp;</label>
+                    }
+                    else
+                    {
+                        @Model.Calendar[@x].DayNo
+                    }
+
+                </div>
+            </div>
+
+        }
+    </div>
+
+    <div class="calander_width">
+
+
+        @for (int x = 7; x <= 13; x++)
+        {
+            <div class="calander_block">
+                @if (@Model.Calendar[@x].EventID > 0)
+                {  <a href="@Url.Action("Details", "Events", new { id = Model.Calendar[@x].EventID })">
+                    <img class="small_calander_img" src="~/Content/images/@Model.Calendar[@x].ImageURL" title="@Model.Calendar[@x].ImageAltText" />
+                </a>
+                }
+                <div class="calander_font">
+                    @Model.Calendar[@x].DayNo
+
+                </div>
+            </div>
+
+        }
+    </div>
+
+    <div class="calander_width">
+
+
+        @for (int x = 14; x <= 20; x++)
+        {
+            <div class="calander_block">
+                @if (@Model.Calendar[@x].EventID > 0)
+                {
+                    <a href="@Url.Action("Details", "Events", new { id = Model.Calendar[@x].EventID })">
+                        <img class="small_calander_img" src="~/Content/images/@Model.Calendar[@x].ImageURL" title="@Model.Calendar[@x].ImageAltText" />
+                    </a>
+                }
+                <div class="calander_font">
+                    @Model.Calendar[@x].DayNo
+
+                </div>
+            </div>
+
+        }
+    </div>
+
+    <div class="calander_width">
+
+
+        @for (int x = 21; x <= 27; x++)
+        {
+            <div class="calander_block">
+                @if (@Model.Calendar[@x].EventID > 0)
+                {
+                    <a href="@Url.Action("Details", "Events", new { id = Model.Calendar[@x].EventID })">
+                        <img class="small_calander_img" src="~/Content/images/@Model.Calendar[@x].ImageURL" title="@Model.Calendar[@x].ImageAltText" />
+                    </a>
+                }
+                <div class="calander_font">
+                    @Model.Calendar[@x].DayNo
+
+                </div>
+            </div>
+
+        }
+    </div>
+
+    <div class="calander_width">
+
+
+        @for (int x = 28; x <= 34; x++)
+        {
+            <div class="calander_block">
+                @if (@Model.Calendar[@x].EventID > 0)
+                { 
+                     <a href="@Url.Action("Details", "Events", new { id = Model.Calendar[@x].EventID })">
+                    <img class="small_calander_img" src="~/Content/images/@Model.Calendar[@x].ImageURL" title="@Model.Calendar[@x].ImageAltText" /> 
+                         </a>
+                         }
+                <div class="calander_font">
+                    @if (Model.Calendar[@x].DayNo.IsEmpty())
+                    {
+                        <label>&nbsp;</label>
+                    }
+                    else
+                    {
+                        @Model.Calendar[@x].DayNo
+                    }
+
+                </div>
+            </div>
+
+        }
+    </div>
+
+
+
+
+
+
+</div>
+<!--
+<h2>Mii Calendar</h2>
+
+<div class="rTable">
+    <div class="rTableRow">
+        <div class="rTableHead"><strong>Monday</strong></div>
+        <div class="rTableHead"><strong>Tuesday</strong></div>
+        <div class="rTableHead"><strong>Wednesday</strong></div>
+        <div class="rTableHead"><strong>Thursday</strong></div>
+        <div class="rTableHead"><strong>Friday</strong></div>
+        <div class="rTableHead"><strong>Saturday</strong></div>
+        <div class="rTableHead"><strong>Sunday</strong></div>
+
+    </div>
+
+
+    <div class="rTableRow">
+        @for (int x = 28; x <= 34; x++)
+        {
+            <div class="rTableCell">
+                @Model.Calendar[@x].DayNo @if (@Model.Calendar[@x].EventID > 0)
+                { <img width="80%" src="~/Content/images/@Model.Calendar[@x].ImageURL" title="@Model.Calendar[@x].ImageAltText" /> }
+            </div>
+
+        }
+    </div>
+
+
+</div>
+    -->

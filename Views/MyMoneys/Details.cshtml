@@ -1,0 +1,66 @@
+﻿@model MiidWeb.MyMoney
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>MyMoney</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TransactionDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TransactionDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RunningBalance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RunningBalance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TransactionType.TranTypeCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TransactionType.TranTypeCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndUser.Surname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndUser.Surname)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,284 @@
+﻿@using Microsoft.AspNet.Identity
+@model MiidWeb.Models.LoginViewModel
+@{
+	ViewBag.Title = "MiiD Event Organiser Landing Page";
+	bool IAmEventOrganiser = false;
+	if (Request.IsAuthenticated)
+	{
+		IAmEventOrganiser = MiidWeb.Repositories.EndUserRepository.AmIAnEventOrganiser(User.Identity.GetUserName());
+	}
+}
+
+@if (IAmEventOrganiser)
+{
+	Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("LayoutEventOrganiser");
+}
+else
+{
+	Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("Layout");
+}
+
+
+<title>Event organiser help for Mi-id Online TicketinG and Cashless Service</title>
+<meta name="description" content="Help topics for event organisers using the Mi-id platform">
+
+
+<div id="page-content-wrapper">
+	<div class="container-fluid">
+
+		<div class="item-container">
+			<div class="container padding">
+				<div class="col-md-12">
+
+					<!--top nav strip-->
+					<!--close top nav strip-->
+					<section>
+
+						<div class="container">
+							<header class="major">
+								<h1>Need Help? We are here to assist.</h1>
+								<h4>Below are some frequently asked questions & some help topics.</h4>
+							</header>
+
+
+							<div class="p">
+								Click on the Help Options below for more information
+								<ul>
+									<li><a href="#general">Your Profile</a></li>
+									<li><a href="#miiband">Events</a></li>
+									<li><a href="#tickets">Tickets</a></li>
+									<li><a href="#miifunds">Going Cahsless</a></li>
+									<li><a href="#security">Safety & Security</a></li>
+
+								</ul>
+							</div>
+
+						</div>
+					</section>
+					<section>
+
+						<div class="container">
+							<div class="main">
+								<div class="register_heading">
+									<a name="general">Profile Page</a>
+								</div>
+								Your Profile page is a summary of all the events you have running. Below is a description of each item that it contains
+								<div class="accordion accordion1">
+									<div class="accordion-section">
+										<a class="accordion-section-header" data-target="#accordion-1">Time left till event</a>
+										<div id="accordion-1" class="accordion-section-content">
+											<div class="p">
+												This shows the exact amount of time before the event. This counts down till the date and time you have set when creating an event.
+											</div>
+										</div>
+									</div>
+									<div class="accordion-section">
+										<a class="accordion-section-header" data-target="#accordion-2">Total Ticket Sales </a>
+										<div id="accordion-2" class="accordion-section-content">
+											<p>This shows the total amount of ticket you have sold.  </p>
+										</div>
+									</div>
+									<div class="accordion-section">
+										<a class="accordion-section-header" data-target="#accordion-3">Total Vendors</a>
+										<div id="accordion-3" class="accordion-section-content">
+											<p>This shows the amount of vendors you have linked to your event.</p>
+										</div>
+									</div>
+									<div class="accordion-section">
+										<a class="accordion-section-header" data-target="#accordion-4">Vendor Revenue</a>
+										<div id="accordion-4" class="accordion-section-content">
+											<p>
+												This shows the total amount of Revenue all the vendors you have linked to your event have generated.
+											</p>
+										</div>
+									</div>
+									<div class="accordion-section">
+										<a class="accordion-section-header" data-target="#accordion-5">Total Revenue</a>
+										<div id="accordion-5" class="accordion-section-content">
+											<p>
+												This shows the total amount of Revenue Generated through Ticket & Vendor sales.
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="main">
+								<div class="register_heading"><a name="miiband">Events</a></div>
+								<div class="accordion accordion1">
+									<div class="accordion-section">
+										<a class="accordion-section-header" data-target="#accordion-1">How do I create an event?</a>
+										<div id="accordion-1" class="accordion-section-content">
+											<p>
+												To create an event all you need to do is click on the Add Event tab, fill in all the information and hit the
+												create event button. Your event will now be live & you can start selling tickets. Customers will be able to find your event in the search page your you can use your events URL to
+												advertise externally.
+											</p>
+										</div>
+									</div>
+									<div class="accordion-section">
+										<a class="accordion-section-header" data-target="#accordion-2">How do I editing an existing event?</a>
+										<div id="accordion-2" class="accordion-section-content">
+											<p>
+												Once you have created an event you will be able to edit the details as well as change banners and thumbnail pictures.
+												To edit an event click on the Manage events tab and choose an event you would like to edit
+												by clicking on "Manage Event" then "Edit Event".
+											</p>
+										</div>
+									</div>
+									<div class="accordion-section">
+										<a class="accordion-section-header" data-target="#accordion-3">How to add information to your event</a>
+										<div id="accordion-3" class="accordion-section-content">
+											<p>
+												When creating an event we give you the option of adding a short and a long description of you event. The short description will
+												be used where space is limited and should sum up your event in a sentence or two. The long description will show on your events page along with the banner
+												you have uploaded. Your long description can contain anything you want. eg Set times, Acts or Artsits. The thumbnail pic will display where ever there is limited space on the website.
+											</p>
+										</div>
+									</div>
+									<div class="accordion-section">
+										<a class="accordion-section-header" data-target="#accordion-4">Start Dates, End dates & Cut off dates</a>
+										<div id="accordion-4" class="accordion-section-content">
+											<p>
+												When you creating an event there will be three dates you have to set. Start Dates & End Dates are set to show the duration of the event
+												and will display on your events page as well as in search function. This also effects the count down timer that displays on your events page.
+												The "Ticket cut off" date is the last date that customers will be able to purchase tickets.
+											</p>
+										</div>
+									</div>
+									<div class="accordion-section">
+										<a class="accordion-section-header" data-target="#accordion-5">Why set Event Genre?</a>
+										<div id="accordion-5" class="accordion-section-content">
+											<p>Event genre's can be set so users can search for events in specific genres</p>
+										</div>
+									</div>
+									<div class="accordion-section">
+										<a class="accordion-section-header" data-target="#accordion-6">How do I view my Event?</a>
+										<div id="accordion-6" class="accordion-section-content">
+											<p>You can see how your event page looks to customers by clicking on  "View Event Page >>" under the Manage Events Tab.</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!------------open acordion----------------->
+							<!------------open acordion----------------->
+							<div class="main">
+								<div class="register_heading"><a name="tickets">Tickets</a> </div>
+								<div class="accordion accordion1">
+									<div class="accordion-section">
+										<a class="accordion-section-header" data-target="#accordion-1">How do I create a ticket?</a>
+										<div id="accordion-1" class="accordion-section-content">
+											<p>
+												To create a ticket class (ticket type) Click on Manage Events Tab, then click on the event you "Manage Event". You  will
+												now see the option to create a ticket. Fill in the details and click on "Create Ticket". Please Note.
+											</p>
+											<ul>
+												<li>Start Date & End dates refer to the dates the ticket will be active. The customer will only be able to use the ticket between the selected dates</li>
+												<li>Once you have created a ticket you cannot remove it. You will only be able to activate it and de-activate it.</li>
+											</ul>
+										</div>
+									</div>
+									<div class="accordion-section">
+										<a class="accordion-section-header" data-target="#accordion-2">Can I remove a ticket?</a>
+										<div id="accordion-2" class="accordion-section-content">
+											<p>No. You cannot. This is to protect the customer.</p>
+										</div>
+									</div>
+									<div class="accordion-section">
+										<a class="accordion-section-header" data-target="#accordion-3">Where can I view my ticket sales stats & revenue?</a>
+										<div id="accordion-3" class="accordion-section-content">
+											<p>
+												You can view a summary of ticket sales & revenue on  your profile page
+												or view it in more detail under the Manage Events section of the website.
+											</p>
+										</div>
+									</div>
+									<div class="accordion-section">
+										<a class="accordion-section-header" data-target="#accordion-4">Refunding my remaining Mii-Funds</a>
+										<div id="accordion-4" class="accordion-section-content">
+											<p>
+												If you would like a refund on unspent Mii-Funds all you need to do is fill in some details on the "refunds" section of the<a href="http://www.miid.co.za/MyMoneys/IndexByUserID"> Mii-Funds page</a>. Your we will email you to confirm details & your
+												requested refund will be payed into you bank account. Please note that a small service fee will apply. Refunds can take up to a week to be processed.
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!------------open acordion----------------->
+							<!------------open acordion----------------->
+							<div class="main">
+								<div class="register_heading"><a name="miifunds">Going Cashless</a></div>
+								<div class="accordion accordion1">
+									<div class="accordion-section">
+										<a class="accordion-section-header" data-target="#accordion-1">How do I use the Mi-id cashless Service </a>
+										<div id="accordion-1" class="accordion-section-content">
+											<p>To use the Mi-id Cashless service all you need to do is add funds on your Mii-D profile using one of our secure payment gateways and scan your tag at the event</p>
+										</div>
+									</div>
+									<div class="accordion-section">
+										<a class="accordion-section-header" data-target="#accordion-2">How can I pay for my ticket?</a>
+										<div id="accordion-2" class="accordion-section-content">
+											<p>You can pay for your ticket using Credit Card, Cheque Card, Instant EFT, Standard Eft or by using your MiiFunds.</p>
+										</div>
+									</div>
+									<div class="accordion-section">
+										<a class="accordion-section-header" data-target="#accordion-3">Purchasing a ticket using MiiFunds</a>
+										<div id="accordion-3" class="accordion-section-content">
+											<p>
+												If you have MiiFunds available on your account or are worried that your cards might not work online during ticket release dates you
+												can top-up your MiiFunds wallet and purchase tickets hassle free without having to worry about external factors affecting your purchase.
+											</p>
+										</div>
+									</div>
+								</div>
+
+								<!------------open acordion----------------->
+								<!------------open acordion----------------->
+								<div class="main">
+									<div class="register_heading"><a name="security">Safety & Security</a></div>
+									<div class="accordion accordion1">
+										<div class="accordion-section">
+											<a class="accordion-section-header" data-target="#accordion-1">What precautions does Mi-id take to ensure fund transfers are safe.</a>
+											<div id="accordion-1" class="accordion-section-content">
+												<p>MiiD uses 3rd party gateways to complete online transactions. These companys are proven in there field to provide safe online transactions. Please read our terms and conditions for more information</p>
+											</div>
+										</div>
+										<div class="accordion-section">
+											<a class="accordion-section-header" data-target="#accordion-2">Encrypted data</a>
+											<div id="accordion-2" class="accordion-section-content">
+												<p>
+													Mi-id uses SSL certificates. This means that your date is encrypted once it is sent from our site or our 3rd party payment gateways. Please read our terms and conditions for more information
+												</p>
+											</div>
+										</div>
+										<div class="accordion-section">
+											<a class="accordion-section-header" data-target="#accordion-3">MiiBand Security</a>
+											<div id="accordion-3" class="accordion-section-content">
+												<p>Your MiiBand is protected by a pin that you can choose. You can also cancel your band if lost. This allows your funds to stay safe until you receive a new MiiBand</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+					<section>
+
+						<div class="container">
+							<header class="major">
+								<h2><a name="media">Cant</a> find what you are looking for?</h2>
+								<h4>Contact us on our facebook page, ask us a question and we will get back to you with the answer</h4>
+							</header>
+
+							<ul class="secondary-icons">
+								<li class="fa-facebook"><a href="https://www.facebook.com/Fullsummerfest-1707827266111866/?fref=ts">Facebook</a></li>
+								<li class="fa-twitter"><a href="https://twitter.com/MiiDEvents">Twitter </a></li>
+							</ul>
+
+						</div>
+					</section>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

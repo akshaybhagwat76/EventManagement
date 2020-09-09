@@ -1,0 +1,49 @@
+﻿@using MiidWeb.Models
+@model MiidWeb.Models.PurchaseTicketResultViewModel
+@{
+    ViewBag.Title = "PurchaseTicketsFail";
+
+    MiidWeb.Models.PurchaseTicketResultViewModel Model1 = (PurchaseTicketResultViewModel)Session["PurchaseTicketResultViewModel"];
+}
+
+
+
+<div class="container bg-grey">
+	<div class="row vertical-offset-40px">
+
+
+		<div class="col-md-6 col-md-offset-3">
+
+			<div class="panel panel-default ">
+
+				<div class="panel-body text-center">
+
+					<br>
+
+					<h1>Session Expired</h1>
+
+					@foreach (var i in Model1.ErrorList)
+					{
+						switch (i.Action.ToString())
+						{
+
+							case "PurchaseTickets":
+								<div> @i.Code - @i.Description @Html.ActionLink("Click here", @i.Action, @i.Controller, new { EventID = @Model1.EventID }, new { @class = "btn  btn-default btn-block btn-lg" }) </div>
+								break;
+
+							default:
+								<div> @i.Code - @i.Description @Html.ActionLink("Click here", @i.Action, @i.Controller, new { id = @Model1.EndUserID }, new { @class = "btn  btn-default btn-block btn-lg" }) </div>
+								break;
+						}
+
+
+					}
+					
+
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>

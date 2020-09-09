@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="57662151afdc48d685ba94996ffd3a06" Name="Diagram1" ZoomLevel="17">
+        <EntityTypeShape EntityType="MiidModel.AccountType" Width="1.5" PointX="3.75" PointY="33.25" />
+        <EntityTypeShape EntityType="MiidModel.BankTransaction" Width="1.5" PointX="3" PointY="36.25" />
+        <EntityTypeShape EntityType="MiidModel.CM" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MiidModel.Configuration" Width="1.5" PointX="3" PointY="12.5" />
+        <EntityTypeShape EntityType="MiidModel.Device" Width="1.5" PointX="6" PointY="27.625" />
+        <EntityTypeShape EntityType="MiidModel.DeviceLogin" Width="1.5" PointX="8.25" PointY="24.875" />
+        <EntityTypeShape EntityType="MiidModel.EndUser" Width="1.5" PointX="6" PointY="32" />
+        <EntityTypeShape EntityType="MiidModel.ErrorLog" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MiidModel.Event" Width="1.5" PointX="5.25" PointY="48" />
+        <EntityTypeShape EntityType="MiidModel.EventCategory" Width="1.5" PointX="3" PointY="52.5" />
+        <EntityTypeShape EntityType="MiidModel.EventImage" Width="1.5" PointX="7.5" PointY="67.125" />
+        <EntityTypeShape EntityType="MiidModel.EventOrganiser" Width="1.5" PointX="3" PointY="62.75" />
+        <EntityTypeShape EntityType="MiidModel.FeeConfiguration" Width="1.5" PointX="2.75" PointY="4.75" />
+        <EntityTypeShape EntityType="MiidModel.Friend" Width="1.5" PointX="8.25" PointY="60.375" />
+        <EntityTypeShape EntityType="MiidModel.Incident" Width="1.5" PointX="10.5" PointY="50.75" />
+        <EntityTypeShape EntityType="MiidModel.LogShipper" Width="1.5" PointX="4.75" PointY="3.75" />
+        <EntityTypeShape EntityType="MiidModel.marker" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MiidModel.MyMoney" Width="1.5" PointX="11.25" PointY="41.125" />
+        <EntityTypeShape EntityType="MiidModel.NewsFeed" Width="1.5" PointX="8.25" PointY="32.875" />
+        <EntityTypeShape EntityType="MiidModel.NewsFeedComment" Width="1.5" PointX="13.5" PointY="34.875" />
+        <EntityTypeShape EntityType="MiidModel.NFCTag" Width="1.5" PointX="11.25" PointY="36.875" />
+        <EntityTypeShape EntityType="MiidModel.ParentChild" Width="1.5" PointX="8.25" PointY="64.125" />
+        <EntityTypeShape EntityType="MiidModel.POSTagScan" Width="1.5" PointX="6.75" PointY="3.75" />
+        <EntityTypeShape EntityType="MiidModel.POSTransaction" Width="1.5" PointX="8.25" PointY="36.625" />
+        <EntityTypeShape EntityType="MiidModel.PrivateMessage" Width="1.5" PointX="8.25" PointY="40.875" />
+        <EntityTypeShape EntityType="MiidModel.PromoCode" Width="1.5" PointX="4.75" PointY="6.75" />
+        <EntityTypeShape EntityType="MiidModel.PromoCodeGeneric" Width="1.5" PointX="6.75" PointY="6.75" />
+        <EntityTypeShape EntityType="MiidModel.Promotion" Width="1.5" PointX="11.5" PointY="46.75" />
+        <EntityTypeShape EntityType="MiidModel.Region" Width="1.5" PointX="3" PointY="49.625" />
+        <EntityTypeShape EntityType="MiidModel.Staff" Width="1.5" PointX="13.5" PointY="38.875" />
+        <EntityTypeShape EntityType="MiidModel.StaffType" Width="1.5" PointX="11.25" PointY="58.25" />
+        <EntityTypeShape EntityType="MiidModel.Status" Width="1.5" PointX="0.75" PointY="36.125" />
+        <EntityTypeShape EntityType="MiidModel.Subdomain" Width="1.5" PointX="0.75" PointY="2" />
+        <EntityTypeShape EntityType="MiidModel.Ticket" Width="1.5" PointX="11.25" PointY="31.125" />
+        <EntityTypeShape EntityType="MiidModel.TicketClass" Width="1.5" PointX="8.5" PointY="44.625" />
+        <EntityTypeShape EntityType="MiidModel.TicketClassSeat" Width="1.5" PointX="16.5" PointY="43" />
+        <EntityTypeShape EntityType="MiidModel.TicketClassSeatRange" Width="1.5" PointX="10.75" PointY="55" />
+        <EntityTypeShape EntityType="MiidModel.TransactionType" Width="1.5" PointX="9" PointY="29.25" />
+        <EntityTypeShape EntityType="MiidModel.Vendor" Width="1.5" PointX="11.25" PointY="24" />
+        <EntityTypeShape EntityType="MiidModel.VendorEvent" Width="1.5" PointX="7.5" PointY="51" />
+        <EntityTypeShape EntityType="MiidModel.LastRecord" Width="1.5" PointX="8.75" PointY="0.75" />
+        <AssociationConnector Association="MiidModel.FK_EndUser_AccountType" />
+        <AssociationConnector Association="MiidModel.FK_BankTransaction_EndUser" />
+        <AssociationConnector Association="MiidModel.FK_BankTransaction_Status" />
+        <AssociationConnector Association="MiidModel.FK_Configuration_Subdomain" />
+        <AssociationConnector Association="MiidModel.FK_DeviceLogin_Device" />
+        <AssociationConnector Association="MiidModel.FK_POSTransaction_Device" />
+        <AssociationConnector Association="MiidModel.FK_Staff_Device" />
+        <AssociationConnector Association="MiidModel.FK_EndUser_Status" />
+        <AssociationConnector Association="MiidModel.FK_Friend_EndUser" />
+        <AssociationConnector Association="MiidModel.FK_Friend_EndUser1" />
+        <AssociationConnector Association="MiidModel.FK_MyMoney_EndUser" />
+        <AssociationConnector Association="MiidModel.FK_NewsFeed_EndUser" />
+        <AssociationConnector Association="MiidModel.FK_NewsFeedComment_EndUser" />
+        <AssociationConnector Association="MiidModel.FK_NFCTag_EndUser" />
+        <AssociationConnector Association="MiidModel.FK_ParentChild_EndUser2" />
+        <AssociationConnector Association="MiidModel.FK_ParentChild_EndUser3" />
+        <AssociationConnector Association="MiidModel.FK_POSTransaction_EndUser" />
+        <AssociationConnector Association="MiidModel.FK_PrivateMessage_EndUser" />
+        <AssociationConnector Association="MiidModel.FK_PrivateMessage_EndUser1" />
+        <AssociationConnector Association="MiidModel.FK_Ticket_EndUser" />
+        <AssociationConnector Association="MiidModel.FK_Event_EventCategory" />
+        <AssociationConnector Association="MiidModel.FK_Event_EventOrganiser" />
+        <AssociationConnector Association="MiidModel.FK_Event_Region" />
+        <AssociationConnector Association="MiidModel.FK_Event_Status" />
+        <AssociationConnector Association="MiidModel.FK_EventImage_Event" />
+        <AssociationConnector Association="MiidModel.FK_Incident_Event" />
+        <AssociationConnector Association="MiidModel.FK_Promotion_Event" />
+        <AssociationConnector Association="MiidModel.FK_Staff_Event" />
+        <AssociationConnector Association="MiidModel.FK_TicketClass_Event" />
+        <AssociationConnector Association="MiidModel.FK_VendorEvent_Event" />
+        <AssociationConnector Association="MiidModel.FK_EventOrganiser_Status" />
+        <AssociationConnector Association="MiidModel.FK_Incident_Staff" />
+        <AssociationConnector Association="MiidModel.FK_Incident_Status" />
+        <AssociationConnector Association="MiidModel.FK_MyMoney_TransactionType" />
+        <AssociationConnector Association="MiidModel.FK_NewsFeed_Status" />
+        <AssociationConnector Association="MiidModel.FK_NewsFeedComment_NewsFeed" />
+        <AssociationConnector Association="MiidModel.FK_NewsFeedComment_Status" />
+        <AssociationConnector Association="MiidModel.FK_NFCTag_Status" />
+        <AssociationConnector Association="MiidModel.FK_PrivateMessage_Status" />
+        <AssociationConnector Association="MiidModel.FK_Promotion_Status" />
+        <AssociationConnector Association="MiidModel.FK_Promotion_Vendor" />
+        <AssociationConnector Association="MiidModel.FK_Staff_StaffType" />
+        <AssociationConnector Association="MiidModel.FK_Staff_Status" />
+        <AssociationConnector Association="MiidModel.FK_Staff_Vendor" />
+        <AssociationConnector Association="MiidModel.FK_TicketClass_Status" />
+        <AssociationConnector Association="MiidModel.FK_Ticket_TicketClass" />
+        <AssociationConnector Association="MiidModel.FK_TicketClassSeat_Ticket" />
+        <AssociationConnector Association="MiidModel.FK_TicketClassSeatRange_TicketClass" />
+        <AssociationConnector Association="MiidModel.FK_TicketClassSeat_TicketClassSeatRange" />
+        <AssociationConnector Association="MiidModel.FK_VendorEvent_Vendor" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

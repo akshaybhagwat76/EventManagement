@@ -1,0 +1,287 @@
+﻿@using Microsoft.AspNet.Identity
+
+@model MiidWeb.Models.LoginViewModel
+@{
+    ViewBag.Title = "MiiD Event Organiser Landing Page";
+    ViewBag.Title = "Contact";
+
+    bool IAmEventOrganiser = false;
+    if (Request.IsAuthenticated)
+    {
+        IAmEventOrganiser = MiidWeb.Repositories.EndUserRepository.AmIAnEventOrganiser(User.Identity.GetUserName());
+    }
+
+}
+
+@if (IAmEventOrganiser)
+{
+    Layout = "~/Views/Shared/_LayoutEventOrganiser.cshtml";
+}
+else
+{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+@if (IAmEventOrganiser)
+{
+    @Html.Partial("_LoginPartialEO")
+}
+else
+{
+    @Html.Partial("_LoginPartial")
+}
+<title>Mi-id cashless sollutions. Simple, cost effective cashless system for events, music festivals and concerts</title>
+<meta name="description" content="Easy and effective cashless sollutions for events and festivals" />
+
+<style>
+    .orange-background {
+        background-color: #fbaa19;
+        padding-top: 20px;
+        padding-bottom: 60px;
+        ;
+        color: #ffffff;
+    }
+
+    .grey-background {
+        background-color: #efefef;
+        padding-top: 40px;
+        padding-bottom: 60px;
+        ;
+    }
+
+    .white-background {
+        background-color: #ffffff;
+        padding-top: 40px;
+        padding-bottom: 80px;
+        ;
+        ;
+    }
+
+    .smallhr {
+        background-color: #fbaa19;
+        height: 4px;
+        border: 4px solid ##fbaa19;
+        width: 15%;
+    }
+</style>
+<header class="jumbotron eo my-4 text-center">
+    <h2 class="display-3" style="font-weight:bold;">The most cost-effective cashless solution for events & festivals<br></h2>
+    <hr class="smallhr"><br>
+    <p class="lead" style="margin-left:20px; margin-right:20px;">From music festivals & food fairs to bus rides & sporting events. Mi-id’s cashless system allows event organizers to easily & efficiency manage their events, save on costs & reduce the risk of handling cash on-site. <br></p>
+
+    <a href="~/Eventorganisers/Register2" class="btn btn-primary btn-lg">Request a callback</a>
+
+</header>
+
+<div id="page-content-wrapper" style="background-color: transparent; padding-top: 00px; margin-top: -40px;">
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <div class="container">
+
+                <!-- Jumbotron Header -->
+                <!-- Page Features -->
+                <div class="row text-center white-background">
+
+                    <div class="col-lg-4 col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-img-top"><i class="fa fa-check-circle fa-3x" aria-hidden="true"></i></div>
+                            <div class="card-body">
+                                <h4 class="card-title">Save on costs</h4>
+                                <p class="card-text">Get the lowest rates available & reduce costs like security & banking fees.</p>
+
+                            </div>
+                            <div class="card-footer">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-img-top"><i class="fa fa-check-circle fa-3x" aria-hidden="true"></i></div>
+                            <div class="card-body">
+                                <h4 class="card-title">Safe & secure</h4>
+                                <p class="card-text">By going cashless you eliminate theft from bars & vendors as well as rule out the risk of robbery.</p>
+                            </div>
+                            <div class="card-footer">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-img-top"><i class="fa fa-check-circle fa-3x" aria-hidden="true"></i></div>
+                            <div class="card-body">
+                                <h4 class="card-title">Instant payout</h4>
+                                <p class="card-text">Your money will be transferred as soon as you request it.</p>
+
+                            </div>
+                            <div class="card-footer">
+                            </div>
+                        </div>
+                    </div>
+                    
+                  
+
+
+                    
+
+                </div>
+
+                <!-- /.row -->
+                <!-- Jumbotron Header -->
+
+                <div class="row text-center orange-background">
+
+                    <div class="col-lg-12 col-md-12">
+                        <div class="display-3"><h2 style="font-weight:bold">Transparent & trackable transactions</h2>
+                        <p>The Mi-id cashless system makes use of a pre-paid, online wallet which is linked to a patrons' RFID Tag. Patrons can top up cashless funds online, before & during an event. Making a cashless payment is as simple as scanning the patron’s RFID Tag with the Mi-iD Cashless App. Tags are PIN protected and patrons can view their transactions or request payouts at any time.</p></div>
+
+                    </div>
+                </div>
+
+
+
+
+                <!-- Page Features -->
+                <div class="row text-center grey-background">
+                    <div class="col-lg-12 col-md-12 mb-12 text-center">
+                        <div class="card">
+                            <h2>A full-service cashless system</h2>
+                            <hr class="smallhr">
+                            <br><br>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 ">
+                        <div class="card">
+                            <img class="eo_icon" src="~/Content/images/newimages/pos.svg" alt="Can be used on all POS systems">
+                            <div class="card-body">
+                                <h4 class="card-title">Integrate with any POS system</h4>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4">
+                        <div class="card">
+                            <img class="eo_icon" src="~/Content/images/newimages/stats.svg" alt="View sales live">
+                            <div class="card-body">
+                                <h4 class="card-title">Track revenue from vendors to bar staff</h4>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="col-lg-4 col-md-4">
+                        <div class="card">
+                            <img class="eo_icon" src="~/Content/images/newimages/support.svg" alt="Quality customer service">
+                            <div class="card-body">
+                                <h4 class="card-title">On-site and face to face support</h4>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <div class="row text-center text-center grey-background">
+
+                    <div class="col-lg-4 col-md-4">
+
+                        <div class="card">
+                            <img class="eo_icon" src="~/Content/images/newimages/rfid.svg" alt="RFID tags">
+                            <div class="card-body">
+                                <h4 class="card-title">Reusable and replaceable RFID tags</h4>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4">
+                        <div class="card">
+                            <img class="eo_icon" src="~/Content/images/newimages/pin.svg" alt="NFC festival wristband">
+                            <div class="card-body">
+                                <h4 class="card-title">PIN Protected RFID Tags</h4>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4">
+                        <div class="card">
+                            <img class="eo_icon" src="~/Content/images/newimages/save.svg" alt="lowest cashless rates
+                                 ">
+                            <div class="card-body">
+                                <h4 class="card-title">Lowest Industry Rates</h4>
+                            </div>
+
+                        </div>
+                    </div>
+                    <br>&nbsp;<br>
+                    <a href="~/Eventorganisers/Register2" class="btn btn-primary btn-lg">Contact Us Now</a>
+
+                </div>
+
+
+
+
+
+
+
+                <!-- Page Features -->
+                <div class="row text-center white-background">
+                   
+
+                    <div class="col-lg-6 col-md-6">
+                        <div class="card">
+                            <div class="card-img-top"><img class="eo_icon" src="../Content/images/newimages/thumbsup.svg" alt="cashless systems"></div>
+                            <div class="card-body">
+                                <h4 class="card-title" style="font-weight:bold;">Going cashless is easy</h4>
+                                <p>No need to rent expensive scanning equipment or use specialised POS software. All you need is an Android smartphone and a Mi-id account. Mi-ids' cashless system can also be used on any existing POS or stock control software you already have or can be run as a stand-alone system.</p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6">
+                        <div class="card">
+                            <div class="card-img-top" ><img class="eo_icon" src="~/Content/images/newimages/user.svg" alt="transactions"></div>
+                            <div class="card-body">
+                                <h4 class="card-title" style="font-weight:bold;">Your customers matter</h4>
+                                <p>Building a brand requires your patron's trust & support. With Mi-id's cashless system each transaction is transparent to deliver a better experience for all. Your patrons can top-up funds, view their balance, view individual transactions & request payouts whenever they wish.</p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+
+                <div class="row text-center orange-background">
+
+                    <div class="col-lg-12 col-md-12">
+                        <h2 class="display-3" style="font-weight:bold;">White label solutions</h2>
+                        <p class="lead">Host a cashless platform from your own website with our own branded app. No redirecting to 3rd party services</p>
+                        <a href="../Eventorganisers/Register2" class="btn btn-default btn-lg">Contact Us Now</a>
+
+                        <br><br>
+
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>

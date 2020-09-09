@@ -1,0 +1,207 @@
+﻿@using Microsoft.AspNet.Identity
+@model MiidWeb.Models.CardPaymentViewModel
+@{
+    ViewBag.Title = "Card Payment";
+
+    var notification = ViewBag.Notification;
+   // MiidWeb.Controllers.UserModel u1 = MiidWeb.Helpers.SessionManager.EndUser;
+
+
+    string purpose = Model.Purpose;
+
+    string disabled = "";
+
+    switch (purpose)
+    {
+        case "Ticket Purchase": disabled = "disabled"; break;
+        case "Mii-funds Topup": break;
+        default: break;
+
+    }
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "red" })
+
+    @Html.HiddenFor(model => model.PurchaseSessionID)
+    @Html.HiddenFor(model => model.Purpose)
+    @Html.HiddenFor(model => model.EndUserID)
+    @Html.HiddenFor(model => model.ItemName)
+
+
+    @Html.HiddenFor(model => model.ItemQuantity)
+
+    @Html.HiddenFor(model => model.ItemPrice)
+
+
+    @Html.HiddenFor(model => model.CardNumber)
+
+
+    @Html.HiddenFor(model => model.ExpiryDate)
+    @Html.HiddenFor(model => model.SecurityCode)
+
+    @Html.HiddenFor(model => model.NameOnCard)
+
+    @Html.HiddenFor(model => model.UniquePaymentID)
+
+    if (purpose == "Ticket Purchase")
+    {
+
+        decimal totalPlus = (decimal)@Model.AdminFee + (decimal)@Model.TotalAmountInRands;
+
+
+<div class="container bg-grey">
+	<div class="row vertical-offset-40px">
+
+
+		<div class="col-md-6 col-md-offset-3">
+
+			<div class="panel  panel-default text-left">
+
+				<div class="panel-body">
+
+					<div class="col-md-12">
+						<h3>
+							<i class="fa fa-lock" aria-hidden="true"></i>&nbsp;@GlobalVariables.CardPaymentHeading
+
+							<hr>
+						</h3>
+					</div>
+					<div class=" col-md-12 ">
+						<table cellpadding="30" class="table table-hover" style="background-color:#ffffff; ">
+							<thead>
+								<tr>
+									<th>Description</th>
+									<th>Qty</th>
+									<th>Total</th>
+
+								</tr>
+							</thead>
+							<tbody>
+								@foreach (var ticket in Model.PurchaseTicketViewModel.TicketClasses.Where(x => x.TicketCount > 0))
+								{
+								<tr>
+									<td>
+										@ticket.TicketClass.Description
+									</td>
+									
+									<td>
+										@ticket.TicketCount
+									</td>
+									<td class="text-right">
+										@{ decimal sub = (Decimal)(@ticket.TicketClass.Price * @ticket.TicketCount); }
+										<h5>@sub.ToString("0.00")</h5>
+
+									</td>
+								</tr>
+
+
+								}
+
+								<tr>
+
+
+									<td><h3>Total</h3></td>
+									<td></td>
+									<td class="text-right">
+										<h3>
+											<strong>
+												@Html.HiddenFor(model => model.TotalAmountInRands)
+												@Html.HiddenFor(model => model.AdminFee)
+												@totalPlus.ToString("0.00")
+											</strong>
+										</h3>
+									</td>
+								</tr>
+								<tr>
+
+									<td colspan="3" style="font-size:10px;">
+										@GlobalVariables.CardPaymentPara
+									</td>
+
+								</tr>
+								<tr>
+									<td colspan="3">
+
+										<input type="submit" class="btn btn-primary btn-block btn-lg" value="@GlobalVariables.ButtonConfirm" />
+									</td>
+								</tr>
+
+								<tr>
+									<td colspan="3">
+
+										@Html.ActionLink("Back", "PurchaseTickets", "Events", new { EventID = @Model.PurchaseTicketViewModel.Event.ID }, new { @class = "btn btn-info btn-block btn-lg" })
+									</td>
+								</tr>
+							</tbody>
+							<tbody></tbody>
+
+						</table>
+					</div>
+					
+
+
+
+				</div>
+				</div>
+				</div>
+			</div>
+		</div>
+	
+
+
+					}
+					else //Miifunds topup by card payment
+					{
+
+
+
+						<section>
+
+
+							<div class="container">
+								<div class="underline_div">
+									<div class="payment_div"><img src="../../content/images/securepay.svg" class="payment_icons" /><img src="../../content/images/geotrust.svg" class="payment_icons" /><img src="../../content/images/iveri.svg" class="payment_icons" /><img src="../../content/images/visa.svg" class="payment_icons" /><img src="../../content/images/mastercard.svg" class="payment_icons" /></div>
+
+									<div class="two_columb">Card Payment Miifunds Topup</div><div class="two_columb">Confirm Amount</div>
+								</div>
+
+								<div class="p">
+									Please enter amount you would like to top up in Rand value
+								</div>
+
+								<div class="black_container">
+									<div class="row uniform">
+										<div class="12u 12u(xsmall)">
+
+											@Html.TextBoxFor(model => model.TotalAmountInRands, new { @class = "noborder", placeholder = "Amount eg. 120" })
+											@Html.ValidationMessageFor(model => model.TotalAmountInRands, "", new { @class = "red" })
+
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</section>
+						<div class="container">
+							<section>
+
+								<ul class="actions">
+									<li><input type="submit" class="button special" value="Confirm" /></li>
+								</ul>
+								<ul class="actions">
+									<li>
+										@Html.ActionLink("Back", "IndexByUserID", null, new { @class = "cancel_button" })
+									</li>
+								</ul>
+
+							</section>
+						</div>
+					}
+
+
+
+
+				}

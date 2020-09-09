@@ -1,0 +1,100 @@
+﻿@model IEnumerable<MiidWeb.FeeConfiguration>
+
+@{
+	ViewBag.Title = "Fee Configuration";
+	Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+	//Layout = null;
+}
+
+<style>
+	<!--
+
+	.glyphicon {
+		cursor: pointer;
+	}
+
+	input,
+	select {
+		width: 100%;
+	}
+	-->
+</style>
+
+
+
+
+<div class="col-md-9">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="content-box-header">
+				<div class="panel-title">All Tickets</div>
+
+                <div class="panel-options">
+                    <div class="col-md-12 form-group">
+
+                        @Html.ActionLink("Create New", "Create", null, htmlAttributes: new { @class = "btn btn-primary" })
+                    </div>
+                </div>
+			</div>
+			<div class="content-box-large box-with-header">
+				<div class="table-wrapper">
+					<table class="table">
+						<thead>
+                            <tr>
+                                <th>Action</th>
+                                <th>Subdomain ID</th>
+                                <th>Trans Type</th>
+                                <th>PayType </th>
+                                <th>Min Charge</th>
+                                <th>% Charge</th>
+                                <th>Fixed Fees</th>
+                                <th>Status</th>
+
+                            </tr>
+						</thead>
+						<tbody>
+							@foreach (var item in Model)
+							{
+                            <tr>
+                                <td class="table_blue">
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.subdomainID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TransactionType)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PaymentType)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.MinimumCharge)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PercentageCharge)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FixedFee)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Active)
+                                </td>
+
+
+                            </tr>
+							}
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+				

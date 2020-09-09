@@ -1,0 +1,274 @@
+﻿
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MiiD | additional info</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name ="description" content ="MiiD">
+<meta name="keywords" content="">
+<link rel="stylesheet" href="../../content/css/main.css" type="text/css">
+<link rel="shortcut icon" href="images/icon.png?v=2" type="image/x-icon" />
+
+
+
+<script src="../../scripts/cropbox/jquery-1.11.1.min.js"></script>
+<script src="../../scripts/cropbox/cropbox.js"></script>
+
+
+
+  
+</head>
+
+
+
+
+
+
+<body>
+
+<div class="header">
+                       
+                        <div class="header_wrapper">
+                               
+                                        <div class="header_container_left">
+                                        
+                                                                               <img src="../../content/images/logo.png" alt=" miiImage" class="logo" />
+
+												<ul class="drop_menu">
+														<li><img src="../../content/images/drop_menu.png" alt=" miiImage" class="logo" />
+															<ul>
+																<li><a href='#'>About</a></li>
+																<li><a href='#'>Services</a></li>
+																<li><a href='#'>FAQ's</a></li>
+																<li><a href='#'>Help</a></li>
+																
+															</ul>
+														</li>
+				
+				
+												</ul>
+										
+                                        
+                                         </div>
+                                         
+                                         
+                                         
+                             
+                             </div>
+                            
+
+</div>
+
+
+
+  <!--  first section picture & form -->
+
+<div class="firstsection">
+
+			<!-- opaque wrapper -->
+						<div class="wrapper">
+
+			 
+			                    
+ 
+ <div class="form_wrapper">
+ <!-- starat banner -->
+								 
+
+									 <!-- close banner -->
+ 
+ 
+               <div class="form_container">
+               <div   class="register_heading">Change Pin for active MiiBand</div>
+               <div   class="register_text"> Mi-id not only offers a online ticketing service but a full festival experience beginning from the moment you purchase your ticket to the time you leave the venue. Fill in some additional information below
+               to complete your Mii-D Profile
+                
+               </div>
+              
+               
+               
+               
+               
+              
+								
+                      
+               
+               
+               
+               
+                        <div class="right_container_form_two">
+									<form action="" method="post" id="EndUser">
+									
+
+									
+									<div class="form_heading">Pin Reset</div>
+									           
+														<div class="ticket_total_text_two">Email <input type="text" id="Surname" class="band_box "> </div>
+														<div class="ticket_total_text_two">ID Number <input type="text" id="Surname" class="band_box "> </div>
+														
+
+                                                            
+ 
+	
+                               </div>
+
+																
+		
+                            
+                              
+								  <div class="right_container_form_add" ">
+								  
+									
+									
+									
+													
+													
+									
+									           
+														<div class="ticket_total_text_two">New Pin <input type="text" id="Surname" class="band_box "> </div>
+														<div class="ticket_total_text_two">Repeat New Pin <input type="text" id="Surname" class="band_box "> </div>
+														
+
+                                                             <div class="ticket_text_contaianer">	
+											                 <div class="sub_heading_ticket_small">Proof a pin change will be emailed to you.  </div><input type="checkbox" id="" value="Yes" class="" >
+													         </div>
+									
+
+
+									 <input type="button"  class="band_input_clear" value="Cancel" >		        
+	
+	
+                               </div>
+                              
+											        
+
+
+		
+									
+			
+											        
+				
+				
+													
+											       
+ 
+													
+													
+ 
+  
+									  
+								
+									
+									  
+									
+									
+									  
+									  
+									  </form>
+
+
+
+                              </div>
+                              
+                      </div>
+                      
+	</div>
+								
+
+
+</div>
+
+
+</div>
+<div class="footer">
+
+
+<div class="footer_wrapper">
+                        
+          <div class="footer_container_border_none">
+            <div class="footer_heading">Information</div>
+				  <div class="footer_copy">About</div>
+				  <div class="footer_copy">Services</div>
+				  
+				  
+  
+               
+        </div> 
+        <div class="footer_container_border_left">
+          
+				  <div class="footer_heading">Need Help?</div>
+				  <div class="footer_copy">FAQ's</div>
+				  <div class="footer_copy">T&C's</div>
+				   <div class="footer_copy">Help Desk</div>
+				   <div class="footer_copy">Contact</div>
+               
+        </div> 
+        <div class="footer_container_border_left">
+          
+                 <div class="footer_heading">Other</div>
+				  <div class="footer_copy">Careers</div>
+				  <div class="footer_copy">Marketing</div>
+				  <div class="footer_copy">Partnerships</div>
+               
+        </div> 
+        <div class="footer_container_border_left">
+          
+                  <div class="footer_heading">Social</div>
+				  <div class="footer_copy">Facebook</div>
+				   <div class="footer_copy">Twitter</div>
+				   <div class="footer_copy">Google+</div>
+				   <div class="footer_copy">Linkedin</div>
+               
+        </div> 
+				
+				
+				 
+		</div>
+
+</div>
+
+
+
+</body>
+</html>
+
+<script type="text/javascript">
+    $(window).load(function() {
+        var options =
+        {
+            thumbBox: '.thumbBox',
+            spinner: '.spinner',
+            imgSrc: '../../content/images/upload.jpg'
+        }
+        var cropper = $('.imageBox').cropbox(options);
+        $('#file').on('change', function(){
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                options.imgSrc = e.target.result;
+                cropper = $('.imageBox').cropbox(options);
+            }
+            reader.readAsDataURL(this.files[0]);
+            this.files = [];
+        })
+        $('#btnCrop').on('click', function(){
+            var img = cropper.getDataURL();
+			$("#imageID").attr('src', img);
+            //$('.cropped').append('<img src="'+img+'">');
+        })
+        $('#btnZoomIn').on('click', function(){
+            cropper.zoomIn();
+        })
+        $('#btnZoomOut').on('click', function(){
+            cropper.zoomOut();
+        })
+    });
+</script>
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+﻿@model MiidWeb.FeeConfiguration
+
+@{
+    ViewBag.Title = "Create Fee Configuration";
+}
+<div class="firstsection">
+
+    <div class="wrapper">
+
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form_wrapper">
+                <span style="color:palevioletred">@Html.ValidationSummary()</span>
+
+             
+
+                <div class="register_heading"> Create Fee Configuration </div>
+                <div class="register_text">
+                    Fill in the required fields ...
+
+                </div>
+
+                <div class="right_container_form">
+
+                    <div class="form_heading">Details</div>
+
+                    @Html.EditorFor(model => model.TransactionType, new { htmlAttributes = new { @class = "input_registration", placeholder = "Transaction Type" } })
+                    @Html.ValidationMessageFor(model => model.TransactionType, "", new { @class = "red" })
+
+                    @Html.EditorFor(model => model.PaymentType, new { htmlAttributes = new { @class = "input_registration", placeholder = "Payment Type" } })
+                    @Html.ValidationMessageFor(model => model.PaymentType, "", new { @class = "red" })
+
+
+                    @Html.EditorFor(model => model.MinimumCharge, new { htmlAttributes = new { @class = "input_registration", placeholder = "Minimum Charge" } })
+                    @Html.ValidationMessageFor(model => model.MinimumCharge, "", new { @class = "red" })
+
+
+                    @Html.EditorFor(model => model.PercentageCharge, new { htmlAttributes = new { @class = "input_registration", placeholder = "Percentage Charge" } })
+                    @Html.ValidationMessageFor(model => model.PercentageCharge, "", new { @class = "red" })
+
+                    @Html.EditorFor(model => model.FixedFee, new { htmlAttributes = new { @class = "input_registration", placeholder = "Fixed Fee" } })
+                    @Html.ValidationMessageFor(model => model.FixedFee, "", new { @class = "red" })
+
+                    @Html.EditorFor(model => model.Active, new { htmlAttributes = new { @class = "input_registration", placeholder = "Active" } })
+                    @Html.ValidationMessageFor(model => model.Active, "", new { @class = "red" })
+
+                </div>
+                <div class="right_container_form">
+
+                    <br />
+
+                    <input type="submit" value="Save" class="input_organiser_submit" />
+                    @Html.ActionLink("Cancel", "Index", null, new { @class = "input_organiser_submit" })
+                </div>
+
+            </div>
+
+
+        }
+
+    </div>
+</div>
+

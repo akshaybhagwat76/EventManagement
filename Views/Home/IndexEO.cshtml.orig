@@ -1,0 +1,287 @@
+﻿@model MiidWeb.Models.LoginViewModel
+@{
+  ViewBag.Title = "MiiD Event Organiser Landing Page";
+  Layout = null;
+
+}
+
+<!DOCTYPE html>
+<!--
+    Read Only by HTML5 UP
+    html5up.net |
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html lang="en" xml:lang="en">
+<head>
+  <title>Event Organiser home page online tickets and cashless solutions for music festivals and events </title>
+    <meta name="description" content="Quick and easy online, digital ticketing and cashless solutions for music festivals">
+     <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!--goole tracking  code -->
+  
+
+  <link rel="image_src" href="https://www.miid.co.za/content/images/cashless_events.jpg"/><!--formatted-->
+
+  <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+  <link rel="stylesheet" href="../../content/css/main.css" />
+
+  <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+  <script src="../../scripts/js/modernizr-2.6.2.min.js"></script>
+</head>
+<body>
+    
+     
+  <!-- Header -->
+  <section id="header">
+    <header>
+      <span class="logo"><img src="../../content/images/logo_dark.svg" alt="Mii-D ticketing logo" /></span>
+
+
+    </header>
+    <nav id="nav">
+      <ul>
+        <li>
+          <div class="nav_form">
+            @Html.Partial("_LoginPartialEO")
+          </div>
+        </li>
+          </ul>
+    </nav>
+    <footer>
+      <ul class="icons">
+        <li><a href="https://twitter.com/MiiDEvents" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+        <li><a href="https://www.facebook.com/Fullsummerfest-1707827266111866/?fref=ts" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+        <li><a href="https://www.instagram.com/miid_events/" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+      </ul>
+    </footer>
+  </section>
+
+  <!-- Wrapper -->
+  <div id="wrapper">
+    <!-- Main -->
+    <div id="main">
+        <!--top nav strip-->
+        <div class="header_banner_conainer"><a href="https://www.miid.co.za"><img src="../../content/images/logo_dark.svg" alt="" class="logo" /></a>
+            <a href="https://twitter.com/MiiDEvents"><img src="../../content/images/social/share_twitter.svg"  class="logo_right" /></a>
+            <a href="https://www.facebook.com/miidevents/"><img src="../../content/images/social/share_fb.svg" class="logo_right" /></a>
+            <a href="~/Home/Contact"><img src="../../content/images/social/mail.svg" class="logo_right" /></a>
+            <div class="logo_text_right">Get in touch:</div>   
+        </div>
+        <!--close top nav strip-->
+
+      <!-- One -->
+      <section id="">
+        <div class="background_hero white">
+            
+          <header class="major">
+            <h1 class="align-center white">Easy, online ticketing & cashless solutions for music festivals & events</h1>
+              <h4 class="align-center white width80">Register now for <span style="font-weight:bold;">your free ticketing </span>option and start selling tickets to your event now! </h4>
+            <div class="p align-center">
+              <ul class="actions">
+                <li><a href="~/EventOrganisers/Register" class="button special">Register Now</a></li>
+              </ul>
+            </div>
+
+          </header>
+        </div>
+
+      </section>
+    </div>
+
+    <!-- Two -->
+    <section>
+      <div class="eo_container_strip background_blue white">
+          <div class="features">
+          <article>
+              <a href="~/Tickets/TicketingExplanation">
+                  <iframe class="video" src="https://www.youtube.com/embed/bSgt3tJOO_c?rel=0" frameborder="0" allowfullscreen></iframe>
+              </a>
+              <div class="inner_video">
+                  
+                  <p>
+                      <h1 class="white">Full festival solutions</h1>
+                      Mii-D  provides the latest
+                      innovative solutions for music festivals, events and concerts. We do this by constantly seeking out the
+                      latest ticketing and cashless technologies and work closely with yourself and our partners to provide a safer, more convenient experience for all.
+                  </p> 
+                  </p>
+              </div>
+          </article>
+          </div>
+
+        <div class="p align-justify ">
+          
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Three -->
+    <section id="three" class="background_tiled">
+
+      <div class="eo_container  background_black">
+        
+
+        <div class="p">   </div>
+        <div class="features">
+          <article>
+              <a href="~/Tickets/TicketingExplanation">
+                  <img src="../../content/images/ticketvector.png" alt="secure ticketing icon" class="image" /></a>
+                  <div class="inner">
+                      <div class="h3">Bar-code ticketing</div>
+                      <p>
+
+					  	For the most cost effective ticketing solution,	Mii-D offers a easy to implement bar-coded ticketing option.
+
+                      </p>  <a href="~/EventOrganisers/Register">Register now for your free trial >></a>
+</p>
+                  </div>
+</article>
+			<article>
+				<a href="~/Tickets/TicketingExplanation">
+					<img src="../../content/images/nfc.png" alt="secure ticketing icon" class="image" />
+				</a>
+				<div class="inner">
+					<div class="h3">NFC ticketing</div>
+					<p>
+
+						Mii-D's NFC ticketing solutions provide a more secure alternative to regular ticketing options. Mii-D uses
+						the latest NFC technology so tickets cannot be lost, stolen or duplicated.
+					</p>  <a href="~/Tickets/TicketingExplanation">Find out more >></a>
+					</p>
+				</div>
+			</article>
+          <article>
+              <a href="~/MyMoneys/MiiFundsExplanation">
+                  <img src="../../content/images/home02.png" alt="" class="image" /></a>
+                  <div class="inner">
+                      <div class="h3">Cashless Events</div>
+                      <p>
+                          Cut down on bank charges, reduce queues & eliminate the risk of cash being stolen at your event.
+                      </p> <a href="~/MyMoneys/MiiFundsExplanation">Find out more >></a>
+                      
+                  </div>
+</article>
+          <article>
+              <a href="~/Home/MiiBandExplanation">
+                  <img src="../../content/images/home05.png" alt="" class="image" /></a>
+                  <div class="inner">
+                      <div class="h3">Emergency Info</div>
+                      <p>In an emergency situation each second counts. Access ticket holders medical conditions and next of kin within seconds.</p>
+                      <a href="~/Home/MiiBandExplanation">Find out more >></a>
+</div>
+</article>
+          <article>
+              <a href="~/Home/ExtraServices">
+                  <img src="../../content/images/stats.png" alt="" class="image" /></a>
+                  <div class="inner">
+                      <div class="h3">Live Sales Statistics</div>
+                      <p>
+                          View ticket sales in real time and track the amount of revenue your bars and vendors are generating.
+                      </p><a href="~/Home/ExtraServices">Find out more >></a>
+                       
+                  </div>
+</article>
+          <div class="align-center white">
+            <ul>
+              <li> <a href="~/EventOrganisers/Register" class="button special">START YOUR FREE TRIAL NOW</a></li>
+            </ul>
+            <ul class="actions">
+              <li>
+                <a href="~/Home/ProductSummary" class="button alt">VIEW MORE SERVICES</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+ 
+
+  <!-- Footer -->
+  <!-- Footer -->
+  <section id="footer">
+    <div class="container">
+      <ul class="icons">
+        <li><a href="https://twitter.com/MiiDEvents" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+        <li><a href="https://www.facebook.com/Fullsummerfest-1707827266111866/?fref=ts" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+        <li><a href="https://www.instagram.com/miid_events/" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+      </ul>
+      <ul class="copyright">
+        <li><a href="~/Home/Contact">Contact us</a></li>
+        <li><a href="~/Home/TermsCondition">Terms & Conditions</a></li>
+        <li><a href="~/Home/HelpEventOrganiser">Event Organiser info</a></li>
+          <li><a href="~/Tickets/TicketingExplanation">Online ticketing</a></li>
+          <li><a href="~/MyMoneys/MiiFundsExplanation">Cashless Events</a></li>
+          <li><a href="~/Home/ExtraServices">Event Analytics</a></li>
+          <li><a href="~/Home/MiiBandExplanation">NFC Festival Wristbands</a></li>
+      </ul>
+        <img src="../../content/images/geotrust.svg" class="scale_small" />
+        <img src="../../content/images/payfast.svg" class="scale_small" />
+        <img src="../../content/images/visa.svg" class="scale_small" />
+        <img src="../../content/images/mastercard.svg" class="scale_small" />
+        <img src="../../content/images/bankinglogos.svg" class="scale_small" />
+
+      <ul class="copyright">
+        <li>&copy; Copyright of MiiD (PTY) ltd. All rights reserved.</li>
+        <li>
+          MiiD online ticketing and cashless solutions
+          16 Franssen Street, Bothasig, Cape Town, South Africa, 7441
+        </li>
+      </ul>
+    </div>
+  </section>
+      <!-- Begin MailChimp Signup Form -->
+      <link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+      <style type="text/css">
+          #mc_embed_signup {
+              background: #808080;
+              clear: left;
+              font: 14px Helvetica,Arial,sans-serif;
+              width: 100%;
+              color:#ffffff;
+          }
+          /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+          We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+      </style>
+      <div id="mc_embed_signup">
+          <form action="//miid.us14.list-manage.com/subscribe/post?u=d5a0e3446240457482510f05b&amp;id=0fa8899427" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+              <div id="mc_embed_signup_scroll" style="padding-left:20px;padding-right:20px;">
+                  <label for="mce-EMAIL" style="font-weight:normal; color:#ffffff">Subscribe to our mailing list for speicial offers and product updates.</label>
+                  <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+                  <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                  <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_d5a0e3446240457482510f05b_0fa8899427" tabindex="-1" value=""></div>
+                  <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+              </div>
+          </form>
+      </div>
+
+      <!--End mc_embed_signup-->
+  </div>
+  <script src="../../scripts/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="../../scripts/js/jquery-1.9.1.min.js"><\/script>')</script>
+  <!-- Scripts -->
+  <script src="../../scripts/js/main_carousel.js"></script>
+  <script src="../../scripts/jquery.scrollzer.min.js"></script>
+  <script src="../../scripts/jquery.scrolly.min.js"></script>
+  <script src="../../scripts/skel.min.js"></script>
+  <script src="../../scripts/util.js"></script>
+  <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+  <script src="../../scripts/main.js"></script>
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/56c62790589e851628b84f1b/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+    </script>
+    <!--End of Tawk.to Script-->
+
+   
+
+</body>
+</html>

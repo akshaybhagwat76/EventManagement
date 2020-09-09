@@ -1,0 +1,232 @@
+﻿body
+{
+    cursor: default;
+    background-image: url('../Img/background.JPG');
+}
+#iveriLogo
+{
+    position: absolute; 
+    float:left; 
+    top: 0px; 
+    left: 0px; 
+    background-image: url('../Img/iVeriLogo.GIF'); 
+    width: 100%; 
+    min-width: 1024px; 
+    height: 200px; 
+    padding-bottom: 27px; 
+    border-bottom: 1px ridge silver; 
+    background-color: white;
+    background-repeat: no-repeat;
+}
+#menuTbl
+{
+    color: white; 
+    z-index: 5;
+    position: absolute; 
+    font: 10px Arial; 
+    top:180px; 
+    width: 230px; 
+    height: auto;
+    left: 0px; 
+    background-image: url('../Img/menuBG.JPG'); 
+    background-color: #be4848;
+    background-repeat: repeat-y; 
+    border: 1px solid black;
+}
+
+#menuTbl td
+{
+    padding: 0px;
+    margin: 0px;
+}
+
+.clsMenuLink
+{
+    background-image: url('../Img/menuLink.JPG'); 
+    background-position: left;
+    cursor: pointer; 
+    font: 10px/21px Cursive; 
+    font-family: DejaVu Sans;
+    position: relative;
+    width: 229px; 
+    color: Black; 
+    text-align:center; 
+    height: 21px;
+    filter:alpha(opacity=60);
+    opacity: 0.6;
+    margin: 0px;
+    padding: 0px;
+}
+
+.clsMenuLinkHeading
+{
+    margin: 0px;
+    height: 32px;
+    padding-left: 120px;
+}
+.clsSrcBtn, .clsSrvSrcBtn, .clsXslSrcBtn
+{
+    width: 30px;
+    height: 12px;
+    background-color: Black;
+    border: 2px outset white;
+    cursor: pointer;
+    margin: 2px;
+}
+.clsSrvSrcBtn { background-color: darkred; color: darkred; }
+.clsXslSrcBtn { background-color: darkblue; color: darkblue; }
+.clsProcessFlowControl
+{
+    margin: 0px;
+    background-color: white;
+    color: black;
+    border: 1px ridge black;
+    border-bottom: none;
+    padding: 1px;
+    opacity: 1.0;
+    width: 10px;
+    height: 10px;
+    filter: alpha(opacity=100);
+    font: 11px DejaVu Sans Condensed; 
+    font-weight: bold;
+    text-align: center;
+    float: left;
+    cursor: pointer;
+}
+#divProcessFlow
+{
+    overflow: hidden;
+    width: 100%;
+    border-top: 1px ridge black;
+}
+#divProcessFlowBG
+{
+    position: absolute; 
+    left: 0px;
+    z-index: 1;
+    opacity: 0.5; 
+    filter:alpha(opacity=50);
+    width: 100%; 
+    height: 100%;
+    background-image: url('../Img/FooterBackground.GIF');
+    background-repeat: repeat-x;
+}
+#divProcessFlowControls
+{
+    position: absolute; 
+    top:-12px; 
+    text-align: center; 
+    width: 132px; 
+    left: 50%; 
+    margin-left: -66px;     
+    background-color: Black;
+}
+#divProcessFlowAll
+{
+    position: fixed;
+    z-index: 6;
+    bottom: 0px;
+    right: 0px;
+    width: auto;
+    left: 0px;
+}
+#processflowTbl
+{
+    position: relative;
+    z-index: 2;
+    background-color: transparent;
+    filter:alpha(opacity=100);
+    opacity: 1.0;
+    overflow: scroll;
+    height: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 11px; 
+    font-family: DejaVu Sans;
+    font-weight: bold;
+}
+#processflowTbl td
+{
+    margin: 0px;
+    padding: 6px;
+    text-align: center;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+#pageHeader
+{
+    position: absolute; 
+    left: 278px; 
+    margin-top: 0px; 
+    right: 0px; 
+    font: 20px DejaVu Sans Condensed; 
+    font-weight: bold; 
+    background-color: white; 
+    height: 166px; 
+    padding-right: 250px; 
+    background-repeat: repeat-x; 
+    text-align: center;
+    color:white;  
+    min-width: 496px;
+    background-image: url('../Img/HeaderBackground.GIF');
+}
+#npayStatusDiv
+{
+    border: 2px ridge white;
+    padding-left: 5px; 
+    height: 24px; 
+    font: 14px/24px Arial; 
+    font-weight: bold;
+}
+#frameContent
+{
+    position: relative; 
+    left: 0px; 
+    top: 0px; 
+    width: 100%; 
+    min-height: 100px; 
+    background-color: White; 
+    border-top: 0px solid white;
+    float:left; z-index: 3;
+}
+#divFrameContent
+{
+    position: absolute;
+    border:1px solid black; 
+    border-top: 0px; 
+    top:  227px; 
+    left: 240px; 
+    width:760px;
+    margin-bottom: 800px;
+}
+#frameContentPadder, #frameContentShadow
+{
+    position: absolute; 
+    z-index: 1; 
+    left: 3px; 
+    top: 4px;
+    padding-right: 2px; 
+    padding-bottom: 1px;
+    width: 100%; 
+    height: 100%;
+}
+#frameContentPadder { padding-bottom: 120px; }
+#frameContentShadow { background-color: Black; opacity: 0.68; filter:alpha(opacity=68); }
+#labelFrameDescriptionHeader
+{
+    position: absolute; 
+    font: 16px Dejavu Sans Condensed; 
+    font-weight: bold; 
+    z-index: 2; 
+    left:474px; 
+    right: 0px;
+    top: 0px; 
+    height:70px; 
+    min-width: 520px;
+    padding-left: 30px;
+    background-repeat: repeat-x; 
+    background-image: url('../Img/borderTT.JPG'); 
+    text-align: left; 
+    padding-top: 20px; 
+    background-position: top;
+}

@@ -1,0 +1,390 @@
+﻿@using Microsoft.AspNet.Identity
+@model MiidWeb.Models.ManualEFTViewModel
+@{
+    ViewBag.Title = "Mii-Funds";
+
+    var notification = ViewBag.Notification;
+    //MiidWeb.Controllers.UserModel u1 = MiidWeb.Helpers.SessionManager.EndUser;
+
+    string purpose = Model.Purpose;
+    string heading = "";
+    string disabled = "";
+
+    switch (purpose)
+    {
+        case "Ticket Purchase": heading = "Ticket Purchase by EFT"; disabled = "disabled"; break;
+        case "Mii-funds Topup": heading = "Mii-Funds Manual EFT Topup"; break;
+        default: break;
+
+    }
+Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("Layout");
+}
+
+
+<!-- One -->
+
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+			<div class="form_wrapper">
+				<!-- starat banner -->
+				@Html.ValidationSummary(true, "", new { @class = "red" })
+
+
+				@Html.HiddenFor(model => model.EndUserID)
+				@Html.HiddenFor(model => model.FirstName)
+				@Html.HiddenFor(model => model.Surname)
+				@Html.HiddenFor(model => model.PaymentDate)
+				@Html.HiddenFor(model => model.TotalAmountInRands)
+				@Html.HiddenFor(model => model.UniquePaymentID)
+				@Html.HiddenFor(model => model.PurchaseSessionID)
+				@Html.HiddenFor(model => model.Purpose)
+
+				@if (purpose == "Ticket Purchase")
+				{
+
+					<div class="container bg-grey">
+						<div class="row vertical-offset-40px">
+							<div class="col-md-6 col-md-offset-3">
+
+								<div class="panel panel-default ">
+
+									<div class="panel-body text-center">
+
+										<h3 class="">
+											<i class="fas fa-shopping-cart" aria-hidden="true"></i>&nbsp;Ticket purchase via EFT
+											
+										</h3>
+                                        <hr />
+
+										@{ var totalAmount = 0; }
+
+
+
+										<table class="table table-striped">
+											<thead>
+												<tr>
+													<th class="text-left">Ticket Type:</th>
+													<th>QTY</th>
+													<th class="text-right">Unit Price</th>
+												</tr>
+											</thead>
+											<tbody>
+
+												@foreach (var tc in Model.PurchaseTicketViewModel.TicketClasses.Where(x => x.TicketCount > 0))
+												{
+													<tr>
+														<td class="text-left">@tc.TicketClass.Description : </td>
+														<td>@tc.TicketCount </td>
+														<td class="text-right"> R @tc.TicketClass.Price</td>
+													</tr>				totalAmount += (int)(tc.TotalCost);
+
+
+												}
+											</tbody>
+											<tfoot>
+                                                @if (ViewBag.DiscountAmount > 0)
+                                                {
+                                                    <tr>
+
+                                                        <td><h5>Less Discount</h5></td>
+                                                        <td></td>
+                                                        <td class="text-right"><h5><strong> - @ViewBag.DiscountAmount.ToString("0.00")</strong></h5></td>
+                                                    </tr>
+                                                }
+												<tr>
+													<td colspan="3" class="text-right"><h3>Total Amount: R @totalAmount</h3><hr> </td>
+
+
+												</tr>
+											</tfoot>
+
+
+										</table>
+
+
+                                        <div class="alert alert-danger">
+                                            <h4><strong>Important!</strong></h4>
+
+                                            <h4>Please read below carefully</h4>
+                                            In order for us to trace your payment, you will need to use the <strong>exact reference number and amount</strong>.  Once your funds are transferred click the confirm button. We will not be able to allocate your ticket to you if the incorrect reference number is used. Please allow up to 3 days for the payment to reflect.
+                                        </div>
+
+										          
+													<Table  class="table table-striped">
+
+														<tr class="text-left"><td>Bank Name:</td><td class="text-right"> FNB</td></tr>
+														<tr class="text-left"><td>Acc Type:</td><td class="text-right"> Cheque Account</td> </tr>
+														<tr class="text-left"><td>Acc Number:</td><td class="text-right">6267 0245 200</td></tr>
+														<tr class="text-left"><td>Branch Code:</td><td class="text-right"> 250 655</td></tr>
+														
+														<tr><td class="text-left">Reference: </td><td class="text-right"> @Html.DisplayFor(model => model.UniquePaymentID)</td></tr>
+													
+													</Table>
+												
+													<div class="col-md-12 text-left">
+													<div class="form-check ">
+														@Html.RadioButtonFor(model => model.ReferenceInSafePlace, true, new { id = "Yes" })
+														<label for="Yes">Yes</label>
+														@Html.RadioButtonFor(model => model.ReferenceInSafePlace, false, new { id = "No" })
+														<label for="No">No</label>
+                                                        <label class="form-check-label" for="defaultCheck1">
+                                                            I have used the reference @Html.DisplayFor(model => model.UniquePaymentID) when I made the payment
+
+                                                        </label>
+													</div>
+													</div>
+													<div class="col-md-12 text-left" >
+														<div class="form-check">
+															@Html.RadioButtonFor(model => model.TermsAndConditions, true, new { id = "TermsAndConditions1" })
+															<label for="TermsAndConditions1">Yes</label>
+															@Html.RadioButtonFor(model => model.TermsAndConditions, false, new { id = "TermsAndConditions2" })
+															<label for="TermsAndConditions2">No</label>
+															<label class="form-check-label" for="defaultCheck1">
+																&nbsp; &nbsp; &nbsp; I have read the Terms & Conditions
+															</label>
+														</div>
+														<br>
+                                                        <div class="form-group ">
+
+                                                            <input type="submit" id="load" class="btn btn-primary btn-block btn-lg" value="Complete Payment" style="background-color:#13a048; border:0;" onclick="var e=this;setTimeout(function(){e.disabled=true;},0);return true;" />
+
+                                                        </div>
+														<div class="col-md-12 text-center">
+														<img src="~/Content/images/newimages/banking.svg" style="width:60%;" />
+														</div>
+													</div>
+                                                    
+														
+
+														
+													</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+								
+								
+															}
+															else   //MiiFunds Topup Confirmation
+															{
+
+
+																<div class="container bg-grey">
+																	<div class="row vertical-offset-40px">
+
+
+																		<div class="col-md-6 col-md-offset-3">
+
+																			<div class="panel  panel-default text-left">
+
+																				<div class="panel-body">
+
+																					<div class="col-md-12">
+																						<h3>
+																							<i class="fa fa-lock" aria-hidden="true"></i>&nbsp;Bank Transfer
+																							
+																						</h3><hr>
+																						<div class="alert alert-success">
+																							<strong>Important!</strong>
+																							Important! Only click continue once the payment is made in order for us to pick up your reference number. The reference number below is only valid for this payment.
+																						</div>
+																						<p>Use the exact reference number and amount when transfering funds.</p>
+																					</div>
+																					<div class=" col-md-12 ">
+																						<table cellpadding="30" class="table table-hover">
+
+																							<tbody>
+
+
+																								<tr>
+																									<td>Amount</td>
+
+
+																									<td class="text-right">
+																										@Html.DisplayFor(model => model.TotalAmountInRands)
+																									</td>
+																								</tr>
+
+																								<tr>
+																									<td>Reference Number</td>
+																									<td class="text-right">@Html.DisplayFor(model => model.UniquePaymentID)</td>
+																								</tr>
+
+																								<tr>
+																									<td>
+																										Acc No.
+																									</td>
+																									<td class="text-right">
+																										62670245200
+																									</td>
+																								</tr>
+																								<tr>
+																									<td>
+																										Bank Name
+																									</td>
+																									<td class="text-right">
+																										FNB
+																									</td>
+
+																								</tr>
+																								<tr>
+																									<td>
+																										Branch Code
+																									</td>
+																									<td class="text-right">
+																										250 655
+																									</td>
+
+																								</tr>
+																								<tr>
+																									<td>
+																										Acc Type
+																									</td>
+																									<td class="text-right">
+																										Cheque
+																									</td>
+
+																								</tr>
+
+
+																							</tbody>
+																						</table>
+																					</div>
+																					<div class="form-group col-md-12">
+																						<p class="pull-left">
+																							<div class="alert alert-warning">
+
+																								@Html.RadioButtonFor(model => model.ReferenceInSafePlace, true, new { id = "ReferenceInSafePlace1" })
+																								I have transferred exact amount of funds & used the correct reference number
+																							</div>
+																						</p>
+																					</div>
+																					<div class="form-group col-md-12 hidden">
+																						<p class="pull-left">
+																							<div class="alert alert-warning">
+
+																								@Html.RadioButtonFor(model => model.TermsAndConditions, true, new { @checked = "checked", id = "TermsAndConditions1" })
+																								&nbsp; &nbsp; &nbsp; <label for="demo-copy">I have read & Understood the Terms & Conditions</label>
+																							</div>
+																						</p>
+																					</div>
+
+
+																					<div class="col-md-8">
+																						<img src="https://www.miid.co.za/Content/images/newimages/secure1.svg">
+
+																					</div>
+																					<div class="col-md-4">
+
+																						<input type="submit" class="btn btn-info btn-block" value="Accept" onclick="ButtonClicked()">
+																					</div>
+
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+																<script>
+
+																	$('.btn').on('click', function () {
+																		var $this = $(this);
+																		$this.button('loading');
+
+																	});
+
+																</script>
+
+
+																<script>
+																	var copyTextareaBtn = document.querySelector('.js-textareacopybtn');
+
+																	copyTextareaBtn.addEventListener('click', function (event) {
+																		var copyTextarea = document.querySelector('.js-copytextarea');
+																		copyTextarea.select();
+
+																		try {
+																			var successful = document.execCommand('copy');
+																			var msg = successful ? 'successful' : 'unsuccessful';
+																			console.log('Copying text command was ' + msg);
+																		} catch (err) {
+																			console.log('Oops, unable to copy');
+																		}
+																	});
+																</script>
+																<script>
+																	var copyTextareaBtn = document.querySelector('.js-textareacopybtn1');
+
+																	copyTextareaBtn.addEventListener('click', function (event) {
+																		var copyTextarea = document.querySelector('.js-copytextarea1');
+																		copyTextarea.select();
+
+																		try {
+																			var successful = document.execCommand('copy');
+																			var msg = successful ? 'successful' : 'unsuccessful';
+																			console.log('Copying text command was ' + msg);
+																		} catch (err) {
+																			console.log('Oops, unable to copy');
+																		}
+																	});
+																</script>
+																<script>
+																	var copyTextareaBtn = document.querySelector('.js-textareacopybtn2');
+
+																	copyTextareaBtn.addEventListener('click', function (event) {
+																		var copyTextarea = document.querySelector('.js-copytextarea2');
+																		copyTextarea.select();
+
+																		try {
+																			var successful = document.execCommand('copy');
+																			var msg = successful ? 'successful' : 'unsuccessful';
+																			console.log('Copying text command was ' + msg);
+																		} catch (err) {
+																			console.log('Oops, unable to copy');
+																		}
+																	});
+																</script>
+
+                                    <!--*********************************-->
+
+
+
+            <!-- One -->
+
+
+																@Html.HiddenFor(model => model.FirstName)
+																@Html.HiddenFor(model => model.Surname)
+																@Html.HiddenFor(model => model.PaymentDate)
+
+
+															}
+
+			</div>
+															}
+
+
+<!--disabled button once clicked-->
+<script type="text/javascript">
+
+
+function ButtonClicked()
+{
+   document.getElementById("formsubmitbutton").style.display = "none"; // to undisplay
+   document.getElementById("buttonreplacement").style.display = ""; // to display
+   return true;
+}
+var FirstLoading = true;
+function RestoreSubmitButton()
+{
+   if( FirstLoading )
+   {
+      FirstLoading = false;
+      return;
+   }
+   document.getElementById("formsubmitbutton").style.display = ""; // to display
+   document.getElementById("buttonreplacement").style.display = "none"; // to undisplay
+}
+
+</script>

@@ -1,0 +1,101 @@
+﻿@using Microsoft.AspNet.Identity
+@using MiidWeb.Helpers
+@if (Request.IsAuthenticated)
+{
+    var endUser = MiidWeb.Repositories.EndUserRepository.GetUser(User.Identity.GetUserName(), true);
+
+    bool IAmEventOrganiser = false;
+
+    IAmEventOrganiser = MiidWeb.Repositories.EndUserRepository.AmIAnEventOrganiser(User.Identity.GetUserName());
+
+
+
+    if (endUser == null && !IAmEventOrganiser) { Response.Redirect("~/Account/Logoff"); }
+
+
+
+    @* @Html.ActionLink("Forgot your password?", "ForgotPassword", "Account")*@
+
+
+
+
+
+
+    if (endUser != null)
+    {
+
+        <li class="nav-item">
+            @Html.ActionLink("Home", "EndUserProfile", "EndUsers", new { id = @MiidWeb.Helpers.UserHelper.UserID(User.Identity.GetUserName()), loggedInUserID = @MiidWeb.Helpers.UserHelper.UserID(User.Identity.GetUserName()) }, new { @class = "nav-link" })
+        </li>
+        <li class="nav-item">
+            @Html.ActionLink("Home", "EndUserProfile", "EndUsers", new { id = @MiidWeb.Helpers.UserHelper.UserID(User.Identity.GetUserName()), loggedInUserID = @MiidWeb.Helpers.UserHelper.UserID(User.Identity.GetUserName()) }, new { @class = "nav-link" })
+        </li>
+        <li class="nav-item">
+            @Html.ActionLink("All Events", "Search", "Events", null,  new { @class = "nav-link" })
+        </li>
+       
+        <li class="nav-item">
+            @Html.ActionLink("Your Tickets", "MiiEvents", "Events", null, new { @class = "nav-link" })
+        </li>
+        <li class="nav-item">
+            @Html.ActionLink("Pre-Paid Funds", "IndexByUserID", "MyMoneys", null, new { @class = "nav-link" })
+        </li>
+        <li class="nav-item">
+            @Html.ActionLink("Wristbands", "IndexByUserID", "NFCTags", null, new { @class = "nav-link" })
+        </li>
+        <li class="nav-item">
+            @Html.ActionLink("Create Event", "Create", "EventOrganisers", null, new { @class = "nav-link" })
+        </li>
+        <li class="nav-item">
+            @Html.ActionLink("Sign Out", "Logoff", "Account", null, new { @class = "nav-link" })
+
+        </li>
+    }
+
+
+
+
+
+    @* @Html.ActionLink("Forgot your password?", "ForgotPassword", "Account")*@
+
+
+
+
+
+}
+else
+{
+
+    <header style="display:none;">
+        <!--IMPORTANT...this is part of the url redirect when user logs on and taken back to events-->
+        <div class="p">
+            @{ var model = new MiidWeb.Models.LoginViewModel(ReturnUrl: Request.RawUrl);}
+            @Html.Partial("_Login", @model)
+        </div>
+    </header>
+
+    <li class="nav-item">
+        <a href="~/Events/Search" class="nav-link">All Events &amp; Festivals</a>
+    </li>
+    <li class="nav-item">
+        <a href="~/Account/Register" class="nav-link">Register</a>
+    </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Event Organiser
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="~/Home/IndexEO">Event Organisers</a>
+            <a href="" class="nav-link"></a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+    </li>
+
+
+
+
+
+
+}

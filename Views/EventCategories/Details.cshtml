@@ -1,0 +1,59 @@
+﻿@model MiidWeb.EventCategory
+
+@{
+	ViewBag.Title = "Details";
+	Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+	//Layout = null;
+}
+
+<style>
+	<!--
+
+	.glyphicon {
+		cursor: pointer;
+	}
+
+	input,
+	select {
+		width: 100%;
+	}
+	-->
+</style>
+
+<div class="col-md-9">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="content-box-header">
+				<div class="panel-title">Vendor Details</div>
+				<div class="panel-title pull-right" style="margin-top:-8px;"> @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, htmlAttributes: new { @class = "btn btn-primary" })</div>
+
+				<div class="panel-options">
+
+				</div>
+			</div>
+			<div class="content-box-large box-with-header">
+
+				<dl class="dl-horizontal">
+					<dt>
+						@Html.DisplayNameFor(model => model.Code)
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.Code)
+					</dd>
+
+					<dt>
+						@Html.DisplayNameFor(model => model.Description)
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.Description)
+					</dd>
+				
+
+				</dl>
+			</div>
+			
+			</div>
+		</div>
+	</div>

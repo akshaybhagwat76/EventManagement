@@ -1,0 +1,94 @@
+﻿@using Microsoft.AspNet.Identity
+@model MiidWeb.Models.TransferMiiFundsViewModel
+
+@{
+    ViewBag.Title = "Mii-Funds Request Withdrawal";
+
+
+    var u1 = MiidWeb.Repositories.EndUserRepository.GetUser(User.Identity.GetUserName(), true);
+
+    string NotificationInvalidCredentials = "";
+
+    if (ViewBag.NotificationInvalidCredentials != null)
+    {
+        NotificationInvalidCredentials = ViewBag.NotificationInvalidCredentials;
+    }
+
+    string NotificationMinAmount = "";
+    if (ViewBag.NotificationMinAmount != null)
+    {
+        NotificationMinAmount = ViewBag.NotificationMinAmount;
+    }
+
+    string NotificationInsufficientFunds = "";
+
+    if (ViewBag.NotificationInsufficientFunds != null)
+    {
+        NotificationInsufficientFunds = ViewBag.NotificationInsufficientFunds;
+    }
+
+
+}
+
+
+<!-- One -->
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.EndUserID)
+
+    @Html.HiddenFor(model => model.FirstName)
+
+    @Html.HiddenFor(model => model.Surname)
+
+    @Html.HiddenFor(model => model.TotalFunds)
+
+    @Html.HiddenFor(model => model.AvailableFunds)
+
+
+    <div class="container">
+        <div class="row">
+
+
+            <div class="col-md-6  offset-md-3">
+                <div class="card" >
+                  
+                    <div class="card-body">
+                        <h5 class="card-title"> Transfer Funds</h5>
+                        <p class="card-text">
+                            Available Funds:
+                            @{
+                                decimal funds = Model.AvailableFunds ?? 0.00M;
+
+                            }
+                            R @funds.ToString("0.00")
+                            @* <td>R @totalfunds.ToString("0.00")</td> *@
+                            @* @DateTime.Now.ToString("dd MMMM yyyy") *@
+                        </p>
+                        <p class="card-text">
+                            <div class="form-group">
+                                <label>From account:</label>
+                                @Html.DropDownListFor(x => x.FromAccountID, (IEnumerable<SelectListItem>)Model.FromAccounts, htmlAttributes: new { @class = "form-control input-lg" })
+                            </div>
+                            <div class="form-group">
+                                <label>To account:</label>
+                                @Html.DropDownListFor(x => x.ToAccountID, (IEnumerable<SelectListItem>)Model.ToAccounts, htmlAttributes: new { @class = "form-control input-lg" })
+                            </div>
+                            <div class="form-group">
+                                <label>Amount:</label>
+                                @Html.TextBoxFor(model => model.TransferAmount, new { @class = "form-control input-lg" })
+                            </div>
+                        </p>
+                        <input type="submit" value="Transfer" class="btn btn-primary btn-block" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+}

@@ -1,0 +1,28 @@
+.wrapper { margin-left:10px;
+  width: 100%
+  background-color:#000;
+  
+}
+
+.slider {
+  margin: 10px 0;
+ /* Update to your slider width */
+ width:100% !important;
+    height:100% !important;
+    display:block;
+  position: relative;
+  
+   background-color:#ccc;
+  
+}
+
+.slider li {
+  display: none;
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+}
+
+.responsive {  width:100% !important;
+    height:100% !important;
+    display:block;}

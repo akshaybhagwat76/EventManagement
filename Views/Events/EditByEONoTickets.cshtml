@@ -1,0 +1,307 @@
+﻿@model MiidWeb.Models.EventViewModel
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = null;
+}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-GB">
+<head>
+    <title>Edit Event</title>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="robots" content="index, follow" />
+    <meta name="viewport" content="initial-scale=0.8" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="../../content/css/main.css" />
+
+    <script src="../../scripts/cropbox/jquery-1.11.1.min.js"></script>
+    <script src="../../scripts/cropbox/cropbox.js"></script>
+
+</head>
+<body class="profile_body">
+
+    <div class="header">
+
+        <div class="header_wrapper">
+
+            <div class="header_container_left">
+                <img src="../../content/images/logo.png" alt=" miiImage" class="logo" />
+
+                <ul class="drop_menu">
+                    <li>
+                        <img src="../../content/images/drop_menu.png" alt=" miiImage" class="logo" />
+                        <ul>
+                            <li><a href='#'>About</a></li>
+                            <li><a href='#'>Services</a></li>
+                            <li><a href='#'>FAQ's</a></li>
+                            <li><a href='#'>Help</a></li>
+                            <li><a href='#'>Log Out</a></li>
+
+                        </ul>
+                    </li>
+
+
+                </ul>
+
+
+
+            </div>
+
+
+
+
+        </div>
+
+    </div>
+
+    <div class="profile_body_container">
+
+
+
+
+
+        <div class="colmask threecol">
+
+            <div class="colmid">
+
+
+                <div class="colleft">
+                    <div class="col1">
+                        <!-- user options  start -->
+
+
+                        <div class="middle_container_organiser">
+                            <div class="newsfeed_container_organiser">
+
+                                @using (Html.BeginForm())
+                                {
+                                    @Html.AntiForgeryToken()
+
+                                    @Html.HiddenFor(model => model.Event.ID)
+
+                                    @Html.Hidden("EventOrganiserID", (object)@ViewBag.EventOrganiserID)
+                                    @Html.HiddenFor(model => model.Event.StatusID)
+
+                                    @Html.ValidationSummary(true, "", new { @class = "red" })
+
+                                    <div class="events_user_heading">Edit Event</div>
+
+                                    @*<input type="text" id="" class="input_organiser" placeholder="Event Name" autofocus autocomplete="off">*@
+
+                                    @Html.EditorFor(model => model.Event.EventName, new { htmlAttributes = new { @class = "input_organiser", @placeholder = "Event Name", @autocomplete = "off" } })
+                                    @Html.ValidationMessageFor(model => model.Event.EventName, "", new { @class = "red" })
+
+
+
+                                    <div class="organiser_add_container ">
+                                        @Html.HiddenFor(model => model.Event.StartDateTime)
+                                        @Html.HiddenFor(model => model.Event.EndDateTime)
+
+
+
+                                        <div class="organiser_add_left">
+                                            <div class="oraniser_add_text"> Start Date</div>
+                                            @Html.Hidden("DateToCompareAgainst", Model.DateToCompareAgainst.ToString("yyyy-MM-dd"))
+
+                                            @if (Model.Event.StartDateTime != null) { ((DateTime)Model.Event.StartDateTime).ToString("dd MMM yyyy hh:mm"); }
+
+
+                                            @Html.DropDownListFor(x => x.StartDateDay, (IEnumerable<SelectListItem>)Model.StartDateDays, htmlAttributes: new { @class = "organiser_add_drop" })
+                                            @Html.DropDownListFor(x => x.StartDateMonth, (IEnumerable<SelectListItem>)Model.StartDateMonths, htmlAttributes: new { @class = "organiser_add_drop" })
+                                            @Html.DropDownListFor(x => x.StartDateYear, (IEnumerable<SelectListItem>)Model.StartDateYears, htmlAttributes: new { @class = "organiser_add_drop" })
+
+
+                                        </div>
+                                        <div class="organiser_add_left">
+                                            <div class="oraniser_add_text">Start Time</div>
+                                            @Html.DropDownListFor(x => x.StartDateTimeTime, (IEnumerable<SelectListItem>)Model.StartDateTimeTimes, htmlAttributes: new { @class = "organiser_add_drop" })
+
+                                        </div>
+                                        <div class="organiser_add_left">
+                                            <div class="oraniser_add_text"> End Date</div>
+
+                                            @if (Model.Event.EndDateTime != null) { ((DateTime)Model.Event.EndDateTime).ToString("dd MMM yyyy hh:mm"); }
+
+
+                                            @Html.DropDownListFor(x => x.EndDateDay, (IEnumerable<SelectListItem>)Model.EndDateDays, htmlAttributes: new { @class = "organiser_add_drop" })
+                                            @Html.DropDownListFor(x => x.EndDateMonth, (IEnumerable<SelectListItem>)Model.EndDateMonths, htmlAttributes: new { @class = "organiser_add_drop" })
+                                            @Html.DropDownListFor(x => x.EndDateYear, (IEnumerable<SelectListItem>)Model.EndDateYears, htmlAttributes: new { @class = "organiser_add_drop" })
+
+
+                                        </div>
+                                        <div class="organiser_add_left">
+                                            <div class="oraniser_add_text"> End Time</div>
+                                            @Html.DropDownListFor(x => x.EndDateTimeTime, (IEnumerable<SelectListItem>)Model.EndDateTimeTimes, htmlAttributes: new { @class = "organiser_add_drop" })
+
+
+                                        </div>
+                                        <div class="organiser_add_container ">
+                                            @Html.ValidationMessage("StartDateTime", new { style = "color: red" })
+                                            @Html.ValidationMessage("EndDateTime", new { style = "color: red" })
+                                        </div>
+                                       
+
+
+
+
+                                    </div>
+                                  
+                                        @Html.EditorFor(model => model.Event.GoogleMapsLink, new { htmlAttributes = new { @class = "input_organiser", @placeholder = "Venue" } })
+                                        @Html.ValidationMessageFor(model => model.Event.GoogleMapsLink, "", new { @class = "red" })
+
+
+
+                                        @Html.EditorFor(model => model.Event.StreetAddress, new { htmlAttributes = new { @class = "input_organiser", @placeholder = "Street Adress" } })
+                                        @Html.ValidationMessageFor(model => model.Event.StreetAddress, "", new { @class = "red" })
+
+                                        @Html.EditorFor(model => model.Event.Suburb, new { htmlAttributes = new { @class = "input_organiser", @placeholder = "Suburb" } })
+                                        @Html.ValidationMessageFor(model => model.Event.Suburb, "", new { @class = "red" })
+
+                                        @Html.EditorFor(model => model.Event.City, new { htmlAttributes = new { @class = "input_organiser", @placeholder = "City" } })
+                                        @Html.ValidationMessageFor(model => model.Event.City, "", new { @class = "red" })
+
+                                                                   
+
+                                    <br />
+
+
+                                    <div class="form_heading">Vendors</div>
+
+                                    <ul>
+                                        @foreach (var vendor in Model.Vendors)
+                                        {
+
+                                            <li>@vendor.Name   @Html.ActionLink("Remove", "RemoveFromEvent", "Vendors", new { id = vendor.ID, eventid = Model.Event.ID }, null) </li>
+
+                                        }
+                                    </ul>
+
+                                    @Html.ActionLink("Add Vendor", "AddVendorToEvent", "Vendors", new { @eventID = Model.Event.ID }, new { @class = "buy_ticket" })
+
+
+                                     <br />
+
+                                    <input type="submit" class="buy_ticket" value="Save" />
+
+
+                                }
+
+                            </div>
+
+
+
+                        </div>
+
+
+
+
+                        <!-- event information  end -->
+                        <!-- newsfeed start  -->
+                        <!-- Column 1 end -->
+                    </div>
+                    @section Scripts {
+                        @Scripts.Render("~/bundles/jqueryval")
+                    }
+                    <div class="col2">
+                        <!-- Column 2 start -->
+                        <div class="profile_name">@Model.EventOrganiser.CompanyName</div>  <!-- link profile database to user name-->
+                        <div class="profile_edit">@Html.ActionLink("Company Details...", "EditMyDetails", "EventOrganisers", null, null)</div> <!--linke to edit profile page-->
+                        <div class="profile_img">@{ var imagesrc = "../../Uploads/" + Model.EventOrganiser.ProfilePicURL; }	<img src=@imagesrc width="100%" />	</div>
+
+
+                        <div class="option_container">
+
+                            <div class="icon_left"> <img src="../../content/images/profile_event_icon.png" /></div>
+                            <a href="../Events/CreateByEO"><input type="button" class="profile_ticket_button" name="userlogging_button" value="Create Event" /></a>
+
+                        </div>
+                        <div class="option_container">
+
+                            <div class="icon_left"> <img src="../../content/images/profile_kids_icon.png" /></div>
+                            <input type="button" class="profile_ticket_button" name="userlogging_button" value="Account" /></label>
+
+                        </div>
+
+
+
+
+
+                        <div class="other_events_container">
+
+
+
+
+                        </div>
+                        <!-- Column 2 end -->
+                    </div>
+                    <div class="col3">
+                        <!-- Column 3 start -->
+
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer_two">
+
+        <div class="footer_wrapper">
+
+            <div class="footer_container_border_none">
+                <div class="footer_heading">Information</div>
+                <div class="footer_copy">About</div>
+                <div class="footer_copy">Services</div>
+
+
+
+
+            </div>
+            <div class="footer_container_border_left">
+
+                <div class="footer_heading">Need Help?</div>
+                <div class="footer_copy">FAQ's</div>
+                <div class="footer_copy">T&C's</div>
+                <div class="footer_copy">Help Desk</div>
+                <div class="footer_copy">Contact</div>
+
+            </div>
+            <div class="footer_container_border_left">
+
+                <div class="footer_heading">Other</div>
+                <div class="footer_copy">Careers</div>
+                <div class="footer_copy">Marketing</div>
+                <div class="footer_copy">Partnerships</div>
+
+            </div>
+            <div class="footer_container_border_left">
+
+                <div class="footer_heading">Social</div>
+                <div class="footer_copy">Facebook</div>
+                <div class="footer_copy">Twitter</div>
+                <div class="footer_copy">Google+</div>
+                <div class="footer_copy">Linkedin</div>
+
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+
+</body>
+</html>
+
+
+
+

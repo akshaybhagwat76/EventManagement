@@ -1,0 +1,66 @@
+﻿@model MiidWeb.CM
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CM</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PagePath)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PagePath)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Paral)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Paral)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Para2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Para2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Para3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Para3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Para4)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Para4)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateTimeCreated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateTimeCreated)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

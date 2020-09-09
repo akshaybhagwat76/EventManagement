@@ -1,0 +1,71 @@
+﻿@model IEnumerable<MiidWeb.TicketClassSeat>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TicketClassID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RowNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SeatNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StatusID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ticket.TicketNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TicketClassSeatRange.RowNumber)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TicketClassID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RowNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SeatNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StatusID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ticket.TicketNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TicketClassSeatRange.RowNumber)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

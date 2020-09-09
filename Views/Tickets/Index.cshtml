@@ -1,0 +1,248 @@
+﻿
+@model PagedList.IPagedList<MiidWeb.Ticket>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    //Layout = null;
+}
+
+<style>
+
+
+    .glyphicon {
+        cursor: pointer;
+    }
+
+    input,
+    select {
+        width: 100%;
+    }
+
+    .table {
+        width: 100%;
+        -webkit-overflow-scrolling: touch;
+        overflow-x: auto;
+        display: block;
+    }
+
+    .crop-text {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden
+    }
+</style>
+
+
+
+
+<div class="col-md-9">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="content-box-header">
+                <div class="panel-title">All Tickets</div>
+
+                <div class="panel-options">
+
+                </div>
+            </div>
+            <div class="content-box-large box-with-header">
+                <div class="row">
+
+
+                    @using (Html.BeginForm("Index", "Tickets", FormMethod.Get))
+                    {<div class="col-md-12">Search by ticket number, unique payment ID, Name, Surename, Email, Cell Number or ID Number</div>
+                        <div class="col-md-4 form-group">
+                            <label>Search</label>
+                            @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-4 form-group">
+                            <label></label>
+
+                            <input type="submit" value="Search" class="btn" />
+                        </div>
+                    }
+
+
+                </div>
+                <div class="table-responsive" style="overflow-x:auto;">
+                    <table class="table table-striped table-bordered">
+
+
+                        <thead>
+
+
+                            <tr>
+
+                                <th colspan="2"> Actions</th>
+                                <th>Number  </th>
+                                <th>Status   </th>
+                                <th>Payment ID  </th>
+                                <th>Price  </th>
+
+                                <th>Ticket Type   </th>
+                                <th>Description  </th>
+                                <th>Surname  </th>
+                                <th>Name  </th>
+                                <th>Email  </th>
+                                <th>ID Number  </th>
+                                <th>Preant ID Number  </th>
+                                <th>
+                                    Date Reserved
+                                </th>
+                                <th>
+                                    Date Purchase
+                                </th>
+                                <th>
+                                    Date Redeemed
+                                </th>
+                                <th>
+                                    Date Refund Requested
+                                </th>
+                                <th>
+                                    Date Refund Paid Out
+                                </th>
+
+
+
+
+
+                            </tr>
+
+
+
+
+
+                        </thead>
+                        <tbody id="">
+
+                            @foreach (var item in Model)
+                            {
+
+                                <tr>
+                                    <td style="display:none">
+
+                                        @Html.ActionLink("View", "Details", new { id = item.ID })
+
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+
+                                    </td>
+                                    @{ string myHref = String.Format("../MiiDTicketPDFsForDownload/Ticket_{0}_{1}.PDF", item.ID, item.TicketNumber); }
+
+                                    <td>
+
+                                        <a href="@myHref">download</a>
+
+
+                                    </td>
+                                    <td style="display:none">
+
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TicketNumber)
+
+                                    </td>
+
+
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.StatusID)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.UniquePaymentID)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TicketPurchasePrice)
+                                    </td>
+                                    <td style=" display:none">
+                                        @Html.DisplayFor(modelItem => item.DatetimePurchased)
+                                    </td>
+                                    <td style=" display:none">
+                                        @Html.DisplayFor(modelItem => item.DatetimeReserved)
+                                    </td>
+                                    <td style=" display:none">
+                                        @Html.DisplayFor(modelItem => item.DatetimeRedeemed)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TicketClass.Code)
+                                        <a href="~/TicketClasses/Details/@item.TicketClass.ID">View</a>
+
+                                    </td>
+
+                                    <td style="white-space:nowrap; text-overflow:ellipsis; overflow:hidden;max-width:1px;">
+                                        @Html.DisplayFor(modelItem => item.TicketClass.Description)
+                                    </td>
+                                    <td class="crop-text ">
+                                        @Html.DisplayFor(modelItem => item.EndUser.Surname)
+                                        <a href="~/EndUsers/Details/@item.EndUser.ID">View</a>
+
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.EndUser.Firstname)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.EndUser.Email)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.EndUser.IDNumber)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.EndUser.ParentUserID)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DatetimeReserved)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DatetimePurchased)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DatetimeRedeemed)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DateRefundRequested)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DateRefundPaidOut)
+                                    </td>
+
+
+
+                                </tr>
+
+                            }
+                        </tbody>
+
+                    </table>
+                    <br />
+                    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+                    @Html.PagedListPager(Model, page => Url.Action("Index",
+                        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!--refresh button-->
+
+<script>
+    function refreshPage() {
+        window.location.reload();
+    }
+</script>
+
+
+
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<!-- dynamitable -->
+<script src="~/Content/css/AdminCss/filter/dynamitable.jquery.js"></script>
+
+

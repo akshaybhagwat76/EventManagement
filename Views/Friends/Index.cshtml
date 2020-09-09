@@ -1,0 +1,63 @@
+﻿@model IEnumerable<MiidWeb.Friend>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DateRequested)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateAccepted)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateRejected)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StatusID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndUser.Surname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndUser1.Surname)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateRequested)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateAccepted)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateRejected)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StatusID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndUser.Surname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndUser1.Surname)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,66 @@
+﻿@model MiidWeb.Friend
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Friend</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DateRequested)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateRequested)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateAccepted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateAccepted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateRejected)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateRejected)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StatusID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StatusID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndUser.Surname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndUser.Surname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndUser1.Surname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndUser1.Surname)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

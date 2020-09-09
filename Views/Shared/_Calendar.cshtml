@@ -1,0 +1,153 @@
+﻿@using Microsoft.AspNet.Identity
+@model MiidWeb.Models.CalendarViewModel
+
+
+<div class="mii_profile_calander">
+    <div class="mii_calander_width ">
+
+        <div class="mii_month_strip">
+            <div class="mii_month_arrow_left">
+
+                <a href="@Url.Action("PrevNextMonth", "EndUsers", new { id = Model.EndUserID, PrevNext = "Prev", CurrentMonth = Model.FirstOfMonth, loggedInUserID = @MiidWeb.Helpers.UserHelper.UserID(User.Identity.GetUserName()) }, null)">
+                    <img src="~/Content/images/small_calader_arrow_left.png" />
+                </a>
+            </div>
+            <div class="mii_month_name">@Model.Calendar[7].CalendarDate.ToString("MMMM")  @Model.Calendar[7].CalendarDate.ToString("yyyy")</div>
+            <div class="mii_month_arrow_right">
+                <a href="@Url.Action("PrevNextMonth", "EndUsers", new { id = Model.EndUserID, PrevNext = "Next", CurrentMonth = Model.FirstOfMonth, loggedInUserID = @MiidWeb.Helpers.UserHelper.UserID(User.Identity.GetUserName()) }, null)">
+                    <img src="~/Content/images/small_calader_arrow_right.png" />
+                </a>
+            </div>
+        </div>
+
+
+        <div class="mii_calander_width">
+
+            <div class="mii_calander_block">
+                <div class="mii_calander_font">Monday</div>
+
+            </div>
+            <div class="mii_calander_block">
+                <div class="mii_calander_font">Tuesday</div>
+
+            </div>
+            <div class="mii_calander_block">
+                <div class="mii_calander_font">Wednesday</div>
+
+            </div>
+            <div class="mii_calander_block">
+                <div class="mii_calander_font">Thursday</div>
+
+            </div>
+            <div class="mii_calander_block">
+                <div class="mii_calander_font">Friday</div>
+
+            </div>
+            <div class="mii_calander_block">
+                <div class="mii_calander_font">Saturday</div>
+
+            </div>
+            <div class="mii_calander_block">
+                <div class="mii_calander_font">Sunday</div>
+
+            </div>
+
+
+        </div>
+
+        <div class="mii_calander_width">
+            @for (int x = 0; x <= 6; x++)
+            {
+                <div class="mii_calander_block">
+                    @if (@Model.Calendar[@x].EventID > 0)
+                    { 
+                        <a href="@Url.Action("Details", "Events", new { id = Model.Calendar[@x].EventID })">
+                            <img src="~/Content/images/@Model.Calendar[@x].ImageURL" title="@Model.Calendar[@x].ImageAltText" class="mii_calander_img" /> 
+                        </a>
+                    }
+                    <div class="mii_calander_font">
+                        @Model.Calendar[@x].DayNo
+                    </div>
+
+                  
+                </div>
+
+            }
+        </div>
+        <div class="mii_calander_width">
+
+            @for (int x = 7; x <= 13; x++)
+            {
+                <div class="mii_calander_block">
+                    <div class="mii_calander_font">
+                        @Model.Calendar[@x].DayNo
+                    </div>
+
+                    @if (@Model.Calendar[@x].EventID > 0)
+                    { 
+                        <a href="@Url.Action("Details", "Events", new { id = Model.Calendar[@x].EventID })">
+                        <img width="80%" src="~/Content/images/@Model.Calendar[@x].ImageURL" title="@Model.Calendar[@x].ImageAltText" /> 
+                            </a>
+                            }
+                </div>
+
+            }
+        </div>
+        <div class="mii_calander_width">
+            @for (int x = 14; x <= 20; x++)
+            {
+                <div class="mii_calander_block">
+                    <div class="mii_calander_font">
+                        @Model.Calendar[@x].DayNo
+                    </div>
+
+                    @if (@Model.Calendar[@x].EventID > 0)
+                    {  <a href="@Url.Action("Details", "Events", new { id = Model.Calendar[@x].EventID })">
+                    <img width="80%" src="~/Content/images/@Model.Calendar[@x].ImageURL" title="@Model.Calendar[@x].ImageAltText" /> 
+                    </a>
+                    }
+                </div>
+
+            }
+        </div>
+        <div class="mii_calander_width">
+            @for (int x = 21; x <= 27; x++)
+            {
+                <div class="mii_calander_block">
+                    <div class="mii_calander_font">
+                        @Model.Calendar[@x].DayNo
+                    </div>
+
+                    @if (@Model.Calendar[@x].EventID > 0)
+                    {
+                         <a href="@Url.Action("Details", "Events", new { id = Model.Calendar[@x].EventID })">
+                         <img width="80%" src="~/Content/images/@Model.Calendar[@x].ImageURL" title="@Model.Calendar[@x].ImageAltText" /> 
+                             </a>
+                             }
+                </div>
+
+            }
+        </div>
+        <div class="mii_calander_width">
+            @for (int x = 28; x <= 34; x++)
+            {
+                <div class="mii_calander_block">
+                    <div class="mii_calander_font">
+                        @Model.Calendar[@x].DayNo
+                    </div>
+
+                    @if (@Model.Calendar[@x].EventID > 0)
+                    {  <a href="@Url.Action("Details", "Events", new { id = Model.Calendar[@x].EventID })">
+                    <img width="80%" src="~/Content/images/@Model.Calendar[@x].ImageURL" title="@Model.Calendar[@x].ImageAltText" /> 
+                    </a>
+                    }
+                </div>
+
+            }
+        </div>
+
+    </div>
+</div>
+
+
+

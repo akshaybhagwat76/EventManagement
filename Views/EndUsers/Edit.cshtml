@@ -1,0 +1,269 @@
+﻿@model MiidWeb.EndUser
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    //Layout = null;
+}
+<style>
+    <!--
+
+    .glyphicon {
+        cursor: pointer;
+    }
+
+    input,
+    select {
+        width: 100%;
+    }
+</style>
+<div class="col-md-9">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="content-box-header">
+                <div class="panel-title">End User Details</div>
+                <div class="panel-title pull-right" style="margin-top:-8px;"> 	@Html.ActionLink("Edit", "Edit", new { id = Model.ID }, htmlAttributes: new { @class = "btn btn-primary" })</div>
+
+                <div class="panel-options">
+
+                </div>
+            </div>
+            <div class="content-box-large box-with-header">
+
+                @using (Html.BeginForm())
+                {
+
+                <div class="row">
+                    <div class="col-md-12">
+                        @Html.AntiForgeryToken()
+
+
+                        @Html.HiddenFor(model => model.NewsletterAccepted)
+                        @Html.HiddenFor(model => model.TermsAndConditionsAccepted)
+                        @Html.HiddenFor(model => model.EmailVerified)
+                        @Html.HiddenFor(model => model.EmailVerificationGuid)
+                        @Html.HiddenFor(model => model.ProfilePicURL)
+                        @Html.HiddenFor(model => model.AspNetUserID)
+                      
+                        @Html.HiddenFor(model => model.AccountBalance)
+                        @Html.HiddenFor(model => model.AccountTypeID)
+
+
+                        <div class="col-md-12"><h3>Personal</h3></div>
+                        <hr>
+                        <div class="form-group col-md-4">
+                            UserID  @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "form-control input-lg", @disabled = "disabled" } })
+                        </div>
+                        <div class="form-group col-md-4">
+                            Firstname: @Html.EditorFor(model => model.Firstname, new { htmlAttributes = new { @class = "form-control input-lg", } })
+                        </div>
+                        <div class="form-group col-md-4">
+                            Surname  @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control input-lg", } })
+                        </div>
+                        <div class="form-group col-md-4">
+                            Email:  @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control input-lg", @disabled = "disabled" } })
+                        </div>
+
+
+                        <div class="form-group col-md-4">
+                            DOB: @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control input-lg", } })
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            ID Number: @Html.EditorFor(model => model.IDNumber, new { htmlAttributes = new { @class = "form-control input-lg", } })
+                        </div>
+
+
+
+                        <div class="form-group col-md-4">
+                            Age: @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control input-lg", } })
+                        </div>
+
+
+
+                        <div class="form-group col-md-4">
+                            Sex: @Html.EditorFor(model => model.Sex, new { htmlAttributes = new { @class = "form-control input-lg", } })
+                        </div>
+                        <div class="col-md-12"><h3>Contact</h3></div>
+                        <hr>
+
+                        <div class="form-group col-md-4">
+                            Phone:  @Html.EditorFor(model => model.Telephone, new { htmlAttributes = new { @class = "form-control input-lg", } })
+                        </div>
+
+
+
+                        <div class="form-group col-md-4">
+                            Cell:   @Html.EditorFor(model => model.Cell, new { htmlAttributes = new { @class = "form-control input-lg", } })
+                        </div>
+
+
+
+
+                        <div class="col-md-12"><h3>Banking</h3></div>
+                        <hr>
+                        <div class="form-group col-md-4">
+                            Bank  @Html.EditorFor(model => model.Bank, new { htmlAttributes = new { @class = "form-control input-lg", } })
+                        </div>
+                        <div class="form-group col-md-4">
+                            Account Holder  @Html.EditorFor(model => model.AccountHolderName, new { htmlAttributes = new { @class = "form-control input-lg", } })
+                        </div>
+                        <div class="form-group col-md-4">
+                            Account Number  @Html.EditorFor(model => model.AccountNumber, new { htmlAttributes = new { @class = "form-control input-lg", } })
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            Account Type  @Html.EditorFor(model => model.AccountTypeName, new { htmlAttributes = new { @class = "form-control input-lg", } })
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            Branch Code  @Html.EditorFor(model => model.BranchCode, new { htmlAttributes = new { @class = "form-control input-lg", } })
+                        </div>
+                        <div class="form-group col-md-4">
+                            Country  @Html.EditorFor(model => model.Country, new { htmlAttributes = new { @class = "form-control input-lg", } })
+                        </div>
+
+
+                        <div class="form-group col-md-12">
+                            Notes @Html.EditorFor(model => model.Notes, new { htmlAttributes = new { @class = "form-control input-lg", } })
+                        </div>
+
+
+
+
+
+                        <div class="col-md-12"><h3>System</h3></div>
+                        <hr>
+                        <div class="form-group col-md-4">
+                            Parent UserID  @Html.EditorFor(model => model.ParentUserID, new { htmlAttributes = new { @class = "form-control input-lg", @disabled = "disabled" } })
+                        </div>
+                        <div class="form-group col-md-4">
+                            Is child:  @Html.EditorFor(model => model.IsChildUser, new { htmlAttributes = new { @class = "form-control input-lg", @disabled = "disabled" } })
+                        </div>
+                        <div class="form-group col-md-4">
+                            Subdomain ID  @Html.EditorFor(model => model.SubdomainID, new { htmlAttributes = new { @class = "form-control input-lg", @disabled = "disabled" } })
+                        </div>
+                        <div class="form-group col-md-4">
+                            Date Created  @Html.EditorFor(model => model.DateCreated, new { htmlAttributes = new { @class = "form-control input-lg", @disabled = "disabled" } })
+                        </div>
+                        <div class="form-group col-md-4">
+                            Date Updated  @Html.EditorFor(model => model.DateTimeUpdated, new { htmlAttributes = new { @class = "form-control input-lg", @disabled = "disabled" } })
+                        </div>
+                        <div class="form-group col-md-4">
+                            Start Date  @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control input-lg", @disabled = "disabled" } })
+                        </div>
+                        <div class="form-group col-md-4">
+                            Status ID @Html.EditorFor(model => model.StatusID, new { htmlAttributes = new { @class = "form-control input-lg", } })
+                        </div>
+
+
+                        <div class="col-md-12"><h3>Location</h3></div>
+                        <hr>
+
+
+                        <div class="form-group col-md-4">
+                            Street: @Html.EditorFor(model => model.StreetAddress, new { htmlAttributes = new { @class = "form-control input-lg", } })
+                        </div>
+
+
+
+                        <div class="form-group col-md-4">
+                            Suburb:  @Html.EditorFor(model => model.Suburb, new { htmlAttributes = new { @class = "form-control input-lg", } })
+                        </div>
+
+
+
+                        <div class="form-group col-md-4">
+                            City: @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control input-lg", } })
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            Provice: @Html.EditorFor(model => model.Province, new { htmlAttributes = new { @class = "form-control input-lg", } })
+                        </div>
+
+
+
+
+
+                        <div class="form-group col-md-4">
+
+                            Postal Code: @Html.EditorFor(model => model.PostalCode, new { htmlAttributes = new { @class = "form-control input-lg", } })
+
+                        </div>
+
+                        <div class="col-md-12"><h3>Medical</h3></div>
+                        <hr>
+
+
+
+
+
+                        <div class="form-group col-md-4">
+                            Next of Kin   @Html.EditorFor(model => model.NextOfKin, new { htmlAttributes = new { @class = "form-control input-lg", } })
+                        </div>
+
+
+
+                        <div class="form-group col-md-4">
+                            Next of Kin phone:  @Html.EditorFor(model => model.NextOfKinTelephone, new { htmlAttributes = new { @class = "form-control input-lg", } })
+                        </div>
+
+
+
+                        <div class="form-group col-md-4">
+                            Medication:  @Html.EditorFor(model => model.Medication, new { htmlAttributes = new { @class = "form-control input-lg", } })
+                        </div>
+
+
+
+                        <div class="form-group col-md-4">
+                            Medical Aid Company:  @Html.EditorFor(model => model.MedicalAidCompany, new { htmlAttributes = new { @class = "form-control input-lg", } })
+                        </div>
+
+
+
+                        <div class="form-group col-md-4">
+                            Medical Aid Number   @Html.EditorFor(model => model.MedicalAidNumber, new { htmlAttributes = new { @class = "form-control input-lg", } })
+                        </div>
+
+
+
+                        <div class="form-group col-md-4">
+                            Alergies:   @Html.EditorFor(model => model.Allergies, new { htmlAttributes = new { @class = "form-control input-lg", } })
+                        </div>
+
+
+
+                        <div class="form-group col-md-4">
+                            Known Conditions:   @Html.EditorFor(model => model.KnownConditions, new { htmlAttributes = new { @class = "form-control input-lg", } })
+                        </div>
+
+
+                        <div class="form-group">
+
+
+
+                        </div>
+                        <div class="form-group col-md-12">
+
+                            <button type="submit" value="Save" class="btn btn-primary  btn-lg ">Submit</button>
+
+                        </div>
+
+                    </div>
+
+                    </div>
+                            }
+                            </dl>
+
+                        </div>
+
+
+                    </div>
+                </div>
+</div>
+
+
+							
+<p>
+
+    @Html.ActionLink("Back to List", "Index")
+</p>

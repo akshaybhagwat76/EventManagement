@@ -1,0 +1,9 @@
+# v1
+user-agent: *
+Disallow: /bin/
+Disallow: /asptnet_client/
+Disallow: /demo/
+Disallow: /Service References/
+Disallow: /Scripts/
+
+Sitemap: https://www.midd.co.za/sitemap.xml

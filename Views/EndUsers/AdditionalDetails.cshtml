@@ -1,0 +1,220 @@
+﻿@model MiidWeb.Models.CreateFirstEndUserViewModel
+@{
+    ViewBag.Title = "MiiDetails";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "red" })
+    @Html.HiddenFor(model => model.ID)
+
+    
+    @Html.HiddenFor(model => model.ProfilePicURL)
+    @Html.HiddenFor(model => model.Province)
+    @Html.HiddenFor(model => model.Firstname)
+    @Html.HiddenFor(model => model.Surname)
+    @Html.HiddenFor(model => model.Cell)
+    @Html.HiddenFor(model => model.DOB)
+    @Html.HiddenFor(model => model.Email)
+    @Html.HiddenFor(model => model.Female)
+    @Html.HiddenFor(model => model.IDNumber)
+    @Html.HiddenFor(model => model.Male)
+    @Html.HiddenFor(model => model.Newsletter)
+
+
+    @Html.HiddenFor(model => model.Telephone)
+    @Html.HiddenFor(model => model.StreetAddress)
+    @Html.HiddenFor(model => model.Suburb)
+    @Html.HiddenFor(model => model.City)
+    @Html.HiddenFor(model => model.PostalCode)
+    @Html.HiddenFor(model => model.DateOfBirthYear)
+    @Html.HiddenFor(model => model.DateOfBirthMonth)
+    @Html.HiddenFor(model => model.DateOfBirthDay)
+
+    <div class="firstsection">
+
+        <!-- opaque wrapper -->
+        <div class="wrapper">
+
+
+
+
+            <div class="form_wrapper">
+                <!-- starat banner -->
+                <div class="logging_banner">
+                    <img src="../../content/images/registration_banner.jpg" name="slide" border="0" width="850px" height="230px">
+
+                </div>
+
+                <!-- close banner -->
+
+
+                <div class="form_container">
+                    <div class="register_heading">Get the full Mi-id Experience!!!</div>
+                    <div class="register_text">
+                        Mii-D not only offers a online ticketing service but a full festival experience beginning from the moment you purchase your ticket to the time you leave the venue. Fill in some additional information below
+                        to complete your Mii-D Profile
+
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+                    <form action="" method="post" id="EndUser">
+                        <div class="right_container_form_two">
+
+                            <div class="register_text_top">Upload Profile pic </div><!-- let user upload profile pic -->
+
+                            <input type="file" id="file" class="upload_pic_button">
+                            <div class="container">
+
+                                <div class="imageBox">
+                                    <div class="thumbBox"></div>
+                                    <div class="spinner" style="display: none">Loading...</div>
+                                </div>
+                                <div class="action">
+
+                                    <input type="button" id="btnCrop" value="Crop" style="float: left">
+                                    <input type="button" id="btnZoomIn" value="+" style="float: left">
+                                    <input type="button" id="btnZoomOut" value="-" style="float: left">
+                                </div>
+                                <div class="cropped">
+                                    <img id="imageID" src="../../content/images/avatar.png" />
+                                    <input type="hidden" name="imageData" id="imageData" />
+                                </div>
+                            </div>
+
+                            <div class="register_newsletter_text">If you havn't registered for our newsletter....YOU SHOULD!!! Win monthly tickets & stay updated about the latest gigs, concerts and festivals. All you have to do click the yes button!!!</div>
+                            <span>
+                                Yes @Html.RadioButtonFor(model => model.Newsletter, true, new { id = "NewsletterYes" })
+                                No  @Html.RadioButtonFor(model => model.Newsletter, false, new { id = "NewsletterNo" })
+
+                            </span>
+
+
+                        </div>
+
+                        <div class="right_container_form_add">
+
+                            <div class="register_newsletter_text">The details bellow let us help you incase of an emergency. All this information is stored on our secured data base. In an emergency situation all we need to do is scan your Mii-Band so we contact your next of kin or let the paramedics not any threatening illnesses or allergies</div>
+
+
+
+                            <div class="form_heading">Details:</div>
+                            
+                            @Html.EditorFor(model => model.NextOfKin, new { htmlAttributes = new { @class = "input_registration", placeholder = "Next of Kin" } })
+                            @Html.EditorFor(model => model.NextOfKinTelephone, new { htmlAttributes = new { @class = "input_registration", placeholder = "Next of Kin Contact Number" } })
+                            @Html.EditorFor(model => model.NextOfKin, new { htmlAttributes = new { @class = "input_registration", placeholder = "Next of Kin #2 " } })
+                            @Html.EditorFor(model => model.NextOfKinTelephone, new { htmlAttributes = new { @class = "input_registration", placeholder = "Next of Kin  #2 Contact Number" } })
+
+                            @Html.EditorFor(model => model.MedicalAidCompany, new { htmlAttributes = new { @class = "input_registration", placeholder = "Medical Aid Company" } })
+                            @Html.EditorFor(model => model.MedicalAidNumber, new { htmlAttributes = new { @class = "input_registration", placeholder = "Medical Aid Number" } })
+
+                            @Html.EditorFor(model => model.Medication, new { htmlAttributes = new { @class = "input_registration", placeholder = "Medications" } })
+                            @Html.EditorFor(model => model.Allergies, new { htmlAttributes = new { @class = "input_registration", placeholder = "Allergies" } })
+                            @Html.EditorFor(model => model.KnownConditions, new { htmlAttributes = new { @class = "input_registration", placeholder = "Known medical conditions" } })
+
+
+                            <div class="register_newsletter_text">
+                             
+
+                                <input type="submit" value="Submit" class="input_organiser_submit">
+                            </div>
+                        </div>
+                    </form>
+
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+
+
+
+    <div class="firstsection">
+
+        <!-- opaque wrapper -->
+        <div class="wrapper">
+            <div class="form_wrapper">
+                <!-- starat banner -->
+                <!-- close banner -->
+                <div class="form_container">
+                    <div class="register_heading"> Update Information:</div>
+                    <div class="register_text">
+                        The details below let us help you in case of an emergency. All this information is stored on our secured data base. In an emergency situation all we need to do is scan your Mii-Band so we contact your next of kin or let the paramedics not any threatening illnesses or allergies
+
+                    </div>
+
+
+                </div>
+
+
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+ 
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="../../scripts/cropbox/jquery-1.11.1.min.js"></script>
+    <script src="../../scripts/cropbox/cropbox.js"></script>
+
+    <script type="text/javascript">
+        $(window).load(function () {
+            var options =
+            {
+                thumbBox: '.thumbBox',
+                spinner: '.spinner',
+                imgSrc: 'data:image/png;base64,' + $('#ProfilePicURL').val()
+            }
+            var cropper = $('.imageBox').cropbox(options);
+            $('#file').on('change', function () {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    options.imgSrc = e.target.result;
+                    cropper = $('.imageBox').cropbox(options);
+                }
+                reader.readAsDataURL(this.files[0]);
+                this.files = [];
+            })
+            $('#btnCrop').on('click', function () {
+                debugger;
+                var img = cropper.getDataURL();
+                $("#imageID").attr('src', img);
+                var image = img.replace('data:image/png;base64,', '');
+                $("#imageData").val(image);
+
+                //$('.cropped').append('<img src="'+img+'">');
+            })
+            $('#btnZoomIn').on('click', function () {
+                cropper.zoomIn();
+            })
+            $('#btnZoomOut').on('click', function () {
+                cropper.zoomOut();
+            })
+        });
+    </script>
+    }

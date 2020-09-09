@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+
+@using Microsoft.AspNet.Identity
+@using MiidWeb.Helpers
+
+@RenderSection("scripts", required: false)
+<html lang="en" xml:lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<meta name="robots" content="noindex">
+
+	<meta name="googlebot" content="noindex">
+	<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+
+
+	<!--facebook meta-->
+
+
+
+
+
+	<link rel="stylesheet" href="~/Scripts/growl.css" type="text/css">
+	<!-- Google Tag Manager -->
+	<script>
+		(function (w, d, s, l, i) {
+			w[l] = w[l] || []; w[l].push({
+				'gtm.start':
+					new Date().getTime(), event: 'gtm.js'
+			}); var f = d.getElementsByTagName(s)[0],
+				j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+					'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+		})(window, document, 'script', 'dataLayer', 'GTM-TKCDRPP');</script>
+	<!-- End Google Tag Manager -->
+
+	@Styles.Render("~/content/css/css2018/bootstrapLulatickets.css")
+	@Styles.Render("~/content/css/css2018/mainLulatickets.css")
+	@Styles.Render("~/content/Css/EOcss2018/steps.css")
+	@Styles.Render("~/content/css/css2018/global.css")
+
+	@Styles.Render("~/content/css/newcss/font-awesome.css")
+
+
+
+
+	@Scripts.Render("~/content/js/jquery-1-12-4-min.js")
+	<!--	@Scripts.Render("~/content/js/jquery-touchswipe-min.js") -->
+	@Scripts.Render("~/content/js/EOjs2018/steps.js")
+
+
+
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="~/Content/css/css2018/fontawesome.css">
+
+
+
+
+
+
+	<link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
+
+
+
+</head>
+
+	<body>
+		<!-- Google Tag Manager (noscript) -->
+	<noscript>
+		<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TKCDRPP"
+				height="0" width="0" style="display:none;visibility:hidden"></iframe>
+	</noscript>
+	<!-- End Google Tag Manager (noscript) -->
+	<!--
+	 <div id="loader">
+		 <div>
+			 <img src="~/Content/images2018/logo.svg" class="logo-splash" alt="Mi-iD online ticket logo"></a>
+			 <div>
+				 <button class="btn btn-default btn-lg" style="border:0px; background-color: transparent;"><i class="fa fa-circle-o-notch fa-spin" style="color:#383838"></i><span style="color:#383838">&nbsp;Loading</span></button>
+			 </div>
+
+		 </div>
+	 </div>
+		-->
+	<span style="display:none" itemscope itemtype="http://schema.org/Organization">
+		<link itemprop="url" href="https://www.miid.co.za/">
+		<a itemprop="sameAs" href="https://www.facebook.com/miidevents/">FB</a>
+		<a itemprop="sameAs" href="https://twitter.com/MiiDEvents">Twitter</a>
+	</span>
+
+
+
+	<div id="wrapper">
+
+
+		<div class="navbar navbar-inverse  nav-backround-color " role="navigation">
+
+
+			<div class="navbar-header ">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="~/Home/Index">
+						<img src="~/Content/images2018/company/lulatickets/logo-light.png" class="logo hidden-md hidden-lg" alt="Mi-id Logo" />
+						<img src="~/Content/images2018/company/lulatickets/logo-light.png" class="logo hidden-sm hidden-xs" alt="Mi-id Logo" />
+					</a>
+					<div class="new-tag-line "><div class=" hidden-xs hidden-sm">Safe Secure Online ticketing &amp; Cashless Events</div></div>
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+
+				</div>
+
+
+			</div>
+
+			<div class="collapse navbar-collapse">
+				<ul class="nav navbar-nav pull-right navbar-padding-top hidden-sm hidden-xs" style="padding-top:0px;">
+					@if (Request.IsAuthenticated)
+					{
+
+
+						var endUser = MiidWeb.Repositories.EndUserRepository.GetUser(User.Identity.GetUserName(), true);
+						bool IAmEventOrganiser = false;
+						IAmEventOrganiser = MiidWeb.Repositories.EndUserRepository.AmIAnEventOrganiser(User.Identity.GetUserName());
+						// if (endUser == null && !IAmEventOrganiser) { Response.Redirect("../EndUsers/CreateFirst"); }
+						<li style="padding-top:27px; color:#ffffff;">
+							Hi, @endUser.FirstName
+						</li>
+						<li style="padding-top:2px; margin-right:-15px;">
+							@{ string profilePic = "avatar_blank.png";
+								if (!String.IsNullOrEmpty(endUser.ProfilePicURL))
+								{
+									profilePic = endUser.ProfilePicURL;
+								}
+							}
+
+
+							<a href="@Url.Action( "MiiDetails", "EndUsers", new { id = @endUser.Id })" style="background-color:transparent; display:inline-block"><i class="fas fa-user-circle fa-2x"></i></a>
+							<!--   <img src="~/images/@profilePic" class="profile-image img-circle" style="width:50px; padding:5px;" /> -->
+						</li>
+						<li style="padding-top:2px;">
+							<a href=" @Url.Action( "Logoff", "Account", null)" style="background-color:transparent; display:inline-block"><i class="fas fa-sign-out-alt fa-2x"></i></a>
+						</li>
+					}
+					else
+
+					{
+						<li><button type="button" class="btn btn-warning navbar-btn" onclick="location.href = '../LoginAlternative/LoginAlternative' ">Sign In</button></li>
+					}
+
+
+
+
+
+				</ul>
+
+			</div>
+		</div>
+		<div class="navbar navbar-inverse navbar-static-top" role="navigation">
+
+			@Html.Partial("_LoginPartiallulaTickets")
+
+
+		</div>
+
+
+
+
+
+
+
+
+		@RenderBody()
+
+
+
+		<footer>
+			<div class="footer" id="footer">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-3  col-md-3 col-sm-12 col-xs-12">
+
+							<ul>
+
+								<li> <a href="~/Home/TermsConditions">  Privacy Policy </a> </li>
+
+
+
+							</ul>
+						</div>
+
+
+
+
+
+
+
+						<div class="col-lg-3  col-md-3 col-sm-12 col-xs-12">
+
+							<ul>
+
+								<li> <a href="~/Home/RefundsPolicy">  Refund Policy </a> </li>
+
+
+
+							</ul>
+						</div>
+
+					</div>
+
+					<!--/.row-->
+				</div>
+				<!--/.container-->
+			</div>
+			<!--/.footer-->
+			<!--/.footer-bottom-->
+		</footer>
+
+
+
+
+		<script src="~/Scripts/jsnew/jquery.js"></script>
+		<!-- Bootstrap Core JavaScript -->
+		<script src="~/Scripts/jsnew/bootstrap.min.js"></script>
+
+		@Scripts.Render("~/content/js/jquery1.1.2/jquery.min.js")
+		@Scripts.Render("~/content/js/jquery2.1.3/jquery.min.js")
+		<!-- Latest compiled and minified JavaScript -->
+		@Scripts.Render("~/content/js/bootstrap.min.js")
+		<!--	@Scripts.Render("https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js") -->
+
+
+		@Scripts.Render("~/content/js/EOjs2018/bootstrap.js")
+	</div>
+
+
+
+
+
+	@Scripts.Render("~/bundles/jquery")
+
+	@Scripts.Render("~/Scripts/jquery.tokeninput.js")
+
+
+
+	@{
+		string[] parts = new string[10];
+
+		if (TempData.ContainsKey("Growl") && !String.IsNullOrEmpty((string)TempData["Growl"]))
+		{
+			string growl = (string)TempData["Growl"];
+			parts = growl.Split(':');
+
+
+
+			<script type="text/javascript">
+        growl('@parts[0]', '@parts[1]');
+			</script>
+		}
+
+	}
+
+
+
+
+	</body>
+</html>

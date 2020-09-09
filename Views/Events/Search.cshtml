@@ -1,0 +1,114 @@
+﻿@model MiidWeb.Models.EventSearchModel
+@using MiidWeb.Controllers;
+@using MiidWeb.Repositories;
+@{
+	ViewBag.Title = "Search Results";
+	Layout = TicketRepository.GetLayoutFile("Layout");
+	int subDomainID = int.Parse(MiidWeb.Repositories.TicketRepository.GetSubdomainID());
+}
+
+<title>Search for online tickets on the Mi-id website</title>
+<meta name="description" content="Seach and purchase tickets for events and festivals">
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-12 form-group ">
+
+			@using (Html.BeginForm("Search", "Events", FormMethod.Get))
+			{
+					@Html.TextBoxFor(model => model.KeyWordSearchText, new { @class = "form-control input-lg", placeholder = "Enter event name" })
+				
+					<button name="demo-email" class="btn btn-primary" id="demo-email" value="Search" onclick="submit();">
+						<i class="fa fa-search" style="color:#ffffff; ">Search</i>
+					</button>
+				
+			}
+			<div class="form-group col-md-12">
+				<a href="~/Events/Search">  Reset Search</a>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<div class="container">
+
+    <div class="row">
+
+        @foreach (var item in Model.Events.Where(x => x.SubdomainID == subDomainID).OrderByDescending(x => x.Event.StartDateTime))
+        {
+            if (item.EventLogoURL != null)
+            {
+                <div class="col-md-3">
+                    <div class="card">
+                        @{ string myHref = String.Format("https://www.miid.co.za/Uploads/{0}", item.EventLogoURL); }
+                        @if (item.EventLogoURL != null)
+                        {
+                        <a href="@Url.Action("PurchaseTickets", "Events", new { EventID = item.Event.ID }, null)">
+                            <img class="card-img-top" src="@myHref" alt="@Html.DisplayFor(modelItem => item.Event.EventName)" alt="Card image cap">
+                        </a>
+                        }
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Event.EventName</h5>
+                            <p class="card-text">
+                                @Html.DisplayFor(modelItem => item.Event.EventName)<br />
+                                @{DateTime start = (DateTime)item.Event.StartDateTime;} @start.ToString("HH:mm")
+
+                                @start.ToString("dd MMM yyyy")
+                            </p>
+                            <a href="@Url.Action("PurchaseTickets", "Events", new { EventID = item.Event.ID }, null)" class="btn btn-primary"> @GlobalVariables.CallToActionOne </a>
+                        </div>
+                    </div>
+                </div>
+
+
+            }
+        }
+
+
+    </div>
+	<div class="row">
+		<div class="col-md-8">
+
+			Page @(Model.Events.PageCount < Model.Events.PageNumber ? 0 : Model.Events.PageNumber)
+			of @Model.Events.PageCount
+			@if (Model.Events.HasPreviousPage)
+			{
+				@Html.ActionLink("<<", "Search", new { page = 1, EventCategoryID = Model.EventCategoryID, regionid = Model.RegionID, eventmonth = Model.EventMonth, KeyWordSearchText = Model.KeyWordSearchText, }, htmlAttributes: new { @class = "btn btn-primary btn block" })
+				@Html.Raw(" ");
+				@Html.ActionLink("< Prev", "Search", new { page = Model.Events.PageNumber - 1, EventCategoryID = Model.EventCategoryID, regionid = Model.RegionID, eventmonth = Model.EventMonth, KeyWordSearchText = Model.KeyWordSearchText }, htmlAttributes: new { @class = "btn btn-primary btn block" })
+			}
+			else
+			{
+				@:
+				@Html.Raw(" ");
+				@:
+			}
+
+
+			@if (Model.Events.HasNextPage)
+			{
+				@Html.ActionLink("Next >", "Search", new { page = Model.Events.PageNumber + 1, EventCategoryID = Model.EventCategoryID, regionid = Model.RegionID, eventmonth = Model.EventMonth, KeyWordSearchText = Model.KeyWordSearchText }, htmlAttributes: new { @class = "btn btn-primary btn block" })
+				@Html.Raw(" ");
+				@Html.ActionLink(">>", "Search", new { page = Model.Events.PageCount, EventCategoryID = Model.EventCategoryID, regionid = Model.RegionID, eventmonth = Model.EventMonth, KeyWordSearchText = Model.KeyWordSearchText }, htmlAttributes: new { @class = "btn btn-primary btn block" })
+			}
+			else
+			{
+				@:
+				@Html.Raw(" ");
+				@:
+			}
+		</div>
+	</div>
+
+</div>
+
+
+
+
+
+
+
+
+

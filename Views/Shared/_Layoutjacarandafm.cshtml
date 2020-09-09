@@ -1,0 +1,307 @@
+﻿<!DOCTYPE html>
+
+@using Microsoft.AspNet.Identity
+@using MiidWeb.Helpers
+
+@RenderSection("scripts", required: false)
+<html lang="en" xml:lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+    <link rel="shortcut icon" href="~/Content/favicons/jac/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" sizes="76x76" href="~/Content/favicons/jac/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/Content/favicons/jac/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/Content/favicons/jac/favicon-16x16.png">
+    <link rel="manifest" href="~/Content/favicons/jac/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="robots" content="noindex,nofollow">
+    <meta name="googlebot" content="noindex,nofollow">
+
+
+
+
+
+
+    <link rel="stylesheet" href="~/Scripts/growl.css" type="text/css">
+    <!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-TKCDRPP');</script>
+    <!-- End Google Tag Manager -->
+
+    @Styles.Render("~/content/css/css2018/Bootstrapjacarandafm.css")
+    @Styles.Render("~/content/css/css2018/jacarandafmMain.css")
+    @Styles.Render("~/content/Css/EOcss2018/steps.css")
+    @Styles.Render("~/content/css/css2018/Global.css")
+
+
+    <link href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" rel="stylesheet">
+
+
+
+
+
+
+
+	@Scripts.Render("~/content/js/jquery-1-12-4-min.js")
+	<!--	@Scripts.Render("~/content/js/jquery-touchswipe-min.js") -->
+	@Scripts.Render("~/content/js/EOjs2018/steps.js")
+
+
+
+
+
+
+</head>
+
+<body>
+	<!-- Google Tag Manager (noscript) -->
+	<noscript>
+		<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TKCDRPP"
+				height="0" width="0" style="display:none;visibility:hidden"></iframe>
+	</noscript>
+	<!-- End Google Tag Manager (noscript) -->
+	<!--
+	 <div id="loader">
+		 <div>
+			 <img src="~/Content/images2018/logo.svg" class="logo-splash" alt="Mi-iD online ticket logo"></a>
+			 <div>
+				 <button class="btn btn-default btn-lg" style="border:0px; background-color: transparent;"><i class="fa fa-circle-o-notch fa-spin" style="color:#383838"></i><span style="color:#383838">&nbsp;Loading</span></button>
+			 </div>
+
+		 </div>
+	 </div>
+		-->
+	<span style="display:none" itemscope itemtype="http://schema.org/Organization">
+		<link itemprop="url" href="https://www.miid.co.za/">
+		<a itemprop="sameAs" href="https://www.facebook.com/miidevents/">FB</a>
+		<a itemprop="sameAs" href="https://twitter.com/MiiDEvents">Twitter</a>
+	</span>
+
+
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+
+			<div class="navbar-header">
+
+				<div class="navbar-brand logo"><img src="~/Content/images2018/company/jacaranda/jacaranda_logo.svg"  style="width:220px;" /></div>
+				<div class="navbar-brand text-nav hidden-sm hidden-xs">Ticket Sales &amp; Cashless Events </div>
+
+
+
+
+				<!-- changes nave when user is logged in-->
+
+				@if (Request.IsAuthenticated)
+				{
+
+
+					var endUser = MiidWeb.Repositories.EndUserRepository.GetUser(User.Identity.GetUserName(), true);
+					bool IAmEventOrganiser = false;
+					IAmEventOrganiser = MiidWeb.Repositories.EndUserRepository.AmIAnEventOrganiser(User.Identity.GetUserName());
+					// if (endUser == null && !IAmEventOrganiser) { Response.Redirect("../EndUsers/CreateFirst"); }
+					<div class="navbar-brand text-nav2 pull-right">
+						<div class="text-right user-details hidden-sm hidden-xs">
+							Hi, @endUser.FirstName
+						</div>
+						<div class="text-right user-details">
+							@{ string profilePic = "avatar_blank.png";
+								if (!String.IsNullOrEmpty(endUser.ProfilePicURL))
+								{
+									profilePic = endUser.ProfilePicURL;
+								}
+							}
+
+
+							<a href="@Url.Action( "MiiDetails", "EndUsers", new { id = @endUser.Id, })" class="hidden-sm hidden-xs ">Edit Details</a>
+							<!--   <img src="~/images/@profilePic" class="profile-image img-circle" style="width:50px; padding:5px;" /> -->
+						</div>
+						<div class="text-right user-details">
+							<a href=" @Url.Action( "Logoff", "Account", null)" class="hidden-sm hidden-xs ">Log Off</a>
+						</div>
+						</div>
+						}
+						else
+
+						{    <div class="navbar-brand text-nav pull-right">
+							<a href="../LoginAlternative/LoginAlternative">Sign In | Register</a>
+						</div>
+						}
+
+
+
+
+
+
+						<!-- close change nav-->
+
+
+
+					</div>
+
+				</div>
+	</div>
+	<div class="navbar navbar-default navbar-static-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".main-nav">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			
+					@Html.Partial("_LoginPartialBokRadio")
+					
+		</div>
+	</div>
+
+
+
+
+
+
+
+	<div id="wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		@RenderBody()
+
+
+
+		<footer> 
+			<div class="footer" id="footer">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-6  col-md-4 col-sm-12 col-xs-12">
+							<h3> Help with your tickets </h3>
+							<ul>
+								<li>@Html.ActionLink("Help with your Tickets", "Help", "Home")</li>
+
+								
+
+
+							</ul>
+						</div>
+
+						<div class="col-lg-6  col-md-4 col-sm-12 col-xs-12">
+							<h3> Site Terms </h3>
+							<ul>
+							
+
+								<li> <a href="~/Home/TermsConditions">  Privacy Policy </a> </li>
+								<li>@Html.ActionLink("T&C's", "FAQ", "Home")</li>
+
+								<li> <a href="~/Home/RefundsPolicy"> Refund Policy </a> </li>
+
+
+							</ul>
+						</div>
+
+
+
+
+
+
+					</div>
+					
+					<!--/.row-->
+				</div>
+				<!--/.container-->
+			</div>
+			<!--/.footer-->
+
+			<div class="footer-bottom">
+				<div class="container">
+					<p class="pull-left"> Powered by <a href="https://www.miid.co.za/">Mi-id online Ticketing</a> and cashless services </p>
+					<div class="pull-right">
+
+						<ul class="nav nav-pills payments">
+
+							<li><i class="fab fa-cc-visa fa-lg"></i></li>
+							<li><i class="fab fa-cc-mastercard fa-lg"></i></li>
+
+
+						</ul>
+
+					</div>
+				</div>
+			</div>
+			<!--/.footer-bottom-->
+		</footer>
+
+
+
+
+
+		<script src="~/Scripts/jsnew/jquery.js"></script>
+		<!-- Bootstrap Core JavaScript -->
+		<script src="~/Scripts/jsnew/bootstrap.min.js"></script>
+
+		<!-- Latest compiled and minified JavaScript -->
+		@Scripts.Render("~/content/js/bootstrap.min.js")
+
+
+	</div>
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+
+	@Scripts.Render("~/bundles/jquery")
+
+	@Scripts.Render("~/Scripts/jquery.tokeninput.js")
+
+
+
+	@{
+		string[] parts = new string[10];
+
+		if (TempData.ContainsKey("Growl") && !String.IsNullOrEmpty((string)TempData["Growl"]))
+		{
+			string growl = (string)TempData["Growl"];
+			parts = growl.Split(':');
+
+
+
+			<script type="text/javascript">
+        growl('@parts[0]', '@parts[1]');
+			</script>
+		}
+
+	}
+
+
+
+
+</body>
+</html>

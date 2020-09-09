@@ -1,0 +1,180 @@
+﻿@model MiidWeb.Models.TicketClassViewModel
+
+@{
+    ViewBag.Title = "Edit Ticket Class";
+    Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("LayoutEventOrganiser");
+}
+
+<!-- One -->
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("EventID", (object)@ViewBag.EventID)
+
+
+
+    @Html.HiddenFor(model => model.TicketClass.ID);
+    <section>
+
+        <div class="container">
+            <div class="underline_div">
+                <h1>Edit Ticket Type for @ViewBag.EventName</h1>
+                <hr>
+            </div>
+            <div>
+                Event Start: @Model.Event.StartDateTime.Value.ToString("yyyy-MM-dd HH:mm")
+                End: @Model.Event.EndDateTime.Value.ToString("yyyy-MM-dd HH:mm")
+
+            </div>
+            <p>
+                Running Balance: @Model.TicketClass.RunningQuantity
+            </p>
+
+            <div class="row uniform">
+                <div class="3u 12u(xsmall)">
+                    <div class="one_line_text">	<h2>Ticket Info</h2></div>
+
+                    @Html.TextBoxFor(model => model.TicketClass.Code, new { placeholder = "e.g. General Access or VIP", maxLength = "10" })
+                </div>
+                <div class="3u 12u(xsmall)">
+                    <div class="one_line_text">Starting Quantity</div>
+                    @Html.TextBoxFor(model => model.TicketClass.Quantity, new { placeholder = "Starting Quantity" })
+                    @Html.ValidationMessageFor(model => model.TicketClass.Quantity, "", new { @class = "red" })
+                </div>
+                <div class="3u 12u(xsmall)">
+                    <div class="one_line_text">Price (R)</div>
+                    @Html.TextBoxFor(model => model.TicketClass.Price, new { placeholder = "120" })
+                    @Html.ValidationMessageFor(model => model.TicketClass.Price, "", new { @class = "red" })
+                </div>
+            </div>
+            <div class="row uniform">
+                <div class="3u 12u(xsmall)">
+                    <div class="one_line_text">Sold</div>
+                    @Html.DisplayFor(model => model.TicketClass.Price, new { placeholder = "120" })
+                </div>
+                <div class="3u 12u(xsmall)">
+                    <div class="one_line_text">Available</div>
+                    @Html.DisplayFor(model => model.TicketClass.Price, new { placeholder = "120" })
+                </div>
+                <div class="3u 12u(xsmall)">
+                    
+                        @Html.DropDownListFor(x => x.TicketClass.StatusID, (IEnumerable<SelectListItem>)Model.StatusOptions)
+                   
+                </div>
+            </div>
+            <div class="underline_div">
+                <h2>Ticket Life Span</h2>
+            </div>
+            <div class="one_line_text">
+                Create tickets for various days during the event. eg one day, two days, or full weekend passes.
+            </div>
+
+
+
+            <div class="row uniform">
+                <div class="12u">
+                    <div class="one_line_text">Start Date</div>
+                    <div class="select-wrapper_xtra_small">
+                        @Html.DropDownListFor(x => x.StartDateYear, (IEnumerable<SelectListItem>)Model.StartDateYears)
+                    </div>
+                    <div class="select-wrapper_xtra_small">
+                        @Html.DropDownListFor(x => x.StartDateMonth, (IEnumerable<SelectListItem>)Model.StartDateMonths)
+                    </div>
+                    <div class="select-wrapper_xtra_small">
+                        @Html.DropDownListFor(x => x.StartDateDay, (IEnumerable<SelectListItem>)Model.StartDateDays)
+                    </div>
+                    <div class="select-wrapper_xtra_small">
+                        @Html.DropDownListFor(x => x.StartDateTimeTime, (IEnumerable<SelectListItem>)Model.StartDateTimeTimes, htmlAttributes: new { @class = "organiser_add_drop" })
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+            <div class="row uniform">
+
+
+                <div class="12u">
+                    <div class="one_line_text">End Date</div>
+                    <div class="select-wrapper_xtra_small">
+                        @Html.DropDownListFor(x => x.EndDateYear, (IEnumerable<SelectListItem>)Model.EndDateYears, htmlAttributes: new { @class = "organiser_add_drop_big" })
+
+
+
+
+                    </div>
+                    <div class="select-wrapper_xtra_small">
+                        @Html.DropDownListFor(x => x.EndDateMonth, (IEnumerable<SelectListItem>)Model.EndDateMonths, htmlAttributes: new { @class = "organiser_add_drop_big" })
+                    </div>
+                    <div class="select-wrapper_xtra_small">
+                        @Html.DropDownListFor(x => x.EndDateDay, (IEnumerable<SelectListItem>)Model.EndDateDays, htmlAttributes: new { @class = "organiser_add_drop_big" })
+
+
+                    </div>
+                    <div class="select-wrapper_xtra_small">
+
+
+
+                        @Html.DropDownListFor(x => x.EndDateTimeTime, (IEnumerable<SelectListItem>)Model.EndDateTimeTimes, htmlAttributes: new { @class = "organiser_add_drop" })
+
+
+                    </div>
+
+
+
+                </div>
+                @Html.ValidationMessage("StartDateTime", new { style = "color: red" })
+                @Html.ValidationMessage("EndDateTime", new { style = "color: red" })
+
+
+
+            </div>
+
+
+
+
+            <div class="row uniform">
+                <div class="12u">
+                    <div><h2 class="grey">Short Description.</h2>This will show in search results or areas with limited space.</div>
+
+                    @Html.TextAreaFor(model => model.TicketClassDescription, new { @class = "textarea_small", placeholder = "Ticket Name. eg , Vip, Early Bird, General", onchange = "onTestChangeSmall" })
+
+
+                </div>
+
+
+
+
+
+
+                <div class="row uniform">
+
+                    <div class="12u">
+                        <ul class="actions">
+                            <li>
+
+                                <input type="submit" class="button special" value="Update Ticket" />
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="12u">
+                    <ul class="actions">
+                        <li><a href="~/Events/IndexForEO/@Model.EventID" class="cancel_button">Cancel</a></li>
+                    </ul>
+                </div>
+
+
+            </div>
+
+
+
+
+
+        </div>
+    </section>
+
+}

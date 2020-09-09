@@ -1,0 +1,91 @@
+﻿@model MiidWeb.NFCTag
+
+@{
+	ViewBag.Title = "Details";
+	Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+	//Layout = null;
+}
+
+<style>
+	<!--
+
+	.glyphicon {
+		cursor: pointer;
+	}
+
+	input,
+	select {
+		width: 100%;
+	}
+	-->
+</style>
+
+<div class="col-md-9">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="content-box-header">
+				<div class="panel-title">Vendor Details</div>
+				<div class="panel-title pull-right" style="margin-top:-8px;"> @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, htmlAttributes: new { @class = "btn btn-primary" })</div>
+
+				<div class="panel-options">
+
+				</div>
+			</div>
+			<div class="content-box-large box-with-header">
+
+				<dl class="dl-horizontal">
+					<dt>
+						@Html.DisplayNameFor(model => model.TagNumber)
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.TagNumber)
+					</dd>
+
+					<dt>
+						@Html.DisplayNameFor(model => model.ActivationDate)
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.ActivationDate)
+					</dd>
+
+					<dt>
+						@Html.DisplayNameFor(model => model.ActivationCode)
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.ActivationCode)
+					</dd>
+
+					<dt>
+						@Html.DisplayNameFor(model => model.TagPin)
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.TagPin)
+					</dd>
+
+					<dt>
+						@Html.DisplayNameFor(model => model.EndUser.Surname)
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.EndUser.Surname)
+					</dd>
+
+					<dt>
+						@Html.DisplayNameFor(model => model.Status.Code)
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.Status.Code)
+					</dd>
+
+				</dl>
+			</div>
+			</div>
+		</div>
+	</div>
+
+			

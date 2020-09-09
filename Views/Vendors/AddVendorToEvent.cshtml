@@ -1,0 +1,57 @@
+﻿@model MiidWeb.Models.VendorViewModel
+@{
+    ViewBag.Title = "Add Vendor To Event";
+
+    Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("LayoutEventOrganiser");
+}
+
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("EventID", (object)@ViewBag.EventID)
+
+    <div class="row">
+        <div class="panel-body">
+            <div class="col-md-12 w3ls-graph">
+                <!--agileinfo-grap-->
+                <div class="agileinfo-grap">
+                    <div class="agileits-box">
+                        <div class="agileits-box-body clearfix">
+                            <div class="form-group col-md-12">
+
+
+                                <div class="form-group col-md-12">
+
+                                    <h3>@ViewBag.ErrorMessage</h3>
+                                </div>
+                                <div class="form-group col-md-12">
+
+                                    <h1>Link Vendor to Event: @ViewBag.EventName</h1>
+                                    <hr>
+                                    <p>Insert vendors unique code below. Once you have done so, the vendors generated revenue will show in the "Manage Events Page"</p>
+
+                                </div>
+                                <div class="form-group col-md-8">
+                                    @Html.TextBoxFor(x => x.VendorCode, new { @class = "form-control input-lg", @placeholder = "Vendor Code" })
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <input type="submit" value="Confirm" class="btn btn-primary btn-block btn-lg" />
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+
+
+
+
+
+
+            }

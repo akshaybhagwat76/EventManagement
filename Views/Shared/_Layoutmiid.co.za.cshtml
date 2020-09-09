@@ -1,0 +1,261 @@
+﻿<!DOCTYPE html>
+
+@using Microsoft.AspNet.Identity
+@using MiidWeb.Helpers
+
+@RenderSection("scripts", required: false)
+<html lang="en" xml:lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
+
+    <!--facebook meta-->
+
+
+
+
+
+    <link rel="stylesheet" href="~/Scripts/growl.css" type="text/css">
+    <!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-TKCDRPP');</script>
+    <!-- End Google Tag Manager -->
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/Content/css/css2020/Main.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+
+
+    <script src="https://kit.fontawesome.com/55065a088d.js" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TKCDRPP"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+
+    <span style="display:none" itemscope itemtype="http://schema.org/Organization">
+        <link itemprop="url" href="https://www.miid.co.za/">
+        <a itemprop="sameAs" href="https://www.facebook.com/miidevents/">FB</a>
+        <a itemprop="sameAs" href="https://twitter.com/MiiDEvents">Twitter</a>
+    </span>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+            <img src="https://www.miid.co.za/Content/images2018/logo.svg" style="width:100px" alt="Mi-id Logo" />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                @Html.Partial("_LoginPartial")
+
+                @if (Request.IsAuthenticated)
+                {
+
+
+                    var endUser = MiidWeb.Repositories.EndUserRepository.GetUser(User.Identity.GetUserName(), true);
+                    bool IAmEventOrganiser = false;
+                    IAmEventOrganiser = MiidWeb.Repositories.EndUserRepository.AmIAnEventOrganiser(User.Identity.GetUserName());
+                    // if (endUser == null && !IAmEventOrganiser) { Response.Redirect("../EndUsers/CreateFirst"); }
+
+                    <li class="nav-item">
+                        @{ string profilePic = "avatar_blank.png";
+                            if (!String.IsNullOrEmpty(endUser.ProfilePicURL))
+                            {
+                                profilePic = endUser.ProfilePicURL;
+                            }
+                        }
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="@Url.Action( "MiiDetails", "EndUsers", new { id = @endUser.Id})" class="nav-link">Edit Details</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href=" @Url.Action( "Logoff", "Account", null)" class="nav-link">Sign out</a>
+                    </li>
+                    <!--   <img src="~/images/@profilePic" class="profile-image img-circle" style="width:50px; padding:5px;" /> -->
+
+
+                }
+                else
+
+                {
+                    <div>d</div>
+
+                }
+
+
+            </ul>
+            @if (Request.IsAuthenticated)
+            {
+                var endUser = MiidWeb.Repositories.EndUserRepository.GetUser(User.Identity.GetUserName(), true);
+                <div>Hi, @endUser.FirstName</div>
+
+
+
+            }
+
+            else
+            {
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="location.href = '../LoginAlternative/LoginAlternative' ">Sign in</button>
+                </form>
+            }
+
+
+        </div>
+    </nav>
+
+   
+
+    @RenderBody()
+
+
+
+    <footer class="page-footer font-small blue pt-4">
+        <div class="container-fluid text-center text-md-left">
+            <div class="row">
+                <div class="col-md-3 mb-md-0 mb-3">
+                    <h5 class="text-uppercase">General</h5>
+                    <ul class="list-unstyled">
+                        <li>
+                            @Html.ActionLink("Help", "Help", "Home")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Contact", "Contact", "Home")
+                        </li>
+                        <li>
+                            <a href="~/Home/TermsConditions">  Privacy Policy </a>
+                        </li>
+                        <li>
+                            @Html.ActionLink("T&C's", "FAQ", "Home")
+                        </li>
+                        <li>
+                            <a href="~/Home/RefundsPolicy"> Refund Policy </a>
+                        </li>
+                        @if (Request.IsAuthenticated)
+                        {    // to-do link
+                            <li><a class="" href="">Refund Tickets</a> </li>
+                        }
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-md-0 mb-3">
+                    <h5 class="text-uppercase">Links</h5>
+                    <ul class="list-unstyled">
+                        @if (Request.IsAuthenticated)
+                        {
+                            <li><a class="" href="~/EventOrganisers/Create">Create Event</a> </li>
+                        }
+                        <li> <a href="~/Home/IndexEO">Event Organisers </a> </li>
+                        <li> <a href="~/Home/HowItWorks"> How it works </a> </li>
+                        <li> <a href="~/Home/ProductSummary">Services &amp; Products </a> </li>
+                        <li> <a href="~/Home/HelpEventOrganiser">Event Organiser's FAQ's </a> </li>
+                        <li> <a href="~/Home/RegisterDoc"> Terms Of Service </a> </li>
+                        <li> <a href="https://drive.google.com/drive/folders/1vUvPIGXOKAbj6Jb2eL_PsGl_ILCgOfaz?usp=sharing">Logos and Media Pack</a> </li>
+
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-md-0 mb-3">
+                    <h5 class="text-uppercase">Products &amp; Services</h5>
+                    <ul class="list-unstyled">
+                        <li> <a href="~/Home/TicketingExplanation">Online Ticketing </a> </li>
+                        <li> <a href="~/Home/BoxOffice">Box Office </a> </li>
+                        <li> <a href="~/Home/NFCTickets">NFC Ticketing</a> </li>
+                        <li> <a href="~/Home/MiiFundsExplanation">Cashless </a> </li>
+                        <li> <a href="~/Home/WhiteLabel">White Label</a> </li>
+                    </ul>
+                </div>
+                <!-- Grid column -->
+                <div class="col-md-3 mb-md-0 mb-3">
+                    <h5 class="text-uppercase">Links</h5>
+                    <ul class="list-unstyled">
+                        <li> <a href="https://www.facebook.com/miidevents/"> <i class="fab fa-facebook-f">   </i> </a> </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Links -->
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">
+            © 2020 Copyright:
+            <a href="https://mdbootstrap.com/"> Mi-id Event Ticketing &amp; Cashless Software</a>
+        </div>
+        <!-- Copyright -->
+
+    </footer>
+
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    @Scripts.Render("~/bundles/jquery")
+
+    @{
+        string[] parts = new string[10];
+        if (TempData.ContainsKey("Growl") && !String.IsNullOrEmpty((string)TempData["Growl"]))
+        {
+            string growl = (string)TempData["Growl"];
+            parts = growl.Split(':');
+
+            <script type="text/javascript">
+        growl('@parts[0]', '@parts[1]');
+            </script>
+        }
+    }
+
+
+</body>
+</html>

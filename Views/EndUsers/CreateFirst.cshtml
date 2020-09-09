@@ -1,0 +1,214 @@
+﻿@model MiidWeb.Models.CreateFirstEndUserViewModel
+
+@{
+	ViewBag.Title = "Create";
+	string email = ViewBag.Email;
+	string required = "";
+	if (Model.IsCashless == "true" || Model.Cookie == "MiiFunds Topup") { required = "required"; }
+
+	Layout = MiidWeb.Repositories.TicketRepository.GetLayoutFile("Layout");
+
+
+}
+<script type="text/javascript">
+	function get_selected_radio_button() {
+
+		var GoAhead1 = "False";
+
+		var rb_group1 = document.getElementsByName("TermsAndConditions");
+		for (var i = 0; i < rb_group1.length; i++) {
+			if (rb_group1[i].checked) {
+				if (rb_group1[i].value == "False") {
+					GoAhead1 = "False";
+
+				}
+				else {
+					GoAhead1 = "True";
+				}
+
+			}
+		}
+		if (GoAhead1 == "False") {
+			alert("Please read and accept terms and conditions to proceed.");
+			return false;
+		}
+		return true;
+	}
+</script>
+
+
+
+
+
+
+
+@using (Html.BeginForm("CreateFirst", "EndUsers", FormMethod.Post, new { enctype = "multipart/form-data", onsubmit = "event.preventDefault();  get_selected_radio_button())" }))
+{
+	@Html.AntiForgeryToken()
+
+	@Html.Hidden("Email", (Object)ViewBag.Email)
+	@Html.Hidden("ReturnUrl", (object)ViewBag.ReturnUrl)
+	@Html.Hidden("Cookie", (object)@Model.Cookie)
+	@Html.Hidden("PromoCode", (object)@Model.PromoCode)
+	@Html.Hidden("friendEmailList", (object)@Model.friendEmailList)
+	@Html.HiddenFor(x => x.ID);
+	<!-- One -->
+
+
+	<div class="container bg-grey bg">
+		<div class="row vertical-offset-40px">
+
+
+			<div class="col-md-8 col-md-offset-2">
+
+				<div class="panel panel-default ">
+
+					<div class="panel-body text-center">
+						<!--	<img src="~/Content/images2018/login.svg" class="img-xs ">
+							<br>-->
+
+						<h4>@GlobalVariables.CreateFirstHeading</h4>
+						<p> @GlobalVariables.CreateFirstParaOne<br><br></p>
+						<span style="color:palevioletred">@Html.ValidationSummary()</span>
+
+						<form action="" method="post" id="fileForm" role="form">
+							<div class="form-group col-md-6 ">
+								@GlobalVariables.CreateFirstFirstName <small><br>@GlobalVariables.CreateFirstFirstNameSub</small>
+								@Html.EditorFor(model => model.Firstname, new { htmlAttributes = new { @id = "name", @class = "form-control input-lg", placeholder = "eg. John" } })
+
+							</div>
+							<div class="form-group col-md-6 ">
+								@GlobalVariables.CreateFirstLastName<small><br>@GlobalVariables.CreateFirstLastNameSub</small>
+								@Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "eg. Doe" } })
+							</div>
+							<div class="form-group col-md-6 ">
+								@GlobalVariables.CreateFirstCell<small><br>@GlobalVariables.CreateFirstCellSub</small>
+
+								@Html.EditorFor(model => model.Cell, new { htmlAttributes = new { @id = "phonenumber", @class = "form-control input-lg", placeholder = "eg. 0714023333", type = "number" } })
+							</div>
+
+
+							<div class="form-group col-md-6 ">
+								@GlobalVariables.CreateFirstID
+
+							@if (required != "required")
+							{
+								<small><br>@GlobalVariables.CreateFirstIDSub</small>
+								@Html.TextBox("IDNumber", Model.IDNumber, new { @class = "form-control input-lg", placeholder = "eg. 8711232345678", })
+							}
+							else
+							{
+								<small><br>This field is required for withdrawals and transfers</small>
+								@Html.TextBox("IDNumber", Model.IDNumber, new { @class = "form-control input-lg", placeholder = "eg. 8711232345678", required })
+							}
+						</div>
+						<div class="form-group col-md-12 ">
+							@GlobalVariables.CreateFirstEmail
+
+						@Html.TextBoxFor(model => model.Email, new { @class = "form-control input-lg", disabled = "disabled" })
+					</div>
+
+					<div class="form-group col-md-6 hidden">
+						<p class="pull-left">
+							Male
+							@Html.RadioButtonFor(model => model.Male, true, new { name = "demo-priority", id = "demo-priority-low" })
+
+						</p>
+					</div>
+					<div class="form-group col-md-6 hidden">
+						<p class="pull-left">
+							@Html.RadioButtonFor(model => model.Male, true, new { @checked = "checked", name = "demo-priority", id = "demo-priority-low" })
+
+							&nbsp; &nbsp;Female
+						</p>
+					</div>
+					<div class="form-group col-md-12 hidden ">
+						Date of Birth
+					</div>
+					<div class="form-group col-md-4 hidden">
+
+
+						@Html.DropDownList("DateOfBirthYear", null, htmlAttributes: new { @class = "form-control input-lg" })
+
+					</div>
+					<div class="form-group col-md-4 hidden">
+
+						@Html.DropDownList("DateOfBirthMonth", null, htmlAttributes: new { @class = "form-control input-lg" })
+
+					</div>
+					<div class="form-group col-md-4 hidden">
+
+						@Html.DropDownList("DateOfBirthDay", null, htmlAttributes: new { @class = "form-control input-lg" })
+
+					</div>
+
+
+					<div class="form-group col-md-12 hidden">
+						<p class="pull-left">
+							@Html.RadioButtonFor(model => model.Newsletter, true, new { name = "demo-priority", id = "demo-priority-low1" })
+							Sign up to our newsletter and win monthly prizes.
+						</p>
+					</div>
+					<div class="hide">
+						@Html.RadioButtonFor(model => model.Newsletter, true, new { name = "demo-priority", id = "demo-priority-low1" })
+						<label for="terms"> Sign up hide</label>
+					</div>
+					<div class="form-group col-md-12">
+						<br>
+						@Html.RadioButtonFor(model => model.TermsAndConditions, true, new { name = "demo-priority", id = "TermsAndConditions1" })
+						<strong> @GlobalVariables.Terms</strong>
+
+					</div>
+
+					<div class="hide">
+						@Html.RadioButtonFor(model => model.TermsAndConditions, false, new { name = "demo-priority", id = "TermsAndConditions2" })
+						<label for="terms"> Terms2</label>
+					</div>
+					<div class="form-group  col-md-12 ">
+						<button type="submit" value="Continue" class="btn btn-info btn-lg btn-block" id="load" onclick="JavaScript:get_selected_radio_button();">Continue</button>
+
+					</div>
+					<div class="form-group pull-left col-md-12 ">
+						<i class="fas fa-lock"></i> @GlobalVariables.CreateFirstSeucrePurchase
+					</div>
+				</form>
+
+
+
+			</div>
+
+
+
+		</div>
+	</div>
+</div>
+</div>
+
+
+}
+
+
+<script>
+
+
+	function doIt(e) {
+		var e = e || event;
+
+		if (e.keyCode == 32) return false;
+
+	}
+	window.onload = function () {
+		var inp = document.getElementById("phonenumber");
+
+
+		inp.onkeydown = doIt;
+
+	};
+
+</script>
+<script>
+	form.onSubmit = function () {
+		form.action = form.action.replace("'", "");
+		return true;
+	}
+</script>

@@ -1,0 +1,237 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-GB">
+<head>
+  <title>Mi-id   |   user_profile</title>
+  <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+  <meta name="description" content="" />
+  <meta name="keywords" content="" />
+  <meta name="robots" content="index, follow" />
+  <meta name="viewport" content="initial-scale=0.8" />
+  <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="~/Content/css/main.css" type="text/css" />
+  <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
+  <link href="css/banner/banner.css" rel="stylesheet" type="text/css" />
+
+  @Styles.Render("~/Content/css")
+  @Scripts.Render("~/bundles/modernizr")
+  <script src="http://code.jquery.com/jquery-1.8.2.min.js" type="text/javascript"></script>
+  <script src="~/Scripts/carousel/jquery.carouFredSel-6.0.4-packed.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    $(function () {
+      $('.carousel').carouFredSel({
+        width: '100%',
+        items: {
+          visible: 3,
+          start: -1
+        },
+        scroll: {
+          items: 1,
+          duration: 1000,
+          timeoutDuration: 5000
+        },
+        prev: '.prev',
+        next: '.next',
+        pagination: {
+          container: '.pager',
+          deviation: 1
+        }
+      });
+    });
+  </script>
+
+  <!-- Facebook Pixel Code -->
+  <script>
+    !function (f, b, e, v, n, t, s) {
+      if (f.fbq) return; n = f.fbq = function () {
+        n.callMethod ?
+        n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+      }; if (!f._fbq) f._fbq = n;
+      n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = []; t = b.createElement(e); t.async = !0;
+      t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s)
+    }(window,
+    document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1586564268035866');
+    fbq('track', 'PageView');
+    fbq('track', 'Lead');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+         src="https://www.facebook.com/tr?id=1586564268035866&ev=PageView&noscript=1" />
+  </noscript>
+  <!-- DO NOT MODIFY -->
+  <!-- End Facebook Pixel Code -->
+
+</head>
+
+
+
+<body class="profile_body">
+
+
+  <div class="profile_header">
+
+    <div class="profile_header_wrapper">
+
+      <div class="profile_header_container_left">
+        <img src="~/images/logo.png" alt=" miiImage"=miiImage" class="logo" />
+
+        <div class="notification_container">
+          <button type="submit" name="seller_top_icon_1" class="message_button "><img src="~/images/menu_icon_1.jpg" /></button>   <!--use  images/menu_icon1a for active message-->
+          <button type="submit" name="seller_top_icon_2" class="notification_button  "><img src="~/images/menu_icon_2.jpg" /></button>  <!--use  images/menu_icon2a for active notification-->
+
+        </div>
+      </div>
+      <div class="profile_header_container_icon">
+
+
+
+      </div>
+
+      @*<div class="profile_header_container_search">*@
+
+      @*<input type="text" id="" class="search_bar">*@
+      @Html.Partial("_LoginPartial")
+      @*</div>
+
+        <div class="profile_header_container_icon">
+
+            <img src="~/images/search_icon.png" class="search_icon" />
+
+        </div>
+        <div class="profile_header_container_icon">
+
+            <div class="drop_down">
+
+                <ul class="drop_menu_two">
+                    <li>
+                        <img src="~/images/drop_menu.png" alt=" miiImage" class="logo" />
+                        <ul>
+                            <li><a href='#'>About</a></li>
+                            <li><a href='#'>Products</a></li>
+                            <li><a href='#'>FAQ's</a></li>
+                            <li><a href='#'>Help</a></li>
+
+                        </ul>
+                    </li>
+
+
+            </div>*@
+
+    </div>
+
+
+
+  </div>
+
+  </div>
+
+  @*</div>
+
+
+
+    </div>
+
+
+
+    </div>*@
+
+  <div class="profile_body_container">
+    <div class="wrapper_carousel_window">
+      <div class="carousel">
+        <img src="~/images/banner1.jpg" alt="building1" width="990" height="450" />
+        <img src="~/images/banner2.jpg" alt="building2" width="990" height="450" />
+        <img src="~/images/banner3.jpg" alt="building3" width="990" height="450" />
+        <img src="~/images/banner4.jpg" alt="building4" width="990" height="450" />
+
+      </div>
+      <a href="#" class="prev" title="Show previous"> </a>
+      <a href="#" class="next" title="Show next"> </a>
+      <div class="pager"></div>
+    </div>
+
+
+
+
+    <div class="colmask threecol">
+
+      <div class="colmid">
+
+
+        <div class="colleft">
+          <div class="col1">
+            <!-- Column 1 start -->
+
+            <div class="middle_container">
+
+              @RenderBody()
+
+
+
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+      @*</div>*@
+      <div class="footer">
+
+
+        <div class="footer_wrapper">
+
+          <div class="footer_container_border_none">
+            <div class="footer_heading">Information</div>
+            <div class="footer_copy">About</div>
+            <div class="footer_copy">Services</div>
+
+
+
+
+          </div>
+          <div class="footer_container_border_left">
+
+            <div class="footer_heading">Need Help?</div>
+            <div class="footer_copy">FAQ's</div>
+            <div class="footer_copy">T&C's</div>
+            <div class="footer_copy">Help Desk</div>
+            <div class="footer_copy">Contact</div>
+
+          </div>
+          <div class="footer_container_border_left">
+
+            <div class="footer_heading">Other</div>
+            <div class="footer_copy">Careers</div>
+            <div class="footer_copy">Marketing</div>
+            <div class="footer_copy">Partnerships</div>
+
+          </div>
+          <div class="footer_container_border_left">
+
+            <div class="footer_heading">Social</div>
+            <div class="footer_copy">Facebook</div>
+            <div class="footer_copy">Twitter</div>
+            <div class="footer_copy">Google+</div>
+            <div class="footer_copy">Linkedin</div>
+
+          </div>
+
+
+
+        </div>
+
+      </div>
+
+
+      @Scripts.Render("~/bundles/jquery")
+      @Scripts.Render("~/bundles/bootstrap")
+      @RenderSection("scripts", required: false)
+    </div>
+  </div>
+
+
+    <!--fresh desk support chat script -->
+    <script type='text/javascript'>var fc_CSS=document.createElement('link');fc_CSS.setAttribute('rel','stylesheet');var fc_isSecured = (window.location && window.location.protocol == 'https:');var fc_lang = document.getElementsByTagName('html')[0].getAttribute('lang'); var fc_rtlLanguages = ['ar','he']; var fc_rtlSuffix = (fc_rtlLanguages.indexOf(fc_lang) >= 0) ? '-rtl' : '';fc_CSS.setAttribute('type','text/css');fc_CSS.setAttribute('href',((fc_isSecured)? 'https://d36mpcpuzc4ztk.cloudfront.net':'http://assets1.chat.freshdesk.com')+'/css/visitor'+fc_rtlSuffix+'.css');document.getElementsByTagName('head')[0].appendChild(fc_CSS);var fc_JS=document.createElement('script'); fc_JS.type='text/javascript'; fc_JS.defer=true;fc_JS.src=((fc_isSecured)?'https://d36mpcpuzc4ztk.cloudfront.net':'http://assets.chat.freshdesk.com')+'/js/visitor.js';(document.body?document.body:document.getElementsByTagName('head')[0]).appendChild(fc_JS);window.livechat_setting= 'eyJ3aWRnZXRfc2l0ZV91cmwiOiJtaS1pZC5mcmVzaGRlc2suY29tIiwicHJvZHVjdF9pZCI6bnVsbCwibmFtZSI6Ik1pLWlkIiwid2lkZ2V0X2V4dGVybmFsX2lkIjpudWxsLCJ3aWRnZXRfaWQiOiJkYjA1YmY2Yy1mMjJlLTQwMDAtODRhYy03MDkyZjlkYTYxYjMiLCJzaG93X29uX3BvcnRhbCI6ZmFsc2UsInBvcnRhbF9sb2dpbl9yZXF1aXJlZCI6ZmFsc2UsImxhbmd1YWdlIjoiZW4iLCJ0aW1lem9uZSI6IkF0aGVucyIsImlkIjo0MjAwMDAwNzE0MiwibWFpbl93aWRnZXQiOjEsImZjX2lkIjoiNjBjZTU2ODdkNTJmZWIzNjk5YjMwZDI5YWY5YzFiZTYiLCJzaG93IjoxLCJyZXF1aXJlZCI6MiwiaGVscGRlc2tuYW1lIjoiTWktaWQiLCJuYW1lX2xhYmVsIjoiTmFtZSIsIm1lc3NhZ2VfbGFiZWwiOiJNZXNzYWdlIiwicGhvbmVfbGFiZWwiOiJQaG9uZSIsInRleHRmaWVsZF9sYWJlbCI6IlRleHRmaWVsZCIsImRyb3Bkb3duX2xhYmVsIjoiRHJvcGRvd24iLCJ3ZWJ1cmwiOiJtaS1pZC5mcmVzaGRlc2suY29tIiwibm9kZXVybCI6ImNoYXQuZnJlc2hkZXNrLmNvbSIsImRlYnVnIjoxLCJtZSI6Ik1lIiwiZXhwaXJ5IjoxNTI1MjY4OTI3MDAwLCJlbnZpcm9ubWVudCI6InByb2R1Y3Rpb24iLCJlbmRfY2hhdF90aGFua19tc2ciOiJUaGFuayB5b3UhISEiLCJlbmRfY2hhdF9lbmRfdGl0bGUiOiJFbmQiLCJlbmRfY2hhdF9jYW5jZWxfdGl0bGUiOiJDYW5jZWwiLCJzaXRlX2lkIjoiNjBjZTU2ODdkNTJmZWIzNjk5YjMwZDI5YWY5YzFiZTYiLCJhY3RpdmUiOjEsInJvdXRpbmciOnsiY2hvaWNlcyI6eyJsaXN0MSI6WyIwIl0sImxpc3QyIjpbIjAiXSwibGlzdDMiOlsiMCJdLCJkZWZhdWx0IjpbIjAiXX0sImRyb3Bkb3duX2Jhc2VkIjoiZmFsc2UifSwicHJlY2hhdF9mb3JtIjoxLCJidXNpbmVzc19jYWxlbmRhciI6bnVsbCwicHJvYWN0aXZlX2NoYXQiOjEsInByb2FjdGl2ZV90aW1lIjoxODAsInNpdGVfdXJsIjoibWktaWQuZnJlc2hkZXNrLmNvbSIsImV4dGVybmFsX2lkIjpudWxsLCJkZWxldGVkIjowLCJtb2JpbGUiOjEsImFjY291bnRfaWQiOm51bGwsImNyZWF0ZWRfYXQiOiIyMDE4LTA0LTAyVDEzOjUyOjM2LjAwMFoiLCJ1cGRhdGVkX2F0IjoiMjAxOC0wNC0wNFQyMjo1OToxMC4wMDBaIiwiY2JEZWZhdWx0TWVzc2FnZXMiOnsiY29icm93c2luZ19zdGFydF9tc2ciOiJZb3VyIHNjcmVlbnNoYXJlIHNlc3Npb24gaGFzIHN0YXJ0ZWQiLCJjb2Jyb3dzaW5nX3N0b3BfbXNnIjoiWW91ciBzY3JlZW5zaGFyaW5nIHNlc3Npb24gaGFzIGVuZGVkIiwiY29icm93c2luZ19kZW55X21zZyI6IllvdXIgcmVxdWVzdCB3YXMgZGVjbGluZWQiLCJjb2Jyb3dzaW5nX2FnZW50X2J1c3kiOiJBZ2VudCBpcyBpbiBzY3JlZW4gc2hhcmUgc2Vzc2lvbiB3aXRoIGN1c3RvbWVyIiwiY29icm93c2luZ192aWV3aW5nX3NjcmVlbiI6IllvdSBhcmUgdmlld2luZyB0aGUgdmlzaXRvcuKAmXMgc2NyZWVuIiwiY29icm93c2luZ19jb250cm9sbGluZ19zY3JlZW4iOiJZb3UgaGF2ZSBhY2Nlc3MgdG8gdmlzaXRvcuKAmXMgc2NyZWVuLiIsImNvYnJvd3NpbmdfcmVxdWVzdF9jb250cm9sIjoiUmVxdWVzdCB2aXNpdG9yIGZvciBzY3JlZW4gYWNjZXNzICIsImNvYnJvd3NpbmdfZ2l2ZV92aXNpdG9yX2NvbnRyb2wiOiJHaXZlIGFjY2VzcyBiYWNrIHRvIHZpc2l0b3IgIiwiY29icm93c2luZ19zdG9wX3JlcXVlc3QiOiJFbmQgeW91ciBzY3JlZW5zaGFyaW5nIHNlc3Npb24gIiwiY29icm93c2luZ19yZXF1ZXN0X2NvbnRyb2xfcmVqZWN0ZWQiOiJZb3VyIHJlcXVlc3Qgd2FzIGRlY2xpbmVkICIsImNvYnJvd3NpbmdfY2FuY2VsX3Zpc2l0b3JfbXNnIjoiU2NyZWVuc2hhcmluZyBpcyBjdXJyZW50bHkgdW5hdmFpbGFibGUgIiwiY29icm93c2luZ19hZ2VudF9yZXF1ZXN0X2NvbnRyb2wiOiJBZ2VudCBpcyByZXF1ZXN0aW5nIGFjY2VzcyB0byB5b3VyIHNjcmVlbiAiLCJjYl92aWV3aW5nX3NjcmVlbl92aSI6IkFnZW50IGNhbiB2aWV3IHlvdXIgc2NyZWVuICIsImNiX2NvbnRyb2xsaW5nX3NjcmVlbl92aSI6IkFnZW50IGhhcyBhY2Nlc3MgdG8geW91ciBzY3JlZW4gIiwiY2Jfdmlld19tb2RlX3N1YnRleHQiOiJZb3VyIGFjY2VzcyB0byB0aGUgc2NyZWVuIGhhcyBiZWVuIHdpdGhkcmF3biAiLCJjYl9naXZlX2NvbnRyb2xfdmkiOiJBbGxvdyBhZ2VudCB0byBhY2Nlc3MgeW91ciBzY3JlZW4gIiwiY2JfdmlzaXRvcl9zZXNzaW9uX3JlcXVlc3QiOiJBZ2VudCBzZWVrcyBhY2Nlc3MgdG8geW91ciBzY3JlZW4gIn19';</script>
+
+
+</body>
+</html>

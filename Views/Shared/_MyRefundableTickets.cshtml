@@ -1,0 +1,34 @@
+﻿@model IEnumerable<MiidWeb.Models.TicketViewModel>
+@{
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th> Event</th>
+            <th> Ticket </th>
+            <th> No: </th>
+            <th> Price </th>
+
+            <th> Select</th>
+
+        </tr>
+</thead>
+    <tbody >
+        
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Event.EventName</td>
+            <td>@item.TicketClass.Description</td>
+            <td>@item.Ticket.TicketNumber</td>
+           
+            <td>@item.Ticket.TicketPurchasePrice</td>
+            <!-- <td>@item.Ticket.DatetimePurchased</td>-->
+            <td>@Html.CheckBox("chk_" + item.Ticket.ID.ToString()) </td>
+
+
+        </tr>
+    }
+    </tbody>
+</table>
